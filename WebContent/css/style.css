@@ -1,0 +1,30 @@
+.d-none{
+    display: none;
+}
+
+.container{
+    width: 1500px;
+    height: inherit;
+    min-height: inherit;
+    background: #00000050;
+    display: flex;
+    align-items: center;
+}
+
+/* ---------------------- Header ---------------------- */
+.header{
+    height: 71px;
+    --background: beige;
+}
+
+/* ---------------------- Body ---------------------- */
+.body{
+    min-height: 500px;
+    --background: pink;
+}
+
+/* ---------------------- Footer ---------------------- */
+.footer{
+    height: 71px;
+    --background: skyblue;
+}

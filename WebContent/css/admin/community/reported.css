@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import "../reset.css";
+
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------header------------------------*/
+.header h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+.header nav {
+  margin-top: 10px;
+}
+.header ul {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+}
+.header ul li {
+  margin: 10px 20px;
+}
+/*-----------------------body----------------------*/
+.body {
+  flex-grow: 1;
+}
+.body .container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+/*-----------------------aside-----------------------*/
+.aside {
+  margin-top: 45px;
+}
+.aside ul {
+  display: flex;
+  flex-direction: column;
+   margin-top: 20px;
+}
+.aside li{
+  
+  margin-bottom: 15px;
+}
+
+/*-----------------------main-----------------------*/
+.main {
+  margin: 45px 0px 0px 35px;
+}
+.main h1 {
+  font-weight: 600;
+  font-size: 20px;
+  margin: 15px 0;
+
+ 
+}
+
+.main table {
+  width: 800px;
+  border-left: 1px solid #444842;
+
+}
+.main section thead {
+  background: #444842;
+  color: white;
+}
+
+.main section td {
+  text-align: center;
+  border: unset;
+  border-right: 1px solid #444842;
+  border-bottom: 1px solid #444842;
+}
+
+
+.reg-button{
+  display: flex;
+  justify-content: center;
+
+}
+
+.page-list>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+.page-list>ul{
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-list>ul>li{
+  display: flex;
+  justify-content: space-between;
+
+}
+/* .main section:nth-child(2){
+
+  border: 1px solid black;
+}
+
+
+.main section:nth-child(3) ol {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #444842;
+  border-radius: 5px;
+  padding: 20px;
+  background: #ececec;
+}
+.main section:nth-child(3) ol li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid #444842;
+  border-radius: 10px;
+  width: 90px;
+  background: white;
+}
+.main section:nth-child(4) ul {
+  display: flex;
+  justify-content: space-between;
+}
+.main section:nth-child(3) ol li span:first-child,
+.main section:nth-child(4) ul li span:first-child {
+  font-weight: bold; */
+}
+/*-------------------footer------------------------*/
+.footer {
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+}

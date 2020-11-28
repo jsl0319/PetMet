@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/reset.css" type="text/css" rel="stylesheet">
+    <link href="../css/style.css" type="text/css" rel="stylesheet">
+    <link href="세부 스타일 관련 파일 경로를 입력해주세요" type="text/css" rel="stylesheet" >
+</head>
+<body>
+    <!-------------------- Header -------------------->
+    <header class="header">
+        <h1><a href="../index.html">logo</a></h1>
+
+        <nav>
+            <h1>메뉴</h1>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../match/index.html">Match</a></li>
+                <li><a href="../community/index.html">Community</a></li>
+                <li><a href="../shop/index.html">Shop</a></li>
+                <li><a href="../user/index.html">Login</a></li>
+                <li><a href="index.html">My Page</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-------------------- Main -------------------->
+    <section class="body">
+        <main id = "main">
+            <h1>MY PAGE</h1>
+            <section>
+                <h1>강아지 프로필</h1>
+                <a href = "profile-edit.html" ><img src ="../images/dog/5.jpg"></a>
+                <div>
+                    <table border="1">
+                        <tbody>
+                            <tr>
+                                <td>크리스 (2살, 남아)</td>
+                            </tr>
+                            <tr>
+                                <td>파주</td>
+                            </tr>
+                            <tr>
+                                <td>식탐 강함, 낯가림</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h1>내가 올린 사진</h1>
+
+                <ul>
+                    <li> <a href = "picture-detail.html" ><img src ="../images/dog/4.jpg"></a></li>
+                    <li> <a href = "picture-detail.html" ><img src ="../images/dog/3.jpg"></a></li>
+                </ul>
+
+            </section>
+
+            <section>
+                <h1>사진 등록</h1>
+                <input type = "button" value ="사진 등록" onclick="location.href='./picture-edit.html'">
+            </section>
+            
+        </main>
+    </section>
+
+    <!-------------------- Footer -------------------->
+    <footer id = "footer" class="footer">
+        <h1>푸터</h1>
+    </footer>
+</body>
+</html>

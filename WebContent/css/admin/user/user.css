@@ -1,0 +1,29 @@
+@import "../style.css";
+/* ---------------------- Header ---------------------- */
+
+/* ---------------------- Body ---------------------- */
+.buttons{
+    margin-top: 10px;
+}
+.main-content-option
+,.main-content-option div{
+    display: inline-block;
+}
+table
+,th
+,td{
+    border: 1px solid black;
+    text-align: center;
+}
+    table{
+        border-collapse: collapse;
+    }
+    .main section th {
+        background: #444842;
+        color: white;
+      }
+
+input[type="submit"]{
+    width: 100px;
+}
+/* ---------------------- Footer ---------------------- */
