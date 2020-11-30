@@ -1,3 +1,12 @@
+<%@page import="com.petmet.web.shop.entity.Order"%>
+<%@page import="java.util.List"%>
+<%@page import="com.petmet.web.shop.service.OrderService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	OrderService service = new OrderService();
+	List<Order> list = service.getList();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,8 +109,28 @@
                             <th>교환</th>
                             <th>반품</th>
                         </tr>
+                        
+                        <%
+                        	for(Order o : list){ 
+                        %>
                         <tr>
+                        	<th><%=o.getId() %></th>
+                        	<th><%=o.getPayDate() %></th>
+                            <th><%=o.getUserId() %></th>
+                            <th><%=o.getProductName() %></th>
+                            <th><%=o.getPayAmount() %></th>
+                            <th><%=o.getPayMethod() %></th>
+                            <th><%=o.getPayStatement() %></th>
+                            <th><%=o.getDeliveryStatement() %></th>
+                            <th><%=o.getDeliveryStatement() %></th>
+                            <th><%=o.getDeliveryStatement() %></th>
+                            <th><%=o.getRefund() %></th>
+                            <th><%=o.getRefund() %></th>
+                            <th><%=o.getRefund() %></th>
                         </tr>
+                        <%
+                        	}
+                        %>
                     </thead>
     주문일(결제일)   주문번호   주문자 도움말
         상품명   총 실결제금액   결제수단   결제상태   미배송   배송중   배송완료   취소   교환   반품   메모

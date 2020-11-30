@@ -1,0 +1,257 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../../css/reset.css" type="text/css" rel="stylesheet">
+    <link href="../../../css/admin/shop/order/cancel.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <h1><a href="../index.html">logo</a></h1>
+
+        <nav class="quick-menu">
+            <h1>메뉴</h1>
+            <ul>
+                <li><a href="../../user/index.html">회원관리</a></li>
+                <li><a href="../index.html">쇼핑몰</a></li>
+                <li><a href="../../community/index.html">커뮤니티 게시글관리</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="body">
+        <div class="container">
+        <h1>관리인 : 주문취소관리</h1>
+        <section class="aside">
+        <nav class="shop-menu">
+            <ul>
+                <li>
+                    <a href="index.html">전체주문목록</a>
+                </li>
+                <li>
+                    <a href="">배송관리</a>
+                </li>
+                <li>
+                    <a href="">취소/교환/반품/환불</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="main">
+        <section>
+            <header>
+                <h1>교환/환불</h1>
+            </header>
+            <h1>입금전,후 교환/취소/환불리스트</h1>
+            <form>
+                <table border="1">
+                    <tr>
+                        <th>검색 키워드</th>
+                        <td>
+                            <select>
+                                <option>주문자명</option>
+                                <option>주문자 휴대폰번호</option>
+                                <option>주문번호</option>
+                                <option>주문자 ID</option>
+                                <option>입금자명</option>
+                                <option>입금계좌</option>
+                                <option>수령인</option>
+                                <option>수령인 핸드폰번호</option>
+
+                            </select>
+                            <input type="text">
+
+                        </td>
+                    <!-- <tr>
+                        <th>입금계좌별 검색</th>
+                        <td>
+                            <select>
+                                <option>전체</option>
+                            </select>
+                            <button>계좌추가/변경</button>
+                        </td>
+                    </tr> -->
+
+                    <tr>
+                        <th>처리일자</th>
+                        <td>
+                            <select>
+                                <option>주문일</option>
+                                <option>취소일</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="date">
+                        </td>
+                    </tr>
+
+                    <th>신청유형</th>
+                    <td>
+                        <input type="radio" name="신청유형">전체
+                        <input type="radio" name="신청유형">고객취소
+                        <input type="radio" name="신청유형">관리자취소
+                        <input type="radio" name="신청유형">자동취소
+
+                    </td>
+
+                </tr>
+
+                    <tr>
+                        <th>결제방법</th>
+                        <td>
+                            <input type="checkbox" name="결제방법">전체
+                            <input type="checkbox" name="결제방법">무통장
+                            <input type="checkbox" name="결제방법">가상계좌
+                            <input type="checkbox" name="결제방법">에스크로
+
+                        </td>
+
+                    </tr>
+
+
+                    </tr>
+                </table>
+            </form>
+            <button>검색</button>
+        </section>
+
+        <section>
+            <table border="1">
+                <tr>
+                    <th>주문취소리스트</th>
+                    <td>검색결과:0건 </td>
+                    <td>입금대기 금액:0원</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>주문시작</td>
+                        <td>취소시각</td>
+                        <td>주문인</td>
+                        <td>주문번호</td>
+                        <td>수량</td>
+                        <td>취소금액</td>
+                        <td>신청유형</td>
+                        <td>입금상태</td>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="9">검색된 데이터가 없습니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <header>
+                <h1>배송 전/후 교환환불</h1>
+            </header>
+            <h1>교환/환불신청 리스트</h1>
+            <form>
+                <table border="1">
+                    <tr>
+                        <th>검색 키워드</th>
+                        <td>
+                            <select>
+                                <option>주문자명</option>
+                                <option>주문자 휴대폰번호</option>
+                                <option>주문번호</option>
+                                <option>주문자 ID</option>
+                                <option>입금자명</option>
+                                <option>입금계좌</option>
+                                <option>수령인</option>
+                                <option>수령인 핸드폰번호</option>
+                            </select>
+                            <input type="text">
+                        </td>
+                    <tr>
+                        <th>처리일자</th>
+                        <td>
+                            <select>
+                                <option>주문일</option>
+                                <option>입금일</option>
+                                <option>배송등록일</option>
+
+                            </select>
+                            <input type="date">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th>결제방법</th>
+                        <td>
+                            <input type="checkbox" name="결제방법">전체
+                            <input type="checkbox" name="결제방법">무통장
+                            <input type="checkbox" name="결제방법">가상계좌
+                            <input type="checkbox" name="결제방법">에스크로
+
+                        </td>
+
+                    </tr>
+
+
+                    </tr>
+                </table>
+            </form>
+            <button>검색</button>
+        </section>
+
+        <section>
+            <table border="1">
+                <tr>
+                    <th>교환환불신청리스트 리스트</th>
+                    <td>검색결과:0건 </td>
+                    <td>입금대기 금액:0원</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h1>배송후 교환환불 신청리스트 </h1>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>신청일시</td>
+                        <td>교환/환불번호</td>
+                        <td>주문인</td>
+                        <td>주문번호</td>
+                        <td>수량</td>
+                        <td>상품금액</td>
+                        <td>결제방법</td>
+                        <td>배송상태</td>
+                        <td>교환/환불처리</td>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="8">검색된 데이터가 없습니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+        </div>
+    </main>
+
+
+</body>
+
+</html>

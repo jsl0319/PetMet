@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +88,6 @@
                 <table border="1" class="table-2">
                     <thead>
                         <tr>
-                        	<th>주문번호</th>
                             <th>결제일</th>
                             <th>주문자</th>
                             <th>상품명</th>
