@@ -21,7 +21,7 @@ public class User {
 		this.pwd = pwd;
 		this.birthday = birthday;
 	}
-	
+	//a메렁
 	// ------------------------ Getters/Setters ------------------------
 	public int getId() {
 		return id;
