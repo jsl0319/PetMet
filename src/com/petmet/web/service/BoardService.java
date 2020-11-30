@@ -66,7 +66,7 @@ public class BoardService {
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con = DriverManager.getConnection(url, "PETMET", "0000");
+			Connection con = DriverManager.getConnection(url, "petmet", "0000");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 
