@@ -26,7 +26,7 @@ public class BoardListController extends HttpServlet {
 		request.setAttribute("b", b);
 		request.getRequestDispatcher(".jsp").forward(request, response);
 		
-		System.out.println("hello");
+		System.out.println("hello hi bye");
 
 	}
 
