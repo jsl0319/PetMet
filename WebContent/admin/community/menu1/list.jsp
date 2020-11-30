@@ -1,5 +1,13 @@
+<%@page import="com.petmet.web.entity.Board"%>
+<%@page import="java.util.List"%>
+<%@page import="com.petmet.web.service.BoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+	BoardService service = new BoardService();
+	List<Board> list = service.getList();
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,30 +62,16 @@
 						</tr>
 					</thead>
 					<tbody>
+					<% for(Board b : list){%>
 						<tr>
-							<td>3</td>
-							<td>안녕하세요 하니입니다.</td>
-							<td>하니</td>
-							<td>2020-11-03</td>
-							<td>5209</td>
-							<td>703</td>
+							<td><%=b.getId() %></td>
+							<td><%=b.getTitle() %></td>
+							<td><%=b.getWriter() %></td>
+							<td><%=b.getRegdate() %></td>
+							<td><%=b.getViews() %></td>
+							<td><%=b.getLikes() %></td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>안녕하세요 류준열입니다.</td>
-							<td>류준열</td>
-							<td>2020-11-02</td>
-							<td>4809</td>
-							<td>203</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>안녕하세요 유아인입니다.</td>
-							<td>유아인</td>
-							<td>2020-10-22</td>
-							<td>2042</td>
-							<td>223</td>
-						</tr>
+					<%} %>	
 					</tbody>
 				</table>
 			</section>
