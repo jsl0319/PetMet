@@ -12,7 +12,7 @@
 <body>
     <header>
         <h1><a href="../../index.html">logo</a></h1>
-
+		
         <nav>
             <h1>메뉴</h1>
             <ul>
