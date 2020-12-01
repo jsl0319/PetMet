@@ -19,5 +19,8 @@ public class IndexController extends HttpServlet{
 							, HttpServletResponse response) throws ServletException, IOException {
 		OrderService service = new OrderService();
 		List<Order> list = service.getList();
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 }
