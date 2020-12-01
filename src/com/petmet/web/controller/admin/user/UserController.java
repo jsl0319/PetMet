@@ -1,4 +1,4 @@
-package com.petmet.web.controller.admin;
+package com.petmet.web.controller.admin.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;

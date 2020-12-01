@@ -1,6 +1,8 @@
+
 <%@page import="com.petmet.web.shop.entity.Board"%>
-<%@page import="java.util.List"%>
 <%@page import="com.petmet.web.shop.service.BoardService"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

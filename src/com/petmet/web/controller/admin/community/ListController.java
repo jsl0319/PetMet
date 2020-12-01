@@ -1,4 +1,4 @@
-package com.petmet.web.shop.controller.admin;
+package com.petmet.web.controller.admin.community;
 
 import java.io.IOException;
 
@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.petmet.web.shop.entity.Board;
-import com.petmet.web.shop.service.BoardService;
+import com.petmet.web.entity.Board;
+import com.petmet.web.service.BoardService;
 
-
-@WebServlet("/admin/shop/post/detail")
-public class BoardDetailController extends HttpServlet {
+@WebServlet
+public class ListController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +24,9 @@ public class BoardDetailController extends HttpServlet {
 		Board b = service.get(id);
 
 		request.setAttribute("b", b);
-		request.getRequestDispatcher("/admin/shop/post/detail.jsp").forward(request, response);
+		request.getRequestDispatcher(".jsp").forward(request, response);
+		
+		System.out.println("hello");
 
 	}
 
