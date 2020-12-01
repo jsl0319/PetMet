@@ -1,5 +1,8 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,27 +43,18 @@
                 <thead>
                     <tr>
                         <td colspan="3">${b.title}</td>
-                    </tr>
+                         </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${b.writer}</td>
-                        <td>${b.redate}</td>
+
+                        <td>${b.title}</td>
+                        <td>${b.regdate}</td>
                         <td>${b.views}</td>
                     </tr>
                     <tr>
                         <td colspan="3">
-                            내용 들어가는 자리
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                           ${b.content}
                         </td>
                     </tr>
                 </tbody>

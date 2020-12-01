@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +107,7 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td>번호</td>
+                            <td>이미지</td>
                             <td>상품명</td>
                             <td>등록일</td>
                             <td>가격</td>
@@ -113,96 +118,34 @@
                         </tr>
                     </thead>   
                     <tbody>
+                    
+                    <c:forEach var ="p" items="${list}">
                         <tr> 
                             <td>
                                 <input type="checkbox">
+                               
                             </td>
-                            <td>3</td>
-                            <td>아이템
+                            <td>${p.id}</td>
+                            <td><img src="../../../images/admin/product/${p.imgPath}"></td>
+                            <td>${p.name}
                                 <select>
                                     <option>사료</option>
                                     <option>용품</option>
                                 </select>
                             </td>
+                            <td>${p.regdate}</td>
+                            <td>${p.price}</td>
+                            <td>${p.amount}</td>
+                            <td>${p.posted}</td>
                             <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td>
-                                <a href="modify.html"><input type="button" value="수정"></a>
+                                <a href="modify.jsp"><input type="button" value="수정"></a>
                             </td>
                             <td>
                                 <input type="button" value="삭제">
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td>2</td>
-                            <td>아이템
-                                <select>
-                                    <option>사료</option>
-                                    <option>용품</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td>
-                                <a href="modify.html"><input type="button" value="수정"></a>
-                            </td>
-                            <td>
-                                <input type="button" value="삭제">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td>1</td>
-                            <td>아이템
-                                <select>
-                                    <option>사료</option>
-                                    <option>용품</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td>
-                                <a href="modify.html"><input type="button" value="수정"></a>
-                            </td>
-                            <td>
-                                <input type="button" value="삭제">
-                            </td>
-                        </tr>
+                      </c:forEach>
+                      
                     </tbody>    
                 </table>
             </section>	
