@@ -25,7 +25,7 @@
             </ul>
         </nav>
     </header>
-
+	공부완료
     <nav id="aside">
         <h1>커뮤니티 메뉴</h1>
         <ul>
