@@ -1,13 +1,8 @@
-<%@page import="com.petmet.web.entity.Board"%>
-<%@page import="java.util.List"%>
-<%@page import="com.petmet.web.service.BoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	BoardService service = new BoardService();
-	List<Board> list = service.getList();
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,16 +57,16 @@
 						</tr>
 					</thead>
 					<tbody>
-					<% for(Board b : list){%>
+					<c:forEach var="b" items="${list}">
 						<tr>
-							<td><%=b.getId() %></td>
-							<td><%=b.getTitle() %></td>
-							<td><%=b.getWriter() %></td>
-							<td><%=b.getRegdate() %></td>
-							<td><%=b.getViews() %></td>
-							<td><%=b.getLikes() %></td>
+							<td>${b.id}</td>
+							<td><a href="detail?id=${b.id}">${b.title}</a></td>
+							<td>${b.writer}</td>
+							<td>${b.regdate}</td>
+							<td>${b.views}</td>
+							<td>${b.likes}</td>
 						</tr>
-					<%} %>	
+					</c:forEach>
 					</tbody>
 				</table>
 			</section>
