@@ -39,14 +39,14 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <td colspan="3">안녕하세요 하니입니다.(제목)</td>
+                        <td colspan="3">${b.title}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>하니(작성자)</td>
-                        <td>2020-11-03(작성일)</td>
-                        <td>123(조회수)</td>
+                        <td>${b.writer}</td>
+                        <td>${b.redate}</td>
+                        <td>${b.views}</td>
                     </tr>
                     <tr>
                         <td colspan="3">
