@@ -1,14 +1,9 @@
 
-<%@page import="com.petmet.web.shop.entity.Order"%>
-<%@page import="com.petmet.web.shop.service.OrderService"%>
-<%@page import="java.util.List"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	OrderService service = new OrderService();
-	List<Order> list = service.getList();
-%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +35,7 @@
             <nav class = "shop-menu">
                 <ul>
                     <li>
-                        <a href="index.html">전체주문목록</a>
+                        <a href="index">전체주문목록</a>
                     </li>
                     <li>
                         <a href="delivery.html">배송관리</a>
@@ -112,31 +107,31 @@
                             <th>반품</th>
                         </tr>
                         
-                        <%
-                        	for(Order o : list){ 
-                        %>
-                        <tr>
-                        	<th><%=o.getId() %></th>
-                        	<th><%=o.getPayDate() %></th>
-                            <th><%=o.getUserId() %></th>
-                            <th><%=o.getProductName() %></th>
-                            <th><%=o.getPayAmount() %></th>
-                            <th><%=o.getPayMethod() %></th>
-                            <th><%=o.getPayStatement() %></th>
-                            <th><%=o.getDeliveryStatement() %></th>
-                            <th><%=o.getDeliveryStatement() %></th>
-                            <th><%=o.getDeliveryStatement() %></th>
-                            <th><%=o.getRefund() %></th>
-                            <th><%=o.getRefund() %></th>
-                            <th><%=o.getRefund() %></th>
-                        </tr>
-                        <%
-                        	}
-                        %>
                     </thead>
-    주문일(결제일)   주문번호   주문자 도움말
-        상품명   총 실결제금액   결제수단   결제상태   미배송   배송중   배송완료   취소   교환   반품   메모
-        검색된 주문내역이 없습니다.
+                    <tbody>
+	                    <tr>
+						    	주문일(결제일)   주문번호   주문자 도움말
+						        상품명   총 실결제금액   결제수단   결제상태   미배송   배송중   배송완료   취소   교환   반품   메모
+						        검색된 주문내역이 없습니다.
+					    </tr>
+					    <c:forEach var="o" items="${list }">
+						    <tr>
+						    	<th>${o.id }</th>
+	                            <th>${o.payDate }</th>
+	                            <th>${o.userId }</th>
+	                            <th>${o.productName }</th>
+	                            <th>${o.payAmount }</th>
+	                            <th>${o.payMethod }</th>
+	                            <th>${o.payStatement }</th>
+	                            <th>${o.deliveryStatement }</th>
+	                            <th>${o.deliveryStatement }</th>
+	                            <th>${o.deliveryStatement }</th>
+	                            <th>${o.refund }</th>
+	                            <th>${o.refund }</th>
+	                            <th>${o.refund }</th>
+						    </tr>
+					    </c:forEach>
+				    </tbody>
                 </table>
             </div>
             </section>
