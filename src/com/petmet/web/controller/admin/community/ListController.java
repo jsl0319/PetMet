@@ -1,6 +1,8 @@
 package com.petmet.web.controller.admin.community;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,10 +23,9 @@ public class ListController extends HttpServlet {
 
 		BoardService service = new BoardService();
 		List<Board> list = service.getList();
-		
+					
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("list.jsp").forward(request, response);
-
+		request.getRequestDispatcher("/admin/community/menu1/list.jsp").forward(request, response);
 	}
 
 }

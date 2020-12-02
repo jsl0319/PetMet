@@ -31,6 +31,11 @@ public class Board {
 		this.likes = likes;
 	}
 
+	public Board(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [id=" + id + ", category=" + category + ", writer=" + writer + ", title=" + title + ", content="

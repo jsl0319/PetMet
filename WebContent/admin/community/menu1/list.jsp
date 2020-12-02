@@ -72,7 +72,7 @@
 			</section>
 
 			<div>
-				<input type="button" value="글쓰기" onclick="location.href='reg.html'">
+				<input type="button" value="글쓰기" onclick="location.href='reg'">
 			</div>
 
 			<section>
