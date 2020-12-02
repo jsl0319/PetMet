@@ -12,7 +12,7 @@ import com.petmet.web.shop.entity.Board;
 import com.petmet.web.shop.service.BoardService;
 
 
-@WebServlet("/admin/shop/post/detail")
+@WebServlet("/admin/shop/board/detail")
 public class BoardDetailController extends HttpServlet {
 
 	@Override
@@ -25,7 +25,7 @@ public class BoardDetailController extends HttpServlet {
 		Board b = service.get(id);
 
 		request.setAttribute("b", b);
-		request.getRequestDispatcher("/admin/shop/post/detail.jsp").forward(request, response);
+		request.getRequestDispatcher("detail.jsp").forward(request, response);
 
 	}
 
