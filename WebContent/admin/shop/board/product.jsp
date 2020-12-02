@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -19,11 +18,11 @@
 <body>
 	<header class="header">
 		<h1>
-			<a href="../../index.html">logo</a>
+			<a href="../index.html">logo</a>
 		</h1>
 
 		<nav>
-			<!-- <h1>메뉴</h1> -->
+			<h1 class="d-none">메뉴</h1>
 			<ul>
 				<li><a href="../../user/index.html">회원관리</a></li>
 				<li><a href="../index.html">쇼핑몰</a></li>
@@ -48,35 +47,42 @@
 			</aside>
 
 			<main class="main">
+
 				<section>
-					<h1>공지사항 관리</h1>
+					<h1>상품문의</h1>
 					<table border="1">
-
-						<tr>
-							<td>제목</td>
-							<td>${b.title }</td>
-							<td>작성자</td>
-							<td>${b.writer }</td>
-							<td>조회수</td>
-							<td>${b.views }</td>
-						</tr>
-
-						<tr>
-							<td>카테고리</td>
-							<td>${b.category }</td>
-							<td>작성날짜</td>
-							<td>${b.regdate }</td>
-							<td>파일경로</td>
-							<td>${b.image }</td>
-						</tr>
-
-						<tr>
-							<td colspan="6" height="500px">${b.content }</td>
-						</tr>
+						<thead>
+							<tr>
+								<td>No</td>
+								<td>상품정보</td>
+								<td>제목</td>
+								<td>작성자</td>
+								<td>등록일</td>
+								<td>조회</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>null</td>
+								<td>null</td>
+								<td>널</td>
+								<td>널</td>
+								<td>널럴</td>
+								<td>널널</td>
+							</tr>
+							<tr>
+								<td>null</td>
+								<td>null</td>
+								<td>널</td>
+								<td>널</td>
+								<td>널럴</td>
+								<td>널널</td>
+							</tr>
+						</tbody>
 
 					</table>
 					<div class="reg-button">
-						<a href="notice.html"><input type="button" value="목록으로 가기"></a>
+						<a href="reg.html"><input type="button" value="등록"></a>
 					</div>
 				</section>
 
