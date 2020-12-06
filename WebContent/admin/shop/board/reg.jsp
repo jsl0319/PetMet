@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Main</title>
     <link rel="stylesheet" href="../../../css/reset.css">
-    <link rel="stylesheet" href="../../../css/admin/shop/board/style.css">
+    <link rel="stylesheet" href="../../../css/admin/shop/board/reg.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -69,7 +69,9 @@
                     <form>
                         <textarea name="" id="" cols="100" rows="10">내용 입력</textarea>
                     </form>
-                    <a href=""><input type="button" value="등록"></a>
+                    <a href="">
+                        <input type="submit" value="등록">
+                    </a>
                 </section>
 
             </main>

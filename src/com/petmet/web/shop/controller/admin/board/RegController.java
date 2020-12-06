@@ -11,22 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmet.web.shop.entity.Board;
 import com.petmet.web.shop.service.BoardService;
 
-
-@WebServlet("/admin/shop/board/detail")
-public class BoardDetailController extends HttpServlet {
+@WebServlet("/admin/shop/board/reg")
+public class RegController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int id = Integer.parseInt(request.getParameter("id"));
+		if (request.getMethod().equals("GET"))
+			request.getRequestDispatcher("reg.jsp").forward(request, response);
+		else if (request.getMethod().equals("POST")) {
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			Board b = new Board(title, content);
 
-		BoardService service = new BoardService();
-		Board b = service.get(id);
+			BoardService service = new BoardService();
+			service.insert(b);
 
-		request.setAttribute("b", b);
-		request.getRequestDispatcher("detail.jsp").forward(request, response);
+			response.sendRedirect("notice");
 
+		}
 	}
-
 }
