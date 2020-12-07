@@ -30,6 +30,12 @@ public class Board {
 		this.image = image;
 		this.likes = likes;
 	}
+	
+	//insert를 위한 생성자
+	public Board(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
 
 	@Override
 	public String toString() {

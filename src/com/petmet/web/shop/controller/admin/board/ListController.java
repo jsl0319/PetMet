@@ -13,7 +13,7 @@ import com.petmet.web.shop.entity.Board;
 import com.petmet.web.shop.service.BoardService;
 
 @WebServlet("/admin/shop/board/notice")
-public class BoardListController extends HttpServlet {
+public class ListController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
