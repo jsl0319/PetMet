@@ -1,3 +1,5 @@
+<%@page import="com.petmet.web.shop.service.ProductService"%>
+<%@page import="com.petmet.web.shop.entity.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -45,9 +47,9 @@
                         </li>
                         <li>
                             <i class="fas fa-gift"></i>
-                            <a href="../product/list.html">상품관리</a>
+                            <a href="../product/list">상품관리</a>
                             <ul>
-                                <li><a href="reg.html">상품등록</a></li>
+                                <li><a href="reg">상품등록</a></li>
                             </ul>
                         </li>
                         <li>
@@ -138,10 +140,10 @@
                             <td>${p.amount}</td>
                             <td>${p.posted}</td>
                             <td>
-                                <a href="modify.jsp"><input type="button" value="수정"></a>
+                                <a href="modify?id=${p.id}"><input type="button" value="수정"></a>
                             </td>
                             <td>
-                                <input type="button" value="삭제">
+                                <a href="del?id=${p.id}"><input type="button" value="삭제"></a>
                             </td>
                         </tr>
                       </c:forEach>
