@@ -1,13 +1,13 @@
 package com.petmet.web.entity;
 
 public class Admin {
-	 private int id;
-	 private String email;
-	 private String pwd;
-	 private String nickname;
-	 
-	 public Admin() {
-		this(0,null,null,null);
+	private int id;
+	private String email;
+	private String pwd;
+	private String nickname;
+
+	public Admin() {
+		this(0, null, null, null);
 	}
 
 	public Admin(int id, String email, String pwd, String nickname) {
@@ -53,7 +53,5 @@ public class Admin {
 	public String toString() {
 		return "Admin [id=" + id + ", email=" + email + ", pwd=" + pwd + ", nickname=" + nickname + "]";
 	}
-	
-	
-	 
+
 }
