@@ -1,6 +1,6 @@
 package com.petmet.web.dao.jdbc;
 
-public final class DBContext {
+public class DBContext {
 	public final static String URL;
 	public final static String UID;
 	public final static String PWD;
@@ -10,5 +10,5 @@ public final class DBContext {
 		UID = "petmet";
 		PWD = "0000";
 	}
-	
+
 }

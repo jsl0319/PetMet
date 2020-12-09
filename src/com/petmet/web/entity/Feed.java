@@ -25,6 +25,7 @@ public class Feed {
 		this.files = files;
 	}
 
+
 	public int getId() {
 		return id;
 	}
