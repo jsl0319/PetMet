@@ -1,15 +1,14 @@
 package com.petmet.web.entity;
 
-public class PetPlaceCategory {
-	
+public class PetplaceCategory {
 	private int id;
 	private String name;
 	
-	public PetPlaceCategory() {
-		
+	public PetplaceCategory() {
+		this(0, null);
 	}
 
-	public PetPlaceCategory(int id, String name) {
+	public PetplaceCategory(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -32,7 +31,7 @@ public class PetPlaceCategory {
 
 	@Override
 	public String toString() {
-		return "PetPlaceCategory [id=" + id + ", name=" + name + "]";
+		return "PetplaceCategory [id=" + id + ", name=" + name + "]";
 	}
 	
 }
