@@ -1,8 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +25,7 @@
             </ul>
         </nav>
     </header>
-	
+
     <nav id="aside">
         <h1>커뮤니티 메뉴</h1>
         <ul>
@@ -39,26 +36,34 @@
     
     <section>
         <main id="main">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <td colspan="3">${b.title}</td>
-                         </tr>
-                </thead>
-                <tbody>
-                    <tr>
+            <div>
+                <h1>글쓰기</h1>
 
-                        <td>${b.title}</td>
-                        <td>${b.regdate}</td>
-                        <td>${b.views}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                           ${b.content}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <form>
+                    <select>
+                        <option>메뉴1</option>
+                        <option>메뉴2</option>
+                        <option>메뉴3</option>
+                    </select>
+                </form>
+
+                <form method="post">
+                    <textarea name="title" cols="100" rows="1"></textarea>
+               
+					<div>
+	                <button>이미지</button>
+	                <button>동영상</button>
+	                <button>링크</button>
+	                <button>파일</button>
+					</div>
+             
+                    <textarea name="content" cols="100" rows="10"></textarea>
+                    <div>
+                    <input type="submit" value="등록">
+                    </div>
+                </form>
+            </div>
+            
         </main>
     </section>
 

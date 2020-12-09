@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -10,7 +9,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Main</title>
-<link rel="stylesheet" href="../../../css/admin/shop/board/notice.css">
+<link rel="stylesheet" href="../../../css/reset.css">
+<link rel="stylesheet" href="../../../css/admin/shop/board/product.css">
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -18,11 +18,11 @@
 <body>
 	<header class="header">
 		<h1>
-			<a href="../../index.html">logo</a>
+			<a href="../index.html">logo</a>
 		</h1>
 
 		<nav>
-			<!-- <h1>메뉴</h1> -->
+			<h1 class="d-none">메뉴</h1>
 			<ul>
 				<li><a href="../../user/index.html">회원관리</a></li>
 				<li><a href="../index.html">쇼핑몰</a></li>
@@ -47,34 +47,45 @@
 			</aside>
 
 			<main class="main">
+
 				<section>
-					<h1>공지사항 관리</h1>
+					<h1>상품문의</h1>
 					<table border="1">
 						<thead>
 							<tr>
-								<td>번호</td>
+								<td>No</td>
+								<td>상품정보</td>
 								<td>제목</td>
-								<td>작성일</td>
 								<td>작성자</td>
-								<td>조회수</td>
+								<td>등록일</td>
+								<td>조회</td>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="b" items="${list }">
-								<tr>
-									<td>${b.id }</td>
-									<td><a href="detail?id=${b.id }">${b.title }</a></td>
-									<td>${b.regdate }</td>
-									<td>${b.writer }</td>
-									<td>${b.views }</td>
-								</tr>
-							</c:forEach>
+							<tr>
+								<td>null</td>
+								<td>null</td>
+								<td>널</td>
+								<td>널</td>
+								<td>널럴</td>
+								<td>널널</td>
+							</tr>
+							<tr>
+								<td>null</td>
+								<td>null</td>
+								<td>널</td>
+								<td>널</td>
+								<td>널럴</td>
+								<td>널널</td>
+							</tr>
 						</tbody>
+
 					</table>
 					<div class="reg-button">
-						<a href="reg"><input type="button" value="공지사항 등록"></a>
+						<a href="reg.html"><input type="button" value="등록"></a>
 					</div>
 				</section>
+
 			</main>
 		</div>
 	</div>

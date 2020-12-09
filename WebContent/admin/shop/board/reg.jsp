@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Main</title>
     <link rel="stylesheet" href="../../../css/reset.css">
-    <link rel="stylesheet" href="../../../css/admin/shop/board/notice.css">
+    <link rel="stylesheet" href="../../../css/admin/shop/board/reg.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -15,7 +19,7 @@
         <h1><a href="../../index.html">logo</a></h1>
 
         <nav>
-            <!-- <h1>메뉴</h1> -->
+            <h1 class="d-none">메뉴</h1>
             <ul>
                 <li>
                     <a href="../../user/index.html">회원관리</a>
@@ -50,41 +54,24 @@
             </aside>
 
             <main class="main">
+                
                 <section>
-                    <h1>공지사항 관리</h1>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td>제목</td>
-                                <td>작성일</td>
-                                <td>작성자</td>
-                                <td>조회수</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2</td>
-                                <td>공지사항입니다</td>
-                                <td>2019-10-6</td>
-                                <td>미뇽</td>
-                                <td>9999</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>알림사항입니다</td>
-                                <td>2018-9-1</td>
-                                <td>류준열</td>
-                                <td>365</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="reg-button">
-                        <a href="reg.html">
-                            <input type="button" value="공지사항 등록">
-                        </a>
-                        
-                    </div>
+                    <h1>공지사항 등록</h1>
+                    <form>
+                        <textarea name="" id="" cols="100" rows="1">제목 입력</textarea>
+                    </form>
+        
+                    <button>이미지</button>
+                    <button>동영상</button>
+                    <button>링크</button>
+                    <button>파일</button>
+        
+                    <form>
+                        <textarea name="" id="" cols="100" rows="10">내용 입력</textarea>
+                    </form>
+                    <a href="">
+                        <input type="submit" value="등록">
+                    </a>
                 </section>
 
             </main>
