@@ -1,14 +1,14 @@
 package com.petmet.web.entity;
 
-public class PetplaceCategory {
+public class PetPlaceCategory {
 	private int id;
 	private String name;
 	
-	public PetplaceCategory() {
+	public PetPlaceCategory() {
 		this(0, null);
 	}
 
-	public PetplaceCategory(int id, String name) {
+	public PetPlaceCategory(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
