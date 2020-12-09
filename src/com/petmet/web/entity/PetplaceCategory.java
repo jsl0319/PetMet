@@ -5,7 +5,7 @@ public class PetplaceCategory {
 	private String name;
 	
 	public PetplaceCategory() {
-		
+		this(0, null);
 	}
 
 	public PetplaceCategory(int id, String name) {
