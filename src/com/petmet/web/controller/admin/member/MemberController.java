@@ -1,4 +1,4 @@
-package com.petmet.web.controller.admin.user;
+package com.petmet.web.controller.admin.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +15,7 @@ import com.petmet.web.service.UserService;
 
 // UI 위주
 @WebServlet("/admin/user")
-public class UserController extends HttpServlet{
+public class MemberController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request
 							, HttpServletResponse response) throws ServletException, IOException {
