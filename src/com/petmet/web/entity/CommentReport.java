@@ -15,7 +15,6 @@ public class CommentReport {
 	}
 
 	public CommentReport(int id, String memId, int commentId, Date regDate, String content) {
-		super();
 		this.id = id;
 		this.memId = memId;
 		this.commentId = commentId;

@@ -1,6 +1,6 @@
 package com.petmet.web.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Review {
 	private int id;
@@ -16,7 +16,6 @@ public class Review {
 	}
 	
 	public Review(int id, String writerId, int petplaceId, String rating, Date regDate, String content, String files) {
-		super();
 		this.id = id;
 		this.writerId = writerId;
 		this.petplaceId = petplaceId;

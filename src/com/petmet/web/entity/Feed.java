@@ -5,24 +5,24 @@ import java.util.Date;
 public class Feed {
 	private int id;
 	private String content;
-	private Date edit_date;
-	private String writer_id;
-	private Date reg_date;
-	private String file;
+	private Date editDate;
+	private String writerId;
+	private Date regDate;
+	private String files;
 
 	public Feed() {
 		this(0,null,null,null,null,null);
 
 	}
 
-	public Feed(int id, String content, Date edit_date, String writer_id, Date reg_date, String file) {
+	public Feed(int id, String content, Date editDate, String writerId, Date regDate, String files) {
 
 		this.id = id;
 		this.content = content;
-		this.edit_date = edit_date;
-		this.writer_id = writer_id;
-		this.reg_date = reg_date;
-		this.file = file;
+		this.editDate = editDate;
+		this.writerId = writerId;
+		this.regDate = regDate;
+		this.files = files;
 	}
 
 	public int getId() {
@@ -41,42 +41,42 @@ public class Feed {
 		this.content = content;
 	}
 
-	public Date getEdit_date() {
-		return edit_date;
+	public Date getEditDate() {
+		return editDate;
 	}
 
-	public void setEdit_date(Date edit_date) {
-		this.edit_date = edit_date;
+	public void setEditDate(Date editDate) {
+		this.editDate = editDate;
 	}
 
-	public String getWriter_id() {
-		return writer_id;
+	public String getWriterId() {
+		return writerId;
 	}
 
-	public void setWriter_id(String writer_id) {
-		this.writer_id = writer_id;
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
 	}
 
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
-	public String getFile() {
-		return file;
+	public String getfiles() {
+		return files;
 	}
 
-	public void setFile(String file) {
-		this.file = file;
+	public void setfiles(String files) {
+		this.files = files;
 	}
 
 	@Override
 	public String toString() {
-		return "Feed_Report [id=" + id + ", content=" + content + ", edit_date=" + edit_date + ", writer_id="
-				+ writer_id + ", reg_date=" + reg_date + ", file=" + file + "]";
+		return "Feed_Report [id=" + id + ", content=" + content + ", editDate=" + editDate + ", writerId="
+				+ writerId + ", regDate=" + regDate + ", files=" + files + "]";
 	}
 
 }

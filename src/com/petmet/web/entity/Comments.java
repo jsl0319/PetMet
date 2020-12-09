@@ -2,30 +2,24 @@ package com.petmet.web.entity;
 
 import java.util.Date;
 
-public class Comments {
+public class Comments{
 
 	private int id;
 	private String writerId;
 	private int boardId;
 	private String content;
-	private Date reg_date;
+	private Date regDate;
 
 	public Comments() {
 		this(0, null, 0, null, null);
 	}
 
-	public Comments(int id, String writerId, int boardId, String content, Date reg_date) {
+	public Comments(int id, String writerId, int boardId, String content, Date regDate) {
 		this.id = id;
 		this.writerId = writerId;
 		this.boardId = boardId;
 		this.content = content;
-		this.reg_date = reg_date;
-	}
-
-	@Override
-	public String toString() {
-		return "Comments [id=" + id + ", writerId=" + writerId + ", boardId=" + boardId + ", content=" + content
-				+ ", reg_date=" + reg_date + "]";
+		this.regDate = regDate;
 	}
 
 	public int getId() {
@@ -60,12 +54,19 @@ public class Comments {
 		this.content = content;
 	}
 
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Comments [id=" + id + ", writerId=" + writerId + ", boardId=" + boardId + ", content=" + content
+				+ ", regDate=" + regDate + "]";
+	}
+
+	
 }

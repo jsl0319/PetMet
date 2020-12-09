@@ -1,21 +1,25 @@
 package com.petmet.web.entity;
 
+import java.util.Date;
+
 public class Member {
-	
+
 	private int id;
 	private String email;
-	private String  pwd;
-	private String  nickname;
-	private int  gender;
+	private String pwd;
+	private String nickname;
+	private String gender;
 	private String address;
-	private String  phone;
-	
+	private String phone;
+	private Date regDate;
+
 	public Member() {
+		this(0,null,null,null,null,null,null,null);
 		
 	}
 
-	public Member(int id, String email, String pwd, String nickname, int gender, String address, String phone) {
-		
+	public Member(int id, String email, String pwd, String nickname, String gender, String address, String phone,
+			Date regDate) {
 		this.id = id;
 		this.email = email;
 		this.pwd = pwd;
@@ -23,6 +27,7 @@ public class Member {
 		this.gender = gender;
 		this.address = address;
 		this.phone = phone;
+		this.regDate = regDate;
 	}
 
 	public int getId() {
@@ -57,11 +62,11 @@ public class Member {
 		this.nickname = nickname;
 	}
 
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -81,10 +86,18 @@ public class Member {
 		this.phone = phone;
 	}
 
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", email=" + email + ", pwd=" + pwd + ", nickname=" + nickname + ", gender="
-				+ gender + ", address=" + address + ", phone=" + phone + "]";
+				+ gender + ", address=" + address + ", phone=" + phone + ", regDate=" + regDate + "]";
 	}
 	
 

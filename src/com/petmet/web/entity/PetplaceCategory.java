@@ -5,11 +5,10 @@ public class PetplaceCategory {
 	private String name;
 	
 	public PetplaceCategory() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public PetplaceCategory(int id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

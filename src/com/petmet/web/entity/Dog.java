@@ -13,15 +13,15 @@ public class Dog {
 	 private String content;
 	 private String character;
 	 private String files;
-	 private String master_id;
-	 private Date reg_date;
+	 private String masterId;
+	 private Date regDate;
 
 	 public Dog() {
 		 this(0,null,null,null,null,null,null,null,null,null,null,null);
 	 }
 
 	public Dog(int id, String name, String kind, String gender, String neut, String birth, String weight,
-			String content, String character, String files, String master_id, Date reg_date) {
+			String content, String character, String files, String masterId, Date regDate) {
 		
 		this.id = id;
 		this.name = name;
@@ -33,8 +33,8 @@ public class Dog {
 		this.content = content;
 		this.character = character;
 		this.files = files;
-		this.master_id = master_id;
-		this.reg_date = reg_date;
+		this.masterId = masterId;
+		this.regDate = regDate;
 	}
 
 	public int getId() {
@@ -117,27 +117,27 @@ public class Dog {
 		this.files = files;
 	}
 
-	public String getMaster_id() {
-		return master_id;
+	public String getMasterId() {
+		return masterId;
 	}
 
-	public void setMaster_id(String master_id) {
-		this.master_id = master_id;
+	public void setMasterId(String masterId) {
+		this.masterId = masterId;
 	}
 
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Dog [id=" + id + ", name=" + name + ", kind=" + kind + ", gender=" + gender + ", neut=" + neut
 				+ ", birth=" + birth + ", weight=" + weight + ", content=" + content + ", character=" + character
-				+ ", files=" + files + ", master_id=" + master_id + ", reg_date=" + reg_date + "]";
+				+ ", files=" + files + ", masterId=" + masterId + ", regDate=" + regDate + "]";
 	}
 	 
 	 
