@@ -7,27 +7,25 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Main</title>
-<link rel="stylesheet" href="../../../css/reset.css">
-<link rel="stylesheet" href="../../../css/admin/shop/board/style.css">
-<script src="https://kit.fontawesome.com/b280fc7aa7.js"
-	crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Product Main</title>
+	<link rel="stylesheet" href="../../../css/admin/shop/board/detail.css">
+	<script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 	<header class="header">
 		<h1>
-			<a href="../../index.html">logo</a>
+			<a href="../../index">logo</a>
 		</h1>
 
 		<nav>
 			<!-- <h1>메뉴</h1> -->
 			<ul>
-				<li><a href="../../user/index.html">회원관리</a></li>
-				<li><a href="../index.html">쇼핑몰</a></li>
-				<li><a href="../../community/index.html">커뮤니티 게시글관리</a></li>
+				<li><a href="../../user/index">회원관리</a></li>
+				<li><a href="../index">쇼핑몰</a></li>
+				<li><a href="../../community/index">커뮤니티 게시글관리</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -39,10 +37,9 @@
 				<nav>
 					<h1 class="d-none">쇼핑몰관리 목록</h1>
 					<ul>
-						<li><i class="far fa-list-alt"></i> <a href="notice.html">공지사항
+						<li><i class="far fa-list-alt"></i> <a href="notice">공지사항
 								관리</a></li>
-						<li><i class="fas fa-clipboard-list"></i> <a
-							href="product.html">상품문의 관리</a></li>
+						<li><i class="fas fa-clipboard-list"></i> <a href="product">상품문의 관리</a></li>
 					</ul>
 				</nav>
 			</aside>
@@ -75,9 +72,17 @@
 						</tr>
 
 					</table>
-					<div class="reg-button">
-						<a href="notice.html"><input type="button" value="목록으로 가기"></a>
-					</div>
+					<div class="button-list">
+                        <a href="notice">
+                            <input class="buttons" type="button" value="취소">
+                        </a>
+                        <a href="edit">
+                            <input class="buttons" type="button" value="수정">
+                        </a>
+                        <a href="del">
+                            <input class="buttons" type="button" value="삭제">
+                        </a>
+                    </div>
 				</section>
 
 			</main>

@@ -10,8 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Main</title>
-<link rel="stylesheet" href="../../../css/reset.css">
-<link rel="stylesheet" href="../../../css/admin/shop/board/style.css">
+<link rel="stylesheet" href="../../../css/admin/shop/board/notice.css">
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -63,7 +62,7 @@
 						<tbody>
 							<c:forEach var="b" items="${list }">
 								<tr>
-									<td></td>
+									<td>${b.id }</td>
 									<td><a href="detail?id=${b.id }">${b.title }</a></td>
 									<td>${b.regdate }</td>
 									<td>${b.writer }</td>
@@ -73,10 +72,9 @@
 						</tbody>
 					</table>
 					<div class="reg-button">
-						<a href="reg.html"><input type="button" value="공지사항 등록"></a>
+						<a href="reg"><input type="button" value="공지사항 등록"></a>
 					</div>
 				</section>
-
 			</main>
 		</div>
 	</div>
