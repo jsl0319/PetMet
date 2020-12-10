@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 댓글 리스트</title>
+    <title>관리자 > 커뮤니티 > 공지사항 관리</title>
     <link rel="stylesheet" href="../../css/reset.css" type="text/css">
     <!-- <link rel="stylesheet" href="../../css/admin/community/index.css" type="text/css"> -->
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
@@ -19,12 +19,13 @@
             <h1>헤더 메뉴 목록</h1>
 
             <ul>
-                <li><a href="../../user/index.html">User</a></li>
-                <li><a href="../../feed/index.html">Feed</a></li>
+                <li><a href="../user/index.html">User</a></li>
+                <li><a href="../feed/index.html">Feed</a></li>
                 <li><a href="../index.html">Community</a></li>
-                <li><a href="../../place/index.html">Place</a></li>
+                <li><a href="../place/index.html">Place</a></li>
             </ul>
         </nav>
+
         <nav>
             <h1>바로가기 메뉴</h1>
                 <ul>
@@ -47,17 +48,17 @@
                 <ul>
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="../index.html">공지사항관리</a>
+                        <a href="list.html">공지사항관리</a>
                     </li>
 
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="QnA/list.html">QnA 관리</a>
+                        <a href="../QnA/list.html">QnA 관리</a>
                     </li>
 
                     <li>
                         <i class="fas fa-clipboard-list"></i>
-                        <a href="../board/post.html">게시글 관리</a>
+                        <a href="../board/list.html">게시글 관리</a>
                     </li>
 
                     <li>
@@ -67,15 +68,17 @@
 
                     <li>
                         <i class="fas fa-comment"></i>
-                        <a href="comment.html">댓글 관리</a>
+                        <a href="../comment/list.html">댓글 관리</a>
                     </li>
 
                     <li>
                         <i class="fas fa-comment-slash"></i>
-                        <a href="reported.html">신고된 댓글 관리</a>
+                        <a href="../comment/reported.html">신고된 댓글 관리</a>
                     </li>
                 </ul>
             </nav>
+            
+          
         </aside>
 
         <main class="main">
@@ -85,13 +88,8 @@
                 <h1>검색폼</h1>
 
                 <form>
-                    <select>
-                        <option value="게시판">게시판</option>
-                        <option value="게시글 제목">게시글 제목</option>
-                        <option value="작성자">작성자</option>
-                        <option value="내용">내용</option>
-                    </select>
-                    <input type="text">
+                    <label for="title">제목</label>
+                    <input type="text" id="title">
                     <label for="date">일자</label>
                     <input type="date">~<input type="date">
                     <input type="button" value="검색">
@@ -99,18 +97,17 @@
             </section>
 
             <section>
-                <h1>댓글 리스트</h1>
+                <h1>공지사항 관리</h1>
 
                 <table border="1">
                     <thead>
                         <tr>
                             <td>번호</td>
-                            <td>카테고리</td>
-                            <td>게시글 번호</td>
-                            <td>게시글 제목</td>
+                            <td>제목</td>
                             <td>작성자</td>
-                            <td>내용</td>
                             <td>작성일</td>
+                            <td>조회수</td>
+                            <td>공개여부</td>
                             <td>삭제</td>
                         </tr>
                     </thead>
@@ -118,12 +115,11 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>제목입니당~~</td>
-                            <td>현지</td>
-                            <td>댓글 달아용~~</td>
-                            <td>2020-12-06</td>
+                            <td><a href="detail.html">12월 서버 점검 안내</a></td>
+                            <td>관리인</td>
+                            <td>2020-12-01</td>
+                            <td>100</td>
+                            <td><input type="checkbox"></td>
                             <td><input type="checkbox"></td>
                         </tr>
                     </tbody>
@@ -132,9 +128,11 @@
 
             <section>
                 <h1>이벤트 버튼</h1>
-
-                <a href=""><input type="button" value="삭제"></a>
+                <a href=""><input type="button" value="모두 공개"></a>
+                <a href=""><input type="button" value="모두 삭제"></a>
+                <a href="reg.html"><input type="button" value="게시글 작성"></a>
             </section>
+
             <section>
                 <h1>페이지 목록</h1>
                
