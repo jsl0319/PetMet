@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FEED</title>
+  <title>FEED-LIST</title>
 </head>
 <body>
     <header id="header" class="header">
@@ -23,7 +23,7 @@
     </header>
 
     <main id="main" class="main feed-screen">
-        <h1 class="d-none">Feed 관리자 페이지</h1>
+        <h1 class="d-none">Feed-list 관리자 페이지</h1>
         <div class="container">
           
           <aside class="aside">
@@ -38,37 +38,32 @@
               <thead>
                 <tr>
                   <th>번호</th>
+                  <th>ID(신고자)</th>
                   <th>ID(신고받은자)</th>
-                  <th>신고수</th>
-                  <th>조치여부</th>
+                  <th>신고일</th>
+                  <th>신고사유</th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr>
                   <td>1</td>
+                  <td>현지양</td>
                   <td><a href="detail.html">김꼰대</a></td>
-                  <td><a href="list.html">9090</a></td>
-                  <td>X</td>
+                  <td>9090.09.09</td>
+                  <td>열정overload</td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td><a href="detail.html">엥건</a></td>
-                  <td><a href="list.html">7080</a></td>
-
-                  <td>O</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td><a href="detail.html">미뇽</a></td>
-                  <td><a href="list.html">2030</a></td>
-                  <td>X</td>
+                  <td>1</td>
+                  <td>민영양</td>
+                  <td><a href="detail.html">김꼰대</a></td>
+                  <td>9090.09.09</td>
+                  <td>열정overload</td>
                 </tr>
               </tbody>
             </table>
           </section>
         </div>
-
         <div class="pager">
 					<div>
 						<span class="btn btn-prev"">이전</span>
@@ -80,7 +75,6 @@
 						<span class="btn btn-next">다음</span>
 					</div>
         </div>
-        
     </main>
 
     <footer id="footer" class="footer">
