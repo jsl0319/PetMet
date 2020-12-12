@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- 
+    자바스크립트 넣을 부분
+    1. 데이터 수정 시 수정된 레코드들 표시
+
+ -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,11 +33,10 @@
 
         <nav>
             <h1>바로가기 메뉴</h1>
-                <ul>
-                    <il><a href>펫멧이동</a></il>
-
-                    <il><a href>로그아웃</a></li>
-            
+            <ul>
+                <li><a href>펫멧이동</a></li>
+                <li><a href>로그아웃</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -41,7 +45,6 @@
 
         <aside class="aside">
             <h1>Aside 메뉴</h1>
-
             <nav>
                 <h1>세부 메뉴 목록</h1>
 
@@ -56,6 +59,11 @@
                         <a href="../QnA/list.html">QnA 관리</a>
                     </li>
 
+                    <li>
+                        <i class="fas fa-clipboard-list"></i>
+                        <a href="../category/list.html">카테고리 관리</a>
+                    </li>
+                    
                     <li>
                         <i class="fas fa-clipboard-list"></i>
                         <a href="list.html">게시글 관리</a>
@@ -84,7 +92,6 @@
 
             <section>
                 <h1>검색폼</h1>
-
                 <form>
                     <select>
                         <option value="제목">제목</option>
@@ -104,7 +111,13 @@
 
             <section>
                 <h1>게시글 리스트</h1>
-
+                <div>
+                    <select>
+                        <option value="20개">20개</option>
+                        <option value="50개">50개</option>
+                        <option value="50개">100개</option>
+                    </select>
+                </div>
                 <table border="1">
                     <thead>
                         <tr>
@@ -112,6 +125,7 @@
                             <td>작성자</td>
                             <td>카테고리</td>
                             <td>제목</td>
+                            <td>댓글수</td>
                             <td>작성일</td>
                             <td>조회수</td>
                             <td>삭제</td>
@@ -121,8 +135,14 @@
                     <tbody>
                         <td>1</td>
                         <td>현지</td>
-                        <td>자유게시판</td>
+                        <td>
+                            <select>
+                                <option value="자유게시판">자유게시판</option>
+                                <option value="자유게시판">나눔게시판</option>
+                            </select>
+                        </td>
                         <td><a href="detail.html">제목입니당</a></td>
+                        <td>10</td>
                         <td>2020-09-09</td>
                         <td>100</td>
                         <td><input type="checkbox"></td>
@@ -132,7 +152,7 @@
 
             <section>
                 <h1>이벤트 버튼</h1>
-
+                <input type="button" value="저장">
                 <input type="button" value="삭제">
             </section>
 
@@ -150,13 +170,8 @@
                     </ul>
                     다음 
             </section>
-
         </main>
     </section>
-
-    
-
-
 
     <footer class="footer">
         <h1>Footer</h1>
