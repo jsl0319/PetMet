@@ -31,7 +31,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
 	          st.setString(1, feedReport.getMemId());
-	          st.setInt(2, feedReport.getFeedId());
+	          st.setString(2, feedReport.getFeedId());
 	          st.setString(3, feedReport.getContent());
 	          
 	          result = st.executeUpdate();
@@ -62,7 +62,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	          PreparedStatement st = con.prepareStatement(sql);
 	          
 	          st.setString(1, feedReport.getMemId());
-	          st.setInt(2, feedReport.getFeedId());
+	          st.setString(2, feedReport.getFeedId());
 	          st.setString(3, feedReport.getContent());
 	          st.setInt(4, feedReport.getId());
 	          
@@ -127,7 +127,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         
 	         if(rs.next()){
 	        	String memId = rs.getNString("mem_id");
-	        	int feedId = rs.getInt("feed_id");
+	        	String feedId = rs.getString("feed_id");
 	        	Date repoDate = rs.getDate("repo_date");
 	        	String content = rs.getNString("content");
 	        	
@@ -151,7 +151,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	@Override
 	public List<FeedReport> getList() {
 		
-		  String sql = "SELECT * FROM FEEDREPORT";
+		  String sql = "SELECT * FROM FEED_REPORT";
 		  String url = DBContext.URL;
 		  String uid = DBContext.UID;
 		  String pwd = DBContext.PWD;
@@ -168,7 +168,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         while(rs.next()){
 	        	int id = rs.getInt("id");
 	        	String memId = rs.getNString("mem_id");
-	        	int feedId = rs.getInt("feed_id");
+	        	String feedId = rs.getString("feed_id");
 	        	Date repoDate = rs.getDate("repo_date");
 	        	String content = rs.getNString("content");
 	        	

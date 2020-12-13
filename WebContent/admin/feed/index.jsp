@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,24 +87,14 @@
                   </thead>
 
                   <tbody>
+                  <c:forEach var = "f" items="${list}">
                     <tr>
-                      <td>1</td>
-                      <td><a href="detail.html">김꼰대</a></td>
-                      <td><a href="list.html">9090</a></td>
-                      <td>X</td>
+                      <td>${f.id}</td>
+                      <td><a href="detail.html">${f.feedId}</a></td>
+                      <td><a href="list.html">9999</a></td>
+                      <td>${f.content}</td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td><a href="detail.html">엥건</a></td>
-                      <td><a href="list.html">7080</a></td>
-                      <td>O</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td><a href="detail.html">미뇽</a></td>
-                      <td><a href="list.html">2030</a></td>
-                      <td>X</td>
-                    </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
             </section>
@@ -113,10 +107,7 @@
                 <a href="#"><i class="fas fa-angle-left"></i></a>
               </div>
               <ul>
-                <li><a href="#"">1</a></li>
-                <li><a href="#"">1</a></li>
-                <li><a href="#"">1</a></li>
-                <li><a href="#"">1</a></li>
+                <li><a href="#">1</a></li>
               </ul>
               <div>
                 <a href="#"><i class="fas fa-angle-right"></i></a>
