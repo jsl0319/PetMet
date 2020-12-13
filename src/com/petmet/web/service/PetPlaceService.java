@@ -19,7 +19,7 @@ public class PetPlaceService {
 	}
 	
 	public int update(PetPlace pp) {
-		return ppDao.insert(pp);
+		return ppDao.update(pp);
 	}
 	
 	public int delete(int id) {

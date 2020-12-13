@@ -17,7 +17,6 @@
 
         <nav>
             <h1>헤더 메뉴 목록</h1>
-
             <ul>
                 <li><a href="../../user/index.html">User</a></li>
                 <li><a href="../../feed/index.html">Feed</a></li>
@@ -25,13 +24,13 @@
                 <li><a href="../../place/index.html">Place</a></li>
             </ul>
         </nav>
+
         <nav>
             <h1>바로가기 메뉴</h1>
-                <ul>
-                    <il><a href="">펫멧이동</a></il>
-
-                    <il><a href="">로그아웃</a></li>
-            
+            <ul>
+                <li><a href>펫멧이동</a></li>
+                <li><a href>로그아웃</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -40,7 +39,6 @@
 
         <aside class="aside">
             <h1>Aside 메뉴</h1>
-
             <nav>
                 <h1>세부 메뉴 목록</h1>
 
@@ -52,7 +50,12 @@
 
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="QnA/list.html">QnA 관리</a>
+                        <a href="../QnA/list.html">QnA 관리</a>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-clipboard-list"></i>
+                        <a href="../category/list.html">카테고리 관리</a>
                     </li>
 
                     <li>
@@ -80,7 +83,6 @@
 
         <main class = "main">
             <h1>게시글/신고된 게시글 상세 내용</h1>
-
             <table border="1">
                 <tr>
                     <td>제목</td>
@@ -89,21 +91,21 @@
 
                 <tr>
                     <td>작성자</td>
-                    <td colspan="3">현지</td>
+                    <td>현지</td>
+                    <td>등록일</td>
+                    <td>2020-12-01</td>
                 </tr>
                 
                 <tr>
                     <td>카테고리</td>
-                    <td>자유게시판</td>
-                    <td>등록일</td>
-                    <td>2020-12-01</td>
-                </tr>
-
-                <tr>
+                    <td>
+                        <select>
+                            <option value="자유게시판">자유게시판</option>
+                            <option value="자유게시판">나눔게시판</option>
+                        </select>
+                    </td>
                     <td>조회수</td>
                     <td>100</td>
-                    <td>누적 신고 횟수</td>
-                    <td>50</td>
                 </tr>
 
                 <tr>
@@ -112,14 +114,25 @@
                 </tr>
 
                 <tr>
-                    <td colspan="4">내용입니당~~~</td>
+                    <td colspan="4">
+                        <textarea>내용입니다~~</textarea>
+                    </td>
                 </tr>
             </table>
-
+            
+            <section>
+                <h1>페이저</h1>
+                <ul>
+                    <li>이전 게시글</li>
+                    <li>이후 게시글</li>
+                </ul>
+            </section>
+            
             <section>
                 <h1>이벤트 버튼</h1>
 
                 <input type="button" value="목록">
+                <input type="button" value="저장">
                 <input type="button" value="삭제">
             </section>
         </main>
