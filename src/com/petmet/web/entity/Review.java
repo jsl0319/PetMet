@@ -16,7 +16,6 @@ public class Review {
 	}
 
 	public Review(int id, String writerId, int petPlaceId, int rating, Date regDate, String content, String files) {
-		super();
 		this.id = id;
 		this.writerId = writerId;
 		this.petPlaceId = petPlaceId;

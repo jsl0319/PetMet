@@ -19,6 +19,19 @@ public class PetPlace {
 
 	}
 
+	// insert용 생성자
+	public PetPlace(String categoryId, String name, String address, String homepage, String phone,
+			String location, String content, String files) {
+		this.categoryId = categoryId;
+		this.name = name;
+		this.address = address;
+		this.homepage = homepage;
+		this.phone = phone;
+		this.location = location;
+		this.content = content;
+		this.files = files;
+	}
+
 	public PetPlace(int id, String writerId, String categoryId, String name, String address, String homepage,
 			String phone, String location, String content, Date regDate, String files) {
 
