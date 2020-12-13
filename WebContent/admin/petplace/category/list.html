@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 펫플레이스 > 리스트</title>
-    <link rel="stylesheet" href="../../css/reset.css" type="text/css">
+    <title>관리자 > 펫플레이스 > 카테고리 > 리스트</title>
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="list.js"></script>
 </head>
 
 <body>
@@ -44,15 +45,15 @@
                 <ul>
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="list.html">Pet Place 관리</a>
+                        <a href="../list.html">Pet Place 관리</a>
                     </li>
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="category/list.html">카테고리 관리</a>
+                        <a href="./list.html">카테고리 관리</a>
                     </li>
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="comments/list.html">후기 관리</a>
+                        <a href="../comments/list.html">후기 관리</a>
                     </li>
                 </ul>
 
@@ -73,9 +74,6 @@
                 <form>
 
                     <select>
-                        <option>제목</option>
-                        <option>내용</option>
-                        <option>지역</option>
                         <option>카테고리</option>
                     </select>
 
@@ -88,48 +86,42 @@
             <br>
             <br>
 
-            <section>
-                <h1>Pet Place 관리</h1>
+            <section id="section">
+                <h1>카테고리 관리</h1>
 
                 <table border="1">
                     <thead>
                         <tr>
                             <td>번호</td>
-                            <td>제목</td>
-                            <td>작성자</td>
-                            <td>작성일</td>
-                            <td>조회수</td>
-                            <td>공개여부</td>
+                            <td>카테고리명</td>
                             <td>삭제</td>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
-                            <td>3</td>
-                            <td><a href="detail.html">멍멍멍멍!!</a></td>
-                            <td>관리자</td>
-                            <td>2020-12-01</td>
-                            <td>999</td>
+                            <td>5</td>
+                            <td><a href="" class="category5">카테고리5</a>
                             <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><a href="" class="category4">카테고리4</a></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><a href="" class="category3">카테고리3</a></td>
                             <td><input type="checkbox"></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><a href="detail.html">멍멍멍멍!!</a></td>
-                            <td>관리자</td>
-                            <td>2020-12-01</td>
-                            <td>999</td>
-                            <td><input type="checkbox"></td>
+                            <td><a href="" class="category2">카테고리2</a></td>
                             <td><input type="checkbox"></td>
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td><a href="detail.html">멍멍멍멍!!</a></td>
-                            <td>관리자</td>
-                            <td>2020-12-01</td>
-                            <td>999</td>
-                            <td><input type="checkbox"></td>
+                            <td><a href="" class="category1">카테고리1</a></td>
                             <td><input type="checkbox"></td>
                         </tr>
                     </tbody>
@@ -141,8 +133,7 @@
 
             <section>
                 <h1>버튼</h1>
-                <a href="reg.html"><input type="button" value="Pet Place 등록"></a>
-                <a href=""><input type="button" value="선택 공개"></a>
+                <a href="reg.html"><input type="button" value="카테고리 등록"></a>
                 <a href=""><input type="button" value="선택 삭제"></a>
             </section>
 
