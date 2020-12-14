@@ -1,0 +1,11 @@
+.selectbox { width: 196px; 
+    height: 41px; 
+    font-size: 15px; 
+    color:#999; 
+    border:2px solid #ddd; 
+    background:  no-repeat right 13px center;
+    appearance:none; -webkit-appearance:none;
+}
+.selecbox::-ms-expand {  
+    display: none;
+}

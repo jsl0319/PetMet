@@ -14,6 +14,7 @@ import com.petmet.web.dao.BoardReportDao;
 import com.petmet.web.entity.Board;
 import com.petmet.web.entity.BoardCategory;
 import com.petmet.web.entity.BoardReport;
+import com.petmet.web.entity.BoardReportView;
 
 public class JdbcBoardReportDao implements BoardReportDao {
 	private String url = DBContext.URL;
@@ -136,7 +137,8 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	}
 
 	@Override
-	public List<BoardReport> getList() {
+	public List<BoardReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate,
+			int startIndex, int endIndex) {
 		String sql = "SELECT * FROM BOARD_REPORT";
 
 		List<BoardReport> list = new ArrayList<>();
@@ -157,6 +159,47 @@ public class JdbcBoardReportDao implements BoardReportDao {
 				BoardReport b = new BoardReport(id, memId, boardId, regDate, content);
 
 				list.add(b);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
+			Date endDate, int startIndex, int endIndex) {
+		String sql = "SELECT * FROM REPORTED_BOARD_VIEW";
+
+		List<BoardReportView> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				int hit = rs.getInt("HIT");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				String categoryId = rs.getString("CATEGORY_ID");
+				int reported = rs.getInt("REPORTED");
+
+				BoardReportView brv = new BoardReportView(num, id, title, hit, writerId, regDate, files, categoryId, reported);
+
+				list.add(brv);
 			}
 
 			rs.close();

@@ -14,9 +14,12 @@ public class PetPlace {
 	private String content;
 	private Date regDate;
 	private String files;
+	private int hit;
+	private int likes;
+	private int pub;
 
 	public PetPlace() {
-
+		
 	}
 
 	// insert용 생성자
@@ -33,8 +36,8 @@ public class PetPlace {
 	}
 
 	public PetPlace(int id, String writerId, String categoryId, String name, String address, String homepage,
-			String phone, String location, String content, Date regDate, String files) {
-
+			String phone, String location, String content, Date regDate, String files, int hit, int likes, int pub) {
+		super();
 		this.id = id;
 		this.writerId = writerId;
 		this.categoryId = categoryId;
@@ -46,6 +49,19 @@ public class PetPlace {
 		this.content = content;
 		this.regDate = regDate;
 		this.files = files;
+		this.hit = hit;
+		this.likes = likes;
+		this.pub = pub;
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "PetPlace [id=" + id + ", writerId=" + writerId + ", categoryId=" + categoryId + ", name=" + name
+				+ ", address=" + address + ", homepage=" + homepage + ", phone=" + phone + ", location=" + location
+				+ ", content=" + content + ", regDate=" + regDate + ", files=" + files + ", hit=" + hit + ", likes="
+				+ likes + ", pub=" + pub + "]";
 	}
 
 	public int getId() {
@@ -136,11 +152,28 @@ public class PetPlace {
 		this.files = files;
 	}
 
-	@Override
-	public String toString() {
-		return "PetPlace [id=" + id + ", writerId=" + writerId + ", categoryId=" + categoryId + ", name=" + name
-				+ ", address=" + address + ", homepage=" + homepage + ", phone=" + phone + ", location=" + location
-				+ ", content=" + content + ", regDate=" + regDate + ", files=" + files + "]";
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public int getPub() {
+		return pub;
+	}
+
+	public void setPub(int pub) {
+		this.pub = pub;
 	}
 
 }
