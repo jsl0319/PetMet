@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 커뮤니티 > 공지사항 관리</title>
     <link rel="stylesheet" href="../../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="list.css" type="text/css">
     <!-- <link rel="stylesheet" href="../../css/admin/community/index.css" type="text/css"> -->
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 
@@ -81,15 +82,33 @@
 
             <section>
                 <h1>검색폼</h1>
+                
+                <form class = "search__container">
+                    <label class="search__title" >제목</label>
+                    <input class="search__input" type="text">
 
-                <form>
-                    <label for="title">제목</label>
-                    <input type="text" id="title">
-                    <label for="date">일자</label>
-                    <input type="date">~<input type="date">
-                    <input type="button" value="검색">
+                    <label class="search__title" >공개여부</label>
+                    <input type="checkbox" id="cb1">
+                    <label for="cb1"></label> <label class="search__title" >공개</label>
+                    <input type="checkbox" id="cb2">
+                    <label for="cb2"></label> <label class="search__title" >비공개</label>
+                   
+                    <label class="search__title" >일자</label>
+                    <input class="search__input" type="date">~<input class="search__input" type="date">
+                    <input class="button" type="submit" value="검색">
+
+    
                 </form>
+
             </section>
+
+            <select class = "selectbox">
+                <option>dd</option>
+                <option>ddㅋㅋ</option>
+                <option>메롱</option>
+                </select>
+                
+           
 
             <section>
                 <h1>공지사항 관리</h1>
@@ -123,9 +142,9 @@
 
             <section>
                 <h1>이벤트 버튼</h1>
-                <a href=""><input type="button" value="모두 공개"></a>
-                <a href=""><input type="button" value="모두 삭제"></a>
-                <a href="reg.html"><input type="button" value="게시글 작성"></a>
+                <a href=""><input class="button" type="button" value="모두 공개"></a>
+                <a href=""><input class="button" type="button" value="모두 삭제"></a>
+                <a href="reg.html"><input class="button" type="button" value="게시글 작성"></a>
             </section>
 
             <section>
