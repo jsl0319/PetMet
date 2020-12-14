@@ -14,4 +14,10 @@ public interface BoardReportDao {
 	BoardReport get(int id);
 
 	List<BoardReport> getList();
+	
+	int deleteList(List<Integer> ids);
+	
+	BoardReport getPrev(int id);
+
+	BoardReport getNext(int id);
 }
