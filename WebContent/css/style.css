@@ -1,22 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 
 @import "reset.css";
-@import "layout.css";
-@import "content-layout.css";
-@import "variable.css";
+@import "admin/layout.css";
+@import "admin/content-layout.css";
 
 /*---------------------------------components-------------------------------------*/
-@import "components/header.css";
-@import "components/main.css";
-@import "components/aside.css";
-@import "components/footer.css";
+@import "admin/components/header.css";
+@import "admin/components/table/list.css";
 
 /*-----------------------------------screens--------------------------------------*/
-
-@import "screens/feed-screen.css";
-@import "screens/petplace-screen.css";
-@import "screens/community-screen.css";
-@import "screens/board-screen.css";
 
 * {
   box-sizing: border-box;
