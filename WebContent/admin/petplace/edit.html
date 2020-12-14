@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 펫플레이스 > 수정</title>
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/admin/components/table/list.css">
+    <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -22,20 +22,36 @@
             </div>
 
             <nav>
-                <h1>헤더 메뉴 목록</h1>
-
+                <h1 class="d-none">헤더 목록</h1>
                 <ul>
-                    <li><a href="../user/index.html">User</a></li>
-                    <li><a href="../feed/index.html">Feed</a></li>
-                    <li><a href="../community/index.html">Community</a></li>
-                    <li><a href="list.html">Place</a></li>
+                    <li>
+                        <a href="../user/index.html">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>USER</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-camera-retro fa-2x"></i>
+                            <span>FEED</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../community/index.html">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../petplace/list.html">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <br>
-    <br>
 
     <!-------------------------------body------------------------------------>
     <div class="body">
@@ -47,7 +63,7 @@
                 <h1 class="d-none">aside</h1>
 
                 <nav>
-                    <h1>세부 메뉴</h1>
+                    <h1 class="d-none">세부 메뉴</h1>
 
                     <ul>
                         <li>
@@ -68,15 +84,12 @@
 
             </aside>
 
-            <br>
-            <br>
-
             <main class="main">
-                <h1>메인임니당</h1>
+                <h1 class="d-none">main</h1>
 
                 <section class="search-form">
 
-                    <h1>검색폼</h1>
+                    <h1 class="d-none">검색폼</h1>
 
                     <form>
 
@@ -93,15 +106,12 @@
 
                 </section>
 
-                <br>
-                <br>
-
-                <main class="main">
-                    <h1 class>PetPlace 등록</h1>
+                <section>
+                    <h1 class="d-none">PetPlace 등록</h1>
 
                     <form method="post">
 
-                        <table class="table" border="1">
+                        <table class="detail-table">
                             <tbody>
                                 <tr>
                                     <th>제목</th>
@@ -150,19 +160,19 @@
                             <a href="list.html">취소</a>
                             <input type="submit" value="수정 완료" />
                         </section>
+
                     </form>
-
-                </main>
-
+                </section>
+            </main>
         </div>
+    </div>
 
-        <br>
-        <br>
-
-        <!-------------------------------footer------------------------------------>
-        <footer class="footer">
+    <!-------------------------------footer------------------------------------>
+    <footer class="footer">
+        <div class="container">
             <h1>footer</h1>
-        </footer>
+        </div>
+    </footer>
 
 </body>
 
