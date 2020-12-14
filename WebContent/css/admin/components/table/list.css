@@ -1,40 +1,45 @@
-@import "reset.css";
+@import "../../../reset.css";
 
+/*
+    td 기본 width : 50px
+    col - l : 250px
+    col - m : 100px
+    col - s : 70px 
+*/
 
-.list-table {
-  text-align: center;
-  line-height: 1.5;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  --margin: 20px 10px;
+.list-table{
+    text-align: center;
+    line-height: 1.2;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
 }
 
 .list-table thead {
-  text-align: center;
-  font-weight: bold;
-  color: #fff;
-  background: #e7708d;
-  padding: 10px;
-}
-
-.list-table th {
-  width: 50px;
-  vertical-align: middle;
-}
-
-.list-table .title {
-  width: 200px;
-  text-align: left;
+    font-weight: bold;
+    color: #fff;
+    background: #e7708d;
 }
 
 .list-table td {
-  width: 100px;
-  padding: 10px;
+    width: 50px;
+    padding: 5px;
+    vertical-align: middle;
 }
 
-/* .list-table .even {
-    background: #fdf3f5;
-} */
-.list-table tr:nth-child(even) {
-  background: #fdf3f5;
+.list-table .col-l{
+    width: 250px;
 }
+
+.list-table .col-m{
+    width: 100px;
+}
+
+.list-table .col-s {
+    width: 70px;
+}
+
+.list-table .even {
+    background: #fdf3f5;
+}
+
