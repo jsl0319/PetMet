@@ -90,11 +90,6 @@
   width: 100%;
 }
 
-.body .main table th,
-.body .main table td {
-  border: 1px solid black;
-}
-
 .body .main .pager {
   display: flex;
   justify-content: center;

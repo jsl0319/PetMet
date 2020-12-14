@@ -5,144 +5,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 펫플레이스 > 등록</title>
-    <link rel="stylesheet" href="../../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- 헤더 -->
+    <!-------------------------------header------------------------------------>
     <header class="header">
-        <h1><a href="../index.html">logo</a></h1>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
-        <nav>
-            <h1>헤더 메뉴 목록</h1>
+            <nav>
+                <h1>헤더 메뉴 목록</h1>
 
-            <ul>
-                <li><a href="../user/index.html">User</a></li>
-                <li><a href="../feed/index.html">Feed</a></li>
-                <li><a href="../community/index.html">Community</a></li>
-                <li><a href="list.html">Place</a></li>
-            </ul>
-
-        </nav>
-
+                <ul>
+                    <li><a href="../user/index.html">User</a></li>
+                    <li><a href="../feed/index.html">Feed</a></li>
+                    <li><a href="../community/index.html">Community</a></li>
+                    <li><a href="list.html">Place</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <br>
     <br>
 
-    <!-- 바디 -->
+    <!-------------------------------body------------------------------------>
     <div class="body">
-        <h1>바디바디 핫바디</h1>
+        <h1 class="d-none">contents body</h1>
 
-        <aside class="aside">
-            <h1>어싸이드!!!!!!</h1>
+        <div class="container">
 
-            <nav>
-                <h1>세부 메뉴</h1>
+            <aside class="aside">
+                <h1 class="d-none">aside</h1>
 
-                <ul>
-                    <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="list.html">Pet Place 관리</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="category/list.html">카테고리 관리</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="review/list.html">후기 관리</a>
-                    </li>
-                </ul>
+                <nav>
+                    <h1>세부 메뉴</h1>
 
-            </nav>
+                    <ul>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="list.html">Pet Place 관리</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="category/list.html">카테고리 관리</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="review/list.html">후기 관리</a>
+                        </li>
+                    </ul>
 
-        </aside>
+                </nav>
 
-        <br>
-        <br>
-
-        <main class="main">
-            <h1>메인임니당</h1>
-
-            <section class="search-form">
-
-                <h1>검색폼</h1>
-
-                <form>
-
-                    <select>
-                        <option>제목</option>
-                        <option>내용</option>
-                        <option>지역</option>
-                        <option>카테고리</option>
-                    </select>
-
-                    <input type="text">
-                    <input type="submit" value="검색">
-                </form>
-
-            </section>
+            </aside>
 
             <br>
             <br>
 
             <main class="main">
-                <h1 class>PetPlace 등록</h1>
+                <h1>메인임니당</h1>
 
-                <form method="post">
+                <section class="search-form">
 
-                    <table class="table" border="1">
-                        <tbody>
-                            <tr>
-                                <th>제목</th>
-                                <td>
-                                    <input type="text" name="title"  style="width: 100%;" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="files">첨부파일</th>
-                                <td>
-                                    <input type="file" name="file" />
-                                </td>
-                            </tr>
-                            <tr class="content">
-                                <td colspan="2">
-                                    <textarea class="content" name="content" style="width: 500px; height: 100px; resize: none;">지도</textarea>
-                                </td>
-                            </tr>
-                            <tr class="content">
-                                <td colspan="2">
-                                    <textarea class="content" name="content" style="width: 500px; height: 500px; resize: none;">상세설명</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="checkbox" id="open" name="open" value="true">
-                                    <label>공개</label>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h1>검색폼</h1>
 
-                    <section>
-                        <input type="submit" value="등록" />
-                        <a href="list.html">취소</a>
-                    </section>
-                </form>
+                    <form>
 
-            </main>
+                        <select>
+                            <option>제목</option>
+                            <option>내용</option>
+                            <option>지역</option>
+                            <option>카테고리</option>
+                        </select>
 
-    </div>
+                        <input type="text">
+                        <input type="submit" value="검색">
+                    </form>
 
-    <br>
-    <br>
+                </section>
 
-    <!-- 푸터 -->
-    <footer class="footer">
-        <h1>footer</h1>
-    </footer>
+                <br>
+                <br>
+
+                <main class="main">
+                    <h1 class>PetPlace 등록</h1>
+
+                    <form method="post">
+
+                        <table class="table" border="1">
+                            <tbody>
+                                <tr>
+                                    <th>제목</th>
+                                    <td>
+                                        <input type="text" name="title" style="width: 100%;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="files">첨부파일</th>
+                                    <td>
+                                        <input type="file" name="file" />
+                                    </td>
+                                </tr>
+                                <tr class="content">
+                                    <td colspan="2">
+                                        <textarea class="content" name="content"
+                                            style="width: 500px; height: 100px; resize: none;">지도</textarea>
+                                    </td>
+                                </tr>
+                                <tr class="content">
+                                    <td colspan="2">
+                                        <textarea class="content" name="content"
+                                            style="width: 500px; height: 500px; resize: none;">상세설명</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="checkbox" id="open" name="open" value="true">
+                                        <label>공개</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <section>
+                            <input type="submit" value="등록" />
+                            <a href="list.html">취소</a>
+                        </section>
+                    </form>
+
+                </main>
+
+        </div>
+
+        <br>
+        <br>
+
+        <!-------------------------------footer------------------------------------>
+        <footer class="footer">
+            <h1>footer</h1>
+        </footer>
 
 </body>
 
