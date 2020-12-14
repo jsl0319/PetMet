@@ -1,318 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 메인 페이지</title>
+    <title>Document</title>
     <link href="../css/reset.css" type="text/css" rel="stylesheet">
-    <!-- <link href="../css/admin/index.css" type="text/css" rel="stylesheet"> -->
-    <link href="../css/admin/layout.css" type="text/css" rel="stylesheet">
+    <link href="../css/admin/layout/index.css" type="text/css" rel="stylesheet">
+    <link href="../css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
+    <link href="../css/style.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <!-------------------- Header -------------------->
+
     <header id="header" class="header">
         <div class="container">
-            
-            <h1><a href="index.html">logo</a></h1>
-      
-            <nav class="header-menu">
-                <h1 class="d-none">메뉴</h1>
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
+
+            <nav>
+                <h1 class="d-none">헤더 목록</h1>
                 <ul>
-                    <li><a href="user/index.html">회원관리</a></li>
-                    <li><a href="shop/index.html">쇼핑몰</a></li>
-                    <li><a href="community/index.html">커뮤니티 게시글관리</a></li>
+                    <li>
+                        <a href="../user/index.html">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>USER</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-camera-retro fa-2x"></i>
+                            <span>FEED</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../community/index.html">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
-        
+        </div>
         </div>
     </header>
 
 
-
-    <!--------------------  Body --------------------->
     <div class="body">
-        <div class="container">
-            <aside class="aside">
-                <nav>
-                    <!-- <h1>a메인관리 목록</h1> -->
-                    <ul>
-                        <li>
-                            <i class="far fa-list-alt"></i>
-                            <a href="#">index</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-gift"></i>
-                            <a href="#">index</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-clipboard-list"></i>
-                            <a href="#">index</a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-------------------- Main -------------------->
-            <main class="main">
-                
-                    <h1 class="d-none">메인 내용 전체 제목</h1>
-        
+        <main id="main" class="main">
+            <h1 class="d-none">메인이다</h1>
+            <section class="main1">
+                <div class="container">
+                    <h1 class="d-none">유저방문 & 매칭 횟수</h1>
                     <section>
-                        <h1>오늘의 사이트</h1>
+                        <h1 class="d-none">숫자</h1>
+                        <table>
+                            <tr>
+                                <td>500 visitors</td>
+                                <td>1000 matchs</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section>
+                        <h1 class="d-none">그래프</h1>
+                        그래프다
+                    </section>
+                </div>
+            </section>
+
+            <section class="main2">
+                <div class="container">
+                    <h1 class="d-none">그 외의 정보들</h1>
+                    <section>
+                        <h1>Notice</h1>
                         <table border="1">
                             <thead>
                                 <tr>
-                                    <th>신규회원</th>
-                                    <th>매칭 건수</th>
-                                    <th>게시글 등록</th>
-                                    <th>오늘 주문</th>
-                                    <th>신고</th>
-                                    <th>문의</th>
-                                    <th>방문자</th>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>작성일</td>
+                                    <td>조회수</td>
                                 </tr>
                             </thead>
-        
                             <tbody>
                                 <tr>
-                                    <td>3</td>
-                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>2</td>
                                     <td>3</td>
                                     <td>4</td>
-                                    <td>0</td>
-                                    <td>2</td>
-                                    <td>1</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>22</td>
+                                    <td>33</td>
+                                    <td>44</td>
+                                    <td>55</td>
                                 </tr>
                             </tbody>
                         </table>
                     </section>
-        
                     <section>
-                        <h1>회원</h1>
+                        <h1>Others</h1>
                         <table border="1">
                             <thead>
                                 <tr>
-                                    <th>항목</th>
-                                    <th>가입</th>
-                                    <th>방문</th>
-                                    <th>탈퇴</th>
-                                    <th>신고</th>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>작성일</td>
+                                    <td>조회수</td>
                                 </tr>
                             </thead>
-        
                             <tbody>
                                 <tr>
-                                    <td>11월 04일</td>
-                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>2</td>
                                     <td>3</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>11월 03일</td>
-                                    <td>2</td>
+                                    <td>4</td>
                                     <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
                                 </tr>
                                 <tr>
-                                    <td>이번주</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번달</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-        
-                    <section>
-                        <h1>매칭</h1>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th>항목</th>
-                                    <th>매칭 등록</th>
-                                    <th>삭제</th>
-                                    <th>매칭 건수</th>
-                                    <th>신고</th>
-                                </tr>
-                            </thead>
-        
-                            <tbody>
-                                <tr>
-                                    <td>11월 04일</td>
-                                    <td>5</td>
-                                    <td>3</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>11월 03일</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번주</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번달</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-        
-                    <section>
-                        <h1>커뮤니티</h1>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th>항목</th>
-                                    <th>방문</th>
-                                    <th>게시글 등록</th>
-                                    <th>게시글 삭제</th>
-                                    <th>신고</th>
-                                </tr>
-                            </thead>
-        
-                            <tbody>
-                                <tr>
-                                    <td>11월 04일</td>
-                                    <td>5</td>
-                                    <td>3</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>11월 03일</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번주</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번달</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-        
-                    <section>
-                        <h1>쇼핑몰</h1>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th>항목</th>
-                                    <th>주문</th>
-                                    <th>매출</th>
-                                    <th>미입금</th>
-                                    <th>교환/반품</th>
-                                </tr>
-                            </thead>
-        
-                            <tbody>
-                                <tr>
-                                    <td>11월 04일</td>
-                                    <td>5</td>
-                                    <td>3</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>11월 03일</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번주</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>이번달</td>
-                                    <td>2</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-        
-                    <section>
-                        <h1>공지사항</h1>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th>공지사항 제목</th>
-                                    <th>날짜</th>
-                                </tr>
-                            </thead>
-        
-                            <tbody>
-                                <tr>
-                                    <td>공지사항 제목 예시입니다 1</td>
-                                    <td>2020.09.09</td>
-                                </tr>
-                                <tr>
-                                    <td>공지사항 제목 예시입니다 2</td>
-                                    <td>2020.01.09</td>
-                                </tr>
-                                <tr>
-                                    <td>공지사항 제목 예시입니다 3</td>
-                                    <td>2020.02.09</td>
+                                    <td>11</td>
+                                    <td>22</td>
+                                    <td>33</td>
+                                    <td>44</td>
+                                    <td>55</td>
                                 </tr>
                             </tbody>
                         </table>
                     </section>
                 </div>
-            </main>
+            </section>
+        </main>
+
     </div>
 
-
-
-
-
-    <!-------------------- Footer -------------------->
     <footer id="footer" class="footer">
+
         <div class="container">
-            <h1>Footer</h1>
+            <h1>footer</h1>
         </div>
+
     </footer>
 
 </body>
-</html>
 
-   
+</html>

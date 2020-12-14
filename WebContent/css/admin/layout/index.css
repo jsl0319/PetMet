@@ -1,0 +1,64 @@
+.header{
+    height : 120px;
+    /* background: coral; */
+}
+
+.header .container{
+    width: 1200px;
+    height:100%;
+    margin : 0 auto;
+    background : pink;
+}
+
+
+.body .main{
+    display: flex;
+    flex-direction: column;
+    /* background: grey; */
+  
+}
+
+.body .main .main1 .container{
+
+
+    width: 1200px;
+    min-height: 400px;
+    margin : 0 auto;
+    background: purple;
+  
+}
+
+.body .main .main2 .container{
+
+    width: 1200px;
+    min-height: 400px;
+    margin : 0 auto;
+    
+    background: red;
+  
+}
+
+.footer{
+
+    height : 120px;
+    /* background: blue; */
+}
+.footer .container{
+    width:1200px;
+    height:120px;
+    margin : 0 auto;
+    
+}
+
+
+
+
+/* �쁺�뿭 �몴�떆 */
+.main1{
+    /* border:1px solid black; */
+    /* background: cornsilk; */
+}
+
+.footer .container{
+    background : pink;
+}
