@@ -211,5 +211,11 @@ public class JdbcBoardDao implements BoardDao {
 
 		return null;
 	}
+
+	@Override
+	public int updateList(List<Board> board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

@@ -171,4 +171,22 @@ public class JdbcBoardReportDao implements BoardReportDao {
 		return list;
 	}
 
+	@Override
+	public int deleteList(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public BoardReport getPrev(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BoardReport getNext(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
