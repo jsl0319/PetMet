@@ -7,6 +7,7 @@
     <title>Document</title>
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
     <link href="../../css/admin/components/table/list.css" type="text/css" rel="stylesheet">
+    <link href="../../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -71,12 +72,12 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                    <form>
+                    <form class="search__container">
                         <div>
-                            <select>
+                            <select class="search__title">
                                 <option>닉네임</option>
                             </select>
-                            <input type="text">
+                            <input type="text" class="search__input">
                         </div>
 
                         <label>가입일</label>
@@ -92,20 +93,20 @@
                     <table class="list-table">
                         <thead>
                             <tr>
-                                <td class="col-s">번호</td>
+                                <td>번호</td>
                                 <td class="col-m">이메일</td>
                                 <td>닉네임</td>
                                 <td>성별</td>
-                                <td>주소</td>
-                                <td>휴대폰번호</td>
-                                <td>가입일</td>
+                                <td class="col-m">주소</td>
+                                <td class="col-m">휴대폰번호</td>
+                                <td class="col-m">가입일</td>
                             </tr>
                         </thead>
                 
                         <tbody>
                             <tr>
-                                <td class="col-s">5</td>
-                                <td class="col-m"><a href="detail.html">dqq9744@naver.com</a></td>
+                                <td>5</td>
+                                <td><a href="detail.html">dqq9744@naver.com</a></td>
                                 <td>노온이</td>
                                 <td>남</td>
                                 <td>서울시 중랑구</td>
