@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 펫플레이스 > 리스트</title>
-    <link rel="stylesheet" href="../../css/admin/layout/defalut.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
@@ -17,7 +17,7 @@
             <h1><a href="../index.html">logo</a></h1>
 
             <nav>
-                <h1>헤더 메뉴 목록</h1>
+                <h1 class="d-none">헤더 메뉴 목록</h1>
 
                 <ul>
                     <li><a href="../user/index.html">User</a></li>
@@ -33,14 +33,14 @@
 
     <!-- 바디 -->
     <div class="body">
-        <h1 class="d-none">바디바디 핫바디</h1>
+        <h1 class="d-none">contents body</h1>
 
         <div class="container">
             <aside class="aside">
-                <h1>어싸이드!!!!!!</h1>
+                <h1 class="d-none">aside</h1>
 
                 <nav>
-                    <h1>세부 메뉴</h1>
+                    <h1 class="d-none">세부 메뉴</h1>
 
                     <ul>
                         <li>
@@ -61,15 +61,12 @@
 
             </aside>
 
-            <br>
-            <br>
-
             <main class="main">
-                <h1>메인임니당</h1>
+                <h1 class="d-none">main</h1>
 
                 <section class="search-form">
 
-                    <h1>검색폼</h1>
+                    <h1 class="d-none">검색폼</h1>
 
                     <form>
 
@@ -86,21 +83,18 @@
 
                 </section>
 
-                <br>
-                <br>
-
                 <section>
-                    <h1>Pet Place 관리</h1>
+                    <h1 class="d-none">Pet Place 관리</h1>
 
                     <table class="list-table">
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td>제목</td>
-                                <td>작성자</td>
-                                <td>작성일</td>
+                                <td class="col-l">제목</td>
+                                <td class="col-s">작성자</td>
+                                <td class="col-m">작성일</td>
                                 <td>조회수</td>
-                                <td>공개여부</td>
+                                <td class="col-m">공개여부</td>
                                 <td>삭제</td>
                             </tr>
                         </thead>
@@ -138,7 +132,7 @@
                 </section>
 
                 <section>
-                    <h1>버튼</h1>
+                    <h1 class="d-none">버튼</h1>
                     <a href="reg.html"><input type="button" value="Pet Place 등록"></a>
                     <a href=""><input type="button" value="선택 공개"></a>
                     <a href=""><input type="button" value="선택 삭제"></a>
@@ -166,9 +160,9 @@
                         </div>
                     </div>
                 </section>
-        </div>
-        </main>
 
+            </main>
+        </div>
     </div>
 
     <!-- 푸터 -->
