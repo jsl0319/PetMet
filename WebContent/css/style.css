@@ -1,13 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 
 @import "reset.css";
-@import "admin/layout/defalut.css";
-@import "admin/content-layout/defalut.css";
+@import "admin/layout/default.css";
+@import "admin/content-layout/default.css";
 
 /*---------------------------------components-------------------------------------*/
 @import "admin/components/header.css";
-@import "admin/components/table/list.css";
-
 /*-----------------------------------screens--------------------------------------*/
 
 * {
