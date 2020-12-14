@@ -1,17 +1,10 @@
 package com.petmet.web.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
-import com.petmet.web.dao.jdbc.JdbcNoticeDao;
 import com.petmet.web.dao.NoticeDao;
+import com.petmet.web.dao.jdbc.JdbcNoticeDao;
 import com.petmet.web.entity.Notice;
 
 public class NoticeService {
@@ -47,6 +40,7 @@ public class NoticeService {
 	public int delet(int id) {
 		return noticeDao.delet(id);
 	}
+
 
 
 }
