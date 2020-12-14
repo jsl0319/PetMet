@@ -1,0 +1,28 @@
+table{
+    width: 95%;
+    border-top: 1px solid #ccc;
+}
+
+table th,
+table td{
+    text-align: left;
+    vertical-align: middle;
+    padding-left: 10px;
+    border-bottom: 1px solid #ccc;
+    height: 30px;
+}
+
+table th{
+    width: 150px;
+    text-align: center;
+    background: #e9e9e9;
+}
+
+table .content{
+    height: 150px;
+}
+
+table .content td{
+    vertical-align: text-top;
+    padding-top: 10px;
+}

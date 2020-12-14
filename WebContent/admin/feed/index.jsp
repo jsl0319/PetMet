@@ -8,6 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin/components/table/list.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
   <title>FEED</title>
 </head>
@@ -76,13 +77,13 @@
             <section>
 
               <h1 class="d-none">신고 리스트</h1>
-                <table border="1">
+                <table class="list-table" border="1">
                   <thead>
                     <tr>
-                      <th>번호</th>
-                      <th>ID(신고받은자)</th>
-                      <th>신고수</th>
-                      <th>조치여부</th>
+                      <td>번호</td>
+                      <td>ID(신고받은자)</td>
+                      <td>신고수</td>
+                      <td>조치여부</td>
                     </tr>
                   </thead>
 
