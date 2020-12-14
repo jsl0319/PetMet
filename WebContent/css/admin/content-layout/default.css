@@ -52,7 +52,7 @@
 }
 /* -----------------------------------body----------------------------------- */
 .body .container {
-  flex-basis: 1000px;
+  flex-basis: 1200px;
   background-color: red;
 }
 
