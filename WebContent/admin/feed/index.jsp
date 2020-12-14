@@ -76,7 +76,7 @@
             <section>
 
               <h1 class="d-none">신고 리스트</h1>
-                <table border="1">
+                <table class="list-table" border="1">
                   <thead>
                     <tr>
                       <th>번호</th>

@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 
 @import "reset.css";
-@import "admin/layout.css";
-@import "admin/content-layout.css";
+@import "admin/layout/defalut.css";
+@import "admin/content-layout/defalut.css";
 
 /*---------------------------------components-------------------------------------*/
 @import "admin/components/header.css";
