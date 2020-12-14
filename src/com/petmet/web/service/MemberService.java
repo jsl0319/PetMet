@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.petmet.web.entity.Member;
-import com.petmet.web.entity.dao.MemberDao;
-import com.petmet.web.entity.dao.jdbc.JdbcMemberDao;
+import com.petmet.web.dao.MemberDao;
+import com.petmet.web.dao.jdbc.JdbcMemberDao;
 
 public class MemberService {
 	
