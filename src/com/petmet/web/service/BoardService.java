@@ -1,6 +1,5 @@
 package com.petmet.web.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.petmet.web.dao.BoardDao;

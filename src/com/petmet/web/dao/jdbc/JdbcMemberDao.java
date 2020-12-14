@@ -1,4 +1,4 @@
-package com.petmet.web.entity.dao.jdbc;
+package com.petmet.web.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.petmet.web.entity.Member;
-import com.petmet.web.entity.dao.MemberDao;
+import com.petmet.web.dao.MemberDao;
 
 public class JdbcMemberDao implements MemberDao{
 
