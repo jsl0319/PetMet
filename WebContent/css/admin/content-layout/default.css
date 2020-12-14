@@ -1,0 +1,124 @@
+/* -----------------------------------header----------------------------------- */
+.header .container {
+  justify-content: space-between;
+  background-color: orange;
+}
+
+.header .logo {
+  flex-basis: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  color: white;
+  background-color: black;
+}
+
+.header .logo a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header nav {
+  flex-basis: 800px;
+  display: flex;
+  background-color: green;
+}
+
+.header nav ul {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: blue;
+}
+.header nav ul li {
+  flex-basis: 100%;
+  height: 100%;
+  background-color: red;
+}
+.header nav ul a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: wheat;
+  border: 1px solid black;
+}
+/* -----------------------------------body----------------------------------- */
+.body .container {
+  flex-basis: 1000px;
+  background-color: red;
+}
+
+.body aside {
+  display: flex;
+  justify-content: center;
+}
+
+.body aside ul {
+  display: flex;
+  flex-direction: column;
+  background-color: wheat;
+}
+
+.body aside ul li {
+  width: 200px;
+  flex-basis: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: indianred;
+  border: 1px solid black;
+}
+
+.body .main {
+  position: relative;
+}
+
+.body .main section {
+  width: 95%;
+  background-color: beige;
+}
+
+.body .main section table {
+  width: 100%;
+}
+
+.body .main table th,
+.body .main table td {
+  border: 1px solid black;
+}
+
+.body .main .pager {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  position: absolute;
+  bottom: 0px;
+  background-color: khaki;
+}
+
+.body .main .pager div {
+  margin: 3px 0;
+  padding: 0 5px;
+}
+
+.body .main .pager ul {
+  display: flex;
+}
+
+.body .main .pager ul li {
+  margin: 3px 0;
+  padding: 0 5px;
+  border: 1px solid black;
+  background-color: pink;
+}
+/* -----------------------------------footer----------------------------------- */
+.footer .container {
+  justify-content: center;
+  background-color: purple;
+}
