@@ -33,7 +33,7 @@ body {
   flex-grow: 1;
   flex-shrink: 0;
   width: 1000px;
-  background: tomato;
+  --background: tomato;
 }
 .body .aside {
   flex-basis: 200px;
