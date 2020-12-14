@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+    .search__container {
+      padding-top: 64px;
+    }
+    
+    .search__title {
+        font-size: 22px;
+        font-weight: 900;
+        text-align: center;
+        color: #ff8b88;
+    }
+    
+    .search__input {
+        width: 130px;
+        padding: 12px 24px;
+
+        background-color: transparent;
+        transition: transform 250ms ease-in-out;
+        font-size: 14px;
+        line-height: 18px;
+        
+        color: #575756;
+        background-color: transparent;
+
+        border-radius: 50px;
+        border: 1px solid #575756;
+        transition: all 250ms ease-in-out;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+     
+    }
+        .search__input:hover,
+        .search__input:focus {
+            padding: 12px 0;
+            outline: 0;
+            border: 1px solid transparent;
+            border-bottom: 1px solid #575756;
+            border-radius: 0;
+            background-position: 100% center;
+        }
+
+
+    .button {
+            width: 120px;
+            color: #575756;
+            border:#575756 solid 1px;
+            border-radius: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+     /* ----------------버튼-----------    */
+    .button:hover {
+            color: #ffffff;
+            background-color: #ff8b88;
+        }
+    .button:focus{
+        display: none;
+    }
+
+    /* ------------체크박스---------------------------- */
+
+    input[id="cb1"] + label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #bcbcbc;
+        cursor: pointer;
+    }
+    input[id="cb1"]:checked + label {
+        background-color: #666666;
+    }
+    input[id="cb1"] {
+        display: none;
+    }
+
+    
+    input[id="cb2"] + label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #bcbcbc;
+        cursor: pointer;
+    }
+    input[id="cb2"]:checked + label {
+        background-color: #666666;
+    }
+    input[id="cb2"] {
+        display: none;
+    }

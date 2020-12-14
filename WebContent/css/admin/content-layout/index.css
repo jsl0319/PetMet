@@ -78,7 +78,7 @@
 
 
 
-  /* ¿µ¿ª ±¸ºÐ */
+  /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
   .body .main .main1 .container section,
   .body .main .main2 .container section{
     /* border:1px solid black; */
@@ -89,4 +89,18 @@
    
   }
   
+  * {
+    box-sizing: border-box;
+    font-family: "Archivo", sans-serif;
+  }
+  
+  .d-none {
+    display: none;
+  }
 
+  .header .logo {
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  

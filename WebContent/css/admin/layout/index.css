@@ -1,5 +1,5 @@
 .header{
-    height : 120px;
+    height : 80px;
     /* background: coral; */
 }
 
@@ -40,12 +40,12 @@
 
 .footer{
 
-    height : 120px;
+    height : 67px;
     /* background: blue; */
 }
 .footer .container{
     width:1200px;
-    height:120px;
+    height:100%;
     margin : 0 auto;
     
 }
