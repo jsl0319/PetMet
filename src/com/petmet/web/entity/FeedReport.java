@@ -5,15 +5,15 @@ import java.util.Date;
 public class FeedReport {
     private int id;
     private String memId;
-    private int feedId;
+    private String feedId;
     private Date repoDate;
     private String content;
     
     public FeedReport() {
-		this(0,null,0,null,null);
+		this(0,null,null,null,null);
 	}
 
-	public FeedReport(int id, String memId, int feedId, Date repoDate, String content) {
+	public FeedReport(int id, String memId, String feedId, Date repoDate, String content) {
 		this.id = id;
 		this.memId = memId;
 		this.feedId = feedId;
@@ -37,11 +37,11 @@ public class FeedReport {
 		this.memId = memId;
 	}
 
-	public int getFeedId() {
+	public String getFeedId() {
 		return feedId;
 	}
 
-	public void setFeedId(int feedId) {
+	public void setFeedId(String feedId) {
 		this.feedId = feedId;
 	}
 
@@ -66,12 +66,6 @@ public class FeedReport {
 		return "FeedReport [id=" + id + ", memId=" + memId + ", feedId=" + feedId + ", repoDate=" + repoDate
 				+ ", content=" + content + "]";
 	}
-	
-	
-    
-    
-	
-    
-   
+
 	
 }

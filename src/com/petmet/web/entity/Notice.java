@@ -16,8 +16,8 @@ public class Notice {
 		
 	}
 	
-	public Notice(String title, String content, int pub, int hit, String writerId, Date regdate, String files,
-			int id) {
+	public Notice(int id,String title, String content, int pub, int hit, String writerId, Date regdate, String files
+			) {
 
 		this.title = title;
 		this.content = content;

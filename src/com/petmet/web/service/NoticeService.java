@@ -1,19 +1,46 @@
 package com.petmet.web.service;
 
+
+import java.util.List;
+
+import com.petmet.web.dao.NoticeDao;
+import com.petmet.web.dao.jdbc.JdbcNoticeDao;
 import com.petmet.web.entity.Notice;
-import com.petmet.web.entity.dao.NoticeDao;
-import com.petmet.web.entity.dao.jdbc.JdbcNoticeDao;
 
 public class NoticeService {
-	
 	private NoticeDao noticeDao;
 	
 	public NoticeService() {
 		noticeDao = new JdbcNoticeDao();
 	}
 	
-	public int update(Notice notice) {
-		
-		return noticeDao.update(notice);
+
+	public List<Notice> getList() {
+		return noticeDao.getList();
 	}
+
+	// --------------------------------------------
+	public Notice get(int id) { 
+		return noticeDao.get(id);
+	
+	}
+
+	// -----------------------------------------
+	public int insert(Notice notice) {
+		return noticeDao.insert(notice);
+	}
+
+	// ----------------------------
+	public int update(Notice notice) {
+		return noticeDao.update(notice);
+
+	}
+
+	/// -----------------------------------
+	public int delet(int id) {
+		return noticeDao.delet(id);
+	}
+
+
+
 }

@@ -48,12 +48,22 @@
                 <ul>
                     <li>
                         <i class="fas fa-bullhorn"></i>
-                        <a href="index.html">공지사항관리</a>
+                        <a href="notice/list.html">공지사항관리</a>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bullhorn"></i>
+                        <a href="QnA/list.html">QnA 관리</a>
                     </li>
 
                     <li>
                         <i class="fas fa-clipboard-list"></i>
-                        <a href="board/post.html">게시글 관리</a>
+                        <a href="category/list.html">카테고리 관리</a>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-clipboard-list"></i>
+                        <a href="board/list.html">게시글 관리</a>
                     </li>
 
                     <li>
@@ -63,7 +73,7 @@
 
                     <li>
                         <i class="fas fa-comment"></i>
-                        <a href="comment/comment.html">댓글 관리</a>
+                        <a href="comment/list.html">댓글 관리</a>
                     </li>
 
                     <li>
@@ -92,7 +102,7 @@
             </section>
 
             <section>
-                <h1>공지사항 관리</h1>
+                <h1>공지사항</h1>
 
                 <table border="1">
                     <thead>
@@ -122,26 +132,34 @@
             </section>
 
             <section>
-                <h1>이벤트 버튼</h1>
-                <a href=""><input type="button" value="모두 공개"></a>
-                <a href=""><input type="button" value="모두 삭제"></a>
-                <a href="reg.html"><input type="button" value="게시글 작성"></a>
-            </section>
+                <h1>QnA</h1>
 
-            <section>
-                <h1>페이지 목록</h1>
-               
-                    이전
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                    </ul>
-                    다음 
-            </section>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>번호</td>
+                            <td>제목</td>
+                            <td>작성자</td>
+                            <td>작성일</td>
+                            <td>조회수</td>
+                            <td>공개여부</td>
+                            <td>답변</td>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="detail.html">12월 서버 점검 안내</a></td>
+                            <td>관리인</td>
+                            <td>2020-12-01</td>
+                            <td>100</td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
         </main>
     </section>
