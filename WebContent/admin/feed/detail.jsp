@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-  <title>FEED-DETAIL</title>
+  <title>FEED-detail</title>
 </head>
 <body>
 
@@ -72,7 +73,7 @@
 
     <!----------------------------------main--------------------------------------->
       <main id="main" class="main feed-screen">
-          <h1 class="d-none">Feed-ditail 관리자 페이지</h1>
+          <h1 class="d-none">Feed-detail 관리자 페이지</h1>
 
           <section class="reported-feed">
             <h1 class="d-none">신고받은 피드</h1>

@@ -29,19 +29,19 @@
           <h1 class="d-none">헤더 목록</h1>
           <ul>
             <li>
-              <a href="../user/index.html">
+              <a href="../user/index.jsp">
                 <i class="fas fa-users fa-2x"></i>
                 <span>USER</span>
               </a>
             </li>
             <li>
-              <a href="index.html">
+              <a href="index.jsp">
                 <i class="fas fa-camera-retro fa-2x"></i>
                 <span>FEED</span>
               </a>
             </li>
             <li>
-              <a href="../community/index.html">
+              <a href="../community/index.jsp">
                 <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                 <span>COMMUNITY</span>
               </a>
@@ -88,12 +88,12 @@
                   </thead>
 
                   <tbody>
-                  <c:forEach var = "f" items="${list}">
+                  <c:forEach var = "rf" items="${list}">
                     <tr>
-                      <td>${f.id}</td>
-                      <td><a href="detail.html">${f.feedId}</a></td>
-                      <td><a href="list.html">9999</a></td>
-                      <td>${f.content}</td>
+                      <td>${rf.id}</td>
+                      <td><a href="detail.jsp">${rf.reportedId}</a></td>
+                      <td><a href="list.jsp">${rf.repoCnt }</a></td>
+                      <td>${rf.action}</td>
                     </tr>
                   </c:forEach>
                   </tbody>

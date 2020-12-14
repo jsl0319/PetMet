@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.petmet.web.entity.FeedReport;
+import com.petmet.web.entity.ReportedFeedView;
 import com.petmet.web.service.FeedReportService;
+import com.petmet.web.service.ReportedFeedViewService;
 
 @WebServlet("/admin/feed/index")
 public class IndexListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FeedReportService service = new FeedReportService();
-		List<FeedReport> list = service.getList();
+		ReportedFeedViewService service = new ReportedFeedViewService();
+		List<ReportedFeedView> list = service.getList();
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
