@@ -91,27 +91,10 @@
             <main class="main">
                 <h1 class="d-none">main</h1>
 
-                <section class="search-form">
-
-                    <h1 class="d-none">검색폼</h1>
-
-                    <form>
-
-                        <select>
-                            <option>제목</option>
-                            <option>내용</option>
-                            <option>지역</option>
-                            <option>카테고리</option>
-                        </select>
-
-                        <input type="text">
-                        <input type="submit" value="검색">
-                    </form>
-
-                </section>
+               
 
                 <section>
-                    <h1 class="d-none">PetPlace 등록</h1>
+                    <h1>PetPlace 등록</h1>
 
                     <form method="post">
 
@@ -133,20 +116,20 @@
                                 </tr>
                                 <tr>
                                     <th class="files">첨부파일</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="file" name="file" />
                                     </td>
                                 </tr>
                                 <tr class="content">
-                                    <td colspan="2">
-                                        <textarea class="content" name="content"
-                                            style="width: 500px; height: 100px; resize: none;">지도</textarea>
+                                    <td colspan="4">
+                                        <textarea class="content" name="map"
+                                            style="width: 900px; height: 400px; resize: none;">지도</textarea>
                                     </td>
                                 </tr>
                                 <tr class="content">
-                                    <td colspan="2">
+                                    <td colspan="4">
                                         <textarea class="content" name="content"
-                                            style="width: 500px; height: 500px; resize: none;">상세설명</textarea>
+                                            style="width: 900px; height: 500px; resize: none;">상세설명</textarea>
                                     </td>
                                 </tr>
                                 <tr>
