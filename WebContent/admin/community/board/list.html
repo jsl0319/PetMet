@@ -12,6 +12,8 @@
     <title>관리자 > 커뮤니티 > 게시글 리스트</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -110,20 +112,20 @@
 
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                    <form action="list" method="post">
-                        <select name="search">
+                    <form class="search__container" action="list" method="post">
+                        <select class="selectbox" name="search">
                             <option value="1">제목</option>
                             <option value="2">작성자</option>
                         </select>
-                        <input name="input" type="text">
-                        <select name="category">
+                        <input class="search__input" name="query" type="text">
+                        <select class="selectbox" name="category">
                             <option value="1">카테고리1</option>
                             <option value="2">카테고리2</option>
                             <option value="3">카테고리3</option>
                         </select>
-                        <label for="date">일자</label>
-                        <input name="startDate" type="date"> - <input name="endDate" type="date">
-                        <input type="submit" value="검색">
+                        <label class="search__title" for="date">일자</label>
+                        <input class="search__input" name="start_date" type="date"> - <input class="search__input" name="end_date" type="date">
+                        <input class="button" type="submit" value="검색">
                     </form>
                 </section>
 
@@ -156,7 +158,7 @@
                                 <td>1</td>
                                 <td>현지</td>
                                 <td>
-                                    <select>
+                                    <select name="category">
                                         <option value="자유게시판">자유게시판</option>
                                         <option value="자유게시판">나눔게시판</option>
                                     </select>
@@ -166,7 +168,7 @@
                                 <td>2020-09-09</td>
                                 <td>100</td>
                                 <td>X</td>
-                                <td><input type="checkbox"></td>
+                                <td><input name="check_delete" type="checkbox"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -174,8 +176,8 @@
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-                    <input type="button" value="저장">
-                    <input type="button" value="삭제">
+                    <input class="button" type="submit" value="저장">
+                    <input class="button" type="submit" value="삭제">
                 </section>
                 
                 <div class="pager">
