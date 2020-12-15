@@ -19,7 +19,7 @@ import com.petmet.web.entity.BoardReportView;
 public class JdbcBoardReportDao implements BoardReportDao {
 	private String url = DBContext.URL;
 	private String uid = DBContext.UID;
-	private String pwd = DBContext.PWD;
+	private String pwd = DBContext.PWD;    
 
 	@Override
 	public int insert(BoardReport boardReport) {
@@ -52,7 +52,7 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	@Override
 	public int update(BoardReport boardReport) {
 		int result = 0;
-		String sql = "UPDATE BOARD_REPORT SET MEM_ID = ?, BOARD_ID = ?, CONTENT = ? WHERE ID = ?";
+		String sql = "UPDATE BOARD_REPORT SET MEM_ID=?, BOARD_ID=?, CONTENT=? WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -106,13 +106,15 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	public BoardReport get(int id) {
 		BoardReport b = null;
 
-		String sql = "SELECT * FROM BOARD_REPORT WHERE ID =" + id;
+		String sql = "SELECT * FROM BOARD_REPORT WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
 			
 			if (rs.next()) {
 				String memId = rs.getString("MEM_ID");
@@ -123,7 +125,7 @@ public class JdbcBoardReportDao implements BoardReportDao {
 			    b = new BoardReport(id, memId, boardId, regDate, content);
 			}
 
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -139,15 +141,35 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	@Override
 	public List<BoardReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate,
 			int startIndex, int endIndex) {
-		String sql = "SELECT * FROM BOARD_REPORT";
+		String sql = "SELECT * " + 
+					"FROM(" + 
+					"    SELECT ROWNUM NUM, BR.* " + 
+					"    FROM(" + 
+					"        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE" + 
+					"    ) BR " + 
+					") " + 
+					"WHERE NUM BETWEEN ? AND ?";
+
+		// 검색폼의 검색 경우의 수
+		if (query != null || !(query.equals("")))
+			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
+
+		if (boardCategory != null || !(boardCategory.equals("게시판")))
+			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
+
+		if (startDate != null || endDate != null)
+			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
 
 		List<BoardReport> list = new ArrayList<>();
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
 				int id = rs.getInt("ID");
@@ -162,7 +184,7 @@ public class JdbcBoardReportDao implements BoardReportDao {
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,15 +198,28 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	@Override
 	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
 			Date endDate, int startIndex, int endIndex) {
-		String sql = "SELECT * FROM REPORTED_BOARD_VIEW";
+		String sql = "SELECT * FROM REPORTED_BOARD_VIEW WHERE NUM BETWEEN ? AND ?";
+
+		// 검색폼의 검색 경우의 수
+		if (query != null || !(query.equals("")))
+			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
+
+		if (boardCategory != null || !(boardCategory.equals("게시판")))
+			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
+
+		if (startDate != null || endDate != null)
+			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
 
 		List<BoardReportView> list = new ArrayList<>();
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
 				int num = rs.getInt("NUM");
@@ -203,7 +238,7 @@ public class JdbcBoardReportDao implements BoardReportDao {
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

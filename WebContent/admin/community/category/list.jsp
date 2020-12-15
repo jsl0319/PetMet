@@ -1,20 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- 
-    자바스크립트 넣을 부분
-    1. 데이터 수정 시 수정된 레코드들 표시
-
- -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 커뮤니티 > 게시글 리스트</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
-    <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
-    <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -72,6 +70,7 @@
         <div class="container">
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
+
                 <nav>
                     <h1 class="d-none">세부 메뉴 목록</h1>
 
@@ -85,15 +84,15 @@
                         </li>
 
                         <li>
-                            <a href="../category/list.html">카테고리 관리</a>
-                        </li>
-                        
-                        <li>
-                            <a href="list.html">게시글 관리</a>
+                            <a href="list.html">카테고리 관리</a>
                         </li>
 
                         <li>
-                            <a href="reported.html">신고된 게시글 관리</a>
+                            <a href="../board/list.html">게시글 관리</a>
+                        </li>
+
+                        <li>
+                            <a href="../board/reported.html">신고된 게시글 관리</a>
                         </li>
 
                         <li>
@@ -111,76 +110,39 @@
                 <h1 class="d-none">Main Content</h1>
 
                 <section>
-                    <h1 class="d-none">검색폼</h1>
-                    <form class="search__container" action="list" method="post">
-                        <select class="selectbox" name="search">
-                            <option value="1">제목</option>
-                            <option value="2">작성자</option>
-                        </select>
-                        <input class="search__input" name="query" type="text">
-                        <select class="selectbox" name="category">
-                            <option>게시판</option>
-                            <option value="1">카테고리1</option>
-                            <option value="2">카테고리2</option>
-                            <option value="3">카테고리3</option>
-                        </select>
-                        <label class="search__title" for="date">일자</label>
-                        <input class="search__input" name="start_date" type="date"> - <input class="search__input" name="end_date" type="date">
-                        <input class="button" type="submit" value="검색">
-                    </form>
-                </section>
-
-                <section>
                     <h1 class="d-none">게시글 리스트</h1>
-                    <div>
-                        <select>
-                            <option value="20개">20개</option>
-                            <option value="50개">50개</option>
-                            <option value="50개">100개</option>
-                        </select>
-                    </div>
+
+                    <input type="button" value="+ Add Category">
+                    
                     <table class="list-table">
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td>작성자</td>
-                                <td>카테고리</td>
-                                <td>제목</td>
-                                <td>댓글수</td>
-                                <td>작성일</td>
-                                <td>조회수</td>
-                                <td>파일</td>
+                                <td class="col-l">카테고리명</td>
+                                <td class="col-m">게시글 수</td>
                                 <td>삭제</td>
                             </tr>
                         </thead>
-
+                        
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>현지</td>
-                                <td>
-                                    <select name="category">
-                                        <option value="자유게시판">자유게시판</option>
-                                        <option value="자유게시판">나눔게시판</option>
-                                    </select>
-                                </td>
-                                <td><a href="detail.html">제목입니당</a></td>
-                                <td>10</td>
-                                <td>2020-09-09</td>
-                                <td>100</td>
-                                <td>X</td>
-                                <td><input name="check_delete" type="checkbox"></td>
-                            </tr>
+	                        <c:forEach var="c" items="${list }">
+	                            <tr>
+	                                <td>${c.id}</td>
+	                                <td class="col-l"><input type="text" name="name" value="${c.name}"></td>
+	                                <td class="col-m">${c.cntBoard}</td>
+	                                <td><input type="checkbox" name=""></td>
+	                            </tr>
+	                        </c:forEach>
                         </tbody>
                     </table>
                 </section>
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-                    <input class="button" type="submit" value="저장">
-                    <input class="button" type="submit" value="삭제">
+                    <input type="submit" value="저장">
+                    <input type="submit" value="삭제">
                 </section>
-                
+
                 <div class="pager">
                     <div>
                       <a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -206,8 +168,8 @@
     </section>
 
     <footer class="footer">
-        <div class="container">
-            <h1 class="d-none">Footer</h1>
+        <div class="d-none">
+            <h1>Footer</h1>
         </div>
     </footer>
 

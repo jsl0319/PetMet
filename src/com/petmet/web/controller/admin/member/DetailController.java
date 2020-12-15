@@ -1,7 +1,6 @@
 package com.petmet.web.controller.admin.member;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,18 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmet.web.entity.Member;
 import com.petmet.web.service.MemberService;
 
-@WebServlet("/admin/member/list")
-public class ListController extends HttpServlet {
-
+@WebServlet("/admin/member/detail")
+public class DetailController extends HttpServlet{
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		
 		MemberService memberService = new MemberService();
-		List<Member> list = memberService.getList();
-		request.setAttribute("list", list);
-
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		Member member = memberService.get(id);
+		
+		request.setAttribute("m", member);
+		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}
-
 }

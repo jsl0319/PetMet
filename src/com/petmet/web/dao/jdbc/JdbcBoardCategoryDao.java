@@ -50,7 +50,7 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 	@Override
 	public int update(BoardCategory boardCategory) {
 		int result = 0;
-		String sql = "UPDATE BOARD_CATEGORY NAME = ? WHERE ID = ?";
+		String sql = "UPDATE BOARD_CATEGORY NAME=? WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -102,13 +102,14 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 	public BoardCategory get(int id) {
 		BoardCategory b = null;
 
-		String sql = "SELECT * FROM BOARD_CATEGORY WHERE ID =" + id;
+		String sql = "SELECT * FROM BOARD_CATEGORY WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
 			
 			if (rs.next()) {
 				String name = rs.getString("NAME");
@@ -116,7 +117,8 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 			    b = new BoardCategory(id, name);
 			}
 
-			st.close();
+			rs.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -130,16 +132,31 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 	}
 
 	@Override
+	public List<BoardCategory> getList() {
+		return getList(1, 20);
+	}
+	
+	@Override
 	public List<BoardCategory> getList(int startIndex, int endIndex) {
-		String sql = "SELECT * FROM BOARD_CATEGORY";
+		String sql = "SELECT * " + 
+					"FROM(" + 
+					"    SELECT ROWNUM NUM, BC.* " + 
+					"    FROM(" + 
+					"        SELECT * FROM BOARD_CATEGORY ORDER BY ID" + 
+					"    ) BC" + 
+					"    ) " + 
+					"WHERE NUM BETWEEN ? AND ?";
 
 		List<BoardCategory> list = new ArrayList<>();
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
 				int id = rs.getInt("ID");
@@ -151,7 +168,7 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,28 +181,32 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 
 	@Override
 	public List<BoardCategoryView> getViewList(int startIndex, int endIndex) {
-		String sql = "SELECT * FROM BOARD_CATEGORY_VIEWs";
+		String sql = "SELECT * FROM BOARD_CATEGORY_VIEW WHERE NUM BETWEEN ? AND ?";
 
 		List<BoardCategoryView> list = new ArrayList<>();
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
+				int num = rs.getInt("NUM");
 				int id = rs.getInt("ID");
 				String name = rs.getString("NAME");
 				int cntBoard = rs.getInt("CNT_BOARD");
 				
-				BoardCategoryView bcv = new BoardCategoryView(id, name, cntBoard);
+				BoardCategoryView bcv = new BoardCategoryView(num, id, name, cntBoard);
 
 				list.add(bcv);
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,4 +216,5 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 
 		return list;
 	}
+
 }

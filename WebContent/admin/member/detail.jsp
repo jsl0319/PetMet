@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,30 +74,38 @@
                 <section>
                     <h1 class="d-none">디테일 테이블</h1>
                     <table>
-                        <tr>
-                            <td>회원 닉네임</td>
-                            <td>노온이</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>신고 일자</td>
-                            <td>2020-12-14</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">내용</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">욕을했어용</td>
-
-                        </tr>
-
-                        
+                       <tr>
+                           <td>닉네임</td>
+                           <td>${m.nickname}</td>
+                           <td>가입일</td>
+                           <td>${m.regDate}</td>
+                       </tr>
+                       <tr>
+                        <td>등록강아지</td>
+                        <td><a href="">쿠쿠</a></td>
+                        <td>신고횟수</td>
+                        <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>무게</td>
+                        <td>2kg</td>
+                        <td>성격</td>
+                        <td>다혈질</td>
+                    </tr>
+                    <tr>
+                        <td>매칭</td>
+                        <td>2</td>
+                        <td>매칭성사횟수</td>
+                        <td>4</td>
+                    </tr>
 
                     </table>
 
                 </section>
                 <div class="pager">
-                    <a href="report-list.html"><input type="button" value="목록으로 가기"></a>
+                  <a href="list"><input type="button" value="회원 목록으로 가기"></a>
+                  <a href="report-num-list.html"><input type="button" value="신고 목록으로 가기"></a>
                 </div>
             </main>
 
