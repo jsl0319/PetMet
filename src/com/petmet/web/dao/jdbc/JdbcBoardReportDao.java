@@ -18,7 +18,7 @@ import com.petmet.web.entity.BoardReport;
 public class JdbcBoardReportDao implements BoardReportDao {
 	private String url = DBContext.URL;
 	private String uid = DBContext.UID;
-	private String pwd = DBContext.PWD;
+	private String pwd = DBContext.PWD;    
 
 	@Override
 	public int insert(BoardReport boardReport) {

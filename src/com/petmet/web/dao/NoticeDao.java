@@ -3,15 +3,22 @@ package com.petmet.web.dao;
 import java.util.Date;
 import java.util.List;
 
+
 import com.petmet.web.entity.Notice;
 
 public interface NoticeDao {
 	int insert(Notice notice);
 	int update(Notice notice);
-	int delet(int id);
+	int delete(int id);
+	List<Notice> getList();
+	
+	int hitUp(int id);
 	
 	Notice get(int id);
-	List<Notice> getList();
+	List<Notice> getList(int startIndex, int endIndex);
+	List<Notice> getList(int startIndex);
+	
+
 	
 	
 

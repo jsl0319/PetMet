@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.petmet.web.dao.NoticeDao;
-import com.petmet.web.entity.BoardReport;
+
 import com.petmet.web.entity.Notice;
 
 public class JdbcNoticeDao implements NoticeDao {
@@ -90,7 +90,7 @@ public class JdbcNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public int delet(int id) {
+	public int delete(int id) {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
@@ -216,5 +216,26 @@ public class JdbcNoticeDao implements NoticeDao {
 		}
 		return list;
 	}
+
+	@Override
+	public int hitUp(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Notice> getList(int startIndex, int endIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> getList(int startIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 
 }
