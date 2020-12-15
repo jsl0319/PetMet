@@ -1,2 +1,5 @@
 /.classpath
 /bin/
+/.DS_Store
+WebContent/admin/.DS_Store
+WebContent/admin/community/.DS_Store

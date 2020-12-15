@@ -1,0 +1,58 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+html {
+  justify-content: center;
+}
+
+body {
+  flex-basis: 1200px;
+  flex-direction: column;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+}
+
+/* ---------------------------------------header---------------------------------------- */
+.header {
+  flex-basis: 80px;
+  flex-shrink: 0;
+  width: 1200px;
+  background: pink;
+}
+
+/* ---------------------------------------body---------------------------------------- */
+.body {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 1200px;
+  --background: tomato;
+}
+.body .aside {
+  flex-basis: 200px;
+  flex-shrink: 0;
+  background: yellow;
+}
+.body .main {
+  flex-basis: 1000px;
+  flex-shrink: 0;
+  padding-top: 30px;
+  padding-left: 30px;
+  position: relative;
+  background: skyblue;
+}
+
+/* ---------------------------------------footer---------------------------------------- */
+.footer {
+  flex-basis: 67px;
+  flex-shrink: 0;
+  width: 1200px;
+  background: gray;
+}
