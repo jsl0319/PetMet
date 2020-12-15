@@ -110,20 +110,20 @@
 
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                    <form>
-                        <select>
-                            <option value="제목">제목</option>
-                            <option value="작성자">작성자</option>
+                    <form action="list" method="post">
+                        <select name="search">
+                            <option value="1">제목</option>
+                            <option value="2">작성자</option>
                         </select>
-                        <input type="text">
-                        <select>
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
+                        <input name="input" type="text">
+                        <select name="category">
+                            <option value="1">카테고리1</option>
+                            <option value="2">카테고리2</option>
+                            <option value="3">카테고리3</option>
                         </select>
                         <label for="date">일자</label>
-                        <input type="date">~<input type="date">
-                        <input type="button" value="검색">
+                        <input name="startDate" type="date"> - <input name="endDate" type="date">
+                        <input type="submit" value="검색">
                     </form>
                 </section>
 

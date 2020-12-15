@@ -13,6 +13,7 @@ import java.util.List;
 import com.petmet.web.dao.BoardCategoryDao;
 import com.petmet.web.entity.Board;
 import com.petmet.web.entity.BoardCategory;
+import com.petmet.web.entity.BoardCategoryView;
 import com.petmet.web.entity.Matching;
 
 public class JdbcBoardCategoryDao implements BoardCategoryDao{
@@ -129,7 +130,7 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 	}
 
 	@Override
-	public List<BoardCategory> getList() {
+	public List<BoardCategory> getList(int startIndex, int endIndex) {
 		String sql = "SELECT * FROM BOARD_CATEGORY";
 
 		List<BoardCategory> list = new ArrayList<>();
@@ -147,6 +148,40 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 				BoardCategory b = new BoardCategory(id, name);
 
 				list.add(b);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<BoardCategoryView> getViewList(int startIndex, int endIndex) {
+		String sql = "SELECT * FROM BOARD_CATEGORY_VIEWs";
+
+		List<BoardCategoryView> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				int cntBoard = rs.getInt("CNT_BOARD");
+				
+				BoardCategoryView bcv = new BoardCategoryView(id, name, cntBoard);
+
+				list.add(bcv);
 			}
 
 			rs.close();
