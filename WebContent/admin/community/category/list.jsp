@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,14 +123,16 @@
                                 <td>삭제</td>
                             </tr>
                         </thead>
-
+                        
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="col-l"><input type="text" value="자유게시판"></td>
-                                <td class="col-m">2</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+	                        <c:forEach var="c" items="${list }">
+	                            <tr>
+	                                <td>${c.id}</td>
+	                                <td class="col-l"><input type="text" name="name" value="${c.name}"></td>
+	                                <td class="col-m">${c.cntBoard}</td>
+	                                <td><input type="checkbox" name=""></td>
+	                            </tr>
+	                        </c:forEach>
                         </tbody>
                     </table>
                 </section>

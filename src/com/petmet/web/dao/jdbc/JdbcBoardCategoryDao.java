@@ -164,7 +164,7 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 
 	@Override
 	public List<BoardCategoryView> getViewList(int startIndex, int endIndex) {
-		String sql = "SELECT * FROM BOARD_CATEGORY_VIEWs";
+		String sql = "SELECT * FROM BOARD_CATEGORY_VIEW ORDER BY ID";
 
 		List<BoardCategoryView> list = new ArrayList<>();
 
