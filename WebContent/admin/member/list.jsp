@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../petplace/list.html">
+                        <a href="../petplace/list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
