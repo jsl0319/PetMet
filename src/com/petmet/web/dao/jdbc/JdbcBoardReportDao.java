@@ -145,7 +145,7 @@ public class JdbcBoardReportDao implements BoardReportDao {
 					"FROM(" + 
 					"    SELECT ROWNUM NUM, BR.* " + 
 					"    FROM(" + 
-					"        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE" + 
+					"        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE DESC" + 
 					"    ) BR " + 
 					") " + 
 					"WHERE NUM BETWEEN ? AND ?";
@@ -201,10 +201,10 @@ public class JdbcBoardReportDao implements BoardReportDao {
 		String sql = "SELECT * FROM REPORTED_BOARD_VIEW WHERE NUM BETWEEN ? AND ?";
 
 		// 검색폼의 검색 경우의 수
-		if (query != null || !(query.equals("")))
+		if (query != null)
 			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
 
-		if (boardCategory != null || !(boardCategory.equals("게시판")))
+		if (boardCategory != null)
 			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
 
 		if (startDate != null || endDate != null)
@@ -223,16 +223,15 @@ public class JdbcBoardReportDao implements BoardReportDao {
 
 			while (rs.next()) {
 				int num = rs.getInt("NUM");
-				int id = rs.getInt("ID");
-				String title = rs.getString("TITLE");
-				int hit = rs.getInt("HIT");
-				String writerId = rs.getString("WRITER_ID");
-				Date regDate = rs.getDate("REG_DATE");
-				String files = rs.getString("FILES");
+				int boardId = rs.getInt("BOARD_ID");
 				String categoryId = rs.getString("CATEGORY_ID");
+				String writerId = rs.getString("WRITER_ID");
+				String title = rs.getString("TITLE");
+				Date regDate = rs.getDate("REG_DATE");
+				int hit = rs.getInt("HIT");
 				int reported = rs.getInt("REPORTED");
 
-				BoardReportView brv = new BoardReportView(num, id, title, hit, writerId, regDate, files, categoryId, reported);
+				BoardReportView brv = new BoardReportView(num, boardId, writerId, categoryId, title, regDate, hit, reported);
 
 				list.add(brv);
 			}
@@ -247,6 +246,50 @@ public class JdbcBoardReportDao implements BoardReportDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public List<BoardReport> getListByBoardId(int boardId) {
+		String sql = "SELECT * " + 
+				"FROM(" + 
+				"    SELECT ROWNUM NUM, BR.* " + 
+				"    FROM(" + 
+				"        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE DESC" + 
+				"    ) BR " + 
+				") " + 
+				"WHERE BOARD_ID = ?";
+
+	List<BoardReport> list = new ArrayList<>();
+
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, uid, pwd);
+		PreparedStatement pst = con.prepareStatement(sql);
+		pst.setInt(1, boardId);
+		
+		ResultSet rs = pst.executeQuery();
+
+		while (rs.next()) {
+			int id = rs.getInt("ID");
+			String memId = rs.getString("MEM_ID");
+			Date regDate = rs.getDate("REG_DATE");
+			String content = rs.getString("CONTENT");
+
+			BoardReport b = new BoardReport(id, memId, boardId, regDate, content);
+
+			list.add(b);
+		}
+
+		rs.close();
+		pst.close();
+		con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+
+	return list;
 	}
 
 }

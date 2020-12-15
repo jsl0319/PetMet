@@ -14,7 +14,7 @@ import com.petmet.web.dao.PetPlaceDao;
 import com.petmet.web.entity.PetPlace;
 
 public class JdbcPetPlaceDao implements PetPlaceDao {
-	
+
 	private String url = DBContext.URL;
 	private String uid = DBContext.UID;
 	private String pwd = DBContext.PWD;
@@ -22,15 +22,25 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	@Override
 	public int insert(PetPlace pp) {
 		int result = 0;
-		String sql = "INSERT INTO PETPLACE(NAME, CONTENT) VALUES(?,?)";
+		String sql = "INSERT INTO PETPLACE(WRITER_ID, CATEGORY_ID, NAME, "
+				+ "ADDRESS, HOMEPAGE, PHONE, LOCATION, CONTENT, FILES, PUB) "
+				+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, pp.getName());
-			st.setString(2, pp.getContent());
+			st.setString(1, pp.getWriterId());
+			st.setString(2, pp.getCategoryId());
+			st.setString(3, pp.getName());
+			st.setString(4, pp.getAddress());
+			st.setString(5, pp.getHomepage());
+			st.setString(6, pp.getPhone());
+			st.setString(7, pp.getLocation());
+			st.setString(8, pp.getContent());
+			st.setString(9, pp.getFiles());
+			st.setInt(10, pp.getPub());
 
 			result = st.executeUpdate();
 			st.close();
@@ -192,6 +202,53 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public PetPlace getLast() {
+		PetPlace pp = null;
+
+		String sql = "SELECT * FROM PETPLACE WHERE ID = (SELECT MAX(ID) FROM NOTICE)";
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String writerId = rs.getString("WRITER_ID");
+				String categoryId = rs.getString("CATEGORY_ID");
+				String name = rs.getString("NAME");
+				String address = rs.getString("ADDRESS");
+				String homepage = rs.getString("HOMEPAGE");
+				String phone = rs.getString("PHONE");
+				String location = rs.getString("LOCATION");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
+
+				pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content, regDate,
+						files, hit, likes, pub);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return pp;
 	}
 
 }

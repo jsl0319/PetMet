@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- 
+    자바스크립트 넣을 부분
+    1. 데이터 수정 시 수정된 레코드들 표시
+
+ -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +17,8 @@
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -71,7 +76,6 @@
         <div class="container">
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
-
                 <nav>
                     <h1 class="d-none">세부 메뉴 목록</h1>
 
@@ -85,15 +89,15 @@
                         </li>
 
                         <li>
-                            <a href="list">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
+                        </li>
+                        
+                        <li>
+                            <a href="list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/list">게시글 관리</a>
-                        </li>
-
-                        <li>
-                            <a href="../board/reported">신고된 게시글 관리</a>
+                            <a href="reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
@@ -111,29 +115,76 @@
                 <h1 class="d-none">Main Content</h1>
 
                 <section>
-                    <h1 class="d-none">게시글 리스트</h1>
+                    <h1 class="d-none">검색폼</h1>
+                    <form class="search__container" action="list" method="post">
+                        <select class="selectbox" name="search">
+                            <option value="1">제목</option>
+                            <option value="2">작성자</option>
+                        </select>
+                        <input class="search__input" name="query" type="text">
+                        <select class="selectbox" name="category">
+                            <option>게시판</option>
+                            <c:forEach var="c" items="${cList }">
+	                            <option value="${c.name }">${c.name }</option>
+                            </c:forEach>
+                        </select>
+                        <label class="search__title" for="date">일자</label>
+                        <input class="search__input" name="start_date" type="date"> - <input class="search__input" name="end_date" type="date">
+                        <input class="button" type="submit" value="검색">
+                    </form>
+                </section>
 
-                    <input class="button" type="button" value="+ Add Category">
-                    
+                <section>
+                    <h1 class="d-none">게시글 리스트</h1>
+                    <div>
+                        <select>
+                            <option value="20개">20개</option>
+                            <option value="50개">50개</option>
+                            <option value="50개">100개</option>
+                        </select>
+                    </div>
                     <table class="list-table">
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td class="col-l">카테고리명</td>
-                                <td class="col-m">게시글 수</td>
+                                <td>작성자</td>
+                                <td>카테고리</td>
+                                <td>제목</td>
+                                <td>댓글수</td>
+                                <td>작성일</td>
+                                <td>조회수</td>
+                                <td>파일</td>
                                 <td>삭제</td>
                             </tr>
                         </thead>
 
                         <tbody>
-	                        <c:forEach var="c" items="${list }">
+	                        <c:forEach var="b" items="${list }">
 	                            <tr>
-	                                <td>${c.id }</td>
-	                                <td class="col-l"><input name="name" type="text" value="${c.name }"></td>
-	                                <td class="col-m">${c.cntBoard }</td>
+	                                <td>${b.id }</td>
+	                                <td>${b.writerId }</td>
+	                                <td>
+	                                	<select name="category">
+		                                	<c:forEach var="c" items="${cList }">
+		                                		<c:choose>
+		                                			<c:when test="${b.categoryId eq c.name }">
+		                                				<option value="${c.name }" selected>${c.name }</option>
+		                                			</c:when>
+		                                			<c:otherwise>
+		                                        		<option value="${c.name }">${c.name }</option>
+		                                        	</c:otherwise>
+		                                        </c:choose>
+	                                    	</c:forEach>
+	                                    </select>
+	                                </td>
+	                                <td><a href="detail?id=${b.id }">${b.title }</a></td>
+	                                <td>${b.cmtCnt }</td>
+	                                <td>${b.regDate }</td>
+	                                <td>${b.hit }</td>
+	                                <td>${b.files }</td>
 	                                <td><input name="check_delete" type="checkbox"></td>
 	                            </tr>
-	                        </c:forEach>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </section>
@@ -143,7 +194,7 @@
                     <input class="button" type="submit" value="저장">
                     <input class="button" type="submit" value="삭제">
                 </section>
-
+                
                 <div class="pager">
                     <div>
                       <a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -169,8 +220,8 @@
     </section>
 
     <footer class="footer">
-        <div class="d-none">
-            <h1>Footer</h1>
+        <div class="container">
+            <h1 class="d-none">Footer</h1>
         </div>
     </footer>
 
