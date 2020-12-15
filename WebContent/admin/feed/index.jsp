@@ -29,7 +29,7 @@
           <h1 class="d-none">헤더 목록</h1>
           <ul>
             <li>
-              <a href="../user/index">
+              <a href="../member/list">
                 <i class="fas fa-users fa-2x"></i>
                 <span>USER</span>
               </a>
