@@ -215,10 +215,10 @@ public class JdbcBoardDao implements BoardDao {
 		String sql = "SELECT * FROM BOARD_VIEW WHERE NUM BETWEEN ? AND ?";
 
 		// 검색폼의 검색 경우의 수
-		if (query != null || !(query.equals("")))
+		if (query != null)
 			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
 
-		if (boardCategory != null || !(boardCategory.equals("게시판")))
+		if (boardCategory != null)
 			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
 
 		if (startDate != null || endDate != null)

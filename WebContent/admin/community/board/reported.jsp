@@ -8,17 +8,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 게시글 리스트</title>
+    <title>관리자 > 커뮤니티 > 신고된 게시글 관리</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
     <header class="header">
         <div class="container">
+
             <div class="logo">
                 <a href="../../index.html">
                   <i class="fas fa-dog fa-3x"></i>
@@ -58,10 +59,10 @@
 
             <!-- <nav>
                 <h1>바로가기 메뉴</h1>
-                <ul>
-                    <li><a href>펫멧이동</a></li>
-                    <li><a href>로그아웃</a></li>
-                </ul>
+                    <ul>
+                        <li><a href>펫멧이동</a></li>
+                        <li><a href>로그아웃</a></li>
+                    </ul>
             </nav> -->
         </div>
     </header>
@@ -85,15 +86,15 @@
                         </li>
 
                         <li>
-                            <a href="list">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
+                        </li>
+                        
+                        <li>
+                            <a href="list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/list">게시글 관리</a>
-                        </li>
-
-                        <li>
-                            <a href="../board/reported">신고된 게시글 관리</a>
+                            <a href="reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
@@ -111,39 +112,73 @@
                 <h1 class="d-none">Main Content</h1>
 
                 <section>
-                    <h1 class="d-none">게시글 리스트</h1>
+                    <h1 class="d-none">검색폼</h1>
 
-                    <input class="button" type="button" value="+ Add Category">
+                    <form class="search__container">
+                        <select name="search" class="selectbox">
+                            <option value="제목">제목</option>
+                            <option value="작성자">작성자</option>
+                        </select>
+                        <input name="query" class="search__input" type="text">
+                        <select name="category" class="selectbox">
+                            <option>게시판</option>
+                            <c:forEach var="c" items="${cList }">
+	                            <option value="${c.name }">${c.name }</option>
+                            </c:forEach>
+                        </select>
+                        <label class="search__title" for="date">일자</label>
+                        <input name="start_date" class="search__input" type="date"> - <input name="end_date" class="search__input" type="date">
+                        <input class="button" type="submit" value="검색">
+                    </form>
+                </section>
+
+                <section>
+                    <h1 class="d-none">신고된 게시글 관리</h1>
                     
+                    <div>
+                        <select>
+                            <option value="20개">20개</option>
+                            <option value="50개">50개</option>
+                            <option value="50개">100개</option>
+                        </select>
+                    </div>
+
                     <table class="list-table">
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td class="col-l">카테고리명</td>
-                                <td class="col-m">게시글 수</td>
+                                <td>작성자</td>
+                                <td class="col-m">카테고리</td>
+                                <td class="col-l">제목</td>
+                                <td>작성일</td>
+                                <td>조회수</td>
+                                <td>신고수</td>
                                 <td>삭제</td>
                             </tr>
                         </thead>
 
                         <tbody>
-	                        <c:forEach var="c" items="${list }">
+                        	<c:forEach var="br" items="${list }">
 	                            <tr>
-	                                <td>${c.id }</td>
-	                                <td class="col-l"><input name="name" type="text" value="${c.name }"></td>
-	                                <td class="col-m">${c.cntBoard }</td>
+	                                <td>${br.boardId }</td>
+	                                <td>${br.writerId }</td>
+	                                <td>${br.categoryId }</td>
+	                                <td><a href="detail?id=${br.boardId }">${br.title }</a></td>
+	                                <td>${br.regDate }</td>
+	                                <td>${br.hit }</td>
+	                                <td><a href="reported-detail?id=${br.boardId }">${br.reported }</a></td>
 	                                <td><input name="check_delete" type="checkbox"></td>
 	                            </tr>
-	                        </c:forEach>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </section>
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-                    <input class="button" type="submit" value="저장">
                     <input class="button" type="submit" value="삭제">
                 </section>
-
+                
                 <div class="pager">
                     <div>
                       <a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -164,13 +199,14 @@
                       <a href="#"><i class="fas fa-angle-double-right"></i></a>
                     </div>
                 </div>
+
             </main>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="d-none">
-            <h1>Footer</h1>
+        <div class="container">
+            <h1 class="d-none">Footer</h1>
         </div>
     </footer>
 
