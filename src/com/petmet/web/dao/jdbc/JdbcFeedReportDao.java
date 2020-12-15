@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.petmet.web.dao.FeedReportDao;
 import com.petmet.web.entity.FeedReport;
+import com.petmet.web.entity.ReportedFeedView;
 
 public class JdbcFeedReportDao implements FeedReportDao{
 
@@ -194,6 +195,36 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	public List<FeedReport> getList(int page) {
 		
 			return getList(0);
+	}
+
+	@Override
+	public List<FeedReport> getList(int startIndex, int endIndex, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReportedFeedView> getViewList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReportedFeedView> getViewList(int startIndex, int endIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReportedFeedView> getViewList(int startIndex, int endIndex, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FeedReport getLast() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

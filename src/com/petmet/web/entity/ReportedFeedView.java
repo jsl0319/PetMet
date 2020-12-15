@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class ReportedFeedView extends FeedReport{
 	private int id;
-	private String memId;
+	private int num;
 	private String reportedId;
-	private Date repoDate;
-	private String repoContent;
+	private String files;
+	private String content;
 	private int repoCnt;
 	private String action;
 	
 	public ReportedFeedView() {
-		this(0,null,null,null,null,0,null);
+		this(0,0,null,null,null,0,null);
 	}
 
-	public ReportedFeedView(int id, String memId, String reportedId, Date repoDate, String repoContent, int repoCnt,
+	public ReportedFeedView(int id, int num, String reportedId, String files, String content, int repoCnt,
 			String action) {
 		this.id = id;
-		this.memId = memId;
+		this.num = num;
 		this.reportedId = reportedId;
-		this.repoDate = repoDate;
-		this.repoContent = repoContent;
+		this.files = files;
+		this.content = content;
 		this.repoCnt = repoCnt;
 		this.action = action;
 	}
@@ -34,12 +34,12 @@ public class ReportedFeedView extends FeedReport{
 		this.id = id;
 	}
 
-	public String getMemId() {
-		return memId;
+	public int getNum() {
+		return num;
 	}
 
-	public void setMemId(String memId) {
-		this.memId = memId;
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getReportedId() {
@@ -50,20 +50,20 @@ public class ReportedFeedView extends FeedReport{
 		this.reportedId = reportedId;
 	}
 
-	public Date getRepoDate() {
-		return repoDate;
+	public String getFiles() {
+		return files;
 	}
 
-	public void setRepoDate(Date repoDate) {
-		this.repoDate = repoDate;
+	public void setFiles(String files) {
+		this.files = files;
 	}
 
-	public String getRepoContent() {
-		return repoContent;
+	public String getContent() {
+		return content;
 	}
 
-	public void setRepoContent(String repoContent) {
-		this.repoContent = repoContent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public int getRepoCnt() {
@@ -84,9 +84,9 @@ public class ReportedFeedView extends FeedReport{
 
 	@Override
 	public String toString() {
-		return "ReportedFeedView [id=" + id + ", memId=" + memId + ", reportedId=" + reportedId + ", repoDate="
-				+ repoDate + ", repoContent=" + repoContent + ", repoCnt=" + repoCnt + ", action=" + action + "]";
+		return "ReportedFeedView [id=" + id + ", num=" + num + ", reportedId=" + reportedId + ", files=" + files
+				+ ", content=" + content + ", repoCnt=" + repoCnt + ", action=" + action + "]";
 	}
-
+	
 	
 }

@@ -20,7 +20,7 @@ public class JdbcReportedFeedViewDao implements ReportedFeedViewDao {
 		
 		 int result = 0;
 			
-		  String sql = "INSERT INTO REPORTED_FEED_VIEW(MEM_ID, REPOTED_ID, REPO_CONTENT) VALUES(?,?,?)";
+		  String sql = "INSERT INTO REPORTED_FEED_VIEW(NUM, REPOTED_ID, FILES, CONTENT, REPO_CNT, ACTION) VALUES(?,?,?,?,?,?)";
 		  String url = DBContext.URL;
 		  String uid = DBContext.UID;
 		  String pwd = DBContext.PWD;
@@ -30,9 +30,12 @@ public class JdbcReportedFeedViewDao implements ReportedFeedViewDao {
 	    	  Class.forName("oracle.jdbc.driver.OracleDriver");
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
-	          st.setString(1, reportedFeedView.getMemId());
+	          st.setInt(1, reportedFeedView.getNum());
 	          st.setString(2, reportedFeedView.getReportedId());
-	          st.setString(3, reportedFeedView.getRepoContent());
+	          st.setString(3, reportedFeedView.getFiles());
+	          st.setString(4, reportedFeedView.getContent());
+	          st.setInt(5, reportedFeedView.getRepoCnt());
+	          st.setString(6, reportedFeedView.getAction());
 	          
 	          result = st.executeUpdate();
 	          st.close();
@@ -50,7 +53,7 @@ public class JdbcReportedFeedViewDao implements ReportedFeedViewDao {
 	public int update(ReportedFeedView reportedFeedView) {
 		int result = 0;
 		
-		  String sql = "UPDATE REPORTED_FEED_VIEW SET MEM_ID=?,REPORTED_ID=?, REPO_CONTENT=?, ACTION=? WHERE ID=?";
+		  String sql = "UPDATE REPORTED_FEED_VIEW SET REPORTED_ID=?, CONTENT=?, ACTION=? WHERE ID=?";
 		  String url = DBContext.URL;
 		  String uid = DBContext.UID;
 		  String pwd = DBContext.PWD;
@@ -61,11 +64,10 @@ public class JdbcReportedFeedViewDao implements ReportedFeedViewDao {
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
 	          
-	          st.setString(1, reportedFeedView.getMemId());
-	          st.setString(2, reportedFeedView.getReportedId());
-	          st.setString(3, reportedFeedView.getRepoContent());
-	          st.setString(4, reportedFeedView.getAction());
-	          st.setInt(5, reportedFeedView.getId());
+	          st.setString(1, reportedFeedView.getReportedId());
+	          st.setString(2, reportedFeedView.getContent());
+	          st.setString(3, reportedFeedView.getAction());
+	          st.setInt(4, reportedFeedView.getId());
 	          
 	          result = st.executeUpdate();
 	          st.close();
@@ -127,14 +129,16 @@ public class JdbcReportedFeedViewDao implements ReportedFeedViewDao {
 	         
 	         if(rs.next()){
 	        	 
-	        	String memId = rs.getNString("mem_id");
-	        	String reportedId = rs.getNString("reported_id");
-	        	String repoContent = rs.getString("repo_content");
-	        	Date repoDate = rs.getDate("repo_date");
-	        	int repoCnt = rs.getInt("repo_cnt");
-	        	String action = rs.getNString("action");
-	        	
-	        	fr = new ReportedFeedView(id, memId, reportedId, repoDate, repoContent, repoCnt, action);
+//	        	 int id = rs.getInt("id");
+		        	int num = rs.getInt("num");
+		        	String memId = rs.getNString("mem_id");
+		        	String reportedId = rs.getString("reported_id");
+		        	String files = rs.getNString("files");
+		        	String content = rs.getString("content");
+		        	int repoCnt=rs.getInt("repo_cnt");
+		        	String action = rs.getNString("action");
+		        	
+		        	ReportedFeedView rf = new ReportedFeedView(id, num, reportedId, files, content, repoCnt, action);
 	        	
 	         }
 	         
@@ -169,14 +173,14 @@ public class JdbcReportedFeedViewDao implements ReportedFeedViewDao {
 	         
 	         while(rs.next()){
 	        	int id = rs.getInt("id");
-	        	String memId = rs.getNString("mem_id");
+	        	int num = rs.getInt("num");
 	        	String reportedId = rs.getString("reported_id");
-	        	Date repoDate = rs.getDate("repo_date");
-	        	String repoContent = rs.getString("repo_content");
+	        	String files = rs.getNString("files");
+	        	String content = rs.getString("content");
 	        	int repoCnt=rs.getInt("repo_cnt");
 	        	String action = rs.getNString("action");
 	        	
-	        	ReportedFeedView rf = new ReportedFeedView(id, memId, reportedId, repoDate, repoContent, repoCnt, action);
+	        	ReportedFeedView rf = new ReportedFeedView(id, num, reportedId, files, content, repoCnt, action);
 	        	
 	        	list.add(rf);
 	         }

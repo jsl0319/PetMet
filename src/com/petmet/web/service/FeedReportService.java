@@ -5,25 +5,38 @@ import java.util.List;
 import com.petmet.web.dao.FeedReportDao;
 import com.petmet.web.dao.jdbc.JdbcFeedReportDao;
 import com.petmet.web.entity.FeedReport;
+import com.petmet.web.entity.ReportedFeedView;
 
 public class FeedReportService {
 
 	private FeedReportDao feedReportDao;
 	
+	
 	public FeedReportService() {
 		feedReportDao = new JdbcFeedReportDao();
 	}
+	
+	public List<FeedReport> getList(int page, int size, String query){
+		
+		int startIndex = 1+(page-1)*size;
+	    int endIndex = page*10;
+	      
+		return feedReportDao.getList(startIndex,endIndex,query);
+	}
+	
+	
+	public List<FeedReport> getList(int page) {
+	      
+		return feedReportDao.getList(page);
+	}
+	
 	
 	public List<FeedReport> getList() {
 	      
 		return feedReportDao.getList();
 	}
 	
-	public List<FeedReport> getList(int page) {
-	      
-		return feedReportDao.getList(page);
-	}
-
+	
 	public FeedReport get(int id) {
 		
 		return feedReportDao.get(id);
@@ -47,6 +60,25 @@ public class FeedReportService {
 		result = feedReportDao.delete(id);
 		return result;
 		
+	}
+	
+	public List<ReportedFeedView> getViewList(){
+		return getViewList();
+	}
+	
+	public List<ReportedFeedView> getViewList(int page, int size){
+		
+		int startIndex = 1+(page-1)*size;
+	    int endIndex = page*10;
+	      
+		return getViewList(startIndex, endIndex);
+	}
+	
+	
+	public int getLastId() {
+		FeedReport fr = feedReportDao.getLast();
+		
+		return fr.getId();
 	}
 	
 }

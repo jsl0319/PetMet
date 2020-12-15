@@ -19,7 +19,7 @@
       <div class="container">
         
         <div class="logo">
-          <a href="../index.html">
+          <a href="../index">
             <i class="fas fa-dog fa-3x"></i>
             <h1>PetMet</h1>
           </a>
@@ -29,25 +29,25 @@
           <h1 class="d-none">헤더 목록</h1>
           <ul>
             <li>
-              <a href="../user/index.jsp">
+              <a href="../user/index">
                 <i class="fas fa-users fa-2x"></i>
                 <span>USER</span>
               </a>
             </li>
             <li>
-              <a href="index.jsp">
+              <a href="index">
                 <i class="fas fa-camera-retro fa-2x"></i>
                 <span>FEED</span>
               </a>
             </li>
             <li>
-              <a href="../community/index.jsp">
+              <a href="../community/index">
                 <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                 <span>COMMUNITY</span>
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="../petplace/list">
                 <i class="fas fa-map-marked-alt fa-2x"></i>
                 <span>PLACE</span>
               </a>
@@ -67,7 +67,7 @@
           <aside class="aside">
             <h1 class="d-none">페이지 목록</h1>
             <ul>
-              <li><a href="index.html">Report</a></li>
+              <li><a href="index">Report</a></li>
             </ul>
           </aside>
     <!----------------------------------main--------------------------------------->
@@ -81,7 +81,7 @@
                   <thead>
                     <tr>
                       <td>번호</td>
-                      <td>ID(신고받은자)</td>
+                      <td>ID(신고받은)</td>
                       <td>신고수</td>
                       <td>조치여부</td>
                     </tr>
@@ -90,7 +90,7 @@
                   <tbody>
                   <c:forEach var = "rf" items="${list}">
                     <tr>
-                      <td>${rf.id}</td>
+                      <td>${rf.num}</td>
                       <td><a href="detail.jsp">${rf.reportedId}</a></td>
                       <td><a href="list.jsp">${rf.repoCnt }</a></td>
                       <td>${rf.action}</td>
