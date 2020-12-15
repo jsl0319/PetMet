@@ -8,17 +8,17 @@ public class Member {
 	private String email;
 	private String pwd;
 	private String nickname;
-	private String gender;
+	private int gender;
 	private String address;
 	private String phone;
 	private Date regDate;
 
 	public Member() {
-		this(0,null,null,null,null,null,null,null);
+		this(0,null,null,null,0,null,null,null);
 		
 	}
 
-	public Member(int id, String email, String pwd, String nickname, String gender, String address, String phone,
+	public Member(int id, String email, String pwd, String nickname, int gender, String address, String phone,
 			Date regDate) {
 		this.id = id;
 		this.email = email;
@@ -62,11 +62,11 @@ public class Member {
 		this.nickname = nickname;
 	}
 
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 

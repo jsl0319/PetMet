@@ -6,13 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.petmet.web.dao.BoardDao;
 import com.petmet.web.entity.Board;
-import com.petmet.web.entity.Comments;
-import com.petmet.web.entity.Matching;
+import com.petmet.web.entity.BoardView;
+import com.petmet.web.entity.Notice;
 
 public class JdbcBoardDao implements BoardDao {
 	private String url = DBContext.URL;
@@ -29,7 +30,7 @@ public class JdbcBoardDao implements BoardDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement pst = con.prepareStatement(sql);
-			
+
 			pst.setString(1, board.getTitle());
 			pst.setString(2, board.getContent());
 			pst.setString(3, board.getWriterId());
@@ -58,7 +59,7 @@ public class JdbcBoardDao implements BoardDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement pst = con.prepareStatement(sql);
-			
+
 			pst.setString(1, board.getTitle());
 			pst.setString(2, board.getContent());
 			pst.setString(3, board.getWriterId());
@@ -89,7 +90,7 @@ public class JdbcBoardDao implements BoardDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement pst = con.prepareStatement(sql);
-			
+
 			pst.setInt(1, id);
 			result = pst.executeUpdate();
 
@@ -108,14 +109,16 @@ public class JdbcBoardDao implements BoardDao {
 	public Board get(int id) {
 		Board b = null;
 
-		String sql = "SELECT * FROM BOARD WHERE ID =" + id;
+		String sql = "SELECT * FROM BOARD WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
 			
+			ResultSet rs = pst.executeQuery();
+
 			if (rs.next()) {
 				String title = rs.getString("TITLE");
 				String content = rs.getString("CONTENT");
@@ -125,10 +128,11 @@ public class JdbcBoardDao implements BoardDao {
 				String files = rs.getString("FILES");
 				String categoryId = rs.getString("CATEGORY_ID");
 
-			    b = new Board(id, title, content, hit, writerId, regDate, files, categoryId);
+				b = new Board(id, title, content, hit, writerId, regDate, files, categoryId);
 			}
 
-			st.close();
+			rs.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -142,74 +146,101 @@ public class JdbcBoardDao implements BoardDao {
 	}
 
 	@Override
-	public List<Board> getList() {
-		return getList(0, null, 0, null, null, 0);
+	public List<Board> getList(String selectBox, String query
+								, String boardCategory
+								, Date startDate, Date endDate
+								, int startIndex
+								, int endIndex) {
+		
+	      String sql = "SELECT * FROM BOARD";
+	      List<Board> list = new ArrayList<>();
+
+	      try
+	      {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         Connection con = DriverManager.getConnection(url, uid, pwd);
+	         Statement st = con.createStatement();
+	         ResultSet rs = st.executeQuery(sql);
+
+	         while (rs.next()) {
+	        	 int id = rs.getInt("ID");
+	        	 String title = rs.getString("TITLE");
+	        	 String content = rs.getString("CONTENT");
+	        	 int hit = rs.getInt("HIT");
+	        	 String writerId = rs.getString("WRITER_ID");
+	        	 Date regDate = rs.getDate("REG_DATE");
+	        	 String files = rs.getString("FILES");
+	        	 String categoryId = rs.getString("CATEGORY_ID");
+	        	 
+	        	 Board b = new Board(id, title, content, hit, writerId, regDate, files, categoryId);
+	        	 
+	        	 list.add(b);
+	         }
+
+	         rs.close();
+	         st.close();
+	         con.close();
+	      }catch(
+	      SQLException e)
+	      {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (ClassNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      return list;
 	}
 
 	@Override
-	public List<Board> getList(int page) {
+	public List<BoardView> getViewList(String selectBox, String query
+									, String boardCategory
+									, Date startDate, Date endDate
+									, int startIndex
+									, int endIndex) {
+		
+		String sql = "SELECT * FROM BOARD_VIEW";
+	      List<BoardView> list = new ArrayList<>();
 
-		return getList(0, null, 0, null, null, page);
-	}
-	
-	@Override
-	public List<Board> getList(int category, String searchContent, int page) {
-		return getList(category, searchContent, 0, null, null, page);
-	}
+	      try
+	      {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         Connection con = DriverManager.getConnection(url, uid, pwd);
+	         Statement st = con.createStatement();
+	         ResultSet rs = st.executeQuery(sql);
 
-	@Override
-	public List<Board> getList(int boardCategory, int page) {
+	         while (rs.next()) {
+	        	 
+	        	 int num = rs.getInt("NUM");
+	        	 int id = rs.getInt("ID");
+	        	 String title = rs.getString("TITLE");
+	        	 int hit = rs.getInt("HIT");
+	        	 String writerId = rs.getString("WRITER_ID");
+	        	 Date regDate = rs.getDate("REG_DATE");
+	        	 String files = rs.getString("FILES");
+	        	 String categoryId = rs.getString("CATEGORY_ID");
+	        	 int cmtCnt = rs.getInt("CMT_CNT");
+	        	 
+	        	 BoardView b = new BoardView(num, id, title, hit, writerId, regDate, files, categoryId, cmtCnt);
+	        	 
+	        	 list.add(b);
+	         }
 
-		return getList(0, null, boardCategory, null, null, page);
-	}
-
-	@Override
-	public List<Board> getList(Date startDate, Date endDate, int page) {
-
-		return getList(0, null, 0, startDate, endDate, page);
-	}
-
-	@Override
-	public List<Board> getList(int category, String searchContent, int boardCategory, int page) {
-
-		return getList(category, searchContent, boardCategory, null, null, page);
-	}
-
-	@Override
-	public List<Board> getList(int category, String searchContent, Date startDate, Date endDate, int page) {
-
-		return getList(category, searchContent, 0, startDate, endDate, page);
-	}
-
-	@Override
-	public List<Board> getList(int boardCategory, Date startDate, Date endDate, int page) {
-
-		return getList(0, null, boardCategory, startDate, endDate, page);
-	}
-
-	@Override
-	public List<Board> getList(int category, String searchContent, int boardCategory, Date startDate, Date endDate,
-			int page) {
-
-		return getList(category, searchContent, boardCategory, startDate, endDate, page);
-	}
-
-	@Override
-	public int deleteList(List<Integer> ids) {
-
-		return 0;
+	         rs.close();
+	         st.close();
+	         con.close();
+	      }catch(
+	      SQLException e)
+	      {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (ClassNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      return list;
 	}
 
-	@Override
-	public Board getPrev(int id) {
-
-		return null;
-	}
-
-	@Override
-	public Board getNext(int id) {
-
-		return null;
-	}
-	
 }

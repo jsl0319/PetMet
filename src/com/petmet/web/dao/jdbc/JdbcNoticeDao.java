@@ -218,22 +218,54 @@ public class JdbcNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public int hitUp(int id) {
+	public int deleteList(List<Integer> ids) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<Notice> getList(int startIndex, int endIndex) {
+	public List<Notice> getList(int category, String searchContent, int page) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Notice> getList(int startIndex) {
+	public List<Notice> getList(int pubId, boolean pub, boolean nonPub, int page) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Notice> getList(int pubId, boolean pub, int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> getList(Date startDate, Date endDate, int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate,
+			Date endDate, int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> pubList(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Notice> getList(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 	

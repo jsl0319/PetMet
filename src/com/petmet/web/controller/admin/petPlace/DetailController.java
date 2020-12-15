@@ -24,7 +24,7 @@ public class DetailController extends HttpServlet {
 		PetPlace p = service.get(id);
 
 		request.setAttribute("p", p);
-		request.getRequestDispatcher("admin/petplace/detail.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/petplace/detail.jsp").forward(request, response);
 
 	}
 }

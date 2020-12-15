@@ -124,9 +124,12 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				String content = rs.getString("CONTENT");
 				Date regDate = rs.getDate("REG_DATE");
 				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
 
 				pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content, regDate,
-						files);
+						files, hit, likes, pub);
 			}
 
 			rs.close();
@@ -168,9 +171,12 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				String content = rs.getString("CONTENT");
 				Date regDate = rs.getDate("REG_DATE");
 				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
 
 				PetPlace pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content,
-						regDate, files);
+						regDate, files, hit, likes, pub);
 
 				list.add(pp);
 			}
