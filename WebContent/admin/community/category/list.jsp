@@ -11,6 +11,7 @@
     <title>관리자 > 커뮤니티 > 게시글 리스트</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 
 </head>
@@ -84,23 +85,23 @@
                         </li>
 
                         <li>
-                            <a href="list.html">카테고리 관리</a>
+                            <a href="list">카테고리 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/list.html">게시글 관리</a>
+                            <a href="../board/list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/reported.html">신고된 게시글 관리</a>
+                            <a href="../board/reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../comment/list.html">댓글 관리</a>
+                            <a href="../comment/list">댓글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../comment/reported.html">신고된 댓글 관리</a>
+                            <a href="../comment/reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -112,7 +113,7 @@
                 <section>
                     <h1 class="d-none">게시글 리스트</h1>
 
-                    <input type="button" value="+ Add Category">
+                    <input class="button" type="button" value="+ Add Category">
                     
                     <table class="list-table">
                         <thead>
@@ -123,14 +124,14 @@
                                 <td>삭제</td>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
 	                        <c:forEach var="c" items="${list }">
 	                            <tr>
-	                                <td>${c.id}</td>
-	                                <td class="col-l"><input type="text" name="name" value="${c.name}"></td>
-	                                <td class="col-m">${c.cntBoard}</td>
-	                                <td><input type="checkbox" name=""></td>
+	                                <td>${c.id }</td>
+	                                <td class="col-l"><input name="name" type="text" value="${c.name }"></td>
+	                                <td class="col-m">${c.cntBoard }</td>
+	                                <td><input name="check_delete" type="checkbox"></td>
 	                            </tr>
 	                        </c:forEach>
                         </tbody>
@@ -139,8 +140,8 @@
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-                    <input type="submit" value="저장">
-                    <input type="submit" value="삭제">
+                    <input class="button" type="submit" value="저장">
+                    <input class="button" type="submit" value="삭제">
                 </section>
 
                 <div class="pager">

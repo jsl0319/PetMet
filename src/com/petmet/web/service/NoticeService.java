@@ -15,7 +15,7 @@ public class NoticeService {
 	}
 	
 
-	public List<Notice> getList() {
+	public List<Notice> getList( ) {
 		return noticeDao.getList();
 	}
 
@@ -37,8 +37,8 @@ public class NoticeService {
 	}
 
 	/// -----------------------------------
-	public int delet(int id) {
-		return noticeDao.delet(id);
+	public int delete(int id) {
+		return noticeDao.delete(id);
 	}
 
 
