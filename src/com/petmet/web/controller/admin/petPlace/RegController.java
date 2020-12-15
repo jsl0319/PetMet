@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.newlecture.web.entity.Notice;
-import com.newlecture.web.service.NoticeService;
 import com.petmet.web.entity.PetPlace;
 import com.petmet.web.entity.PetPlaceCategory;
 import com.petmet.web.service.PetPlaceCategoryService;
@@ -25,9 +23,9 @@ import com.petmet.web.service.PetPlaceService;
 @WebServlet("/admin/petplace/reg")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class RegController extends HttpServlet {
-	
+
 	private PetPlaceService service;
-	
+
 	public RegController() {
 		service = new PetPlaceService();
 	}
@@ -49,18 +47,25 @@ public class RegController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String title = request.getParameter("title");
-		String category
+		String categoryId = request.getParameter("categoryId");
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
+		String homepage = request.getParameter("homepage");
+		String phone = request.getParameter("phone");
+		String location = request.getParameter("location");
 		String content = request.getParameter("content");
-		
+		int pub = Integer.parseInt(request.getParameter("pub"));
 
-		Collection<Part> fileParts = request.getParts(); // 여러 개 파일 보낼 때
+		PetPlace p = new PetPlace(categoryId, name, address, homepage, phone, location, content, pub);
+
+		// 파일등록
+		Collection<Part> fileParts = request.getParts();
 
 		String fileNames = "";
 
-		for (Part p : fileParts) {
-			if (p.getName().equals("file") && p.getSize() > 0) {
-				Part filePart = p;
+		for (Part part : fileParts) {
+			if (part.getName().equals("file") && part.getSize() > 0) {
+				Part filePart = part;
 
 				String fileName = filePart.getSubmittedFileName();
 				fileNames += fileName;
@@ -68,8 +73,7 @@ public class RegController extends HttpServlet {
 
 				int newId = service.getLastId() + 1;
 
-				String pathTemp = request.getServletContext().getRealPath("/static/notice/2020/26/"); // context : 서블릿들이
-																										// 필요로 하는 공동 자원
+				String pathTemp = request.getServletContext().getRealPath("/static/notice/2020/13/");
 
 				File path = new File(pathTemp);
 				if (!path.exists())
@@ -89,18 +93,17 @@ public class RegController extends HttpServlet {
 				fos.close();
 				fis.close();
 			}
-
-			Notice notice = new Notice(title, content);
-
-			
-			notice.setFiles(fileNames); // "img1.jpg, img2.png"
-			notice.setWriterId("newlec");
-
-			service.insert(notice);
-
-			response.sendRedirect("list"); // list로 보냄
-
 		}
-	}
+		p.setFiles(fileNames);
 
+		// null방지
+		p.setWriterId("관리자");
+
+		service.insert(p);
+
+		System.out.println(p.toString());
+
+		response.sendRedirect("list");
+
+	}
 }

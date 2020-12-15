@@ -11,6 +11,7 @@
     <title>관리자 > 펫플레이스 > 수정</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
+    <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -71,16 +72,16 @@
 
                     <ul>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="list">Pet Place 관리</a>
+                            <i class="fas fa-map-marked-alt"></i>
+                            <a href="list">&nbsp;&nbsp;Pet Place 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="category/list">카테고리 관리</a>
+                            <i class="fas fa-chalkboard"></i>
+                            <a href="category/list">&nbsp;&nbsp;카테고리 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="review/list">후기 관리</a>
+                            <i class="fas fa-clipboard"></i>
+                            <a href="review/list">&nbsp;&nbsp;후기 관리</a>
                         </li>
                     </ul>
 
@@ -91,36 +92,25 @@
             <main class="main">
                 <h1 class="d-none">main</h1>
 
-                <section class="search-form">
-
-                    <h1 class="d-none">검색폼</h1>
-
-                    <form>
-
-                        <select>
-                            <option>제목</option>
-                            <option>내용</option>
-                            <option>지역</option>
-                            <option>카테고리</option>
-                        </select>
-
-                        <input type="text">
-                        <input type="submit" value="검색">
-                    </form>
-
-                </section>
-
                 <section>
-                    <h1 class="d-none">PetPlace 등록</h1>
+                    <h1>PetPlace 수정</h1>
 
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
 
                         <table class="detail-table">
                             <tbody>
                                 <tr>
-                                    <th>제목</th>
-                                    <td colspan="3">
-                                        <input type="text" name="title" style="width: 100%;" />
+                                    <th>이름</th>
+                                    <td>
+                                        <input type="text" name="title" style="width: 100%;" value="${pp.name }" />
+                                    </td>
+                                    <th>카테고리</th>
+                                    <td>
+                                        <select name="categoryId">
+                                        	<c:forEach var="ppc" items="${list }">
+                                            	<option value="${ppc.name }">${ppc.name }</option>
+                                        	</c:forEach>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -151,18 +141,12 @@
                                             style="width: 500px; height: 500px; resize: none">상세설명</textarea>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <input type="checkbox" id="open" name="open" value="true">
-                                        <label>공개</label>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
 
                         <section>
-                            <a href="list">취소</a>
-                            <input type="submit" value="수정 완료" />
+                            <a class="button" href="detail?id=${pp.id}">취소</a>
+                            <input class="button" type="submit" value="수정 완료" />
                         </section>
 
                     </form>

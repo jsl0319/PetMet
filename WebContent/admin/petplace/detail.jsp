@@ -12,6 +12,7 @@
     <title>관리자 > 펫플레이스 > 디테일</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
+    <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -72,16 +73,16 @@
 
                     <ul>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="list">Pet Place 관리</a>
+                            <i class="fas fa-map-marked-alt"></i>
+                            <a href="list">&nbsp;&nbsp;Pet Place 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="category/list">카테고리 관리</a>
+                            <i class="fas fa-chalkboard"></i>
+                            <a href="category/list">&nbsp;&nbsp;카테고리 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="review/list">후기 관리</a>
+                            <i class="fas fa-clipboard"></i>
+                            <a href="review/list">&nbsp;&nbsp;후기 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -102,22 +103,24 @@
                             </tr>
                             <tr>
                                 <th>작성일</th>
-                                <td colspan="3">
+                                <td>
                                 	<fmt:formatDate value="${p.regDate }" pattern="yyyy-MM-dd a hh:mm:ss" /> 
                                 </td>
+                                <th>조회수</th>
+                                <td>${p.hit }</td>
                             </tr>
                             <tr>
                                 <th>작성자</th>
                                 <td>${p.writerId }</td>
-                                <th>조회수</th>
-                                <td>${p.hit }</td>
+                                <th>좋아요</th>
+                                <td>${p.likes }</td>
                             </tr>
                             <tr>
                                 <th>첨부파일</th>
                                 <td colspan="3">
                                 	<c:forTokens var="fileName" items="${p.files}" delims="," varStatus="st">
 										<fmt:formatDate var="year" value="${p.reDdate }" pattern="yyyy" /> 
-                                      	<a download href="/static/notice/${year }/${n.id}/${fileName}">${fileName}</a>
+                                      		<a download href="/static/notice/${year }/${n.id}/${fileName}">${fileName}</a>
                                       	<c:if test="${st.last == false}">
                                       	 / 
                                       	</c:if>
@@ -136,9 +139,9 @@
 
                 <section>
                     <h1 class="d-none">버튼</h1>
-                    <a href="list">목록</a>
-                    <a href="edit?id=${p.id }">수정</a>
-                    <a href="del?id=${p.id }">삭제</a>
+                    <a class="button" href="list">목록</a>
+                    <a class="button" href="edit?id=${p.id }">수정</a>
+                    <a class="button" href="del?id=${p.id }">삭제</a>
                 </section>
 
             </main>

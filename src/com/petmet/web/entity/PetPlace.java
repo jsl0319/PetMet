@@ -19,20 +19,7 @@ public class PetPlace {
 	private int pub;
 
 	public PetPlace() {
-		
-	}
 
-	// insert용 생성자
-	public PetPlace(String categoryId, String name, String address, String homepage, String phone,
-			String location, String content, String files) {
-		this.categoryId = categoryId;
-		this.name = name;
-		this.address = address;
-		this.homepage = homepage;
-		this.phone = phone;
-		this.location = location;
-		this.content = content;
-		this.files = files;
 	}
 
 	public PetPlace(int id, String writerId, String categoryId, String name, String address, String homepage,
@@ -53,8 +40,19 @@ public class PetPlace {
 		this.likes = likes;
 		this.pub = pub;
 	}
-	
-	
+
+	// insert용 생성자
+	public PetPlace(String categoryId, String name, String address, String homepage, String phone,
+			String location, String content, int pub) {
+		this.categoryId = categoryId;
+		this.name = name;
+		this.address = address;
+		this.homepage = homepage;
+		this.phone = phone;
+		this.location = location;
+		this.content = content;
+		this.pub = pub;
+	}
 
 	@Override
 	public String toString() {

@@ -11,6 +11,7 @@
     <title>관리자 > 펫플레이스 > 리스트</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
+    <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -72,16 +73,16 @@
 
                     <ul>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="list">Pet Place 관리</a>
+                            <i class="fas fa-map-marked-alt"></i>
+                            <a href="list">&nbsp;&nbsp;Pet Place 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="category/list">카테고리 관리</a>
+                            <i class="fas fa-chalkboard"></i>
+                            <a href="category/list">&nbsp;&nbsp;카테고리 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="review/list">후기 관리</a>
+                            <i class="fas fa-clipboard"></i>
+                            <a href="review/list">&nbsp;&nbsp;후기 관리</a>
                         </li>
                     </ul>
 
@@ -99,7 +100,7 @@
                     <form>
 
                         <select>
-                            <option>제목</option>
+                            <option>이름</option>
                             <option>내용</option>
                             <option>지역</option>
                             <option>카테고리</option>
@@ -118,7 +119,7 @@
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td class="col-l">제목</td>
+                                <td class="col-l">이름</td>
                                 <td class="col-s">작성자</td>
                                 <td class="col-m">작성일</td>
                                 <td>조회수</td>
@@ -145,9 +146,9 @@
 
                 <section>
                     <h1 class="d-none">버튼</h1>
-                    <a href="reg">Pet Place 등록</a>
-                    <input type="submit" value="선택 공개">
-                    <input type="submit" value="선택 삭제">
+                    <a class="button" href="reg">Pet Place 등록</a>
+                    <input class="button" type="submit" value="선택 공개">
+                    <input class="button" type="submit" value="선택 삭제">
                 </section>
 
                 <section>
