@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width>, initial-scale=1.0">
     <title>관리자 > 커뮤니티 > 공지사항 관리 > 글쓰기</title>
-    <link rel="stylesheet" href="../../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+
     <!-- <link rel="stylesheet" href="../../css/admin/community/index.css" type="text/css"> -->
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 
@@ -13,10 +16,15 @@
 
 <body>
     <header class="header">
-        <h1><a href="../index.html">logo</a></h1>
-
+        <div class="container">
+            <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
         <nav>
-            <h1>헤더 메뉴 목록</h1>
+            <h1 class="d-none">헤더 메뉴 목록</h1>
 
             <ul>
                 <li><a href="../user/index.html">User</a></li>
@@ -25,25 +33,18 @@
                 <li><a href="../place/index.html">Place</a></li>
             </ul>
         </nav>
-
-        <nav>
-            <h1>바로가기 메뉴</h1>
-                <ul>
-                    <il><a href>펫멧이동</a></il>
-
-                    <il><a href>로그아웃</a></li>
-            
-        </nav>
+    </div>
     </header>
 
     <section class="body">
-        <h1>Content Body</h1>
+        <div class = "container">
+        <h1 class ="d-none">Content Body</h1>
 
         <aside class="aside">
-            <h1>Aside 메뉴</h1>
+            <h1 class="d-none">Aside 메뉴</h1>
 
             <nav>
-                <h1>세부 메뉴 목록</h1>
+                <h1 class ="d-none">세부 메뉴 목록</h1>
 
                 <ul>
                     <li>
@@ -85,10 +86,10 @@
         </aside>
 
         <main class = "main">
-            <h1>글쓰기</h1>
+            <h1>공지사항 글쓰기</h1>
             
             <form method="post">
-                <table border="1">
+                <table class ="list-table">
                     <tr>
                         <td>작성자</td>
                         <td>최고 관리자</td>
@@ -125,10 +126,13 @@
                 <input type="submit" value="등록">
             </form>
         </main>
+    </div>
     </section>
 
     <footer class="footer">
+        <div class= "container">
         <h1>Footer</h1>
+    </div>
     </footer>
 
 </body>
