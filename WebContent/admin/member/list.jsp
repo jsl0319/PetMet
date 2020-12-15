@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,15 +107,20 @@
                         </thead>
                 
                         <tbody>
+                        <c:forEach var="m" items="${list}">
                             <tr>
-                                <td>5</td>
-                                <td><a href="detail.html">dqq9744@naver.com</a></td>
-                                <td>노온이</td>
-                                <td>남</td>
-                                <td>서울시 중랑구</td>
-                                <td>010-1234-5678</td>
-                                <td>2020-12-01</td>
+                                <td>${m.id}</td>
+                                <td><a href="detail?id=${m.id}">${m.email}</a></td>
+                                <td>${m.nickname}</td>
+                                <td>                         
+                                	<c:if test="${m.gender==1}">남</c:if>
+                                	<c:if test="${m.gender==2}">여</c:if>
+                                </td>
+                                <td>${m.address}</td>
+                                <td>${m.phone}</td>
+                                <td>${m.regDate}</td>
                             </tr>
+                          </c:forEach>
                         </tbody>
                     </table>
 

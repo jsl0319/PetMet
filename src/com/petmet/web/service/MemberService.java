@@ -1,11 +1,10 @@
 package com.petmet.web.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.petmet.web.entity.Member;
 import com.petmet.web.dao.MemberDao;
 import com.petmet.web.dao.jdbc.JdbcMemberDao;
+import com.petmet.web.entity.Member;
 
 public class MemberService {
 	
@@ -14,37 +13,22 @@ public class MemberService {
 	public MemberService() {
 		memberDao = new JdbcMemberDao();
 	}
-
-	public List<Member> getList() {
-		String sql = "SELECT * FROM MEMBER";
-
-		List<Member> list = new ArrayList<>();
-
-		return list;
-	}
-
-	public Member get(int id) {
-
-		
-		return new Member();
-	}
-
-
+	
 	public int insert(Member member) {
+		int result=0;
 		
-		return 0;
-
-	}
-
-	public int update(Member member) {
-
-
-		return memberDao.update(member);
+		return result;
 		
 	}
 	
-	public int delete(int id) {
-		
-		return 0;
+	public Member get(int id) {
+		Member member = memberDao.get(id);
+		return member;
 	}
+	
+	public List<Member> getList() {
+		List<Member> list = memberDao.getList();
+		return list;
+	}
+
 }
