@@ -42,7 +42,7 @@ public class EditController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
+		int id = Integer.parseInt(request.getParameter("id"));
 		String writerId = request.getParameter("writerId");
 		String categoryId = request.getParameter("categoryId");
 		String name = request.getParameter("name");
@@ -54,7 +54,7 @@ public class EditController extends HttpServlet {
 		String files = request.getParameter("files");
 		int pub = Integer.parseInt(request.getParameter("pub")); 
 		
-		PetPlace pp = new PetPlace();
+		PetPlace pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content, files, pub);
 		
 		PetPlaceService service = new PetPlaceService();
 		service.update(pp);

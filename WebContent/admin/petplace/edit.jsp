@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,8 +102,8 @@
                             <tbody>
                                 <tr>
                                     <th>이름</th>
-                                    <td>
-                                        <input type="text" name="title" style="width: 100%;" value="${pp.name }" />
+                                    <td colspan="3">
+                                        <input type="text" name="title" value="${pp.name }" />
                                     </td>
                                     <th>카테고리</th>
                                     <td>
@@ -114,31 +115,52 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>주소</th>
+                                    <td colspan="3"><input type="text" name="address" value="${pp.address }"></td>
+                                	<th>공개 여부</th>
+                                	<td>
+                                        <select name="pub">
+                                        	<option selected value="1">공개</option>
+                                        	<option value="0">비공개</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>홈페이지</th>
+                                    <td colspan="3"><input type="text" name="homepage" value="${pp.homepage }"></td>
+                                    <th>전화번호</th>
+                                    <td><input type="text" name="phone" value="${pp.phone }"></td>
+                                </tr>
+                                <tr>
                                     <th>작성일</th>
-                                    <td colspan="3">d</td>
+                                    <td colspan="5">
+                                    	<fmt:formatDate value="${pp.regDate}" pattern="yyyy-MM-dd a hh:mm:ss" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>작성자</th>
-                                    <td>최고관리자</td>
+                                    <td>${pp.writerId}</td>
                                     <th>조회수</th>
-                                    <td>111</td>
+                                    <td>${pp.hit}</td>
+                                    <th>좋아요</th>
+                                    <td>${pp.likes}</td>
                                 </tr>
                                 <tr>
                                     <th class="files">첨부파일</th>
-                                    <td colspan="3">
+                                    <td colspan="5">
                                         <input type="file" name="file" />
                                     </td>
                                 </tr>
                                 <tr class="content">
-                                    <td colspan="4">
+                                    <td colspan="6">
                                         <textarea class="content" name="content"
-                                            style="width: 500px; height: 100px; resize: none;">지도</textarea>
+                                            style="width: 900px; height: 100px; resize: none;">지도</textarea>
                                     </td>
                                 </tr>
                                 <tr class="content">
-                                    <td colspan="4">
+                                    <td colspan="6">
                                         <textarea class="content" name="content"
-                                            style="width: 500px; height: 500px; resize: none">상세설명</textarea>
+                                            style="width: 900px; height: 500px; resize: none">상세설명</textarea>
                                     </td>
                                 </tr>
                             </tbody>
