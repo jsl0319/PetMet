@@ -3,8 +3,11 @@ package com.petmet.web.service;
 import java.util.Date;
 import java.util.List;
 
+import com.petmet.web.dao.BoardCategoryDao;
 import com.petmet.web.dao.BoardReportDao;
+import com.petmet.web.dao.jdbc.JdbcBoardCategoryDao;
 import com.petmet.web.dao.jdbc.JdbcBoardReportDao;
+import com.petmet.web.entity.BoardCategory;
 import com.petmet.web.entity.BoardReport;
 import com.petmet.web.entity.BoardReportView;
 
@@ -128,12 +131,17 @@ public class BoardReportService {
 		return result;
 	}
 
-	BoardReport getPrev(int id) {
+	public BoardReport getPrev(int id) {
 		return boardReportDao.get(id - 1);
 	}
 
-	BoardReport getNext(int id) {
+	public BoardReport getNext(int id) {
 		return boardReportDao.get(id + 1);
+	}
+	
+	public List<BoardCategory> getCategoryList(){
+		BoardCategoryDao categoryDao = new JdbcBoardCategoryDao();
+		return categoryDao.getList();
 	}
 
 	// -------------- getViewList --------------
