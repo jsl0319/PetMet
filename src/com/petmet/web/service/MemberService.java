@@ -14,20 +14,11 @@ public class MemberService {
 		memberDao = new JdbcMemberDao();
 	}
 	
-	public int insert(Member member) {
-		int result=0;
-		
-		return result;
-		
-	}
-	
-	public Member get(int id) {
-		Member member = memberDao.get(id);
-		return member;
-	}
-	
-	public List<Member> getList() {
-		List<Member> list = memberDao.getList();
+
+	public List<Member> getList(String field, String query, String startDate, String endDate, int page, int num) {
+		int startIndex = 1+(page-1)*num;     
+		int endIndex = page*num;	 		
+		List<Member> list = memberDao.getList(field, query, startDate, endDate, startIndex, endIndex);
 		return list;
 	}
 

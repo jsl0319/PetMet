@@ -17,10 +17,9 @@ public class DetailController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		MemberService memberService = new MemberService();
-		Member member = memberService.get(id);
+	
 		
-		request.setAttribute("m", member);
+		
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}
 }

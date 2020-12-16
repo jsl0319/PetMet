@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,31 +79,31 @@
 
                     <ul>
                         <li>
-                            <a href="../notice/list.html">공지사항관리</a>
+                            <a href="../notice/list">공지사항관리</a>
                         </li>
 
                         <li>
-                            <a href="../QnA/list.html">QnA 관리</a>
+                            <a href="../QnA/list">QnA 관리</a>
                         </li>
 
                         <li>
-                            <a href="../category/list.html">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
                         </li>
                         
                         <li>
-                            <a href="../board/list.html">게시글 관리</a>
+                            <a href="../board/list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/reported.html">신고된 게시글 관리</a>
+                            <a href="../board/reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="list.html">댓글 관리</a>
+                            <a href="list">댓글 관리</a>
                         </li>
 
                         <li>
-                            <a href="reported.html">신고된 댓글 관리</a>
+                            <a href="reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -120,9 +124,9 @@
                         <input class="search__input" name="query" type="text">
                         <select class="selectbox" name="category">
                             <option>게시판</option>
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
+                            <c:forEach var="c" items="${cList }">
+                            	<option value="${c.name }">${c.name }</option>
+                            </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
                         <input class="search__input" type="date" name="start_date"> - <input class="search__input" type="date" name="end_date">
@@ -154,16 +158,18 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>자유게시판</td>
-                                <td>1</td>
-                                <td><a href="../board/detail.html">제목입니당~~</a></td>
-                                <td>현지</td>
-                                <td><a href="detail.html">댓글 달아용~~</a></td>
-                                <td>2020-12-06</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+	                        <c:forEach var="c" items="${list }">
+	                            <tr>
+	                                <td>${c.num }</td>
+	                                <td>${c.categoryId }</td>
+	                                <td>${c.boardId }</td>
+	                                <td><a href="../board/detail?id=${c.boardId }">${c.title }</a></td>
+	                                <td>${c.writerId }</td>
+	                                <td><a href="detail?id=${c.id }&bId=${c.boardId}">${c.content }</a></td>
+	                                <td>${c.regDate }</td>
+	                                <td><input type="checkbox"></td>
+	                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </section>

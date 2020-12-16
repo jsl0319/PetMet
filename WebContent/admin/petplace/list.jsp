@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="index">
+                        <a href="../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../petplace/list">
+                        <a href="list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
@@ -131,7 +131,7 @@
                         <tbody>
                             <c:forEach var="p" items="${list }">
 	                            <tr>
-	                                <td>${p.id }</td>
+	                                <td>${p.num }</td>
 	                                <td><a href="detail?id=${p.id }">${p.name }</a></td>
 	                                <td>${p.writerId }</td>
 	                                <td>${p.regDate }</td>

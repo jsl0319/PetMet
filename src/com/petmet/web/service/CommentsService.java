@@ -3,19 +3,26 @@ package com.petmet.web.service;
 import java.util.Date;
 import java.util.List;
 
+import com.petmet.web.dao.BoardCategoryDao;
+import com.petmet.web.dao.BoardDao;
 import com.petmet.web.dao.CommentsDao;
+import com.petmet.web.dao.jdbc.JdbcBoardCategoryDao;
+import com.petmet.web.dao.jdbc.JdbcBoardDao;
 import com.petmet.web.dao.jdbc.JdbcCommentsDao;
+import com.petmet.web.entity.Board;
+import com.petmet.web.entity.BoardCategory;
+import com.petmet.web.entity.CommentView;
 import com.petmet.web.entity.Comments;
 
 public class CommentsService {
 	private CommentsDao commentsDao;
-	
-	//---------------------------------- Constructor ----------------------------------
+
+	// ---------------------------------- Constructor ----------------------------------
 	public CommentsService() {
 		commentsDao = new JdbcCommentsDao();
 	}
-	
-	//---------------------------------- Functions ----------------------------------
+
+	// ---------------------------------- Functions ----------------------------------
 	public int insert(Comments comment) {
 		return commentsDao.insert(comment);
 	}
@@ -32,53 +39,199 @@ public class CommentsService {
 		return commentsDao.get(id);
 	}
 
+	// -------------- getList --------------
 	public List<Comments> getList() {
-		return commentsDao.getList();
+		return getList(null, null, null, null, null, 1, 20);
 	}
 
 	public List<Comments> getList(int page) {
-		return commentsDao.getList(page);
+		return getList(null, null, null, null, null, page, 20);
 	}
 
-	public List<Comments> getList(int category, String searchContent, int page) {
-		return commentsDao.getList(category, searchContent, page);
+	public List<Comments> getList(int page, int size) {
+		return getList(null, null, null, null, null, page, size);
 	}
 
-	public List<Comments> getList(int boardCategory, int page) {
-		return commentsDao.getList(boardCategory, page);
+	public List<Comments> getList(String selectBox, String query) {
+		return getList(selectBox, query, null, null, null, 1, 20);
+	}
+
+	public List<Comments> getList(String boardCategory) {
+		return getList(null, null, boardCategory, null, null, 1, 20);
+	}
+
+	public List<Comments> getList(Date startDate, Date endDate) {
+		return getList(null, null, null, startDate, endDate, 1, 20);
+	}
+
+	public List<Comments> getList(String selectBox, String query, int page) {
+		return getList(selectBox, query, null, null, null, page, 20);
+	}
+
+	public List<Comments> getList(String selectBox, String query, int page, int size) {
+		return getList(selectBox, query, null, null, null, page, size);
+	}
+
+	public List<Comments> getList(String boardCategory, int page) {
+		return getList(null, null, boardCategory, null, null, page, 20);
+	}
+
+	public List<Comments> getList(String boardCategory, int page, int size) {
+		return getList(null, null, boardCategory, null, null, page, size);
 	}
 
 	public List<Comments> getList(Date startDate, Date endDate, int page) {
-		return commentsDao.getList(startDate, endDate, page);
+		return getList(null, null, null, startDate, endDate, page, 20);
 	}
 
-	public List<Comments> getList(int category, String searchContent, int boardCategory, int page) {
-		return commentsDao.getList(category, searchContent, boardCategory, page);
+	public List<Comments> getList(Date startDate, Date endDate, int page, int size) {
+		return getList(null, null, null, startDate, endDate, page, size);
 	}
 
-	public List<Comments> getList(int category, String searchContent, Date startDate, Date endDate, int page) {
-		return commentsDao.getList(category, searchContent, startDate, endDate, page);
+	public List<Comments> getList(String selectBox, String query, String boardCategory, int page) {
+		return getList(selectBox, query, boardCategory, null, null, page, 20);
 	}
 
-	public List<Comments> getList(int boardCategory, Date startDate, Date endDate, int page) {
-		return commentsDao.getList(boardCategory, startDate, endDate, page);
+	public List<Comments> getList(String selectBox, String query, String boardCategory, int page, int size) {
+		return getList(selectBox, query, boardCategory, null, null, page, size);
 	}
 
-	public List<Comments> getList(int category, String searchContent, int boardCategory, Date startDate, Date endDate,
-			int page) {
-		return commentsDao.getList(category, searchContent, boardCategory, startDate, endDate, page);
+	public List<Comments> getList(String boardCategory, Date startDate, Date endDate, int page) {
+		return getList(null, null, boardCategory, startDate, endDate, page, 20);
 	}
 
-	public int deleteList(List<Integer> ids) {
-		return commentsDao.deleteList(ids);
+	public List<Comments> getList(String boardCategory, Date startDate, Date endDate, int page, int size) {
+		return getList(null, null, boardCategory, startDate, endDate, page, size);
+	}
+
+	public List<Comments> getList(String selectBox, String query, Date startDate, Date endDate, int page) {
+		return getList(selectBox, query, null, startDate, endDate, page, 20);
+	}
+
+	public List<Comments> getList(String selectBox, String query, Date startDate, Date endDate, int page, int size) {
+		return getList(selectBox, query, null, startDate, endDate, page, size);
+	}
+
+	// ---- getList 최종
+	public List<Comments> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate,
+			int page, int size) {
+		// page & size
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = size * page;
+
+		return commentsDao.getList(selectBox, query, boardCategory, startDate, endDate, startIndex, endIndex);
+	}
+	// ---------------------------------------
+
+	public int deleteList(int[] ids) {
+		int result = 0;
+		for (int i = 0; i < ids.length; i++, result++) {
+			int id = ids[i];
+			commentsDao.delete(id);
+		}
+		return result;
 	}
 
 	public Comments getPrev(int id) {
-		return commentsDao.getPrev(id);
+		return commentsDao.get(id - 1);
 	}
 
 	public Comments getNext(int id) {
-		return commentsDao.getNext(id);
+		return commentsDao.get(id + 1);
+	}
+	
+	public Board getBoard(int boardId) {
+		BoardDao boardDao = new JdbcBoardDao();
+		return boardDao.get(boardId);
+	}
+	
+	public List<BoardCategory> getCategoryList(){
+		BoardCategoryDao categoryDao = new JdbcBoardCategoryDao();
+		return categoryDao.getList();
 	}
 
+	// -------------- getViewList --------------
+	public List<CommentView> getViewList() {
+		return getViewList(null, null, null, null, null, 1, 20);
+	}
+
+	public List<CommentView> getViewList(int page) {
+		return getViewList(null, null, null, null, null, page, 20);
+	}
+
+	public List<CommentView> getViewList(int page, int size) {
+		return getViewList(null, null, null, null, null, page, size);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query) {
+		return getViewList(selectBox, query, null, null, null, 1, 20);
+	}
+
+	public List<CommentView> getViewList(String boardCategory) {
+		return getViewList(null, null, boardCategory, null, null, 1, 20);
+	}
+
+	public List<CommentView> getViewList(Date startDate, Date endDate) {
+		return getViewList(null, null, null, startDate, endDate, 1, 20);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query, int page) {
+		return getViewList(selectBox, query, null, null, null, page, 20);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query, int page, int size) {
+		return getViewList(selectBox, query, null, null, null, page, size);
+	}
+
+	public List<CommentView> getViewList(String boardCategory, int page) {
+		return getViewList(null, null, boardCategory, null, null, page, 20);
+	}
+
+	public List<CommentView> getViewList(String boardCategory, int page, int size) {
+		return getViewList(null, null, boardCategory, null, null, page, size);
+	}
+
+	public List<CommentView> getViewList(Date startDate, Date endDate, int page) {
+		return getViewList(null, null, null, startDate, endDate, page, 20);
+	}
+
+	public List<CommentView> getViewList(Date startDate, Date endDate, int page, int size) {
+		return getViewList(null, null, null, startDate, endDate, page, size);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query, String boardCategory, int page) {
+		return getViewList(selectBox, query, boardCategory, null, null, page, 20);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query, String boardCategory, int page, int size) {
+		return getViewList(selectBox, query, boardCategory, null, null, page, size);
+	}
+
+	public List<CommentView> getViewList(String boardCategory, Date startDate, Date endDate, int page) {
+		return getViewList(null, null, boardCategory, startDate, endDate, page, 20);
+	}
+
+	public List<CommentView> getViewList(String boardCategory, Date startDate, Date endDate, int page, int size) {
+		return getViewList(null, null, boardCategory, startDate, endDate, page, size);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query, Date startDate, Date endDate, int page) {
+		return getViewList(selectBox, query, null, startDate, endDate, page, 20);
+	}
+
+	public List<CommentView> getViewList(String selectBox, String query, Date startDate, Date endDate, int page,
+			int size) {
+		return getViewList(selectBox, query, null, startDate, endDate, page, size);
+	}
+
+	// ---- getViewList 최종
+	public List<CommentView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
+			Date endDate, int page, int size) {
+		// page & size
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = size * page;
+
+		return commentsDao.getViewList(selectBox, query, boardCategory, startDate, endDate, startIndex, endIndex);
+	}
+	// ---------------------------------------
 }
