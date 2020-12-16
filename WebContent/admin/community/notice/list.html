@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 커뮤니티 > 공지사항 관리</title>
+
     <link rel="stylesheet" href="../../css/reset.css" type="text/css">
-   
+
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
@@ -19,7 +20,12 @@
 <body>
     <header class="header">
         <div class="container">
-            <h1><a href="../index.html">logo</a></h1>
+            <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
             <nav>
                 <h1 class="d-none">헤더 메뉴 목록</h1>
@@ -123,8 +129,7 @@
                          <label for="cb1"></label> <label class="search__title" >공개</label>
                          <input type="checkbox" id="cb2">
                          <label for="cb2"></label> <label class="search__title" >비공개</label>
-                        <br>
-                        <br>
+                       
 
                          <label class="search__title" >일자</label>
                          <input class="search__input" type="date">~<input class="search__input" type="date">
@@ -140,7 +145,7 @@
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td class="titlat col-l">제목</td>
+                                <td>제목</td>
                                 <td>작성자</td>
                                 <td>작성일</td>
                                 <td>조회수</td>
@@ -152,12 +157,14 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td class="titlat col-l"><a href="detail.html">12월 서버 점검 안내</a></td>
+                  <td ><a href="detail.html">12월 서버 점검 안내</a></td>
+
                                 <td>관리인</td>
                                 <td>2020-12-01</td>
                                 <td>100</td>
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
+                                
                             </tr>
                         </tbody>
                     </table>

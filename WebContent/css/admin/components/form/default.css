@@ -12,7 +12,9 @@
     }
     
     .search__input {
-        width: 200px;
+
+        width: 150px;
+
         padding: 12px 24px;
 
         background-color: transparent;
@@ -48,19 +50,24 @@
             border-radius: 20px;
             padding: 10px;
             background-color: #ffffff;
+            
+         
         }
      /* ----------------버튼-----------    */
     .button:hover {
+          
             color: #ffffff;
             background-color: #ff8b88;
         }
     .button:focus{
+        
         display: none;
     }
 
     /* ------------체크박스---------------------------- */
 
     input[id="cb1"] + label {
+        
         display: inline-block;
         width: 20px;
         height: 20px;
@@ -68,7 +75,7 @@
         cursor: pointer;
     }
     input[id="cb1"]:checked + label {
-        background-color: #666666;
+        background-color: #ff8b88;
     }
     input[id="cb1"] {
         display: none;
@@ -83,8 +90,23 @@
         cursor: pointer;
     }
     input[id="cb2"]:checked + label {
-        background-color: #666666;
+        background-color: #ff8b88;
     }
     input[id="cb2"] {
         display: none;
     }
+    
+
+    .selectbox { 
+        width: 50px; 
+        height: 20px; 
+        font-size: 15px; 
+        color:#ff8b88; 
+        border:2px solid #ddd; 
+        background:  no-repeat right 13px center;
+        appearance:none; -webkit-appearance:none;
+    }
+    .selecbox::-ms-expand {  
+        display: none;
+    }
+  
