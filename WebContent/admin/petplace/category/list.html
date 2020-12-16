@@ -1,168 +1,263 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 펫플레이스 > 카테고리 > 리스트</title>
-    <link rel="stylesheet" href="../../../css/reset.css" type="text/css">
+    <title>관리자 > 펫플레이스 > 리스트</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/admin/components/table/list.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-    <script src="list.js"></script>
 </head>
 
 <body>
-    <!-- 헤더 -->
+    <!-------------------------------header------------------------------------>
     <header class="header">
-        <h1><a href="../index.html">logo</a></h1>
-
-        <nav>
-            <h1>헤더 메뉴 목록</h1>
-
-            <ul>
-                <li><a href="../user/index.html">User</a></li>
-                <li><a href="../feed/index.html">Feed</a></li>
-                <li><a href="../community/index.html">Community</a></li>
-                <li><a href="list.html">Place</a></li>
-            </ul>
-
-        </nav>
-
-    </header>
-
-    <br>
-    <br>
-
-    <!-- 바디 -->
-    <div class="body">
-        <h1>바디바디 핫바디</h1>
-
-        <aside class="aside">
-            <h1>어싸이드!!!!!!</h1>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
             <nav>
-                <h1>세부 메뉴</h1>
-
+                <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="../list.html">Pet Place 관리</a>
+                        <a href="../user/index.html">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>USER</span>
+                        </a>
                     </li>
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="./list.html">카테고리 관리</a>
+                        <a href="index.html">
+                            <i class="fas fa-camera-retro fa-2x"></i>
+                            <span>FEED</span>
+                        </a>
                     </li>
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="../review/list.html">후기 관리</a>
+                        <a href="../community/index.html">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../petplace/list.html">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
                     </li>
                 </ul>
-
             </nav>
+        </div>
+    </header>
 
-        </aside>
 
-        <br>
-        <br>
+    <!-------------------------------body------------------------------------>
+    <div class="body">
+        <h1 class="d-none">contents body</h1>
 
-        <main class="main">
-            <h1>메인임니당</h1>
+        <div class="container">
 
-            <section class="search-form">
+            <aside class="aside">
+                <h1 class="d-none">aside</h1>
 
-                <h1>검색폼</h1>
+                <nav>
+                    <h1 class="d-none">세부 메뉴</h1>
 
-                <form>
-
-                    <select>
-                        <option>카테고리</option>
-                    </select>
-
-                    <input type="text">
-                    <input type="submit" value="검색">
-                </form>
-
-            </section>
-
-            <br>
-            <br>
-
-            <section id="section">
-                <h1>카테고리 관리</h1>
-
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <td>번호</td>
-                            <td>카테고리명</td>
-                            <td>삭제</td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>5</td>
-                            <td><a href="" class="category5">카테고리5</a>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td><a href="" class="category4">카테고리4</a></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><a href="" class="category3">카테고리3</a></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><a href="" class="category2">카테고리2</a></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="" class="category1">카테고리1</a></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <br>
-            <br>
-
-            <section>
-                <h1>버튼</h1>
-                <a href="reg.html"><input type="button" value="카테고리 등록"></a>
-                <a href=""><input type="button" value="선택 삭제"></a>
-            </section>
-
-            <br>
-            <br>
-
-            <section>
-                <h1>페이지 목록</h1>
-                    이전
                     <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="list.html">Pet Place 관리</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="category/list.html">카테고리 관리</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="review/list.html">후기 관리</a>
+                        </li>
                     </ul>
-                    다음 
-            </section>
 
-        </main>
+                </nav>
 
+            </aside>
+
+            <main class="main">
+                <h1 class="d-none">main</h1>
+
+                <section class="search-form">
+
+                    <h1>검색폼</h1>
+                
+                    <form>
+                
+                        <select>
+                            <option>카테고리</option>
+                        </select>
+                
+                        <input type="text">
+                        <input type="submit" value="검색">
+                    </form>
+                
+                </section>
+                
+                <br>
+                <br>
+                
+                <section id="section">
+                    <h1>카테고리 관리</h1>
+                
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <td>번호</td>
+                                <td>카테고리명</td>
+                                <td>삭제</td>
+                            </tr>
+                        </thead>
+                
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td><a href="" class="category5">카테고리5</a>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><a href="" class="category4">카테고리4</a></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><a href="" class="category3">카테고리3</a></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><a href="" class="category2">카테고리2</a></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><a href="" class="category1">카테고리1</a></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="search-form">
+
+                    <h1 class="d-none">검색폼</h1>
+
+                    <form>
+
+                        <select>
+                            <option>제목</option>
+                            <option>내용</option>
+                            <option>지역</option>
+                            <option>카테고리</option>
+                        </select>
+
+                        <input type="text">
+                        <input type="submit" value="검색">
+                    </form>
+
+                </section>
+
+                <section>
+                    <h1 class="d-none">Pet Place 관리</h1>
+
+                    <table class="list-table">
+                        <thead>
+                            <tr>
+                                <td>번호</td>
+                                <td class="col-l">제목</td>
+                                <td class="col-s">작성자</td>
+                                <td class="col-m">작성일</td>
+                                <td>조회수</td>
+                                <td class="col-m">공개여부</td>
+                                <td>삭제</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>3</td>
+                                <td><a href="detail.html">멍멍멍멍!!</a></td>
+                                <td>관리자</td>
+                                <td>2020-12-01</td>
+                                <td>999</td>
+                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><a href="detail.html">멍멍멍멍!!</a></td>
+                                <td>관리자</td>
+                                <td>2020-12-01</td>
+                                <td>999</td>
+                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><a href="detail.html">멍멍멍멍!!</a></td>
+                                <td>관리자</td>
+                                <td>2020-12-01</td>
+                                <td>999</td>
+                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h1 class="d-none">버튼</h1>
+                    <a href="reg.html"><input type="button" value="Pet Place 등록"></a>
+                    <a href=""><input type="button" value="선택 공개"></a>
+                    <a href=""><input type="button" value="선택 삭제"></a>
+                </section>
+
+                <section>
+                    <div class="pager">
+                        <div>
+                            <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                        </div>
+                        <div>
+                            <a href="#"><i class="fas fa-angle-left"></i></a>
+                        </div>
+                        <ul>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul>
+                        <div>
+                            <a href="#"><i class="fas fa-angle-right"></i></a>
+                        </div>
+                        <div>
+                            <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
     </div>
 
-    <br>
-    <br>
-
-    <!-- 푸터 -->
+    <!-------------------------------footer------------------------------------>
     <footer class="footer">
-        <h1>footer</h1>
+        <div class="container">
+            <h1>footer</h1>
+        </div>
     </footer>
 
 </body>
