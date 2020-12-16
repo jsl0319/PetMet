@@ -160,7 +160,7 @@
                         <tbody>
 	                        <c:forEach var="c" items="${list }">
 	                            <tr>
-	                                <td>${c.id }</td>
+	                                <td>${c.num }</td>
 	                                <td>${c.categoryId }</td>
 	                                <td>${c.boardId }</td>
 	                                <td><a href="../board/detail?id=${c.boardId }">${c.title }</a></td>
