@@ -75,13 +75,22 @@
           <main id="main" class="main feed-index">
             <h1 class="d-none">Feed-list 관리자 페이지</h1>
             <section>
-
               <h1 class="d-none">신고 리스트</h1>
+              
+	              <form action="post">
+		              <select>
+			              <option>이름</option>
+		              </select>
+		           	  <input type="text">
+		           	  <input type="submit" value="검색" />
+		              
+              	  </form>
+              	  
                 <table class="list-table" border="1">
                   <thead>
                     <tr>
                       <td>번호</td>
-                      <td>ID(신고받은)</td>
+                      <td>신고받은ID</td>
                       <td>신고수</td>
                       <td>조치여부</td>
                     </tr>
