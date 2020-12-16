@@ -161,7 +161,7 @@
                         <tbody>
 	                        <c:forEach var="b" items="${list }">
 	                            <tr>
-	                                <td>${b.id }</td>
+	                                <td>${b.num }</td>
 	                                <td>${b.writerId }</td>
 	                                <td>
 	                                	<select name="category">

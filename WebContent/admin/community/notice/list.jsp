@@ -129,9 +129,9 @@
                      
                         <tr>
                             <td>${n.id}</td>
-                            <td><a href="detail?id=${n.id}">${n.title}></a></td>//get방식으로 보냄
+                            <td><a href="detail?id=${n.id}">${n.title}></a></td>
                             <td>${n.writerId}</td>
-                            <td> ${n.regdate}</td>
+                            <td>${n.regdate}</td>
                             <td>${n.hit}</td>
                             <td><input type="checkbox"></td>
                             <td><input type="checkbox"></td>

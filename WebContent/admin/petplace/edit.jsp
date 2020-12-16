@@ -96,14 +96,14 @@
                 <section>
                     <h1>PetPlace 수정</h1>
 
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="edit" method="post" enctype="multipart/form-data">
 
                         <table class="detail-table">
                             <tbody>
                                 <tr>
                                     <th>이름</th>
                                     <td colspan="3">
-                                        <input type="text" name="title" value="${pp.name }" />
+                                        <input type="text" name="name" value="${pp.name }" />
                                     </td>
                                     <th>카테고리</th>
                                     <td>
@@ -120,7 +120,7 @@
                                 	<th>공개 여부</th>
                                 	<td>
                                         <select name="pub">
-                                        	<option selected value="1">공개</option>
+                                        	<option value="1">공개</option>
                                         	<option value="0">비공개</option>
                                         </select>
                                     </td>
@@ -153,20 +153,21 @@
                                 </tr>
                                 <tr class="content">
                                     <td colspan="6">
-                                        <textarea class="content" name="content"
-                                            style="width: 900px; height: 100px; resize: none;">지도</textarea>
+                                        <textarea class="content" name="location"
+                                            style="width: 900px; height: 100px; resize: none;">${pp.location }</textarea>
                                     </td>
                                 </tr>
                                 <tr class="content">
                                     <td colspan="6">
                                         <textarea class="content" name="content"
-                                            style="width: 900px; height: 500px; resize: none">상세설명</textarea>
+                                            style="width: 900px; height: 500px; resize: none">${pp.content }</textarea>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <section>
+	                        <input type="hidden" name="id" value="${pp.id }">
                             <a class="button" href="detail?id=${pp.id}">취소</a>
                             <input class="button" type="submit" value="수정 완료" />
                         </section>

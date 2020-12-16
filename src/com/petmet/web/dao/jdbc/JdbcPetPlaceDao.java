@@ -59,16 +59,26 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	public int update(PetPlace pp) {
 		int result = 0;
 
-		String sql = "UPDATE PETPLACE SET NAME=?, CONTENT=? WHERE ID=?";
+		String sql = "UPDATE PETPLACE SET CATEGORY_ID = ?, NAME = ?,"
+				+ "ADDRESS = ?, HOMEPAGE = ?, PHONE = ?,"
+				+ "LOCATION = ?, CONTENT = ?, FILES = ?, PUB = ?"
+				+ "WHERE ID = ?";
 
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, pp.getName());
-			st.setString(2, pp.getContent());
-			st.setInt(3, pp.getId());
+			st.setString(1, pp.getCategoryId());
+			st.setString(2, pp.getName());
+			st.setString(3, pp.getAddress());
+			st.setString(4, pp.getHomepage());
+			st.setString(5, pp.getPhone());
+			st.setString(6, pp.getLocation());
+			st.setString(7, pp.getContent());
+			st.setString(8, pp.getFiles());
+			st.setInt(9, pp.getPub());
+			st.setInt(10, pp.getId());
 
 			result = st.executeUpdate();
 			st.close();
