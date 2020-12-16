@@ -223,29 +223,8 @@ public class JdbcNoticeDao implements NoticeDao {
 		return 0;
 	}
 
-	@Override
-	public List<Notice> getList(int category, String searchContent, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Notice> getList(int pubId, boolean pub, boolean nonPub, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Notice> getList(int pubId, boolean pub, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Notice> getList(Date startDate, Date endDate, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 
 	@Override
 	public List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate,
@@ -260,12 +239,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		return null;
 	}
 
-	@Override
-	public List<Notice> getList(int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 
 	

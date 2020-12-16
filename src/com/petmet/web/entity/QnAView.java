@@ -12,22 +12,33 @@ public class QnAView extends Notice {
 	private String answerContent;
 	private Date answerDate;
 
+	
 	public QnAView() {
-		
+		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 
-	public QnAView(int id, String writerId, String title, String content, int pub, Date regDate,
-			String answerContent, Date answerDate) {
-		
+
+
+	public QnAView(String title, String content, int id, String writerId, String title2, String content2, int pub,
+			Date regDate, String answerContent, Date answerDate) {
+		super(title, content);
 		this.id = id;
 		this.writerId = writerId;
-		this.title = title;
-		this.content = content;
+		title = title2;
+		content = content2;
 		this.pub = pub;
 		this.regDate = regDate;
 		this.answerContent = answerContent;
 		this.answerDate = answerDate;
 	}
+
+
+
+
+
 
 	public int getId() {
 		return id;

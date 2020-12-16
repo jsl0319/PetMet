@@ -14,14 +14,12 @@ public interface NoticeDao {
 
 	Notice get(int id);
 
-	int deleteList(List<Integer> ids);
-	List<Notice> getList(int category, String searchContent, int page);
-	List<Notice> getList(int pubId, boolean pub, boolean nonPub, int page);
-	List<Notice> getList(int pubId, boolean pub, int page);
-	List<Notice> getList(Date startDate, Date endDate, int page);
+	
+	
 	List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate, Date endDate, int page);
 	List<Notice> pubList(List<Integer> ids);
-	List<Notice> getList(int page);
+	int deleteList(List<Integer> ids);
+	
 	List<Notice> getList();
 
 

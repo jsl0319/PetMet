@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,6 +109,7 @@
                     </nav>
             </aside>
             <main class = "main">
+             <form method="post" enctype="multipart/form-data">
                 <h1>공지사항 글쓰기</h1>
                 <section>
                     <table class ="detail-table">
@@ -123,12 +126,9 @@
                         <tr>
                            
                             <th>공개여부</th>
-                            <td>
-                                <select>
-                                    <option>공개</option>
-                                    <option>비공개</option>
-                                </select>
-                            </td>
+                            
+                              <td><input name="check_delete" type="checkbox"> 비공개</td>
+                            
                             <th>첨부파일</th>
                            <td>
                             <input type="button" value="이미지">
@@ -143,12 +143,13 @@
                       <tbody>
     
                         <tr class="content">
-                            <td ><textarea class="content" name="content"></textarea></td>
+                           <td colspan="4"><textarea class="content" name="content"></textarea></td>
                         </tr>
     
                     </tbody>
                     </table>
                     <input class="button" type="submit" value="등록">
+                     
                 </section>
     
                 </form>

@@ -12,7 +12,7 @@ public class Notice {
 	private Date regdate;
 	private String files;
 
-	public Notice() {
+	public Notice(String title, String content) {
 		
 	}
 	

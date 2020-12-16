@@ -5,143 +5,173 @@
     
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 공지사항 관리 > 글쓰기</title>
-    <link rel="stylesheet" href="../../css/reset.css" type="text/css">
-    <!-- <link rel="stylesheet" href="../../css/admin/community/index.css" type="text/css"> -->
-    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 > 커뮤니티 > 공지사항관리 > 상세페이지</title>
 
+    <link rel="stylesheet" href="../../../css/admin/components/table/detail.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+
+    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header class="header">
-        <h1><a href="../index.html">logo</a></h1>
+        <div class="container">
+       <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
-        <nav>
-            <h1>헤더 메뉴 목록</h1>
-
-            <ul>
-                <li><a href="../user/index.html">User</a></li>
-                <li><a href="../feed/index.html">Feed</a></li>
-                <li><a href="../index.html">Community</a></li>
-                <li><a href="../place/index.html">Place</a></li>
-            </ul>
-        </nav>
-
-        <nav>
-            <h1>바로가기 메뉴</h1>
+      
+            <nav>
+                <h1 class="d-none">헤더 목록</h1>
                 <ul>
-                    <il><a href>펫멧이동</a></il>
-
-                    <il><a href>로그아웃</a></li>
-            
-        </nav>
+                  <li>
+                    <a href="../user/index.html">
+                      <i class="fas fa-users fa-2x"></i>
+                      <span>USER</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="index.html">
+                      <i class="fas fa-camera-retro fa-2x"></i>
+                      <span>FEED</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../community/index.html">
+                      <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                      <span>COMMUNITY</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../petplace/list.html">
+                      <i class="fas fa-map-marked-alt fa-2x"></i>
+                      <span>PLACE</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
     </header>
 
     <section class="body">
-        <h1>Content Body</h1>
+        <h1 class="d-none">Content Body</h1>
+        <div class="container">
 
-        <aside class="aside">
-            <h1>Aside 메뉴</h1>
+            <aside class="aside">
+                
+                <h1 class="d-none">Aside 메뉴</h1>
 
-            <nav>
-                <h1>세부 메뉴 목록</h1>
+                    <nav>
+                        <h1 class="d-none" >세부 메뉴 목록</h1>
 
-                <ul>
-                    <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="list.html">공지사항관리</a>
-                    </li>
+                        <ul>
 
-                    <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="../QnA/list.html">QnA 관리</a>
-                    </li>
+                            <li>
+                                <i class="fas fa-bullhorn"></i>
+                                <a href="../notice/list.html">공지사항관리</a>
+                            </li>
 
-                    <li>
-                        <i class="fas fa-clipboard-list"></i>
-                        <a href="../category/list.html">카테고리 관리</a>
-                    </li>
-                    
-                    <li>
-                        <i class="fas fa-clipboard-list"></i>
-                        <a href="../board/list.html">게시글 관리</a>
-                    </li>
+                            <li>
+                                <i class="fas fa-bullhorn"></i>
+                                <a href="list.html">QnA 관리</a>
+                            </li>
 
-                    <li>
-                        <i class="fas fa-ban"></i>
-                        <a href="../board/reported.html">신고된 게시글 관리</a>
-                    </li>
+                            <li>
+                                <i class="fas fa-clipboard-list"></i>
+                                <a href="../category/list.html">카테고리 관리</a>
+                            </li>
 
-                    <li>
-                        <i class="fas fa-comment"></i>
-                        <a href="../comment/list.html">댓글 관리</a>
-                    </li>
+                            <li>
+                                <i class="fas fa-clipboard-list"></i>
+                                <a href="../board/list.html">게시글 관리</a>
+                            </li>
 
-                    <li>
-                        <i class="fas fa-comment-slash"></i>
-                        <a href="../comment/reported.html">신고된 댓글 관리</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+                            <li>
+                                <i class="fas fa-ban"></i>
+                                <a href="../board/reported.html">신고된 게시글 관리</a>
+                            </li>
 
-        <main class = "main">
-            <h1>공지사항 상세 내용</h1>
+                            <li>
+                                <i class="fas fa-comment"></i>
+                                <a href="../comment/list.html">댓글 관리</a>
+                            </li>
 
-            <table border="1">
-                <tr>
-                    <td>제목</td>
-                    <td colspan="3">${n.title}</td>
+                            <li>
+                                <i class="fas fa-comment-slash"></i>
+                                <a href="../comment/reported.html">신고된 댓글 관리</a>
+                            </li>
+                        </ul>
+                    </nav>
+            </aside>
+            <main class = "main">
+                <h1>공지사항 상세 내용</h1>
+                <section>
+                <table class ="detail-table">
+                    <tr>
+                        <th>제목</th>
+                        <td colspan="3">1${n.title}</td>
+                    </tr>
+    
+                    <tr>
+                        <th>등록일</th>
+                       <td> <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
+                        <th>공개여부</th>
+                            <td>
+                                 <td><input name="check_delete" type="checkbox"> 비공개</td>
+                            </td>
+                    </tr>
+    
+                    <tr>
+    
+                    <th>첨부파일</th>
+                    <td>
+                     <input type="button" value="이미지">
+                     <input type="button" value="동영상">
+                     <input type="button" value="링크">
+                     <input type="button" value="파일">
+                 </td>
                 </tr>
-
-                <tr>
-                    <td>등록일</td>
-                    <td><fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
-                    <td>공개여부</td>
-                    <td><input type="checkbox" checked></td>
-                </tr>
-
-                <tr>
-                    <td>작성자</td>
-                    <td>${n.writerId}</td>
-                    <td>조회수</td>
-                    <td>${n.hit}</td>
-                </tr>
-
-                <tr>
-                    <td>첨부파일</td>
-                    <td colspan="3">
-                      <c:forTokens var="fileName" items="${n.files}" delims="," varStatus = "st">
-                        <a download href="/static/notice/2020/${n.id}/${fileName}">${fileName} </a> 
-                                      <c:if test = "${st.last==false }">
-                                       </c:if>
-                                   </c:forTokens></td>
-                </tr>
-
-                <tr>
-                    <td colspan="4">${n.content}</td>
-                </tr>
-            </table>
-
-            <section>
-                <h1>이벤트 버튼</h1>
-
-        <a href="list"> <input type="button" value="목록"></a> 
-        <a href ="edit?id=${n.id}"><input type="button" value="수정"></a>  
-           <a href ="del?id=${n.id}"><input type="button" value="삭제"></a>
+                    <tr class="content">
+                        <td colspan="4">${n.content}</td>
+                    </tr>
+                </table>
             </section>
-        </main>
+    
+                <section class = "button-list">
+                    <h1 class= "d-none">이벤트 버튼</h1>
+    
+                 <a href="list">  <input class="button" type="button" value="목록"></a>
+               		<a href="edi?id=${n.id}">     <input class="button" type="button" value="수정"></a>
+                 <a href="del?id=${n.id}"><input class="button" type="button" value="삭제"></a>
+                </section>
+            </main>
+
+        </div>
     </section>
 
+
+
+
+
+
     <footer class="footer">
-        <h1>Footer</h1>
+        <div class="container">
+            <h1 class="d-none">Footer</h1>
+        </div>
     </footer>
+
+
 
 </body>
 
