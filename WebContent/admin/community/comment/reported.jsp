@@ -79,11 +79,11 @@
 
                     <ul>
                         <li>
-                            <a href="../notice/list.html">공지사항관리</a>
+                            <a href="../notice/list">공지사항관리</a>
                         </li>
 
                         <li>
-                            <a href="../QnA/list.html">QnA 관리</a>
+                            <a href="../QnA/list">QnA 관리</a>
                         </li>
 
                         <li>
