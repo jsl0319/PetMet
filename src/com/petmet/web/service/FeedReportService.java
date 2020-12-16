@@ -32,15 +32,15 @@ public class FeedReportService {
 	public List<FeedReport> getList(int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
-	    int endIndex = page*10;
+	    int endIndex = page*15;
 	      
 		return feedReportDao.getList(startIndex,endIndex);
 	}
 	public List<FeedReport> getList(int page) {
-		return feedReportDao.getList(page,10);
+		return feedReportDao.getList(page,15);
 	}
 	public List<FeedReport> getList() {
-		return feedReportDao.getList(1,10);
+		return feedReportDao.getList(1,15);
 	}
 	
 	

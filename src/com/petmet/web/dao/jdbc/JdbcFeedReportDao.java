@@ -127,12 +127,13 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         
 	         
 	         if(rs.next()){
+	        	 int num = rs.getInt("num");
 	        	String memId = rs.getNString("mem_id");
 	        	String feedId = rs.getString("feed_id");
 	        	Date repoDate = rs.getDate("repo_date");
 	        	String content = rs.getNString("content");
 	        	
-	        	fr = new FeedReport(id, memId, feedId, repoDate, content);
+	        	fr = new FeedReport(id, num ,memId, feedId, repoDate, content);
 	        	
 	         }
 	         
@@ -193,13 +194,11 @@ public class JdbcFeedReportDao implements FeedReportDao{
 
 	@Override
 	public List<FeedReport> getList(int startIndex, int endIndex) {
-		  String sql = "SELECT * "
-		  		+ "FROM("+
-				  "SELECT ROWNUM NUM, FEED_REPORT.*"
-		  		+ "FROM"
-		  		+ "FEED_REPORT"
-		  		+ "ORDER BY REPO_DATE DESC)"+" FR"
-		  		+ "WHERE NUM BETWEEN ? AND ?";
+		  String sql = "SELECT ROWNUM NUM ,FR.* "
+		  		+ "FROM ("
+		  		+ "SELECT FEED_REPORT.* "
+		  		+ "FROM "
+		  		+ "FEED_REPORT ORDER BY REPO_DATE DESC) FR WHERE ROWNUM BETWEEN ? AND ?";
 		  
 		  
 		  String url = DBContext.URL;
@@ -221,12 +220,13 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         
 	         while(rs.next()){
 	        	int id = rs.getInt("id");
+	        	int num = rs.getInt("num");
 	        	String memId = rs.getNString("mem_id");
 	        	String feedId = rs.getString("feed_id");
 	        	Date repoDate = rs.getDate("repo_date");
 	        	String content = rs.getNString("content");
 	        	
-	        	FeedReport fr = new FeedReport(id, memId, feedId, repoDate, content);
+	        	FeedReport fr = new FeedReport(id, num, memId, feedId, repoDate, content);
 	        	
 	        	list.add(fr);
 	         }
@@ -315,12 +315,13 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         
 	         if(rs.next()){
 	        	int id = rs.getInt("id");
+	        	int num = rs.getInt("num");
 	        	String memId = rs.getNString("mem_id");
 	        	String feedId = rs.getString("feed_id");
 	        	Date repoDate = rs.getDate("repo_date");
 	        	String content = rs.getNString("content");
 	        	
-	        	fr = new FeedReport(id, memId, feedId, repoDate, content);
+	        	fr = new FeedReport(id, num,memId, feedId, repoDate, content);
 	        	
 	         }
 	         
