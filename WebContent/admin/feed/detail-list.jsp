@@ -76,11 +76,22 @@
             
           <section>
             <h1 class="d-none">신고 리스트</h1>
+            
+            	<form action="post">
+		              <select>
+			              <option>이름</option>
+			              <option>내영</option>
+		              </select>
+		           	  <input type="text">
+		           	  <input type="submit" value="검색" />
+		              
+              	  </form>
             <table class="list-table" border="1">
               <thead>
                 <tr>
                   <th>번호</th>
-                  <th>신고자</th>
+                  <th>신고자ID</th>
+                  <th>신고받은ID</th>
                   <th>신고일</th>
                   <th>신고사유</th>
                 </tr>
@@ -91,6 +102,7 @@
                 <tr>
                   <td>${rf.num}</td>
                   <td>${rf.memId}</td>
+                  <td>${rf.feedId }</td>
                   <td>${rf.repoDate}</td>
                   <td>${rf.content}</td>
                 </tr>
