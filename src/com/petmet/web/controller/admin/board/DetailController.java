@@ -27,7 +27,7 @@ public class DetailController extends HttpServlet {
 		
 		
 		
-		request.getRequestDispatcher("/admin/board/notice/detail.jsp").forward(request,response);
+		request.getRequestDispatcher("detail.jsp").forward(request,response);
 	}
 
 }

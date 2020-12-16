@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,23 +85,23 @@
                         </li>
 
                         <li>
-                            <a href="../category/list.html">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
                         </li>
 
                         <li>
-                            <a href="list.html">게시글 관리</a>
+                            <a href="../board/list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="reported.html">신고된 게시글 관리</a>
+                            <a href="../board/reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../comment/list.html">댓글 관리</a>
+                            <a href="list">댓글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../comment/reported.html">신고된 댓글 관리</a>
+                            <a href="reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -112,14 +116,14 @@
                     <table class="detail-table">
                         <tr>
                             <th>제목</th>
-                            <td colspan="3">제목입니당</td>
+                            <td colspan="3">${b.title }</td>
                         </tr>
 
                         <tr>
                             <th>작성자</th>
-                            <td>현지</td>
+                            <td>${b.writerId }</td>
                             <th>카테고리</th>
-                            <td>자유게시판</td>
+                            <td>${b.categoryId }</td>
                         </tr>
                     </table>
                 </section>
@@ -128,10 +132,10 @@
 
                     <table class="detail-table">
                         <tr>
-                            <td>프로필</td>
-                            <td>작성자</td>
-                            <td>댓글 내용</td>
-                            <td>등록일</td>
+                            <td>${c.id }</td>
+                            <td>${c.writerId }</td>
+                            <td>${c.content }</td>
+                            <td>${c.regDate }</td>
                         </tr>
                     </table>
                 </section>
@@ -147,7 +151,7 @@
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
 
-                    <a href="list.html">
+                    <a href="list">
                         <input class="button" type="button" value="목록">
                     </a>
                     <input class="button" type="submit" value="삭제">

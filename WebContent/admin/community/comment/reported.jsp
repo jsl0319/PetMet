@@ -1,10 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 댓글 리스트</title>
+    <title>관리자 > 커뮤니티 > 신고된 댓글 관리</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
@@ -65,8 +69,8 @@
 
     <section class="body">
         <h1 class="d-none">Content Body</h1>
-        <div class="container">
 
+        <div class="container">
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
 
@@ -83,23 +87,23 @@
                         </li>
 
                         <li>
-                            <a href="../category/list.html">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
                         </li>
                         
                         <li>
-                            <a href="../board/list.html">게시글 관리</a>
+                            <a href="../board/list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/reported.html">신고된 게시글 관리</a>
+                            <a href="../board/reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="list.html">댓글 관리</a>
+                            <a href="list">댓글 관리</a>
                         </li>
 
                         <li>
-                            <a href="reported.html">신고된 댓글 관리</a>
+                            <a href="reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -120,9 +124,9 @@
                         <input class="search__input" name="query" type="text">
                         <select class="selectbox" name="category">
                             <option>게시판</option>
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
+                            <c:forEach var="c" items="${cList }">
+                            	<option value="${c.name }">${c.name }</option>
+                            </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
                         <input class="search__input" type="date" name="start_date"> - <input class="search__input" type="date" name="end_date">
@@ -131,7 +135,7 @@
                 </section>
 
                 <section>
-                    <h1 class="d-none">댓글 리스트</h1>
+                    <h1 class="d-none">신고된 댓글 관리</h1>
                     <div>
                         <select>
                             <option value="20개">20개</option>
@@ -149,21 +153,25 @@
                                 <td>작성자</td>
                                 <td>내용</td>
                                 <td>작성일</td>
+                                <td>누적 신고 횟수</td>
                                 <td>삭제</td>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>자유게시판</td>
-                                <td>1</td>
-                                <td><a href="../board/detail.html">제목입니당~~</a></td>
-                                <td>현지</td>
-                                <td><a href="detail.html">댓글 달아용~~</a></td>
-                                <td>2020-12-06</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+	                        <c:forEach var="c" items="${list}">
+	                            <tr>
+	                                <td>${c.num }</td>
+	                                <td>${c.categoryId }</td>
+	                                <td>${c.boardId }</td>
+	                                <td><a href="../board/detail?id=${c.boardId }">${c.title }</a></td>
+	                                <td>${c.writerId }</td>
+	                                <td><a href="detail?id=${c.id }&bId=${c.boardId}">${c.content }</a></td>
+	                                <td>${c.regDate }</td>
+	                                <td><a href="reported-detail?id=${c.id }">${c.reported }</a></td>
+	                                <td><input type="checkbox"></td>
+	                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </section>
@@ -194,7 +202,6 @@
                       <a href="#"><i class="fas fa-angle-double-right"></i></a>
                     </div>
                 </div>
-
             </main>
         </div>
     </section>
