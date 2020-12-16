@@ -20,9 +20,12 @@
 <body>
     <header class="header">
         <div class="container">
-
-            <h1><a href="../index.html">logo</a></h1>
-
+            <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
             <nav>
                 <h1 class="d-none">헤더 메뉴 목록</h1>
@@ -126,8 +129,7 @@
                          <label for="cb1"></label> <label class="search__title" >공개</label>
                          <input type="checkbox" id="cb2">
                          <label for="cb2"></label> <label class="search__title" >비공개</label>
-                        <br>
-                        <br>
+                       
 
                          <label class="search__title" >일자</label>
                          <input class="search__input" type="date">~<input class="search__input" type="date">
@@ -143,6 +145,7 @@
                         <thead>
                             <tr>
                                 <td>번호</td>
+                                <td>제목</td>
                                 <td>작성자</td>
                                 <td>작성일</td>
                                 <td>조회수</td>
@@ -161,6 +164,7 @@
                                 <td>100</td>
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
+                                
                             </tr>
                         </tbody>
                     </table>

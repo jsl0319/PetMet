@@ -5,187 +5,207 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 커뮤니티 > 공지사항 관리</title>
+
     <link rel="stylesheet" href="../../css/reset.css" type="text/css">
 
-    <!-- <link rel="stylesheet" href="../../css/admin/community/index.css" type="text/css"> -->
+    <link rel="stylesheet" href="../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin/components/form/default.css" type="text/css">
+
+
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
     <header class="header">
-        <h1><a href="../index.html">logo</a></h1>
+        <div class="container">
 
-        <nav>
-            <h1>헤더 메뉴 목록</h1>
-
-            <ul>
-                <li><a href="../user/index.html">User</a></li>
-                <li><a href="../feed/index.html">Feed</a></li>
-                <li><a href="index.html">Community</a></li>
-                <li><a href="../place/index.html">Place</a></li>
-            </ul>
-        </nav>
-
-        <nav>
-            <h1>바로가기 메뉴</h1>
-                <ul>
-                    <il><a href>펫멧이동</a></il>
-
-                    <il><a href>로그아웃</a></li>
-            
-        </nav>
-    </header>
-
-    <section class="body">
-        <h1>Content Body</h1>
-
-        <aside class="aside">
-            <h1>Aside 메뉴</h1>
+            <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
             <nav>
-                <h1>세부 메뉴 목록</h1>
+                <h1 class="d-none">헤더 메뉴 목록</h1>
 
                 <ul>
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="notice/list.html">공지사항관리</a>
+                        <a href="list.html">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>MEMBER</span>
+                        </a>
                     </li>
-
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="QnA/list.html">QnA 관리</a>
+                        <a href="../feed/index.html">
+                            <i class="fas fa-camera-retro fa-2x"></i>
+                            <span>FEED</span>
+                        </a>
                     </li>
-
                     <li>
-                        <i class="fas fa-clipboard-list"></i>
-                        <a href="category/list.html">카테고리 관리</a>
+                        <a href="../community/index.html">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
                     </li>
-
                     <li>
-                        <i class="fas fa-clipboard-list"></i>
-                        <a href="board/list.html">게시글 관리</a>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-ban"></i>
-                        <a href="board/reported.html">신고된 게시글 관리</a>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-comment"></i>
-                        <a href="comment/list.html">댓글 관리</a>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-comment-slash"></i>
-                        <a href="comment/reported.html">신고된 댓글 관리</a>
+                        <a href="../petplace/list.html">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
+
             
-          
-        </aside>
+        </div>
+    </header>
 
-        <main class="main">
-            <h1>Main Content</h1>
+    <section class="body">
+        <h1 class="d-none">Content Body</h1>
+        <div class="container">
 
-            <section>
-                <h1>검색폼</h1>
-                
-                <form class = "search__container">
-                    <label class="search__title" >제목</label>
-                    <input class="search__input" type="text">
+            <aside class="aside">
+                <h1 class="d-none">Aside 메뉴</h1>
 
-                    <label class="search__title" >공개여부</label>
-                    <input type="checkbox" id="cb1">
-                    <label for="cb1"></label> <label class="search__title" >공개</label>
-                    <input type="checkbox" id="cb2">
-                    <label for="cb2"></label> <label class="search__title" >비공개</label>
+                <nav>
+                    <h1 class= "d-none">세부 메뉴 목록</h1>
+
+                    <ul>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="list.html">공지사항관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="QnA/list.html">QnA 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-clipboard-list"></i>
+                            <a href="../category/list.html">카테고리 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-clipboard-list"></i>
+                            <a href="../board/list.html">게시글 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-ban"></i>
+                            <a href="../board/reported.html">신고된 게시글 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-comment"></i>
+                            <a href="../comment/list.html">댓글 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-comment-slash"></i>
+                            <a href="../comment/reported.html">신고된 댓글 관리</a>
+                        </li>
+                    </ul>
+                </nav>
+
+
+            </aside>
+
+            <main class="main">
+                <h1 class="d-none">Main Content</h1>
+
+                <section>
+                    <h1 class="d-none">검색폼</h1>
+                   <form class="search__container">
+                        
+                        <label class="search__title">제목</label>
+                        <input class="search__input" type="text" >
+                        
+
+                         <!-- <label class="search__title" >공개여부</label> -->
+                         <input type="checkbox" id="cb1">
+                         <label for="cb1"></label> <label class="search__title" >공개</label>
+                         <input type="checkbox" id="cb2">
+                         <label for="cb2"></label> <label class="search__title" >비공개</label>
                    
-                    <label class="search__title" >일자</label>
-                    <input class="search__input" type="date">~<input class="search__input" type="date">
-                    <input class="button" type="submit" value="검색">
+                         <label class="search__title" >일자</label>
+                         <input class="search__input" type="date">~<input class="search__input" type="date">
+                         <input class="button" type="submit" value="검색">
+     
+                    </form>
+                </section>
 
-    
-                </form>
+                <section>
+                    <h1>공지사항 관리</h1>
 
-            </section>
+                    <table class="list-table">
+                        <thead>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>작성자</td>
+                                <td>작성일</td>
+                                <td>조회수</td>
+                                <td>공개여부</td>
+                                <td>삭제</td>
+                            </tr>
+                        </thead>
 
-            <select class = "selectbox">
-                <option>dd</option>
-                <option>ddㅋㅋ</option>
-                <option>메롱</option>
-                </select>
-                
-           
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                  <td ><a href="detail.html">12월 서버 점검 안내</a></td>
 
-            <section>
-                <h1>공지사항</h1>
+                                <td>관리인</td>
+                                <td>2020-12-01</td>
+                                <td>100</td>
+                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox"></td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <td>번호</td>
-                            <td>제목</td>
-                            <td>작성자</td>
-                            <td>작성일</td>
-                            <td>조회수</td>
-                            <td>공개여부</td>
-                            <td>삭제</td>
-                        </tr>
-                    </thead>
+                <section>
+                    <h1 class="d-none">이벤트 버튼</h1>
+                    <a href=""><input class="button" type="button" value="모두 공개"></a>
+                    <a href=""><input class="button" type="button" value="모두 삭제"></a>
+                    <a href="reg.html"><input class="button" type="button" value="게시글 작성"></a>
+                </section>
 
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="detail.html">12월 서버 점검 안내</a></td>
-                            <td>관리인</td>
-                            <td>2020-12-01</td>
-                            <td>100</td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+                <div class="pager">
+                    <div>
+                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div>
+                      <a href="#"><i class="fas fa-angle-left"></i></a>
+                    </div>
+                  <ul>
+                    <li><a href="#"">1</a></li>
+                  </ul>
+                  <div>
+                    <a href="#"><i class="fas fa-angle-right"></i></a>
+                  </div>
+                  <div>
+                    <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                  </div>
+                  </div>
 
-            <section>
-                <h1>QnA</h1>
 
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <td>번호</td>
-                            <td>제목</td>
-                            <td>작성자</td>
-                            <td>작성일</td>
-                            <td>조회수</td>
-                            <td>공개여부</td>
-                            <td>답변</td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="detail.html">12월 서버 점검 안내</a></td>
-                            <td>관리인</td>
-                            <td>2020-12-01</td>
-                            <td>100</td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-        </main>
+            </main>
+        </div>
     </section>
 
     <footer class="footer">
-        <h1>Footer</h1>
+        <div class="container">
+            <h1>Footer</h1>
+        </div>
     </footer>
 
 </body>
+
 </html>
