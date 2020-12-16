@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,23 +89,23 @@
                         </li>
 
                         <li>
-                            <a href="../category/list.html">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
                         </li>
                         
                         <li>
-                            <a href="list.html">게시글 관리</a>
+                            <a href="list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="reported.html">신고된 게시글 관리</a>
+                            <a href="reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../comment/list.html">댓글 관리</a>
+                            <a href="../comment/list">댓글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../comment/reported.html">신고된 댓글 관리</a>
+                            <a href="../comment/reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -120,9 +124,9 @@
                         <input class="search__input" name="query" type="text">
                         <select class="selectbox" name="category">
                             <option>게시판</option>
-                            <option value="1">카테고리1</option>
-                            <option value="2">카테고리2</option>
-                            <option value="3">카테고리3</option>
+                            <c:forEach var="c" items="${cList }">
+	                            <option value="${c.name }">${c.name }</option>
+                            </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
                         <input class="search__input" name="start_date" type="date"> - <input class="search__input" name="end_date" type="date">
@@ -155,22 +159,32 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>현지</td>
-                                <td>
-                                    <select name="category">
-                                        <option value="자유게시판">자유게시판</option>
-                                        <option value="자유게시판">나눔게시판</option>
-                                    </select>
-                                </td>
-                                <td><a href="detail.html">제목입니당</a></td>
-                                <td>10</td>
-                                <td>2020-09-09</td>
-                                <td>100</td>
-                                <td>X</td>
-                                <td><input name="check_delete" type="checkbox"></td>
-                            </tr>
+	                        <c:forEach var="b" items="${list }">
+	                            <tr>
+	                                <td>${b.id }</td>
+	                                <td>${b.writerId }</td>
+	                                <td>
+	                                	<select name="category">
+		                                	<c:forEach var="c" items="${cList }">
+		                                		<c:choose>
+		                                			<c:when test="${b.categoryId eq c.name }">
+		                                				<option value="${c.name }" selected>${c.name }</option>
+		                                			</c:when>
+		                                			<c:otherwise>
+		                                        		<option value="${c.name }">${c.name }</option>
+		                                        	</c:otherwise>
+		                                        </c:choose>
+	                                    	</c:forEach>
+	                                    </select>
+	                                </td>
+	                                <td><a href="detail?id=${b.id }">${b.title }</a></td>
+	                                <td>${b.cmtCnt }</td>
+	                                <td>${b.regDate }</td>
+	                                <td>${b.hit }</td>
+	                                <td>${b.files }</td>
+	                                <td><input name="check_delete" type="checkbox"></td>
+	                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </section>

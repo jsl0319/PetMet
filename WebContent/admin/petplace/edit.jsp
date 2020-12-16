@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +12,7 @@
     <title>관리자 > 펫플레이스 > 수정</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
+    <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -71,16 +73,16 @@
 
                     <ul>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="list">Pet Place 관리</a>
+                            <i class="fas fa-map-marked-alt"></i>
+                            <a href="list">&nbsp;&nbsp;Pet Place 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="category/list">카테고리 관리</a>
+                            <i class="fas fa-chalkboard"></i>
+                            <a href="category/list">&nbsp;&nbsp;카테고리 관리</a>
                         </li>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
-                            <a href="review/list">후기 관리</a>
+                            <i class="fas fa-clipboard"></i>
+                            <a href="review/list">&nbsp;&nbsp;후기 관리</a>
                         </li>
                     </ul>
 
@@ -91,78 +93,82 @@
             <main class="main">
                 <h1 class="d-none">main</h1>
 
-                <section class="search-form">
-
-                    <h1 class="d-none">검색폼</h1>
-
-                    <form>
-
-                        <select>
-                            <option>제목</option>
-                            <option>내용</option>
-                            <option>지역</option>
-                            <option>카테고리</option>
-                        </select>
-
-                        <input type="text">
-                        <input type="submit" value="검색">
-                    </form>
-
-                </section>
-
                 <section>
-                    <h1 class="d-none">PetPlace 등록</h1>
+                    <h1>PetPlace 수정</h1>
 
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
 
                         <table class="detail-table">
                             <tbody>
                                 <tr>
-                                    <th>제목</th>
+                                    <th>이름</th>
                                     <td colspan="3">
-                                        <input type="text" name="title" style="width: 100%;" />
+                                        <input type="text" name="title" value="${pp.name }" />
+                                    </td>
+                                    <th>카테고리</th>
+                                    <td>
+                                        <select name="categoryId">
+                                        	<c:forEach var="ppc" items="${list }">
+                                            	<option value="${ppc.name }">${ppc.name }</option>
+                                        	</c:forEach>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>주소</th>
+                                    <td colspan="3"><input type="text" name="address" value="${pp.address }"></td>
+                                	<th>공개 여부</th>
+                                	<td>
+                                        <select name="pub">
+                                        	<option selected value="1">공개</option>
+                                        	<option value="0">비공개</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>홈페이지</th>
+                                    <td colspan="3"><input type="text" name="homepage" value="${pp.homepage }"></td>
+                                    <th>전화번호</th>
+                                    <td><input type="text" name="phone" value="${pp.phone }"></td>
+                                </tr>
+                                <tr>
                                     <th>작성일</th>
-                                    <td colspan="3">d</td>
+                                    <td colspan="5">
+                                    	<fmt:formatDate value="${pp.regDate}" pattern="yyyy-MM-dd a hh:mm:ss" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>작성자</th>
-                                    <td>최고관리자</td>
+                                    <td>${pp.writerId}</td>
                                     <th>조회수</th>
-                                    <td>111</td>
+                                    <td>${pp.hit}</td>
+                                    <th>좋아요</th>
+                                    <td>${pp.likes}</td>
                                 </tr>
                                 <tr>
                                     <th class="files">첨부파일</th>
-                                    <td colspan="3">
+                                    <td colspan="5">
                                         <input type="file" name="file" />
                                     </td>
                                 </tr>
                                 <tr class="content">
-                                    <td colspan="4">
+                                    <td colspan="6">
                                         <textarea class="content" name="content"
-                                            style="width: 500px; height: 100px; resize: none;">지도</textarea>
+                                            style="width: 900px; height: 100px; resize: none;">지도</textarea>
                                     </td>
                                 </tr>
                                 <tr class="content">
-                                    <td colspan="4">
+                                    <td colspan="6">
                                         <textarea class="content" name="content"
-                                            style="width: 500px; height: 500px; resize: none">상세설명</textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <input type="checkbox" id="open" name="open" value="true">
-                                        <label>공개</label>
+                                            style="width: 900px; height: 500px; resize: none">상세설명</textarea>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <section>
-                            <a href="list">취소</a>
-                            <input type="submit" value="수정 완료" />
+                            <a class="button" href="detail?id=${pp.id}">취소</a>
+                            <input class="button" type="submit" value="수정 완료" />
                         </section>
 
                     </form>

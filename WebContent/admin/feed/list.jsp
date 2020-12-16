@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/admin/components/table/list.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-  <title>FEED-LIST</title>
+  <title>FEED-list</title>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
   <header id="header" class="header">
     <div class="container">
       <div class="logo">
-        <a href="../index.html">
+        <a href="../index.jsp">
           <i class="fas fa-dog fa-3x"></i>
           <h1>PetMet</h1>
         </a>
@@ -25,9 +26,9 @@
       <nav>
         <h1 class="d-none">헤더 목록</h1>
         <ul>
-          <li><a href="../user/index.html">USER</a></li>
-          <li><a href="index.html">FEED</a></li>
-          <li><a href="../community/index.html">COMMUNITY</a></li>
+          <li><a href="../user/index.jsp">USER</a></li>
+          <li><a href="index.jsp">FEED</a></li>
+          <li><a href="../community/index.jsp">COMMUNITY</a></li>
           <li><a href="">PLACE</a></li>
         </ul>
       </nav>
@@ -44,7 +45,7 @@
         <aside class="aside">
           <h1 class="d-none">페이지 목록</h1>
           <ul>
-            <li><a href="index.html">Report</a></li>
+            <li><a href="index.jsp">Report</a></li>
           </ul>
         </aside>
 
@@ -66,20 +67,15 @@
               </thead>
 
               <tbody>
+               <c:forEach var = "rf" items="${list}">
                 <tr>
                   <td>1</td>
                   <td>현지양</td>
-                  <td><a href="detail.html">김꼰대</a></td>
+                  <td><a href="detail.jsp">김꼰대</a></td>
                   <td>9090.09.09</td>
                   <td>열정overload</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>민영양</td>
-                  <td><a href="detail.html">김꼰대</a></td>
-                  <td>9090.09.09</td>
-                  <td>열정overload</td>
-                </tr>
+                </c:forEach>
               </tbody>
             </table>
           </section>
@@ -92,9 +88,6 @@
               <a href="#"><i class="fas fa-angle-left"></i></a>
             </div>
           <ul>
-            <li><a href="#"">1</a></li>
-            <li><a href="#"">1</a></li>
-            <li><a href="#"">1</a></li>
             <li><a href="#"">1</a></li>
           </ul>
           <div>
