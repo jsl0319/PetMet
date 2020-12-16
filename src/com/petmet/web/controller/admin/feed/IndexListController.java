@@ -18,8 +18,8 @@ import com.petmet.web.service.ReportedFeedViewService;
 public class IndexListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReportedFeedViewService service = new ReportedFeedViewService();
-		List<ReportedFeedView> list = service.getList();
+		FeedReportService service = new FeedReportService();
+		List<ReportedFeedView> list = service.getViewList();
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("index.jsp").forward(request, response);

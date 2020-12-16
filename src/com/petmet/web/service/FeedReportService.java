@@ -8,71 +8,57 @@ import com.petmet.web.entity.FeedReport;
 import com.petmet.web.entity.ReportedFeedView;
 
 public class FeedReportService {
-
 	private FeedReportDao feedReportDao;
-	
 	
 	public FeedReportService() {
 		feedReportDao = new JdbcFeedReportDao();
 	}
 	
-	public List<FeedReport> getList(int page, int size, String query){
+	public FeedReport get(int id) {
+		return feedReportDao.get(id);
+	}
+	public int insert(FeedReport feedReport) {
+		return feedReportDao.insert(feedReport);
+	}
+	public int update(FeedReport feedReport) {
+		return feedReportDao.update(feedReport);
+	}
+	public int delete(int id) {
+		return feedReportDao.delete(id);
+	}
+	
+	
+	
+	public List<FeedReport> getList(int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
 	    int endIndex = page*10;
 	      
-		return feedReportDao.getList(startIndex,endIndex,query);
+		return feedReportDao.getList(startIndex,endIndex);
 	}
-	
-	
 	public List<FeedReport> getList(int page) {
-	      
-		return feedReportDao.getList(page);
+		return feedReportDao.getList(page,10);
 	}
-	
-	
 	public List<FeedReport> getList() {
-	      
-		return feedReportDao.getList();
+		return feedReportDao.getList(1,10);
 	}
 	
-	
-	public FeedReport get(int id) {
-		
-		return feedReportDao.get(id);
-	}
-
-	public int insert(FeedReport feedReport) {
-		
-		return feedReportDao.insert(feedReport);
-	}
-
-	public int update(FeedReport feedReport) {
-		int result = 0;
-		
-		result = feedReportDao.update(feedReport);
-		return result;
-	}
-
-	public int delete(int id) {
-		int result = 0;
-		
-		result = feedReportDao.delete(id);
-		return result;
-		
-	}
-	
-	public List<ReportedFeedView> getViewList(){
-		return getViewList();
-	}
 	
 	public List<ReportedFeedView> getViewList(int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
 	    int endIndex = page*10;
 	      
-		return getViewList(startIndex, endIndex);
+		return feedReportDao.getViewList(startIndex, endIndex);
 	}
+	public List<ReportedFeedView> getViewList(int page){
+		return feedReportDao.getViewList(page,10);
+	}
+	public List<ReportedFeedView> getViewList(){
+		return feedReportDao.getViewList(1,10);
+	}
+	
+	
 	
 	
 	public int getLastId() {
