@@ -1,18 +1,28 @@
 package com.petmet.web.entity;
 
 public class BoardCategoryView {
-	private int id;
-	private String name;
-	private int cntBoard;
+	private int num;
+    private int id;
+    private String name;
+    private int cntBoard;
 	
-	public BoardCategoryView() {
-		this(0, null, 0);
+    public BoardCategoryView() {
+		this(0, 0, null, 0);
 	}
 
-	public BoardCategoryView(int id, String name, int cntBoard) {
+	public BoardCategoryView(int num, int id, String name, int cntBoard) {
+		this.num = num;
 		this.id = id;
 		this.name = name;
 		this.cntBoard = cntBoard;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public int getId() {
@@ -41,7 +51,7 @@ public class BoardCategoryView {
 
 	@Override
 	public String toString() {
-		return "BoardCategoryView [id=" + id + ", name=" + name + ", cntBoard=" + cntBoard + "]";
+		return "BoardCategoryView [num=" + num + ", id=" + id + ", name=" + name + ", cntBoard=" + cntBoard + "]";
 	}
-	
+    
 }

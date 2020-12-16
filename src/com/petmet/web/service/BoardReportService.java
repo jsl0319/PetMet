@@ -3,8 +3,14 @@ package com.petmet.web.service;
 import java.util.Date;
 import java.util.List;
 
+import com.petmet.web.dao.BoardCategoryDao;
+import com.petmet.web.dao.BoardDao;
 import com.petmet.web.dao.BoardReportDao;
+import com.petmet.web.dao.jdbc.JdbcBoardCategoryDao;
+import com.petmet.web.dao.jdbc.JdbcBoardDao;
 import com.petmet.web.dao.jdbc.JdbcBoardReportDao;
+import com.petmet.web.entity.Board;
+import com.petmet.web.entity.BoardCategory;
 import com.petmet.web.entity.BoardReport;
 import com.petmet.web.entity.BoardReportView;
 
@@ -32,12 +38,16 @@ public class BoardReportService {
 	public BoardReport get(int id) {
 		return boardReportDao.get(id);
 	}
+	
+	public List<BoardReport> getListByBoardId(int boardId){
+		return boardReportDao.getListByBoardId(boardId);
+	}
 
 	// -------------- getList --------------
 	public List<BoardReport> getList() {
 		return getList(null, null, null, null, null, 1, 20);
 	}
-
+	
 	public List<BoardReport> getList(int page) {
 		return getList(null, null, null, null, null, page, 20);
 	}
@@ -128,12 +138,22 @@ public class BoardReportService {
 		return result;
 	}
 
-	BoardReport getPrev(int id) {
+	public BoardReport getPrev(int id) {
 		return boardReportDao.get(id - 1);
 	}
 
-	BoardReport getNext(int id) {
+	public BoardReport getNext(int id) {
 		return boardReportDao.get(id + 1);
+	}
+	
+	public List<BoardCategory> getCategoryList(){
+		BoardCategoryDao categoryDao = new JdbcBoardCategoryDao();
+		return categoryDao.getList();
+	}
+	
+	public Board getBoard(int id) {
+		BoardDao boardDao = new JdbcBoardDao();
+		return boardDao.get(id);
 	}
 
 	// -------------- getViewList --------------

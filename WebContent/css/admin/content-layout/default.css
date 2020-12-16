@@ -83,7 +83,7 @@
 
 .body .main section {
   width: 95%;
-  background-color: beige;
+  background-color: white;
 }
 
 .body .main section table {
@@ -96,7 +96,7 @@
   width: 95%;
   position: absolute;
   bottom: 0px;
-  background-color: khaki;
+  background-color:white;
 }
 
 .body .main .pager div {

@@ -4,29 +4,28 @@ import java.util.Date;
 
 public class BoardReportView {
 	private int num;
-    private int id;
-    private String title;
-    private int hit;
+    private int boardId;
     private String writerId;
-    private Date regDate;
-    private String files;
     private String categoryId;
+    private String title;
+    private Date regDate;
+    private int hit;
     private int reported;
     
     public BoardReportView() {
-    	this(0, 0, null, 0, null, null, null, null, 0);
+		this(0, 0, null, null, null, null, 0, 0);
 	}
 
-	public BoardReportView(int num, int id, String title, int hit, String writerId, Date regDate, String files,
-			String categoryId, int reported) {
+	public BoardReportView(int num, int boardId, String writerId, String categoryId, String title, Date regDate,
+			int hit, int reported) {
+		
 		this.num = num;
-		this.id = id;
-		this.title = title;
-		this.hit = hit;
+		this.boardId = boardId;
 		this.writerId = writerId;
-		this.regDate = regDate;
-		this.files = files;
 		this.categoryId = categoryId;
+		this.title = title;
+		this.regDate = regDate;
+		this.hit = hit;
 		this.reported = reported;
 	}
 
@@ -38,28 +37,12 @@ public class BoardReportView {
 		this.num = num;
 	}
 
-	public int getId() {
-		return id;
+	public int getBoardId() {
+		return boardId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public int getHit() {
-		return hit;
-	}
-
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 
 	public String getWriterId() {
@@ -70,6 +53,22 @@ public class BoardReportView {
 		this.writerId = writerId;
 	}
 
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -78,20 +77,12 @@ public class BoardReportView {
 		this.regDate = regDate;
 	}
 
-	public String getFiles() {
-		return files;
+	public int getHit() {
+		return hit;
 	}
 
-	public void setFiles(String files) {
-		this.files = files;
-	}
-
-	public String getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 
 	public int getReported() {
@@ -104,9 +95,9 @@ public class BoardReportView {
 
 	@Override
 	public String toString() {
-		return "BoardReportView [num=" + num + ", id=" + id + ", title=" + title + ", hit=" + hit + ", writerId="
-				+ writerId + ", regDate=" + regDate + ", files=" + files + ", categoryId=" + categoryId + ", reported="
-				+ reported + "]";
+		return "BoardReportView [num=" + num + ", boardId=" + boardId + ", writerId=" + writerId + ", categoryId="
+				+ categoryId + ", title=" + title + ", regDate=" + regDate + ", hit=" + hit + ", reported=" + reported
+				+ "]";
 	}
-    
+
 }

@@ -80,11 +80,11 @@ public class BoardCategoryService {
 		return result;
 	}
 
-	BoardCategory getPrev(int id) {
+	public BoardCategory getPrev(int id) {
 		return boardCategoryDao.get(id - 1);
 	}
 
-	BoardCategory getNext(int id) {
+	public BoardCategory getNext(int id) {
 		return boardCategoryDao.get(id + 1);
 	}
 
