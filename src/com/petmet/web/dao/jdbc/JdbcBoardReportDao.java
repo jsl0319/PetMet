@@ -250,46 +250,46 @@ public class JdbcBoardReportDao implements BoardReportDao {
 
 	@Override
 	public List<BoardReport> getListByBoardId(int boardId) {
-		String sql = "SELECT * " + 
-				"FROM(" + 
-				"    SELECT ROWNUM NUM, BR.* " + 
-				"    FROM(" + 
-				"        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE DESC" + 
-				"    ) BR " + 
-				") " + 
-				"WHERE BOARD_ID = ?";
+		String sql = "SELECT * "
+					+ "FROM("
+					+ "    SELECT ROWNUM NUM, BR.* "
+					+ "    FROM("
+					+ "        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE DESC"
+					+ "    ) BR "
+					+ ") "
+					+ "WHERE BOARD_ID = ?";
 
-	List<BoardReport> list = new ArrayList<>();
+		List<BoardReport> list = new ArrayList<>();
 
-	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con = DriverManager.getConnection(url, uid, pwd);
-		PreparedStatement pst = con.prepareStatement(sql);
-		pst.setInt(1, boardId);
-		
-		ResultSet rs = pst.executeQuery();
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, boardId);
 
-		while (rs.next()) {
-			int id = rs.getInt("ID");
-			String memId = rs.getString("MEM_ID");
-			Date regDate = rs.getDate("REG_DATE");
-			String content = rs.getString("CONTENT");
+			ResultSet rs = pst.executeQuery();
 
-			BoardReport b = new BoardReport(id, memId, boardId, regDate, content);
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				String memId = rs.getString("MEM_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String content = rs.getString("CONTENT");
 
-			list.add(b);
+				BoardReport b = new BoardReport(id, memId, boardId, regDate, content);
+
+				list.add(b);
+			}
+
+			rs.close();
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 
-		rs.close();
-		pst.close();
-		con.close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	}
-
-	return list;
+		return list;
 	}
 
 }

@@ -13,6 +13,9 @@ import java.util.List;
 import com.petmet.web.dao.CommentReportDao;
 import com.petmet.web.entity.BoardReport;
 import com.petmet.web.entity.CommentReport;
+import com.petmet.web.entity.CommentReportView;
+import com.petmet.web.entity.CommentView;
+import com.petmet.web.entity.Comments;
 
 public class JdbcCommentReportDao implements CommentReportDao{
 	private String url = DBContext.URL;
@@ -104,13 +107,15 @@ public class JdbcCommentReportDao implements CommentReportDao{
 	public CommentReport get(int id) {
 		CommentReport c = null;
 
-		String sql = "SELECT * FROM COMMENT_REPORT WHERE ID =" + id;
+		String sql = "SELECT * FROM COMMENT_REPORT WHERE ID =?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
 			
 			if (rs.next()) {
 				String memId = rs.getString("MEM_ID");
@@ -121,7 +126,7 @@ public class JdbcCommentReportDao implements CommentReportDao{
 			    c = new CommentReport(id, memId, commentId, regDate, content);
 			}
 
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -135,16 +140,36 @@ public class JdbcCommentReportDao implements CommentReportDao{
 	}
 
 	@Override
-	public List<CommentReport> getList() {
-		String sql = "SELECT * FROM COMMENT_REPORT";
+	public List<CommentReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex) {
+		String sql = "SELECT * "
+					+ "FROM("
+					+ "    SELECT ROWNUM NUM, C.* "
+					+ "    FROM("
+					+ "        SELECT * FROM COMMENT_REPORT ORDER BY REG_DATE DESC"
+					+ "    ) C"
+					+ ") "
+					+ "WHERE NUM BETWEEN ? AND ?";
+	
+		// 검색폼의 검색 경우의 수
+		if (query != null)
+			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
+	
+		if (boardCategory != null)
+			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
+	
+		if (startDate != null || endDate != null)
+			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
 
 		List<CommentReport> list = new ArrayList<>();
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
 				int id = rs.getInt("ID");
@@ -159,7 +184,7 @@ public class JdbcCommentReportDao implements CommentReportDao{
 			}
 
 			rs.close();
-			st.close();
+			pst.close();
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,9 +196,102 @@ public class JdbcCommentReportDao implements CommentReportDao{
 	}
 
 	@Override
-	public List<CommentReport> getList(int boardId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CommentReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex) {
+		String sql = "SELECT * FROM REPORTED_COMMENT_VIEW WHERE NUM BETWEEN ? AND ?";
+
+		// 검색폼의 검색 경우의 수
+		if (query != null)
+			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
+
+		if (boardCategory != null)
+			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
+
+		if (startDate != null || endDate != null)
+			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
+		
+		List<CommentReportView> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				int num = rs.getInt("NUM");
+			    int id = rs.getInt("ID");
+			    String categoryId = rs.getString("CATEGORY_ID");
+			    int boardId = rs.getInt("BOARD_ID");
+			    String title = rs.getString("TITLE");
+			    String writerId = rs.getString("WRITER_ID");
+			    String content = rs.getString("CONTENT");
+			    Date regDate = rs.getDate("REG_DATE");
+			    int reported = rs.getInt("REPORTED");
+			    
+				CommentReportView cv = new CommentReportView(num, id, categoryId, boardId, title, writerId, content, regDate, reported);
+
+				list.add(cv);
+			}
+
+			rs.close();
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<CommentReport> getListByCommentId(int commentId) {
+		String sql = "SELECT * "
+					+ "FROM("
+					+ "    SELECT ROWNUM NUM, CR.* "
+					+ "    FROM("
+					+ "        SELECT * FROM COMMENT_REPORT ORDER BY REG_DATE DESC"
+					+ "    ) CR "
+					+ ") "
+					+ "WHERE COMMENT_ID = ?";
+
+		List<CommentReport> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, commentId);
+
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				String memId = rs.getString("MEM_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String content = rs.getString("CONTENT");
+
+				CommentReport cr = new CommentReport(id, memId, commentId, regDate, content);
+
+				list.add(cr);
+			}
+
+			rs.close();
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 }
