@@ -98,10 +98,10 @@
                             <tr>
                                 <td>번호</td>
                                 <td class="col-m">이메일</td>
-                                <td>닉네임</td>
-                                <td>성별</td>
-                                <td class="col-m">주소</td>
-                                <td class="col-m">휴대폰번호</td>
+                                <td class="col-m">닉네임</td>
+                                <td class="col-s">성별</td>
+                                <td class="col-l">주소</td>
+                                <td class="col-l">휴대폰번호</td>
                                 <td class="col-m">가입일</td>
                             </tr>
                         </thead>
