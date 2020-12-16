@@ -1,4 +1,7 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,44 +110,33 @@
                     <table class="list-table">
                         <thead>
                             <tr>
-                                <td>번호</td>
-                                <td>카테고리명</td>
-                                <td>수정</td>
-                                <td>삭제</td>
+                                <td class="col-s">번호</td>
+                                <td class="col-m">카테고리명</td>
+                                <td class="col-m">등록일</td>
+                                <td class="col-m">수정일</td>
+                                <td class="col-s">수정</td>
+                                <td class="col-s">삭제</td>
                             </tr>
                         </thead>
                 
                         <tbody>
+                        <c:forEach var="ppc" items="${list}">
                             <tr>
-                                <td>5</td>
-                                <td><a href="">카테고리5</a></td>
+                                <td>${ppc.num}</td>
+                                <td><a href="">${ppc.name}</a></td>
+                                <td>${ppc.regDate}</td>
+                                <c:choose>
+                                	<c:when test="${ppc.regDate eq ppc.editDate}">
+                                		<td>수정 내역 없음</td>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<td>${ppc.editDate}</td>
+                                	</c:otherwise>
+                                </c:choose>
                                 <td><input type="radio"></td>
                                 <td><input type="checkbox"></td>
                             </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><a href="">카테고리4</a></td>
-                                <td><input type="radio"></td>
-                                <td><input type="checkbox"></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><a href="">카테고리3</a></td>
-                                <td><input type="radio"></td>
-                                <td><input type="checkbox"></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="">카테고리2</a></td>
-                                <td><input type="radio"></td>
-                                <td><input type="checkbox"></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="">카테고리1</a></td>
-                                <td><input type="radio"></td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+                        </c:forEach>    
                         </tbody>
                     </table>
                 </section>

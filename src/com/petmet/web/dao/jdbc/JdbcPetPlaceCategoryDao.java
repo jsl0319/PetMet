@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.petmet.web.dao.PetPlaceCategoryDao;
 import com.petmet.web.entity.PetPlaceCategory;
+import com.petmet.web.entity.PetPlaceCategoryView;
 
 public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 
@@ -49,7 +51,7 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 	public int update(PetPlaceCategory ppc) {
 		int result = 0;
 
-		String sql = "UPDATE PETPLACE_CATEGORY SET NAME=? WHERE ID=?";
+		String sql = "UPDATE PETPLACE_CATEGORY SET NAME=?,EDIT_DATE = SYSTIMESTAMP WHERE ID=?";
 
 		try {
 
@@ -148,10 +150,52 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 
 				int id = rs.getInt("ID");
 				String name = rs.getString("NAME");
+				Date regDate = rs.getDate("REG_DATE");
+				Date editDate = rs.getDate("EDIT_DATE");
 
-				PetPlaceCategory ppc = new PetPlaceCategory(id, name);
+				PetPlaceCategory ppc = new PetPlaceCategory(id, name, regDate, editDate);
 
 				list.add(ppc);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<PetPlaceCategoryView> getViewList() {
+
+		String sql = "SELECT * FROM PETPLACE_CATEGORY_VIEW";
+
+		List<PetPlaceCategoryView> list = new ArrayList<>();
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				Date regDate = rs.getDate("REG_DATE");
+				Date editDate = rs.getDate("EDIT_DATE");
+				int num = rs.getInt("NUM");
+
+				PetPlaceCategoryView ppcView = new PetPlaceCategoryView(id, name, regDate, editDate, num);
+
+				list.add(ppcView);
 			}
 
 			rs.close();
