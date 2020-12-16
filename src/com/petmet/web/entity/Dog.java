@@ -6,23 +6,23 @@ public class Dog {
 	 private int id;
 	 private String name;
 	 private String kind;
-	 private String gender;
-	 private String neut;
-	 private String birth;
-	 private String weight;
+	 private int gender;
+	 private int neut;
+	 private Date birth;
+	 private int weight;
 	 private String content;
 	 private String character;
 	 private String files;
 	 private String masterId;
 	 private Date regDate;
 
-	 public Dog() {
-		 this(0,null,null,null,null,null,null,null,null,null,null,null);
-	 }
+	public Dog() {
+		this(0,null,null,0,0,null,0,null,null,null,null,null);
+	}
 
-	public Dog(int id, String name, String kind, String gender, String neut, String birth, String weight,
-			String content, String character, String files, String masterId, Date regDate) {
-		
+	public Dog(int id, String name, String kind, int gender, int neut, Date birth, int weight, String content,
+			String character, String files, String masterId, Date regDate) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.kind = kind;
@@ -61,35 +61,35 @@ public class Dog {
 		this.kind = kind;
 	}
 
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 
-	public String getNeut() {
+	public int getNeut() {
 		return neut;
 	}
 
-	public void setNeut(String neut) {
+	public void setNeut(int neut) {
 		this.neut = neut;
 	}
 
-	public String getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
-	public String getWeight() {
+	public int getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 
@@ -139,6 +139,5 @@ public class Dog {
 				+ ", birth=" + birth + ", weight=" + weight + ", content=" + content + ", character=" + character
 				+ ", files=" + files + ", masterId=" + masterId + ", regDate=" + regDate + "]";
 	}
-	 
-	 
+	
 }
