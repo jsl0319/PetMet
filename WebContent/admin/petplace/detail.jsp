@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="index">
+                        <a href="../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../petplace/list">
+                        <a href="list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
