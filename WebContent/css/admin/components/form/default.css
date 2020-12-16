@@ -12,7 +12,9 @@
     }
     
     .search__input {
+
         width: 150px;
+
         padding: 12px 24px;
 
         background-color: transparent;
@@ -48,6 +50,8 @@
             border-radius: 20px;
             padding: 10px;
             background-color: #ffffff;
+            
+         
         }
      /* ----------------버튼-----------    */
     .button:hover {
@@ -88,3 +92,5 @@
     input[id="cb2"] {
         display: none;
     }
+
+  

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmet.web.entity.PetPlace;
 import com.petmet.web.service.PetPlaceService;
 
-@WebServlet("/admin/petPlace/list")
+@WebServlet("/admin/petplace/list")
 public class ListController extends HttpServlet{
 	
 	@Override
