@@ -19,9 +19,22 @@ public class ListController extends HttpServlet{
 							, HttpServletResponse response) throws ServletException, IOException {
 		BoardCategoryService service = new BoardCategoryService();
 		List<BoardCategoryView> list = service.getViewList();
-		
+
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String[] dels = request.getParameterValues("del");
+		int[] ids = new int[dels.length];
+		
+		for(int i=0; i < dels.length; i++)
+			ids[i] = Integer.parseInt(dels[i]);
+		
+		BoardCategoryService service = new BoardCategoryService();
+		service.deleteList(ids);
+		
+		response.sendRedirect("list");
+	}
 }
