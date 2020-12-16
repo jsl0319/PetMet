@@ -143,6 +143,9 @@
                             <option value="50개">100개</option>
                         </select>
                     </div>
+                    
+                    <form action="list" method="post">
+                    
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -167,7 +170,7 @@
 	                                <td>${c.writerId }</td>
 	                                <td><a href="detail?id=${c.id }&bId=${c.boardId}">${c.content }</a></td>
 	                                <td>${c.regDate }</td>
-	                                <td><input type="checkbox"></td>
+	                                <td><input name="del" value="${c.id }" type="checkbox">
 	                            </tr>
                             </c:forEach>
                         </tbody>
@@ -179,7 +182,8 @@
 
                     <input class="button" type="submit" value="삭제">
                 </section>
-
+				</form>
+				
                 <div class="pager">
                     <div>
                       <a href="#"><i class="fas fa-angle-double-left"></i></a>
