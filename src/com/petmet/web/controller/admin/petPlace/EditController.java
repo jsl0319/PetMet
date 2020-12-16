@@ -1,6 +1,7 @@
 package com.petmet.web.controller.admin.petPlace;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.petmet.web.entity.PetPlace;
+import com.petmet.web.entity.PetPlaceCategory;
+import com.petmet.web.service.PetPlaceCategoryService;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/edit")
@@ -18,11 +21,18 @@ public class EditController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// PetPlace
 		int id = Integer.parseInt(request.getParameter("id"));
 		PetPlaceService service = new PetPlaceService();
-		PetPlace p = service.get(id);
+		PetPlace pp = service.get(id);
+
+		request.setAttribute("pp", pp);
 		
-		request.setAttribute("p", p);
+		//PetPlace Category
+		PetPlaceCategoryService ppcService = new PetPlaceCategoryService();
+		List<PetPlaceCategory> list = ppcService.getList();
+		
+		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/admin/petplace/edit.jsp").forward(request, response);
 
@@ -32,7 +42,8 @@ public class EditController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
+		int id = Integer.parseInt(request.getParameter("id"));
+		String writerId = request.getParameter("writerId");
 		String categoryId = request.getParameter("categoryId");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
@@ -41,9 +52,9 @@ public class EditController extends HttpServlet {
 		String location = request.getParameter("location");
 		String content = request.getParameter("content");
 		String files = request.getParameter("files");
+		int pub = Integer.parseInt(request.getParameter("pub")); 
 		
-		PetPlace pp = new PetPlace(categoryId, name, address, homepage, phone, location, content, files);
-		pp.setId(Integer.parseInt(id));
+		PetPlace pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content, files, pub);
 		
 		PetPlaceService service = new PetPlaceService();
 		service.update(pp);

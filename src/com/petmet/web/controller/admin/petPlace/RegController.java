@@ -1,13 +1,19 @@
 package com.petmet.web.controller.admin.petPlace;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.petmet.web.entity.PetPlace;
 import com.petmet.web.entity.PetPlaceCategory;
@@ -15,44 +21,89 @@ import com.petmet.web.service.PetPlaceCategoryService;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/reg")
-public class RegController extends HttpServlet{
-	
-//	@Override
-//	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//		if(request.getMethod().equals("GET"))
-//			request.getRequestDispatcher("reg.jsp").forward(request, response);
-//		else if(request.getMethod().equals("POST")) {
-//			
-//			String categoryId = request.getParameter("categoryId");
-//			String name = request.getParameter("name");
-//			String address = request.getParameter("address");
-//			String homepage = request.getParameter("homepage");
-//			String phone = request.getParameter("phone");
-//			String location = request.getParameter("location");
-//			String content = request.getParameter("content");
-//			String files = request.getParameter("files");
-//			PetPlace pp = new PetPlace(categoryId, name, address, homepage, phone, location, content, files);
-//			
-//			PetPlaceService service = new PetPlaceService();
-//			service.insert(pp);
-//			
-//			response.sendRedirect("list");
-//		}
-//	}
-	
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
+public class RegController extends HttpServlet {
+
+	private PetPlaceService service;
+
+	public RegController() {
+		service = new PetPlaceService();
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		PetPlaceCategoryService service = new PetPlaceCategoryService();
 		List<PetPlaceCategory> list = service.getList();
-		
+
 		request.setAttribute("list", list);
-		
+
 		request.getRequestDispatcher("/admin/petplace/reg.jsp").forward(request, response);
 
 	}
-	
-	
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String categoryId = request.getParameter("categoryId");
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
+		String homepage = request.getParameter("homepage");
+		String phone = request.getParameter("phone");
+		String location = request.getParameter("location");
+		String content = request.getParameter("content");
+		int pub = Integer.parseInt(request.getParameter("pub"));
+
+		PetPlace p = new PetPlace(categoryId, name, address, homepage, phone, location, content, pub);
+
+		// 파일등록
+		Collection<Part> fileParts = request.getParts();
+
+		String fileNames = "";
+
+		for (Part part : fileParts) {
+			if (part.getName().equals("file") && part.getSize() > 0) {
+				Part filePart = part;
+
+				String fileName = filePart.getSubmittedFileName();
+				fileNames += fileName;
+				fileNames += ",";
+
+				int newId = service.getLastId() + 1;
+
+				String pathTemp = request.getServletContext().getRealPath("/static/notice/2020/13/");
+
+				File path = new File(pathTemp);
+				if (!path.exists())
+					path.mkdirs();
+
+				String filePath = pathTemp + File.separator + filePart.getSubmittedFileName();
+
+				InputStream fis = filePart.getInputStream();
+				FileOutputStream fos = new FileOutputStream(filePath);
+
+				byte[] buf = new byte[1024];
+				int size = 0;
+				while ((size = fis.read(buf)) != -1) {
+					fos.write(buf, 0, size);
+				}
+
+				fos.close();
+				fis.close();
+			}
+		}
+		p.setFiles(fileNames);
+
+		// null방지
+		p.setWriterId("관리자");
+
+		service.insert(p);
+
+		System.out.println(p.toString());
+
+		response.sendRedirect("list");
+
+	}
 }
