@@ -16,7 +16,7 @@
 	href="../../../css/admin/components/form/default.css" type="text/css">
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
-<script src="list"></script>
+<script src="list.js"></script>
 
 </head>
 
@@ -123,8 +123,8 @@
 				<section>
 					<h1 class="d-none">이벤트 버튼</h1>
 
-					<input class="button" type="submit" value="저장"> <input
-						class="button" type="submit" value="삭제">
+					<input class="button" name="button" type="submit" value="저장"> <input
+						class="button" name="button" type="submit" value="삭제">
 				</section>
 				</form>
 				<div class="pager">
