@@ -119,7 +119,7 @@
                                 <th>첨부파일</th>
                                 <td colspan="3">
                                 	<c:forTokens var="fileName" items="${p.files}" delims="," varStatus="st">
-										<fmt:formatDate var="year" value="${p.reDdate }" pattern="yyyy" /> 
+										<fmt:formatDate var="year" value="${p.regDate }" pattern="yyyy" /> 
                                       		<a download href="/static/notice/${year }/${n.id}/${fileName}">${fileName}</a>
                                       	<c:if test="${st.last == false}">
                                       	 / 
@@ -128,7 +128,7 @@
                                 </td>
                             </tr>
                             <tr class="content">
-                                <td colspan="4">지도</td>
+                                <td colspan="4">${p.location }</td>
                             </tr>
                             <tr class="content">
                                 <td colspan="4">${p.content }</td>
