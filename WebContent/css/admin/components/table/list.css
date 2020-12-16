@@ -5,39 +5,38 @@
     col - s : 70px 
 */
 
-.list-table{
-    text-align: center;
-    line-height: 1.2;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    width: 100%;
+.list-table {
+  text-align: center;
+  line-height: 1.2;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
 }
 
 .list-table thead {
-    font-weight: bold;
-    color: #fff;
-    background: #e7708d;
+  font-weight: bold;
+  color: #fff;
+  background: #e7708d;
 }
 
 .list-table td {
-    width: 50px;
-    padding: 5px;
-    vertical-align: middle;
+  width: 50px;
+  padding: 5px;
+  vertical-align: middle;
 }
 
-.list-table .col-l{
-    width: 250px;
+.list-table .col-l {
+  width: 250px;
 }
 
-.list-table .col-m{
-    width: 100px;
+.list-table .col-m {
+  width: 100px;
 }
 
 .list-table .col-s {
-    width: 70px;
+  width: 70px;
 }
 
 .list-table .even {
-    background: #fdf3f5;
+  background: #fdf3f5;
 }
-

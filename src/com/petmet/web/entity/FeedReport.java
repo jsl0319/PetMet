@@ -4,17 +4,19 @@ import java.util.Date;
 
 public class FeedReport {
     private int id;
+    private int num;
     private String memId;
     private String feedId;
     private Date repoDate;
     private String content;
     
     public FeedReport() {
-		this(0,null,null,null,null);
+		this(0,0,null,null,null,null);
 	}
 
-	public FeedReport(int id, String memId, String feedId, Date repoDate, String content) {
+	public FeedReport(int id, int num, String memId, String feedId, Date repoDate, String content) {
 		this.id = id;
+		this.num = num;
 		this.memId = memId;
 		this.feedId = feedId;
 		this.repoDate = repoDate;
@@ -27,6 +29,14 @@ public class FeedReport {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getMemId() {
@@ -63,9 +73,11 @@ public class FeedReport {
 
 	@Override
 	public String toString() {
-		return "FeedReport [id=" + id + ", memId=" + memId + ", feedId=" + feedId + ", repoDate=" + repoDate
-				+ ", content=" + content + "]";
+		return "FeedReport [id=" + id + ", num=" + num + ", memId=" + memId + ", feedId=" + feedId + ", repoDate="
+				+ repoDate + ", content=" + content + "]";
 	}
+
+	
 
 	
 }

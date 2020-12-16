@@ -7,13 +7,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 게시글 리스트</title>
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>관리자 > 커뮤니티 > 게시글 리스트/신고된 게시글 관리 > 디테일</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
-    <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/table/detail.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -21,8 +21,8 @@
         <div class="container">
             <div class="logo">
                 <a href="../../index.html">
-                  <i class="fas fa-dog fa-3x"></i>
-                  <h1>PetMet</h1>
+                <i class="fas fa-dog fa-3x"></i>
+                <h1>PetMet</h1>
                 </a>
             </div>
 
@@ -57,7 +57,7 @@
             </nav>
 
             <!-- <nav>
-                <h1>바로가기 메뉴</h1>
+                <h1 class="d-none">바로가기 메뉴</h1>
                 <ul>
                     <li><a href>펫멧이동</a></li>
                     <li><a href>로그아웃</a></li>
@@ -71,7 +71,6 @@
         <div class="container">
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
-
                 <nav>
                     <h1 class="d-none">세부 메뉴 목록</h1>
 
@@ -85,15 +84,15 @@
                         </li>
 
                         <li>
-                            <a href="list">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/list">게시글 관리</a>
+                            <a href="list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <a href="../board/reported">신고된 게시글 관리</a>
+                            <a href="reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
@@ -107,72 +106,83 @@
                 </nav>
             </aside>
 
-            <main class="main">
-                <h1 class="d-none">Main Content</h1>
-
+            <main class = "main">
+                <h1 class="d-none">게시글/신고된 게시글 상세 내용</h1>
                 <section>
-                    <h1 class="d-none">게시글 리스트</h1>
-
-                    <input class="button" type="button" value="+ Add Category">
+                    <h1>상세 게시글 내용</h1>
                     
-                    <table class="list-table">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td class="col-l">카테고리명</td>
-                                <td class="col-m">게시글 수</td>
-                                <td>삭제</td>
-                            </tr>
-                        </thead>
+                    <table class="detail-table">
+                        <tr>
+                            <th>제목</th>
+                            <td colspan="3">${b.title }</td>
+                        </tr>
 
-                        <tbody>
-	                        <c:forEach var="c" items="${list }">
-	                            <tr>
-	                                <td>${c.id }</td>
-	                                <td class="col-l"><input name="name" type="text" value="${c.name }"></td>
-	                                <td class="col-m">${c.cntBoard }</td>
-	                                <td><input name="check_delete" type="checkbox"></td>
-	                            </tr>
-	                        </c:forEach>
-                        </tbody>
+                        <tr>
+                            <th>작성자</th>
+                            <td>${b.writerId }</td>
+                            <th>등록일</th>
+                            <td>${b.regDate }</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>카테고리</th>
+                            <td>
+                                <select name="category" class="selectbox">
+	                                <c:forEach var="c" items="${cList }">
+	                                	<c:choose>
+	                                		<c:when test="${c.name eq b.categoryId }">
+	                                    		<option value="${c.name }" selected>${c.name }</option>
+	                                    	</c:when>
+	                                    	<c:otherwise>
+	                                    		<option value="${c.name }">${c.name }</option>
+	                                    	</c:otherwise>
+	                                    </c:choose>
+	                                </c:forEach>
+                                </select>
+                            </td>
+                            <th>조회수</th>
+                            <td>${b.hit }</td>
+                        </tr>
+
+                        <tr>
+                            <th>첨부파일</th>
+                            <td colspan="3">${b.files }</td>
+                        </tr>
+
+                        <tr class="content">
+                            <td colspan="4">
+                                ${b.content }
+                            </td>
+                        </tr>
                     </table>
                 </section>
-
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
+
+                    <a href="list">
+                        <input class="button" type="button" value="목록">
+                    </a>
                     <input class="button" type="submit" value="저장">
                     <input class="button" type="submit" value="삭제">
                 </section>
 
-                <div class="pager">
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
-                    </div>
+                <section>
+                    <h1 class="d-none">페이저</h1>
                     <ul>
-                      <li><a href="#"">1</a></li>
-                      <li><a href="#"">1</a></li>
-                      <li><a href="#"">1</a></li>
-                      <li><a href="#"">1</a></li>
+                        <li><a href="detail.html">이전 게시글</a></li>
+                        <li><a href="detail.html">이후 게시글</a></li>
                     </ul>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                    </div>
-                </div>
+                </section>
             </main>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="d-none">
-            <h1>Footer</h1>
+        <div class="container">
+            <h1 class="d-none">Footer</h1>
         </div>
     </footer>
 
 </body>
+
 </html>

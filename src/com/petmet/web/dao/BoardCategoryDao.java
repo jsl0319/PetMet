@@ -11,6 +11,7 @@ public interface BoardCategoryDao {
 	int delete(int id);
 	BoardCategory get(int id);
 
+	List<BoardCategory> getList();
 	List<BoardCategory> getList(int startIndex, int endIndex);
 	List<BoardCategoryView> getViewList(int startIndex, int endIndex);
 }

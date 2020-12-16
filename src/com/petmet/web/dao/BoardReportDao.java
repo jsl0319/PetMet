@@ -14,4 +14,5 @@ public interface BoardReportDao {
 	
 	List<BoardReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex);
 	List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex);
+	List<BoardReport> getListByBoardId(int boardId);
 }
