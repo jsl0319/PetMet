@@ -109,7 +109,7 @@
 
                 <tr>
                     <td>작성자</td>
-                    <td>${n.writerid}</td>
+                    <td>${n.writerId}</td>
                     <td>조회수</td>
                     <td>${n.hit}</td>
                 </tr>
@@ -132,9 +132,9 @@
             <section>
                 <h1>이벤트 버튼</h1>
 
-                <input type="button" value="목록">
-                <input type="button" value="수정">
-                <input type="button" value="삭제">
+        <a href="list"> <input type="button" value="목록"></a> 
+        <a href ="edit?id=${n.id}"><input type="button" value="수정"></a>  
+           <a href ="del?id=${n.id}"><input type="button" value="삭제"></a>
             </section>
         </main>
     </section>

@@ -78,11 +78,11 @@
 
                     <ul>
                         <li>
-                            <a href="../notice/list.html">공지사항관리</a>
+                            <a href="../notice/list">공지사항관리</a>
                         </li>
 
                         <li>
-                            <a href="../QnA/list.html">QnA 관리</a>
+                            <a href="../QnA/list">QnA 관리</a>
                         </li>
 
                         <li>
@@ -160,7 +160,7 @@
                         <tbody>
                         	<c:forEach var="br" items="${list }">
 	                            <tr>
-	                                <td>${br.boardId }</td>
+	                                <td>${br.num }</td>
 	                                <td>${br.writerId }</td>
 	                                <td>${br.categoryId }</td>
 	                                <td><a href="detail?id=${br.boardId }">${br.title }</a></td>

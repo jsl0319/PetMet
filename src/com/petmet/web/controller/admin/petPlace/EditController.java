@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import com.petmet.web.service.PetPlaceCategoryService;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/edit")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class EditController extends HttpServlet {
 
 	@Override
@@ -43,7 +45,6 @@ public class EditController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		String writerId = request.getParameter("writerId");
 		String categoryId = request.getParameter("categoryId");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
@@ -54,7 +55,7 @@ public class EditController extends HttpServlet {
 		String files = request.getParameter("files");
 		int pub = Integer.parseInt(request.getParameter("pub")); 
 		
-		PetPlace pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content, files, pub);
+		PetPlace pp = new PetPlace(id, categoryId, name, address, homepage, phone, location, content, files, pub);
 		
 		PetPlaceService service = new PetPlaceService();
 		service.update(pp);

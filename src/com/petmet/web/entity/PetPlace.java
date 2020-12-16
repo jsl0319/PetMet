@@ -55,10 +55,9 @@ public class PetPlace {
 	}
 
 	// edit용 생성자
-	public PetPlace(int id, String writerId, String categoryId, String name, String address, String homepage,
+	public PetPlace(int id, String categoryId, String name, String address, String homepage,
 			String phone, String location, String content, String files, int pub) {
 		this.id = id;
-		this.writerId = writerId;
 		this.categoryId = categoryId;
 		this.name = name;
 		this.address = address;
