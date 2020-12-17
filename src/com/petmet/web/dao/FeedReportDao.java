@@ -18,6 +18,7 @@ public interface FeedReportDao {
 //	List<ReportedFeedView> getViewList();
 //	List<ReportedFeedView> getViewList(int startIndex, int endIndex);
 	List<ReportedFeedView> getViewList(int startIndex, int endIndex);
+	
 	FeedReport getLast();
 	
 }

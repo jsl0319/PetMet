@@ -104,7 +104,7 @@
           </section>
           
           <section class="search__container">
-           <a class="search__title button" href="detail-list">목록</a>
+           <a class="search__title button" href="list">목록</a>
            <a class="search__title button" href="edit?id=${fr.id}">수정</a>
            <a class="search__title button" href="del?id=${fr.id}">삭제</a>
           </section>

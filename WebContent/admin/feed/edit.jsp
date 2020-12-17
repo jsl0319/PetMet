@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/admin/components/table/list.css">
+  <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
   <link rel="stylesheet" href="../../css/admin/components/form/default.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-  <title>FEED_detail-list</title>
+  <title>FEED-detail</title>
 </head>
-<body>
-
-    <!----------------------------------header--------------------------------------->
-  <header id="header" class="header">
+<header id="header" class="header">
       <div class="container">
         
         <div class="logo">
@@ -74,43 +73,46 @@
     <!----------------------------------main--------------------------------------->
         <main id="main" class="main feed-list">
           <h1 class="d-none">Feed-list 관리자 페이지</h1>
-            
-          <section>
-            <h1 class="d-none">신고 리스트</h1>
-            
-            	<form class="search__container">
-		              <select class="selectbox" name="f">
-			              <option ${param.f=="nickname" ? "selected":""} value="nickname">닉네임</option>
-		              </select>
-		           	  <input class="search__input" type="text" name = "q" value="${param.q }">
-		           	  <input class="button" type="submit" value="검색" />
-		              
-              	  </form>
-            <table class="list-table" border="1">
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>신고자ID</th>
-                  <th>신고받은ID</th>
-                  <th>신고일</th>
-                </tr>
-              </thead>
-
-              <tbody>
-               <c:forEach var = "rf" items="${list}">
-                <tr>
-                  <td>${rf.num}</td>
-                  <td><a href ="detail?id=${rf.id}">${rf.memId}</a></td>
-                  <td>${rf.feedId }</td>
-                  <td>${rf.repoDate}</td>
-                </tr>
-                </c:forEach>
-                 
-              </tbody>
-            </table>
-           
-          </section>
-            
+         <form action="edit" method = "post">
+	          <section>
+	            <h1 class="d-none">신고 리스트</h1>
+	            <table class="detail-table" border="1">
+	                <tr>
+	                  <th>번호</th>
+	                  <td>${fr.id}</td>
+	                </tr>
+	                
+	                <tr>
+	                  <th>작성자</th>
+	                  <td>${fr.memId}</td>
+	                </tr>
+	
+	                <tr>
+	                  <th>신고받은ID</th>
+	                  <td>${fr.feedId}</td>
+	                </tr>
+	
+	                <tr>
+	                  <th>신고일</th>
+	                  <td>${fr.repoDate}</td>
+	                </tr>
+	            </table>
+	
+	            <textarea class="detail-textarea" name="content" style="margin-top:20px">
+	              ${fr.content}
+	            </textarea>
+	          </section>
+	          
+	          <section class="search__container">
+	          
+	          <input type="hidden" name="id" value="${fr.id }">
+	           <a class="search__title button" href="detail=${fr.id }">취소</a>
+	           <input type="submit" value="저장">
+	           
+	          </section>
+	          
+          </form>
+          
           <div class="pager">
             <div>
               <a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -119,7 +121,7 @@
               <a href="#"><i class="fas fa-angle-left"></i></a>
             </div>
           <ul>
-            <li><a href="#"">1</a></li>
+            <li><a href="#">1</a></li>
           </ul>
           <div>
             <a href="#"><i class="fas fa-angle-right"></i></a>
