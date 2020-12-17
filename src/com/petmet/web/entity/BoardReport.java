@@ -22,12 +22,6 @@ public class BoardReport {
 		this.content = content;
 	}
 
-	@Override
-	public String toString() {
-		return "BoardReport [id=" + id + ", memId=" + memId + ", boardId=" + boardId + ", regDate=" + regDate
-				+ ", content=" + content + "]";
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -66,6 +60,12 @@ public class BoardReport {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardReport [id=" + id + ", memId=" + memId + ", boardId=" + boardId + ", regDate=" + regDate
+				+ ", content=" + content + "]";
 	}
 
 }

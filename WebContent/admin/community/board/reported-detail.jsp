@@ -111,6 +111,7 @@
                 <h1 class="d-none">게시글/신고된 게시글 상세 내용</h1>
                 <section>
                     <h1>신고된 게시글</h1>
+                    
                     <table class="detail-table">
                         <tr>
                             <th>제목</th>
@@ -121,7 +122,7 @@
                             <th>작성자</th>
                             <td>${b.writerId }</td>
                             <th>카테고리</th>
-                            <td>${b.categoryId }</td>
+                            <td>${b.categoryName }</td>
                         </tr>
                     </table>
                 </section>
@@ -130,7 +131,7 @@
                     <table class="list-table">
                         <thead>
                             <tr>
-                                <td>아이디</td>
+                                <td>번호</td>
                                 <td>신고자 닉네임</td>
                                 <td>신고 내용</td>
                                 <td>신고일</td>
@@ -156,15 +157,19 @@
                         <li>이후 게시글</li>
                     </ul>
                 </section>
-
+                 
+                <form action="reported-detail" method="post">
+                <input hidden name="id" value="${b.id }">
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-
+                    
                     <a href="reported">
                         <input class="button" type="button" value="목록">
                     </a>
                     <input class="button" type="submit" value="삭제">
                 </section>
+                </form>
+
             </main>
         </div>
     </section>
