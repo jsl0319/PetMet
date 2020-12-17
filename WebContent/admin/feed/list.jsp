@@ -100,7 +100,7 @@
                   <c:forEach var = "rf" items="${list}">
                     <tr>
                       <td>${rf.num}</td>
-                      <td><a href="detail.jsp">${rf.reportedId}</a></td>
+                      <td><a href="feed-detail.jsp">${rf.reportedId}</a></td>
                       <td><a href="detail-list">${rf.repoCnt }</a></td>
                       <td>${rf.action}</td>
                     </tr>
