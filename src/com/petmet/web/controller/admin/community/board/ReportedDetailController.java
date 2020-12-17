@@ -30,4 +30,5 @@ public class ReportedDetailController extends HttpServlet{
 		
 		request.getRequestDispatcher("reported-detail.jsp").forward(request, response);
 	}
+	
 }

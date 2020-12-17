@@ -108,6 +108,7 @@
 							<tbody>
 								<c:forEach var="c" items="${list }">
 									<tr>
+										<input hidden name="id" value="${c.id }">
 										<td>${c.id }</td>
 										<td class="col-l"><input name="name" type="text"
 											value="${c.name }"></td>
@@ -123,10 +124,11 @@
 				<section>
 					<h1 class="d-none">이벤트 버튼</h1>
 
-					<input class="button" name="button" type="submit" value="저장"> <input
-						class="button" name="button" type="submit" value="삭제">
+					<input class="button" name="button" type="submit" value="저장">
+                    <input class="button" name="button" type="submit" value="삭제">
 				</section>
 				</form>
+				
 				<div class="pager">
 					<div>
 						<a href="#"><i class="fas fa-angle-double-left"></i></a>

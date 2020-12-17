@@ -143,6 +143,9 @@
                             <option value="50개">100개</option>
                         </select>
                     </div>
+                    
+                    <form action="list" method="post">
+                    
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -161,10 +164,11 @@
                         <tbody>
 	                        <c:forEach var="b" items="${list }">
 	                            <tr>
+	                            	<input hidden name="id" value="${b.id }">
 	                                <td>${b.num }</td>
 	                                <td>${b.writerId }</td>
 	                                <td>
-	                                	<select name="category">
+	                                	<select name="name">
 		                                	<c:forEach var="c" items="${cList }">
 		                                		<c:choose>
 		                                			<c:when test="${b.categoryId eq c.name }">
@@ -182,7 +186,7 @@
 	                                <td>${b.regDate }</td>
 	                                <td>${b.hit }</td>
 	                                <td>${b.files }</td>
-	                                <td><input name="check_delete" type="checkbox"></td>
+	                                <td><input name="del" value="${b.id }" type="checkbox">
 	                            </tr>
                             </c:forEach>
                         </tbody>
@@ -191,9 +195,10 @@
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-                    <input class="button" type="submit" value="저장">
-                    <input class="button" type="submit" value="삭제">
+                    <input class="button" name="button" type="submit" value="저장">
+                    <input class="button" name="button" type="submit" value="삭제">
                 </section>
+                </form>
                 
                 <div class="pager">
                     <div>
