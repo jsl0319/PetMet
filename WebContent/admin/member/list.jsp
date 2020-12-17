@@ -108,9 +108,12 @@
                         </thead>
                 
                         <tbody>
-                        <c:forEach var="m" items="${list}">
+                        <c:set var="page" value="${(param.p==null)?1:param.p}"/>
+				        <c:set var="startNum" value="${page-(page-1)%5}"/>
+                        <c:set var="i" value="${1+(page-1)*10}"/>
+                        <c:forEach var="m" items="${list}" varStatus="st">
                             <tr>
-                                <td>${m.id}</td>
+                                <td>${i+st.index}</td>
                                 <td><a href="detail?id=${m.id}">${m.email}</a></td>
                                 <td>${m.nickname}</td>
                                 <td>
@@ -126,8 +129,7 @@
 
                 </section>
              
-                <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-				<c:set var="startNum" value="${page-(page-1)%5}"/>
+
                 <div class="pager">
                     <div>
                       <a href="#"><i class="fas fa-angle-double-left"></i></a>

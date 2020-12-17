@@ -19,7 +19,7 @@ public class ListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String page_ = request.getParameter("p"); // null 
+		String page_ = request.getParameter("p");
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
 		String startDate_ = request.getParameter("sd");

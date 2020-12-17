@@ -82,17 +82,11 @@
                        </tr>
                        <tr>
                         <td>등록강아지</td>
-                        <td><a href="">쿠쿠</a></td>
+                        <td><a href="">1</a></td>
                         <td>신고횟수</td>
                         <td>4</td>
                     </tr>
                     
-                    <tr>
-                        <td>무게</td>
-                        <td>2kg</td>
-                        <td>성격</td>
-                        <td>다혈질</td>
-                    </tr>
                     <tr>
                         <td>매칭</td>
                         <td>2</td>
