@@ -50,8 +50,8 @@ public class ListController extends HttpServlet{
 			
 		case "저장":
 			String[] newNames = request.getParameterValues("new-name");
-			String[] names = request.getParameterValues("name");
-			String[] cIds = request.getParameterValues("id");
+			String[] changed = request.getParameterValues("changed");
+			String[] changedIds = request.getParameterValues("changed-id");
 
 			// 삽입
 			if(newNames != null) {
@@ -66,14 +66,14 @@ public class ListController extends HttpServlet{
 			}
 			
 			// 수정
-			if (cIds != null) {
+			if (changedIds != null) {
 				List<BoardCategory> list = new ArrayList<BoardCategory>();
 
-				for (int i = 0; i < cIds.length; i++) {
-					int id = Integer.parseInt(cIds[i]);
+				for (int i = 0; i < changed.length; i++) {
+					int id = Integer.parseInt(changedIds[i]);
 
 					BoardCategory b = service.get(id);
-					b.setName(names[i]);
+					b.setName(changed[i]);
 
 					list.add(b);
 				}
@@ -84,6 +84,7 @@ public class ListController extends HttpServlet{
 		}
 		
 		// --------------------- 요청 ---------------------
-//		response.sendRedirect("list");
+		response.sendRedirect("list");
+		
 	}
 }

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="list.js"></script>
 </head>
 
 <body>
@@ -125,7 +126,7 @@
                         <select class="selectbox" name="category">
                             <option>게시판</option>
                             <c:forEach var="c" items="${cList }">
-	                            <option value="${c.name }">${c.name }</option>
+	                            <option value="${c.id }">${c.name }</option>
                             </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
@@ -168,14 +169,15 @@
 	                                <td>${b.num }</td>
 	                                <td>${b.writerId }</td>
 	                                <td>
+                                        <input hidden type="text" name="id" value="${b.id }">
 	                                	<select name="name">
 		                                	<c:forEach var="c" items="${cList }">
 		                                		<c:choose>
-		                                			<c:when test="${b.categoryId eq c.name }">
-		                                				<option value="${c.name }" selected>${c.name }</option>
+		                                			<c:when test="${b.categoryId eq c.id }">
+		                                				<option value="${c.id }" selected>${c.name }</option>
 		                                			</c:when>
 		                                			<c:otherwise>
-		                                        		<option value="${c.name }">${c.name }</option>
+		                                        		<option value="${c.id }">${c.name }</option>
 		                                        	</c:otherwise>
 		                                        </c:choose>
 	                                    	</c:forEach>

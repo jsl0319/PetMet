@@ -27,4 +27,26 @@ public class ReportedController extends HttpServlet{
 		request.setAttribute("cList", cList);
 		request.getRequestDispatcher("reported.jsp").forward(request, response);
 	}
+	
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		CommentReportService service = new CommentReportService();
+
+		// 삭제
+		String[] dels = request.getParameterValues("del");
+
+		if (dels != null) {
+			int[] ids = new int[dels.length];
+
+			for (int i = 0; i < ids.length; i++)
+				ids[i] = Integer.parseInt(dels[i]);
+
+			service.deleteCommentList(ids);
+		}
+
+		// --------------------- 요청 ---------------------
+		response.sendRedirect("reported");
+	}
 }

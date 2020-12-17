@@ -17,7 +17,6 @@
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
 <script src="list.js"></script>
-
 </head>
 
 <body>
@@ -108,12 +107,14 @@
 							<tbody>
 								<c:forEach var="c" items="${list }">
 									<tr>
-										<input hidden name="id" value="${c.id }">
-										<td>${c.id }</td>
-										<td class="col-l"><input name="name" type="text"
-											value="${c.name }"></td>
+										<td>${c.num }</td>
+										<td class="col-l">
+											<input hidden type="text" name="id" value="${c.id }">
+											<input type="text" name="name" value="${c.name }">
+										</td>
 										<td class="col-m">${c.cntBoard }</td>
-										<td><input name="del" value="${c.id }" type="checkbox">
+										<td>
+											<input name="del" value="${c.id }" type="checkbox">
 										</td>
 									</tr>
 								</c:forEach>
@@ -158,6 +159,6 @@
 			<h1>Footer</h1>
 		</div>
 	</footer>
-
+	
 </body>
 </html>

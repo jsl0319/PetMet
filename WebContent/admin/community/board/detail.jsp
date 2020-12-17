@@ -111,7 +111,9 @@
                 <section>
                     <h1>상세 게시글 내용</h1>
                     
+                    <form action="detail" method="post">
                     <table class="detail-table">
+                    <input hidden name="id" value="${b.id }">
                         <tr>
                             <th>제목</th>
                             <td colspan="3">${b.title }</td>
@@ -130,11 +132,11 @@
                                 <select name="category" class="selectbox">
 	                                <c:forEach var="c" items="${cList }">
 	                                	<c:choose>
-	                                		<c:when test="${c.name eq b.categoryId }">
-	                                    		<option value="${c.name }" selected>${c.name }</option>
+	                                		<c:when test="${c.id eq b.categoryId }">
+	                                    		<option value="${c.id }" selected>${c.name }</option>
 	                                    	</c:when>
 	                                    	<c:otherwise>
-	                                    		<option value="${c.name }">${c.name }</option>
+	                                    		<option value="${c.id }">${c.name }</option>
 	                                    	</c:otherwise>
 	                                    </c:choose>
 	                                </c:forEach>
@@ -162,10 +164,11 @@
                     <a href="list">
                         <input class="button" type="button" value="목록">
                     </a>
-                    <input class="button" type="submit" value="저장">
-                    <input class="button" type="submit" value="삭제">
+                    <input class="button" name="button" type="submit" value="저장">
+                    <input class="button" name="button" type="submit" value="삭제">
                 </section>
-
+				</form>
+				
                 <section>
                     <h1 class="d-none">페이저</h1>
                     <ul>

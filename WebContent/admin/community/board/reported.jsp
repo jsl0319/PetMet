@@ -123,7 +123,7 @@
                         <select name="category" class="selectbox">
                             <option>게시판</option>
                             <c:forEach var="c" items="${cList }">
-	                            <option value="${c.name }">${c.name }</option>
+	                            <option value="${c.id }">${c.name }</option>
                             </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
@@ -164,7 +164,7 @@
 	                            <tr>
 	                                <td>${br.num }</td>
 	                                <td>${br.writerId }</td>
-	                                <td>${br.categoryId }</td>
+	                                <td>${br.categoryName }</td>
 	                                <td><a href="detail?id=${br.boardId }">${br.title }</a></td>
 	                                <td>${br.regDate }</td>
 	                                <td>${br.hit }</td>
