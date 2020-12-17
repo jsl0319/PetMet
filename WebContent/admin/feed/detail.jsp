@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
+  <link rel="stylesheet" href="../../css/admin/components/form/default.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-  <title>FEED_detail</title>
+  <title>FEED-detail</title>
 </head>
-<body>
-
-    <!----------------------------------header--------------------------------------->
-
-    <header id="header" class="header">
+<header id="header" class="header">
       <div class="container">
         
         <div class="logo">
@@ -57,40 +57,85 @@
     </header>
 
     <!----------------------------------body--------------------------------------->
-  <div class="body feed-screen">
+    <div class="body feed-screen">
 
-    <h1 class="d-none">Feed 관리자 페이지</h1>
-    <div class="container">
+      <h1 class="d-none">Feed 관리자 페이지</h1>
+      <div class="container">
 
-      
     <!----------------------------------aside--------------------------------------->
-      <aside class="aside">
-        <h1 class="d-none">페이지 목록</h1>
-        <ul>
-          <li><a href="index.html">Report</a></li>
-        </ul>
-      </aside>
+        <aside class="aside">
+          <h1 class="d-none">페이지 목록</h1>
+          <ul>
+            <li><a href="list">Report</a></li>
+          </ul>
+        </aside>
 
     <!----------------------------------main--------------------------------------->
-      <main id="main" class="main feed-screen">
-          <h1 class="d-none">Feed-detail 관리자 페이지</h1>
+        <main id="main" class="main feed-list">
+          <h1 class="d-none">Feed-list 관리자 페이지</h1>
+            
+          <section>
+            <h1 class="d-none">신고 리스트</h1>
+            <table class="detail-table" border="1">
+                <tr>
+                  <th>번호</th>
+                  <td>${fr.id}</td>
+                </tr>
+                
+                <tr>
+                  <th>작성자</th>
+                  <td>${fr.memId}</td>
+                </tr>
 
-          <section class="reported-feed">
-            <h1 class="d-none">신고받은 피드</h1>
+                <tr>
+                  <th>신고받은ID</th>
+                  <td>${fr.feedId}</td>
+                </tr>
 
-            <input type="button" value="삭제">
-            <iframe src="feed.html">
-            </iframe>
+                <tr>
+                  <th>신고일</th>
+                  <td>${fr.repoDate}</td>
+                </tr>
+            </table>
+
+            <div style="margin-top:20px" style="border:1px solid black">
+              ${fr.content}
+            </div>
           </section>
+          
+          <section class="search__container">
+           <a class="search__title button" href="detail-list">목록</a>
+           <a class="search__title button" href="edit?id=${fr.id}">수정</a>
+           <a class="search__title button" href="del?id=${fr.id}">삭제</a>
+          </section>
+          
+          <div class="pager">
+            <div>
+              <a href="#"><i class="fas fa-angle-double-left"></i></a>
+            </div>
+            <div>
+              <a href="#"><i class="fas fa-angle-left"></i></a>
+            </div>
+          <ul>
+            <li><a href="#">1</a></li>
+          </ul>
+          <div>
+            <a href="#"><i class="fas fa-angle-right"></i></a>
+          </div>
+          <div>
+            <a href="#"><i class="fas fa-angle-double-right"></i></a>
+          </div>
+          </div>
 
-      </main>
-    </div>
+        </main>
+      </div>
   </div>
+
     <!----------------------------------footer--------------------------------------->
-    <footer id="footer" class="footer">
+  <footer id="footer" class="footer">
       <div class="container">
         <h1 class="d-none">Footer</h1>
       </div>
     </footer>
-</body>
+  </body>
 </html>

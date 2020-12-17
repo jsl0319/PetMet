@@ -142,7 +142,9 @@
                             <option value="50개">100개</option>
                         </select>
                     </div>
-
+                    
+					<form action="reported" method="post">
+					
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -167,7 +169,7 @@
 	                                <td>${br.regDate }</td>
 	                                <td>${br.hit }</td>
 	                                <td><a href="reported-detail?id=${br.boardId }">${br.reported }</a></td>
-	                                <td><input name="check_delete" type="checkbox"></td>
+	                                <td><input name="del" value="${br.boardId }" type="checkbox">
 	                            </tr>
                             </c:forEach>
                         </tbody>
@@ -176,8 +178,10 @@
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
+                    
                     <input class="button" type="submit" value="삭제">
                 </section>
+                </form>
                 
                 <div class="pager">
                     <div>
