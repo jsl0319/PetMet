@@ -50,7 +50,7 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 	@Override
 	public int update(BoardCategory boardCategory) {
 		int result = 0;
-		String sql = "UPDATE BOARD_CATEGORY NAME=? WHERE ID=?";
+		String sql = "UPDATE BOARD_CATEGORY SET NAME=? WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
