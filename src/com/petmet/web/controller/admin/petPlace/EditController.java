@@ -45,7 +45,7 @@ public class EditController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		String categoryId = request.getParameter("categoryId");
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String homepage = request.getParameter("homepage");

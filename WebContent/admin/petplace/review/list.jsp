@@ -110,42 +110,30 @@
                     <table class="list-table">
                         <thead>
                             <tr>
-                                <td class="col-s">번호</td>
-                                <td class="col-m">카테고리명</td>
-                                <td class="col-m">등록일</td>
-                                <td class="col-m">수정일</td>
-                                <td class="col-s">수정</td>
-                                <td class="col-s">삭제</td>
+                                <td>번호</td>
+                                <td>분류</td>
+                                <td>Pet Place</td>
+                                <td>조회수</td>
+                                <td>좋아요</td>
+                                <td>리뷰 수</td>
+                                <td>평균 별점</td>
                             </tr>
                         </thead>
                 
                         <tbody>
-                        <c:forEach var="ppc" items="${list}">
+                        <c:forEach var="p" items="${list}">
                             <tr>
-                                <td>${ppc.num}</td>
-                                <td><a href="">${ppc.name}</a></td>
-                                <td>${ppc.regDate}</td>
-                                <c:choose>
-                                	<c:when test="${ppc.regDate eq ppc.editDate}">
-                                		<td>수정 내역 없음</td>
-                                	</c:when>
-                                	<c:otherwise>
-                                		<td>${ppc.editDate}</td>
-                                	</c:otherwise>
-                                </c:choose>
-                                <td><input type="radio" name="edit-clicked"></td>
-                                <td><input type="checkbox"></td>
+                                <td>${p.num}</td>
+                                <td>${p.categoryId}</td>
+                                <td><a href="detail?id=${p.id}">${p.name}</a></td>
+                                <td>${p.hit}</td>
+                                <td>${p.likes}</td>
+                                <td>${p.reviewCount}</td>
+                                <td>${p.avgRating}</td>
                             </tr>
-                        </c:forEach>    
+                        </c:forEach>
                         </tbody>
                     </table>
-                </section>
-
-                <section>
-                    <h1 class="d-none">버튼</h1>
-                    <input class="button" type="submit" value="등록">
-                    <input class="button" type="submit" value="수정">
-                    <input class="button" type="submit" value="선택 삭제">
                 </section>
 
                 <section>

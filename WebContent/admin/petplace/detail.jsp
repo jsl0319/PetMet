@@ -99,7 +99,9 @@
                         <tbody>
                             <tr>
                                 <th>제목</th>
-                                <td colspan="3">${p.name }</td>
+                                <td colspan="3">${p.name}</td>
+                                <th>카테고리</th>
+                                <td colspan="3">${p.categoryName}</td>
                             </tr>
                             <tr>
                                 <th>작성일</th>

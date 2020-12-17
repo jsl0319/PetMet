@@ -24,16 +24,15 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	public int insert(PetPlace pp) {
 		int result = 0;
 		String sql = "INSERT INTO PETPLACE(WRITER_ID, CATEGORY_ID, NAME, "
-				+ "ADDRESS, HOMEPAGE, PHONE, LOCATION, CONTENT, FILES, PUB) "
-				+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
+				+ "ADDRESS, HOMEPAGE, PHONE, LOCATION, CONTENT, FILES, PUB) " + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, pp.getWriterId());
-			st.setString(2, pp.getCategoryId());
+			st.setInt(1, pp.getWriterId());
+			st.setInt(2, pp.getCategoryId());
 			st.setString(3, pp.getName());
 			st.setString(4, pp.getAddress());
 			st.setString(5, pp.getHomepage());
@@ -60,17 +59,15 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	public int update(PetPlace pp) {
 		int result = 0;
 
-		String sql = "UPDATE PETPLACE SET CATEGORY_ID = ?, NAME = ?,"
-				+ "ADDRESS = ?, HOMEPAGE = ?, PHONE = ?,"
-				+ "LOCATION = ?, CONTENT = ?, FILES = ?, PUB = ?"
-				+ "WHERE ID = ?";
+		String sql = "UPDATE PETPLACE SET CATEGORY_ID = ?, NAME = ?," + "ADDRESS = ?, HOMEPAGE = ?, PHONE = ?,"
+				+ "LOCATION = ?, CONTENT = ?, FILES = ?, PUB = ?" + "WHERE ID = ?";
 
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, pp.getCategoryId());
+			st.setInt(1, pp.getCategoryId());
 			st.setString(2, pp.getName());
 			st.setString(3, pp.getAddress());
 			st.setString(4, pp.getHomepage());
@@ -135,8 +132,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 
 			if (rs.next()) {
 
-				String writerId = rs.getString("WRITER_ID");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
 				String name = rs.getString("NAME");
 				String address = rs.getString("ADDRESS");
 				String homepage = rs.getString("HOMEPAGE");
@@ -168,10 +165,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 
 	@Override
 	public List<PetPlace> getList() {
-		String sql = "SELECT * FROM (\r\n"
-				+ "    SELECT ROWNUM NUM, P.* \r\n"
-				+ "    FROM(SELECT * FROM PETPLACE ORDER BY REG_DATE ASC)P)\r\n"
-				+ "    ORDER BY NUM DESC;";
+		String sql = "SELECT * FROM (\r\n" + "    SELECT ROWNUM NUM, P.* \r\n"
+				+ "    FROM(SELECT * FROM PETPLACE ORDER BY REG_DATE ASC)P)\r\n" + "    ORDER BY NUM DESC;";
 
 		List<PetPlace> list = new ArrayList<>();
 
@@ -185,8 +180,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 			while (rs.next()) {
 
 				int id = rs.getInt("ID");
-				String writerId = rs.getString("WRITER_ID");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
 				String name = rs.getString("NAME");
 				String address = rs.getString("ADDRESS");
 				String homepage = rs.getString("HOMEPAGE");
@@ -234,8 +229,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 			if (rs.next()) {
 
 				int id = rs.getInt("ID");
-				String writerId = rs.getString("WRITER_ID");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
 				String name = rs.getString("NAME");
 				String address = rs.getString("ADDRESS");
 				String homepage = rs.getString("HOMEPAGE");
@@ -281,8 +276,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 			while (rs.next()) {
 
 				int id = rs.getInt("ID");
-				String writerId = rs.getString("WRITER_ID");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
 				String name = rs.getString("NAME");
 				String address = rs.getString("ADDRESS");
 				String homepage = rs.getString("HOMEPAGE");
@@ -294,13 +289,16 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				int hit = rs.getInt("HIT");
 				int likes = rs.getInt("LIKES");
 				int pub = rs.getInt("PUB");
-				int num = rs.getInt("num");
+				int num = rs.getInt("NUM");
+				int reviewCount = rs.getInt("REVIEW_COUNT");
+				double avgRating = rs.getDouble("AVG_RATING");
+				String writerName = rs.getString("WRITER_NAME");
 
-				PetPlaceView pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location, content,
-						regDate, files, hit, likes, pub, num);
+				PetPlaceView pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location,
+						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName);
 
 				list.add(pp);
-				
+
 			}
 
 			rs.close();
@@ -315,7 +313,5 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 
 		return list;
 	}
-	
-	
 
 }

@@ -103,20 +103,20 @@
                                 <tr>
                                     <th>이름</th>
                                     <td colspan="3">
-                                        <input type="text" name="name" value="${pp.name }" />
+                                        <input type="text" name="name" value="${pp.name}" />
                                     </td>
                                     <th>카테고리</th>
                                     <td>
                                         <select name="categoryId">
-                                        	<c:forEach var="ppc" items="${list }">
-                                            	<option value="${ppc.name }">${ppc.name }</option>
+                                        	<c:forEach var="ppc" items="${list}">
+                                            	<option value="${ppc.id}">${ppc.name}</option>
                                         	</c:forEach>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>주소</th>
-                                    <td colspan="3"><input type="text" name="address" value="${pp.address }"></td>
+                                    <td colspan="3"><input type="text" name="address" value="${pp.address}"></td>
                                 	<th>공개 여부</th>
                                 	<td>
                                         <select name="pub">
@@ -127,7 +127,7 @@
                                 </tr>
                                 <tr>
                                     <th>홈페이지</th>
-                                    <td colspan="3"><input type="text" name="homepage" value="${pp.homepage }"></td>
+                                    <td colspan="3"><input type="text" name="homepage" value="${pp.homepage}"></td>
                                     <th>전화번호</th>
                                     <td><input type="text" name="phone" value="${pp.phone }"></td>
                                 </tr>
@@ -154,20 +154,20 @@
                                 <tr class="content">
                                     <td colspan="6">
                                         <textarea class="content" name="location"
-                                            style="width: 900px; height: 100px; resize: none;">${pp.location }</textarea>
+                                            style="width: 900px; height: 100px; resize: none;">${pp.location}</textarea>
                                     </td>
                                 </tr>
                                 <tr class="content">
                                     <td colspan="6">
                                         <textarea class="content" name="content"
-                                            style="width: 900px; height: 500px; resize: none">${pp.content }</textarea>
+                                            style="width: 900px; height: 500px; resize: none">${pp.content}</textarea>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <section>
-	                        <input type="hidden" name="id" value="${pp.id }">
+	                        <input type="hidden" name="id" value="${pp.id}">
                             <a class="button" href="detail?id=${pp.id}">취소</a>
                             <input class="button" type="submit" value="수정 완료" />
                         </section>

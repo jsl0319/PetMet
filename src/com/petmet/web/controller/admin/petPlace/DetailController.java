@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.petmet.web.entity.PetPlace;
+import com.petmet.web.entity.PetPlaceView;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/detail")
@@ -21,7 +21,7 @@ public class DetailController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		PetPlaceService service = new PetPlaceService();
-		PetPlace p = service.get(id);
+		PetPlaceView p = service.get(id);
 
 		request.setAttribute("p", p);
 		request.getRequestDispatcher("/admin/petplace/detail.jsp").forward(request, response);

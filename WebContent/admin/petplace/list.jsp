@@ -131,11 +131,11 @@
                         <tbody>
                             <c:forEach var="p" items="${list }">
 	                            <tr>
-	                                <td>${p.num }</td>
+	                                <td>${p.num}</td>
 	                                <td><a href="detail?id=${p.id }">${p.name }</a></td>
-	                                <td>${p.writerId }</td>
-	                                <td>${p.regDate }</td>
-	                                <td>${p.hit }</td>
+	                                <td>${p.writerName}</td>
+	                                <td>${p.regDate}</td>
+	                                <td>${p.hit}</td>
 	                                <td><input type="checkbox"></td>
 	                                <td><input type="checkbox"></td>
 	                            </tr>
