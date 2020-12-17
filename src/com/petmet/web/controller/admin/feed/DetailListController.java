@@ -18,6 +18,8 @@ import com.petmet.web.service.FeedReportService;
 public class DetailListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		FeedReportService service = new FeedReportService();
 		List<FeedReport> list = service.getList();
 		

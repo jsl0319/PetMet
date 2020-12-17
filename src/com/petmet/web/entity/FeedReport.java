@@ -23,6 +23,10 @@ public class FeedReport {
 		this.content = content;
 	}
 
+	public FeedReport(String content) {
+		this.content = content;
+	}
+
 	public int getId() {
 		return id;
 	}

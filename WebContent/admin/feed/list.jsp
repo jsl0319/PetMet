@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/admin/components/table/list.css">
+  <link rel="stylesheet" href="../../css/admin/components/form/default.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
   <title>FEED</title>
 </head>
@@ -77,12 +78,12 @@
             <section>
               <h1 class="d-none">신고 리스트</h1>
               
-	              <form action="post">
-		              <select>
+	              <form class="search__container" action="post">
+		              <select class="selectbox">
 			              <option>이름</option>
 		              </select>
-		           	  <input type="text">
-		           	  <input type="submit" value="검색" />
+		           	  <input class="search__input" type="text">
+		           	  <input class="button" type="submit" value="검색" />
 		              
               	  </form>
               	  
