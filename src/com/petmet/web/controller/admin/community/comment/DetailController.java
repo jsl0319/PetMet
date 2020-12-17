@@ -29,4 +29,15 @@ public class DetailController extends HttpServlet{
 		request.setAttribute("c", c);
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		CommentsService service = new CommentsService();
+		service.delete(id);
+		
+		response.sendRedirect("list");
+	}
 }

@@ -137,17 +137,20 @@
                             </tr>
                         </thead>
                         <tbody>
-	                        <c:forEach var="c" items="${list }">
+	                        <c:forEach var="cr" items="${list }">
 	                            <tr>
-	                                <td>${c.id }</td>
-	                                <td>${c.memId }</td>
-	                                <td>${c.regDate }</td>
-	                                <td>${c.content }</td>
+	                                <td>${cr.id }</td>
+	                                <td>${cr.memId }</td>
+	                                <td>${cr.regDate }</td>
+	                                <td>${cr.content }</td>
 	                            </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 </section>
+                
+                <form action="reported-detail" method="post">
+                <input hidden name="id" value="${c.id }">
                 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
@@ -157,6 +160,7 @@
                     </a>
                     <input class="button" type="submit" value="삭제">
                 </section>
+                </form>
             </main>
         </div>
     </section>
