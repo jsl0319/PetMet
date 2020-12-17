@@ -51,7 +51,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	public int update(FeedReport feedReport) {
 		  int result = 0;
 		
-		  String sql = "UPDATE FEED_REPORT SET MEM_ID=?, FEED_ID=?, CONTENT=? WHERE ID=?";
+		  String sql = "UPDATE FEED_REPORT SET CONTENT=? WHERE ID=?";
 		  String url = DBContext.URL;
 		  String uid = DBContext.UID;
 		  String pwd = DBContext.PWD;
@@ -62,10 +62,11 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
 	          
-	          st.setString(1, feedReport.getMemId());
-	          st.setString(2, feedReport.getFeedId());
-	          st.setString(3, feedReport.getContent());
-	          st.setInt(4, feedReport.getId());
+	          st.setString(1, feedReport.getContent());
+	          st.setInt(2, feedReport.getId());
+//	          st.setString(1, feedReport.getMemId());
+//	          st.setString(2, feedReport.getFeedId());
+//	          st.setInt(4, feedReport.getId());
 	          
 	          result = st.executeUpdate();
 	          st.close();
@@ -83,7 +84,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	public int delete(int id) {
 		  int result = 0;
 		
-		  String sql = "DELETE FROM FEEDREPORT WHERE ID=?";
+		  String sql = "DELETE FROM FEED_REPORT WHERE ID=?";
 		  String url = DBContext.URL;
 		  String uid = DBContext.UID;
 		  String pwd = DBContext.PWD;
@@ -127,13 +128,13 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         
 	         
 	         if(rs.next()){
-	        	 int num = rs.getInt("num");
+
 	        	String memId = rs.getNString("mem_id");
 	        	String feedId = rs.getString("feed_id");
 	        	Date repoDate = rs.getDate("repo_date");
 	        	String content = rs.getNString("content");
 	        	
-	        	fr = new FeedReport(id, num ,memId, feedId, repoDate, content);
+	        	fr = new FeedReport(id, 0 ,memId, feedId, repoDate, content);
 	        	
 	         }
 	         
@@ -149,6 +150,9 @@ public class JdbcFeedReportDao implements FeedReportDao{
 		}
 			return fr;
 	}
+	
+	
+	
 
 //	@Override
 //	public List<FeedReport> getList() {

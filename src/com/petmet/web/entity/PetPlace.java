@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class PetPlace {
 	private int id;
-	private String writerId;
-	private String categoryId;
+	private int writerId;
+	private int categoryId;
 	private String name;
 	private String address;
 	private String homepage;
@@ -22,7 +22,7 @@ public class PetPlace {
 
 	}
 
-	public PetPlace(int id, String writerId, String categoryId, String name, String address, String homepage,
+	public PetPlace(int id, int writerId, int categoryId, String name, String address, String homepage,
 			String phone, String location, String content, Date regDate, String files, int hit, int likes, int pub) {
 		super();
 		this.id = id;
@@ -42,7 +42,7 @@ public class PetPlace {
 	}
 
 	// insert용 생성자
-	public PetPlace(String categoryId, String name, String address, String homepage, String phone, String location,
+	public PetPlace(int categoryId, String name, String address, String homepage, String phone, String location,
 			String content, int pub) {
 		this.categoryId = categoryId;
 		this.name = name;
@@ -55,7 +55,7 @@ public class PetPlace {
 	}
 
 	// edit용 생성자
-	public PetPlace(int id, String categoryId, String name, String address, String homepage,
+	public PetPlace(int id, int categoryId, String name, String address, String homepage,
 			String phone, String location, String content, String files, int pub) {
 		this.id = id;
 		this.categoryId = categoryId;
@@ -85,19 +85,19 @@ public class PetPlace {
 		this.id = id;
 	}
 
-	public String getWriterId() {
+	public int getWriterId() {
 		return writerId;
 	}
 
-	public void setWriterId(String writerId) {
+	public void setWriterId(int writerId) {
 		this.writerId = writerId;
 	}
 
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
 

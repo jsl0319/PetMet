@@ -31,7 +31,7 @@ public class JdbcReviewDao implements ReviewDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, review.getWriterId());
+			st.setInt(1, review.getWriterId());
 			st.setInt(2, review.getPetPlaceId());
 			st.setInt(3, review.getRating());
 			st.setString(4, review.getContent());
@@ -118,7 +118,7 @@ public class JdbcReviewDao implements ReviewDao {
 
 			if (rs.next()) {
 
-				String writerId = rs.getString("WRITER_ID");
+				int writerId = rs.getInt("WRITER_ID");
 				int petPlaceId = rs.getInt("PETPLACE_ID");
 				int rating = rs.getInt("RATING");
 				Date regDate = rs.getDate("REG_DATE");
@@ -158,7 +158,7 @@ public class JdbcReviewDao implements ReviewDao {
 			if (rs.next()) {
 
 				int id = rs.getInt("ID");
-				String writerId = rs.getString("WRITER_ID");
+				int writerId = rs.getInt("WRITER_ID");
 				int petPlaceId = rs.getInt("PETPLACE_ID");
 				int rating = rs.getInt("RATING");
 				Date regDate = rs.getDate("REG_DATE");
