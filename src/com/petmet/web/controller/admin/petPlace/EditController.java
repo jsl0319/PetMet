@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.petmet.web.entity.PetPlace;
 import com.petmet.web.entity.PetPlaceCategory;
+import com.petmet.web.entity.PetPlaceView;
 import com.petmet.web.service.PetPlaceCategoryService;
 import com.petmet.web.service.PetPlaceService;
 
@@ -26,7 +27,7 @@ public class EditController extends HttpServlet {
 		// PetPlace
 		int id = Integer.parseInt(request.getParameter("id"));
 		PetPlaceService service = new PetPlaceService();
-		PetPlace pp = service.get(id);
+		PetPlaceView pp = service.getView(id);
 
 		request.setAttribute("pp", pp);
 		

@@ -213,6 +213,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 		return list;
 	}
 
+	// ==========================view===========================
+
 	@Override
 	public PetPlace getLast() {
 		PetPlace pp = null;
@@ -261,6 +263,57 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	}
 
 	@Override
+	public PetPlaceView getView(int id) {
+		PetPlaceView pp = null;
+
+		String sql = "SELECT * FROM PETPLACE_VIEW WHERE ID=" + id;
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String name = rs.getString("NAME");
+				String address = rs.getString("ADDRESS");
+				String homepage = rs.getString("HOMEPAGE");
+				String phone = rs.getString("PHONE");
+				String location = rs.getString("LOCATION");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
+				int num = rs.getInt("NUM");
+				int reviewCount = rs.getInt("REVIEW_COUNT");
+				double avgRating = rs.getDouble("AVG_RATING");
+				String writerName = rs.getString("WRITER_NAME");
+				String categoryName = rs.getString("CATEGORY_NAME");
+
+				pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location, content,
+						regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return pp;
+	}
+
+	@Override
 	public List<PetPlaceView> getViewList() {
 		String sql = "SELECT * FROM PETPLACE_VIEW";
 
@@ -293,9 +346,10 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				int reviewCount = rs.getInt("REVIEW_COUNT");
 				double avgRating = rs.getDouble("AVG_RATING");
 				String writerName = rs.getString("WRITER_NAME");
-
+				String categoryName = rs.getString("CATEGORY_NAME");
+				
 				PetPlaceView pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location,
-						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName);
+						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
 
 				list.add(pp);
 

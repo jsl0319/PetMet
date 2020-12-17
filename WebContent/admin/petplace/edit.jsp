@@ -139,7 +139,7 @@
                                 </tr>
                                 <tr>
                                     <th>작성자</th>
-                                    <td>${pp.writerId}</td>
+                                    <td>${pp.writerName}</td>
                                     <th>조회수</th>
                                     <td>${pp.hit}</td>
                                     <th>좋아요</th>

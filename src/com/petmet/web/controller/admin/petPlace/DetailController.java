@@ -21,7 +21,9 @@ public class DetailController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		PetPlaceService service = new PetPlaceService();
-		PetPlaceView p = service.get(id);
+		PetPlaceView p = service.getView(id);
+		
+		System.out.println(p.toString());
 
 		request.setAttribute("p", p);
 		request.getRequestDispatcher("/admin/petplace/detail.jsp").forward(request, response);

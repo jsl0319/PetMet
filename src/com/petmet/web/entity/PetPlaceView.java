@@ -8,6 +8,7 @@ public class PetPlaceView extends PetPlace {
 	private int reviewCount;
 	private double avgRating;
 	private String writerName;
+	private String categoryName;
 
 	public PetPlaceView() {
 
@@ -15,7 +16,7 @@ public class PetPlaceView extends PetPlace {
 
 	public PetPlaceView(int id, int writerId, int categoryId, String name, String address, String homepage,
 			String phone, String location, String content, Date regDate, String files, int hit, int likes, int pub,
-			int num, int reviewCount, double avgRating, String writerName) {
+			int num, int reviewCount, double avgRating, String writerName, String categoryName) {
 		super(id, writerId, categoryId, name, address, homepage, phone, location, content, regDate, files, hit, likes,
 				pub);
 
@@ -23,6 +24,7 @@ public class PetPlaceView extends PetPlace {
 		this.reviewCount = reviewCount;
 		this.avgRating = avgRating;
 		this.writerName = writerName;
+		this.categoryName = categoryName;
 	}
 
 	public int getNum() {
@@ -55,6 +57,14 @@ public class PetPlaceView extends PetPlace {
 
 	public void setWriterName(String writerName) {
 		this.writerName = writerName;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 }

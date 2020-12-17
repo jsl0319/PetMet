@@ -39,12 +39,13 @@ public class PetPlaceService {
 
 	// view ===================================
 
-	public PetPlaceView get(int id) {
-		return ppDao.get(id);
-	}
-	
 	public List<PetPlaceView> getList() {
 
 		return ppDao.getViewList();
+	}
+
+	public PetPlaceView getView(int id) {
+
+		return ppDao.getView(id);
 	}
 }
