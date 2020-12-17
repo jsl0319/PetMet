@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.petmet.web.dao.ReviewDao;
 import com.petmet.web.entity.Review;
+import com.petmet.web.entity.ReviewView;
 
 public class JdbcReviewDao implements ReviewDao {
 
@@ -166,8 +167,55 @@ public class JdbcReviewDao implements ReviewDao {
 				String files = rs.getString("FILES");
 
 				Review review = new Review(id, writerId, petPlaceId, rating, regDate, content, files);
-				
+
 				list.add(review);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<ReviewView> getViewList(int id) {
+
+		String sql = "SELECT ROWNUM NUM, V.* FROM REVIEW_VIEW V " 
+		+ "WHERE PETPLACE_ID=" + id + "ORDER BY ROWNUM DESC";
+
+		List<ReviewView> list = new ArrayList<>();
+		ReviewView reviewView = null;
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				//id 주의
+				int id2 = rs.getInt("ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int petPlaceId = rs.getInt("PETPLACE_ID");
+				int rating = rs.getInt("RATING");
+				Date regDate = rs.getDate("REG_DATE");
+				String content = rs.getString("CONTENT");
+				String files = rs.getString("FILES");
+				String memberName = rs.getString("MEMBER_NAME");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int num = rs.getInt("NUM");
+
+				reviewView = new ReviewView(id2, writerId, petPlaceId, rating, regDate, content, files, memberName, categoryName, num);
+				
+				list.add(reviewView);
 			}
 
 			rs.close();

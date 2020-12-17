@@ -129,10 +129,10 @@
                         </thead>
 
                         <tbody>
-                            <c:forEach var="p" items="${list }">
+                            <c:forEach var="p" items="${list}">
 	                            <tr>
 	                                <td>${p.num}</td>
-	                                <td><a href="detail?id=${p.id }">${p.name }</a></td>
+	                                <td><a href="detail?id=${p.id}">${p.name }</a></td>
 	                                <td>${p.writerName}</td>
 	                                <td>${p.regDate}</td>
 	                                <td>${p.hit}</td>

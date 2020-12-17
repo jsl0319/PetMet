@@ -13,17 +13,18 @@ import com.petmet.web.entity.PetPlaceView;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/review/list")
-public class ListController extends HttpServlet{
-	
+public class ListController extends HttpServlet {
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		PetPlaceService service = new PetPlaceService();
 		List<PetPlaceView> list = service.getList();
-		
+
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
-		
+
 	}
 
 }
