@@ -41,7 +41,7 @@ public class RegController extends HttpServlet {
 
 		
 
-		request.getRequestDispatcher("/admin/notice/reg.jsp").forward(request, response);
+		request.getRequestDispatcher("reg.jsp").forward(request, response);
 
 	}
 
@@ -92,11 +92,11 @@ public class RegController extends HttpServlet {
 		}
 		
 		NoticeService service = new NoticeService();
-		Notice notice = new Notice (title,content);
+		Notice notice = new Notice (title,content,pub);
 		notice.setFiles(fileNames);
 
 		// null방지
-		notice.setWriterId("관리자");
+		
 
 		service.insert(notice);
 

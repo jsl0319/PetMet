@@ -127,16 +127,16 @@
                         <th>등록일</th>
                        <td> <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
                         <th>공개여부</th>
-                         
+                        
                                  <td><input name="check_delete" type="checkbox"> 비공개</td>
-                            
+                           
                     </tr>
     
                     <tr>
     
                     <th>첨부파일</th>
                     <td>
-                    <c:forTokens var="fileName" items="${n.files}" delims="," varStatus = "st">
+                     <c:forTokens var="fileName" items="${n.files}" delims="," varStatus = "st">
                                    <fmt:formatDate value="${n.regdate}" pattern="yyyy"/>
                                       <a download href="/static/notice/2020/${n.id}/${fileName}">${fileName} </a> 
                                       <c:if test = "${st.last==false }">
@@ -146,7 +146,11 @@
                  </td>
                 </tr>
                     <tr class="content">
-                        <td colspan="4">${n.content}</td>
+                       <td colspan="4">
+                                <textarea name = "content">
+                                ${n.content}
+                                </textarea>
+                                </td>
                     </tr>
                 </table>
             </section>
@@ -155,7 +159,7 @@
                     <h1 class= "d-none">이벤트 버튼</h1>
     
                  <a href="list">  <input class="button" type="button" value="목록"></a>
-               		<a href="edit?id=${n.id}">     <input class="button" type="button" value="수정"></a>
+                <input class="button" type="submit" value="수정완료">
                  <a href="del?id=${n.id}"><input class="button" type="button" value="삭제"></a>
                 </section>
             </main>

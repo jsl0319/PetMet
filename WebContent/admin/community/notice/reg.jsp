@@ -127,7 +127,12 @@
                            
                             <th>공개여부</th>
                             
-                              <td><input name="check_delete" type="checkbox"> 비공개</td>
+                         	 <td>
+                                        <select name="pub">
+                                        	<option selected value="1">공개</option>
+                                        	<option value="0">비공개</option>
+                                        </select>
+                                    </td>
                             
                             <th>첨부파일</th>
                            <td>
@@ -149,6 +154,7 @@
                     </tbody>
                     </table>
                     <input class="button" type="submit" value="등록">
+                     <a class="button" href="list">취소</a>
                      
                 </section>
     

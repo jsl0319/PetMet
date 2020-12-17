@@ -24,7 +24,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "INSERT INTO NOTICE(TITLE,CONTENT) VALUES(?,?)";
+		String sql = "INSERT INTO NOTICE(TITLE,CONTENT,PUB) VALUES(?,?,?)";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -35,6 +35,7 @@ public class JdbcNoticeDao implements NoticeDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());
+			st.setInt(3, notice.getpub());
 
 			result = st.executeUpdate();
 			st.close();
@@ -229,7 +230,10 @@ public class JdbcNoticeDao implements NoticeDao {
 	@Override
 	public List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate,
 			Date endDate, int page) {
-		// TODO Auto-generated method stub
+
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "INSERT INTO NOTICE(TITLE,CONTENT,PUB) VALUES(?,?,?)";
+		
 		return null;
 	}
 

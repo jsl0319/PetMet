@@ -12,10 +12,11 @@ public class Notice {
 	private Date regdate;
 	private String files;
 
-	public Notice(String title, String content) {
+	
+	public Notice() {
 		
 	}
-	
+
 	public Notice(int id,String title, String content, int pub, int hit, String writerId, Date regdate, String files
 			) {
 
@@ -28,6 +29,11 @@ public class Notice {
 		this.files = files;
 		this.id = id;
 	}
+
+	
+
+
+
 
 	public String getTitle() {
 		return title;
