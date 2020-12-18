@@ -5,6 +5,7 @@ import java.util.List;
 import com.petmet.web.dao.PetPlaceCategoryDao;
 import com.petmet.web.dao.jdbc.JdbcPetPlaceCategoryDao;
 import com.petmet.web.entity.PetPlaceCategory;
+import com.petmet.web.entity.PetPlaceCategoryView;
 
 public class PetPlaceCategoryService {
 	
@@ -32,6 +33,11 @@ public class PetPlaceCategoryService {
 	
 	public List<PetPlaceCategory> getList() {
 		return ppcDao.getList();
+	}
+
+	public List<PetPlaceCategoryView> getViewList() {
+		
+		return ppcDao.getViewList();
 	}
 	
 }

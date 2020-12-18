@@ -1,6 +1,7 @@
 package com.petmet.web.controller.admin.community.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,4 +32,35 @@ public class DetailController extends HttpServlet{
 		request.setAttribute("cList", cList);
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		BoardService service = new BoardService();
+
+		String button = request.getParameter("button");
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		switch (button) {
+		case "삭제":
+			service.delete(id);
+			response.sendRedirect("list");
+			
+			break;
+
+		case "저장":
+			int cid = Integer.parseInt(request.getParameter("category"));
+			
+			Board b = service.get(id);
+			b.setCategoryId(cid);
+			service.update(b);
+			
+			response.sendRedirect("detail?id=" +id);
+			
+			break;
+		}
+
+		// --------------------- 요청 ---------------------
+	}
+
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Review {
 	private int id;
-	private String writerId;
+	private int writerId;
 	private int petPlaceId;
 	private int rating;
 	private Date regDate;
@@ -12,10 +12,10 @@ public class Review {
 	private String files;
 
 	public Review() {
-		this(0, null, 0, 0, null, null, null);
+		this(0, 0, 0, 0, null, null, null);
 	}
 
-	public Review(int id, String writerId, int petPlaceId, int rating, Date regDate, String content, String files) {
+	public Review(int id, int writerId, int petPlaceId, int rating, Date regDate, String content, String files) {
 		this.id = id;
 		this.writerId = writerId;
 		this.petPlaceId = petPlaceId;
@@ -39,11 +39,11 @@ public class Review {
 		this.id = id;
 	}
 
-	public String getWriterId() {
+	public int getWriterId() {
 		return writerId;
 	}
 
-	public void setWriterId(String writerId) {
+	public void setWriterId(int writerId) {
 		this.writerId = writerId;
 	}
 

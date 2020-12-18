@@ -142,6 +142,17 @@ public class CommentReportService {
 		}
 		return result;
 	}
+	
+	public int deleteCommentList(int[] ids) {
+		int result = 0;
+		CommentsDao commentDao = new JdbcCommentsDao();
+		
+		for (int i = 0; i < ids.length; i++, result++) {
+			int id = ids[i];
+			commentDao.delete(id);
+		}
+		return result;
+	}
 
 	public CommentReport getPrev(int id) {
 		return commentReportDao.get(id - 1);

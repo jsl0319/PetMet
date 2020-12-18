@@ -17,6 +17,7 @@ import com.petmet.web.service.FeedReportService;
 public class ListController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		FeedReportService service = new FeedReportService();
 		List<ReportedFeedView> list = service.getViewList();
 		

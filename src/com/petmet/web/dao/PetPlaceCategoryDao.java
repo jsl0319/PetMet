@@ -3,6 +3,7 @@ package com.petmet.web.dao;
 import java.util.List;
 
 import com.petmet.web.entity.PetPlaceCategory;
+import com.petmet.web.entity.PetPlaceCategoryView;
 
 public interface PetPlaceCategoryDao {
 
@@ -12,5 +13,6 @@ public interface PetPlaceCategoryDao {
 	
 	PetPlaceCategory get(int id);
 	List<PetPlaceCategory> getList();
+	List<PetPlaceCategoryView> getViewList();
 	
 }

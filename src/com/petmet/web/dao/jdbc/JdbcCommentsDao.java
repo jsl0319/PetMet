@@ -227,14 +227,15 @@ public class JdbcCommentsDao implements CommentsDao{
 			while (rs.next()) {
 				int num = rs.getInt("NUM");
 				int id = rs.getInt("ID");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
 				int boardId = rs.getInt("BOARD_ID");
 				String title = rs.getString("TITLE");
 				String writerId = rs.getString("WRITER_ID");
 				Date regDate = rs.getDate("REG_DATE");
 				String content = rs.getString("CONTENT");
 
-				CommentView cv = new CommentView(num, id, categoryId, boardId, title, writerId, content, regDate);
+				CommentView cv = new CommentView(num, id, categoryId, categoryName, boardId, title, writerId, content, regDate);
 
 				list.add(cv);
 			}

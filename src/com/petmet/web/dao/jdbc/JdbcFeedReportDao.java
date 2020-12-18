@@ -51,7 +51,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	public int update(FeedReport feedReport) {
 		  int result = 0;
 		
-		  String sql = "UPDATE FEED_REPORT SET MEM_ID=?, FEED_ID=?, CONTENT=? WHERE ID=?";
+		  String sql = "UPDATE FEED_REPORT SET CONTENT=? WHERE ID=?";
 		  String url = DBContext.URL;
 		  String uid = DBContext.UID;
 		  String pwd = DBContext.PWD;
@@ -62,10 +62,11 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
 	          
-	          st.setString(1, feedReport.getMemId());
-	          st.setString(2, feedReport.getFeedId());
-	          st.setString(3, feedReport.getContent());
-	          st.setInt(4, feedReport.getId());
+	          st.setString(1, feedReport.getContent());
+	          st.setInt(2, feedReport.getId());
+//	          st.setString(1, feedReport.getMemId());
+//	          st.setString(2, feedReport.getFeedId());
+//	          st.setInt(4, feedReport.getId());
 	          
 	          result = st.executeUpdate();
 	          st.close();
@@ -149,6 +150,9 @@ public class JdbcFeedReportDao implements FeedReportDao{
 		}
 			return fr;
 	}
+	
+	
+	
 
 //	@Override
 //	public List<FeedReport> getList() {

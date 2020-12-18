@@ -5,7 +5,8 @@ import java.util.Date;
 public class CommentReportView {
 	private int num;
     private int id;
-    private String categoryId;
+    private int categoryId;
+    private String categoryName;
     private int boardId;
     private String title;
     private String writerId;
@@ -14,14 +15,15 @@ public class CommentReportView {
     private int reported;
     
     public CommentReportView() {
-    	this(0, 0, null, 0, null, null, null, null, 0);
+		this(0, 0, 0, null, 0, null, null, null, null, 0);
 	}
 
-	public CommentReportView(int num, int id, String categoryId, int boardId, String title, String writerId,
-			String content, Date regDate, int reported) {
+	public CommentReportView(int num, int id, int categoryId, String categoryName, int boardId, String title,
+			String writerId, String content, Date regDate, int reported) {
 		this.num = num;
 		this.id = id;
 		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 		this.boardId = boardId;
 		this.title = title;
 		this.writerId = writerId;
@@ -46,12 +48,20 @@ public class CommentReportView {
 		this.id = id;
 	}
 
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public int getBoardId() {
@@ -104,9 +114,9 @@ public class CommentReportView {
 
 	@Override
 	public String toString() {
-		return "CommentReportView [num=" + num + ", id=" + id + ", categoryId=" + categoryId + ", boardId=" + boardId
-				+ ", title=" + title + ", writerId=" + writerId + ", content=" + content + ", regDate=" + regDate
-				+ ", reported=" + reported + "]";
+		return "CommentReportView [num=" + num + ", id=" + id + ", categoryId=" + categoryId + ", categoryName="
+				+ categoryName + ", boardId=" + boardId + ", title=" + title + ", writerId=" + writerId + ", content="
+				+ content + ", regDate=" + regDate + ", reported=" + reported + "]";
 	}
     
 }

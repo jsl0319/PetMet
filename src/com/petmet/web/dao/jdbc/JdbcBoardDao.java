@@ -35,7 +35,7 @@ public class JdbcBoardDao implements BoardDao {
 			pst.setString(2, board.getContent());
 			pst.setString(3, board.getWriterId());
 			pst.setString(4, board.getFiles());
-			pst.setString(5, board.getCategoryId());
+			pst.setInt(5, board.getCategoryId());
 
 			result = pst.executeUpdate();
 
@@ -64,7 +64,7 @@ public class JdbcBoardDao implements BoardDao {
 			pst.setString(2, board.getContent());
 			pst.setString(3, board.getWriterId());
 			pst.setString(4, board.getFiles());
-			pst.setString(5, board.getCategoryId());
+			pst.setInt(5, board.getCategoryId());
 			pst.setInt(6, board.getId());
 
 			result = pst.executeUpdate();
@@ -126,7 +126,7 @@ public class JdbcBoardDao implements BoardDao {
 				String writerId = rs.getString("WRITER_ID");
 				Date regDate = rs.getDate("REG_DATE");
 				String files = rs.getString("FILES");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
 
 				b = new Board(id, title, content, hit, writerId, regDate, files, categoryId);
 			}
@@ -159,10 +159,10 @@ public class JdbcBoardDao implements BoardDao {
 						+ "WHERE NUM BETWEEN ? AND ?";
 
 		// 검색폼의 검색 경우의 수
-		if (query != null || !(query.equals("")))
+		if (query != null)
 			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
 
-		if (boardCategory != null || !(boardCategory.equals("게시판")))
+		if (boardCategory != null)
 			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
 
 		if (startDate != null || endDate != null)
@@ -187,7 +187,7 @@ public class JdbcBoardDao implements BoardDao {
 				String writerId = rs.getString("WRITER_ID");
 				Date regDate = rs.getDate("REG_DATE");
 				String files = rs.getString("FILES");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
 
 				Board b = new Board(id, title, content, hit, writerId, regDate, files, categoryId);
 
@@ -236,7 +236,6 @@ public class JdbcBoardDao implements BoardDao {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-
 				int num = rs.getInt("NUM");
 				int id = rs.getInt("ID");
 				String title = rs.getString("TITLE");
@@ -244,10 +243,11 @@ public class JdbcBoardDao implements BoardDao {
 				String writerId = rs.getString("WRITER_ID");
 				Date regDate = rs.getDate("REG_DATE");
 				String files = rs.getString("FILES");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+			    String categoryName = rs.getString("CATEGORY_NAME");
 				int cmtCnt = rs.getInt("CMT_CNT");
 
-				BoardView b = new BoardView(num, id, title, hit, writerId, regDate, files, categoryId, cmtCnt);
+				BoardView b = new BoardView(num, id, title, hit, writerId, regDate, files, categoryId, categoryName, cmtCnt);
 
 				list.add(b);
 			}
@@ -264,6 +264,46 @@ public class JdbcBoardDao implements BoardDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public BoardView getView(int id) {
+		String sql = "SELECT * FROM BOARD_VIEW WHERE ID = ?";
+		BoardView bv = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				int num = rs.getInt("NUM");
+				String title = rs.getString("TITLE");
+				int hit = rs.getInt("HIT");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int cmtCnt = rs.getInt("CMT_CNT");
+
+				bv = new BoardView(num, id, title, hit, writerId, regDate, files, categoryId, categoryName, cmtCnt);
+			}
+			rs.close();
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return bv;
 	}
 
 }

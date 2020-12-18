@@ -26,6 +26,7 @@ public class ReportedFeedView extends FeedReport{
 		this.action = action;
 	}
 
+
 	public int getId() {
 		return id;
 	}
