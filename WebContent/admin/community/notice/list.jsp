@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index.html">
+                        <a href="../notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
@@ -84,37 +84,37 @@
                     <ul>
                         <li>
                             <i class="fas fa-bullhorn"></i>
-                            <a href="list.html">공지사항관리</a>
+                            <a href="../notice/list">공지사항관리</a>
                         </li>
 
                         <li>
                             <i class="fas fa-bullhorn"></i>
-                            <a href="../QnA/list.html">QnA 관리</a>
+                            <a href="../QnA/list">QnA 관리</a>
                         </li>
 
                         <li>
                             <i class="fas fa-clipboard-list"></i>
-                            <a href="../category/list.html">카테고리 관리</a>
+                            <a href="../category/list">카테고리 관리</a>
                         </li>
 
                         <li>
                             <i class="fas fa-clipboard-list"></i>
-                            <a href="../board/list.html">게시글 관리</a>
+                            <a href="../board/list">게시글 관리</a>
                         </li>
 
                         <li>
                             <i class="fas fa-ban"></i>
-                            <a href="../board/reported.html">신고된 게시글 관리</a>
+                            <a href="../board/reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
                             <i class="fas fa-comment"></i>
-                            <a href="../comment/list.html">댓글 관리</a>
+                            <a href="../comment/list">댓글 관리</a>
                         </li>
 
                         <li>
                             <i class="fas fa-comment-slash"></i>
-                            <a href="../comment/reported.html">신고된 댓글 관리</a>
+                            <a href="../comment/reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
                 </nav>
@@ -134,9 +134,9 @@
                         
 
                          <!-- <label class="search__title" >공개여부</label> -->
-                         <input type="radio" id="cb1"  name ="p"  value = "0">
+                         <input type="radio" id="cb1"  name ="pub"  value = "0">
                          <label for="cb1"></label> <label class="search__title" >공개</label>
-                         <input type="radio" id="cb2" name = "p" value = "1">
+                         <input type="radio" id="cb2" name = "pub" value = "1">
                          <label for="cb2"></label> <label class="search__title" >비공개</label>
                        
 
@@ -187,14 +187,34 @@
                     <a href="del?id=${n.id}"><input class="button" type="button" value="모두 삭제"></a>
                     <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
                 </section>
+                
+                <c:set var="page" value="${(param.p==null)?1:param.p}"/> 
+                <c:set var="startNum" value="${page-(page-1)%5}" />
 
                 <div class="pager">
-                   <c:forEach var = "i" begin = "0" end="4" >
-                  <li><a class="-text- orange bold" href="?p=1&t=&q=">${i+1}</a></li>
-			   </c:forEach>
+                 <div>
+              <a href="#"><i class="fas fa-angle-double-left"></i></a>
+            </div>
+            <div>
+              <a href="#"><i class="fas fa-angle-left"></i></a>
+            </div>
+          <ul>
+             <c:forEach var = "i" begin = "0" end="4" > 
+            <li><a href="?p=${startNum+i}&t=&q="></a></li>
+            </c:forEach>
+          </ul>
+          <div>
+            <a href="#"><i class="fas fa-angle-right"></i></a>
+          </div>
+          <div>
+            <a href="#"><i class="fas fa-angle-double-right"></i></a>
+          </div>
+                
+                
+                
+                 
                   </div>
-
-
+			
             </main>
         </div>
     </section>

@@ -222,38 +222,47 @@ public class JdbcNoticeDao implements NoticeDao {
 		return list;
 	}
 
-	@Override
-	public int deleteList(List<Integer> ids) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	
 	
 
 	@Override
-	public List<Notice> getList(String query, String pub, String startDate,
+	public List<Notice>getList(String query,boolean pub, String startDate,
 			String endDate, int page,int num) {
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "SELECT *FROM NOTICE"
-				+" WHERE"+field+"LIKE?AND"
-				+"REG_DATE>? AND"
-				+"REG_DATE<(SELECT TO_DATE(??'YY-MM-DD')+1 FROM DUAL)";
-		
+		String sql = "SELECT *FROM NOTICE WHERE LIKE '%"+query+"%' AND "
+				+ "PUB=pub AND "+"REG_DATE>startDate AND" +"REG_DATE<(SELECT TO_DATE(endDate,'YY-MM-DD')+1 FROM DUAL))" 
+				+"WHERE NUM BETWEEN 1 AND 10";
 		List<Notice> list = new ArrayList<>();
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// 연결
-			Connection con = DriverManager.getConnection(url, uid, pwd);
-		    
+			Connection con = DriverManager.getConnection(url, uid, pwd);	    
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1,"%"+query+"%");
-			st.setString(2,startDate);
-			st.setString(3, endDate);
-
 			ResultSet rs = st.executeQuery();
+			
+			while (rs.next()){
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				pub = rs.getBoolean("pub");
+				int hit = rs.getInt("hit");
+				String writerId = rs.getString("writerid");
+				Date regdate = rs.getDate("regdate");
+				String files = rs.getString("files");
+
+				
+				Notice n = new Notice(id, title, content, pub, hit, writerId, regdate, files);
+
+				
+				list.add(n);
+
+				
+				
+			};
+
 			st.close();
 			con.close();
 
@@ -279,6 +288,13 @@ public class JdbcNoticeDao implements NoticeDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int deleteList(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	
 

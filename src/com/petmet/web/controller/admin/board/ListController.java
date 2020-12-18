@@ -21,7 +21,8 @@ public class ListController extends HttpServlet{
 			throws ServletException, IOException {
 		
 		String query_ = request.getParameter("q");
-		String pub_ = request.getParameter("p");
+		String pub_ = request.getParameter("pub");
+		
 		String startDate_ = request.getParameter("sd");
 		String endDate_ = request.getParameter("ed");
 		
@@ -56,7 +57,7 @@ public class ListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		NoticeService service = new NoticeService();
 		List<Notice> list = service.getList();
-		
+		//서블릿 요청
 		req.setAttribute("list",list);
 		req.getRequestDispatcher("list.jsp").forward(req,resp);
 		
