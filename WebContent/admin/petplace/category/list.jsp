@@ -161,7 +161,7 @@
                         <ul>
                             <c:forEach var="i" begin="0" end="4">
                                 <li>
-                                    <a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}">${startNum+i}</a>
+                                    <a href="?p=${startNum+i}&q=${param.q}">${startNum+i}</a>
                                 </li>
                             </c:forEach>
                         </ul>

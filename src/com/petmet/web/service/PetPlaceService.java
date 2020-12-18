@@ -51,7 +51,8 @@ public class PetPlaceService {
 		return ppDao.getView(id);
 	}
 
-	public List<PetPlaceView> getList(String field, String query, String startDate, String endDate, int page, int num) {
+	public List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate, int page,
+			int num) {
 
 		int lastIndex = ppDao.getLastIndex();
 
@@ -59,6 +60,17 @@ public class PetPlaceService {
 //		int endIndex = lastIndex + page * num * (-1) + 1;
 		int startIndex = lastIndex + page * num * (-1) + 1;
 		int endIndex = lastIndex + (page - 1) * num * (-1);
-		return ppDao.getView(field, query, startDate, endDate, startIndex, endIndex);
+		return ppDao.getViewList(field, query, startDate, endDate, startIndex, endIndex);
 	}
+
+	// review관리 페이지를 위한 getViewList
+	public List<PetPlaceView> getViewList(String field, String query, int page, int num) {
+		int lastIndex = ppDao.getLastIndex();
+
+		int startIndex = lastIndex + page * num * (-1) + 1;
+		int endIndex = lastIndex + (page - 1) * num * (-1);
+
+		return ppDao.getViewList(field, query, startIndex, endIndex);
+	}
+
 }
