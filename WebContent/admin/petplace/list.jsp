@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -97,17 +96,21 @@
 
                     <h1 class="d-none">검색폼</h1>
 
-                    <form>
+                    <form class="search__container">
 
-                        <select>
-                            <option>이름</option>
-                            <option>내용</option>
-                            <option>지역</option>
-                            <option>카테고리</option>
+                        <select class="search__title" name="f">
+                            <option ${param.f=="name" ?"selected":""} value="name">이름</option>
+                            <option ${param.f=="content" ?"selected":""} value="content">내용</option>
+                            <option ${param.f=="address" ?"selected":""} value="address">지역</option>
+                            <option ${param.f=="category_name" ?"selected":""} value="category_name">카테고리</option>
                         </select>
 
-                        <input type="text">
-                        <input type="submit" value="검색">
+                        <input type="text" class="search__input" name="q" value="${param.q}">
+
+                        <label>날짜 검색</label>
+                        <input type="date" name="sd" value="${param.sd}">~
+                        <input type="date" name="ed" value="${param.ed}">
+                        <input type="submit" class="button" value="검색">
                     </form>
 
                 </section>
@@ -130,15 +133,15 @@
 
                         <tbody>
                             <c:forEach var="p" items="${list}">
-	                            <tr>
-	                                <td>${p.num}</td>
-	                                <td><a href="detail?id=${p.id}">${p.name }</a></td>
-	                                <td>${p.writerName}</td>
-	                                <td>${p.regDate}</td>
-	                                <td>${p.hit}</td>
-	                                <td><input type="checkbox"></td>
-	                                <td><input type="checkbox"></td>
-	                            </tr>
+                                <tr>
+                                    <td>${p.num}</td>
+                                    <td><a href="detail?id=${p.id}">${p.name}</a></td>
+                                    <td>${p.writerName}</td>
+                                    <td>${p.regDate}</td>
+                                    <td>${p.hit}</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox"></td>
+                                </tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -152,6 +155,8 @@
                 </section>
 
                 <section>
+                    <c:set var="page" value="${(param.p==null)?1:param.p}" />
+                    <c:set var="startNum" value="${page-(page-1)%5}" />
                     <div class="pager">
                         <div>
                             <a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -160,11 +165,11 @@
                             <a href="#"><i class="fas fa-angle-left"></i></a>
                         </div>
                         <ul>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            <c:forEach var="i" begin="0" end="4">
+                                <li>
+                                    <a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}">${startNum+i}</a>
+                                </li>
+                            </c:forEach>
                         </ul>
                         <div>
                             <a href="#"><i class="fas fa-angle-right"></i></a>
@@ -174,7 +179,6 @@
                         </div>
                     </div>
                 </section>
-
             </main>
         </div>
     </div>

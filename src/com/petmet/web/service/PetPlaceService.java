@@ -44,8 +44,21 @@ public class PetPlaceService {
 		return ppDao.getViewList();
 	}
 
+//	public Pet
+
 	public PetPlaceView getView(int id) {
 
 		return ppDao.getView(id);
+	}
+
+	public List<PetPlaceView> getList(String field, String query, String startDate, String endDate, int page, int num) {
+
+		int lastIndex = ppDao.getLastIndex();
+
+//		int startIndex = lastIndex + (page - 1) * num * (-1);
+//		int endIndex = lastIndex + page * num * (-1) + 1;
+		int startIndex = lastIndex + page * num * (-1) + 1;
+		int endIndex = lastIndex + (page - 1) * num * (-1);
+		return ppDao.getView(field, query, startDate, endDate, startIndex, endIndex);
 	}
 }

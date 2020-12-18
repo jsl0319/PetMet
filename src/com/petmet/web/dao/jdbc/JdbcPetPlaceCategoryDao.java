@@ -135,7 +135,7 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 
 	@Override
 	public List<PetPlaceCategory> getList() {
-		String sql = "SELECT * FROM PETPLACE_CATEGORY";
+		String sql = "SELECT * FROM PETPLACE_CATEGORY_VIEW";
 
 		List<PetPlaceCategory> list = new ArrayList<>();
 
@@ -210,5 +210,92 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 
 		return list;
 	}
+
+	@Override
+	public int getLastIndex() {
+
+		PetPlaceCategoryView ppc = null;
+		String sql = "SELECT * FROM PETPLACE_CATEGORY_VIEW WHERE ID = (SELECT MAX(ID) FROM PETPLACE_CATEGORY_VIEW)";
+		
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				Date regDate = rs.getDate("REG_DATE");
+				Date editDate = rs.getDate("EDIT_DATE");
+				int num = rs.getInt("NUM");
+
+				ppc = new PetPlaceCategoryView(id, name, regDate, editDate, num);
+
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return ppc.getNum();
+		
+	}
+
+	@Override
+	public List<PetPlaceCategoryView> getViewList(String query, int startIndex, int endIndex) {
+		
+		String sql = "SELECT * FROM"
+				+ "(SELECT * FROM PETPLACE_CATEGORY_VIEW"
+				+ "    WHERE NAME LIKE ? )"
+				+ "WHERE NUM BETWEEN ? AND ?";
+		
+		List<PetPlaceCategoryView> list = new ArrayList<>();
+		
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			st.setInt(2, startIndex);
+			st.setInt(3, endIndex);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				Date regDate = rs.getDate("REG_DATE");
+				Date editDate = rs.getDate("EDIT_DATE");
+				int num = rs.getInt("NUM");
+
+				PetPlaceCategoryView ppc = new PetPlaceCategoryView(id, name, regDate, editDate, num);
+				
+				list.add(ppc);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
 
 }
