@@ -10,14 +10,15 @@ public class Board {
 	private String writerId;
 	private Date regDate;
 	private String files;
-	private String categoryId;
+	private int categoryId;
 	
 	public Board() {
-		this(0,null,null,0,null,null,null,null);
+		this(0, null, null, 0, null, null,null, 0);
 	}
 
 	public Board(int id, String title, String content, int hit, String writerId, Date regDate, String files,
-			String categoryId) {
+			int categoryId) {
+
 		this.id = id;
 		this.title = title;
 		this.content = content;
@@ -84,12 +85,12 @@ public class Board {
 		this.files = files;
 	}
 
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryId(int changed) {
+		this.categoryId = changed;
 	}
 
 	@Override

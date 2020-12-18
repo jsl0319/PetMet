@@ -148,6 +148,9 @@
                     </ul>
                 </section>
                 
+                <form action="detail" method="post">
+                <input hidden name="id" value="${c.id }">
+                
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
 
@@ -156,6 +159,7 @@
                     </a>
                     <input class="button" type="submit" value="삭제">
                 </section>
+                </form>
             </main>
         </div>
     </section>

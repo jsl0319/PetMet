@@ -53,18 +53,20 @@ public class ListController extends HttpServlet{
 			break;
 			
 		case "저장":
-			String[] names = request.getParameterValues("name");
-			String[] bIds = request.getParameterValues("id");
+			// 카테고리 변경 값, 카테고리 변경 아이디
+			String[] changed = request.getParameterValues("changed");
+			String[] bIds = request.getParameterValues("changed-id");
 
 			// 수정
 			if (bIds != null) {
 				List<Board> list = new ArrayList<Board>();
 
-				for (int i = 0; i < bIds.length; i++) {
+				for (int i = 0; i < changed.length; i++) {
 					int id = Integer.parseInt(bIds[i]);
-
+					int cid = Integer.parseInt(changed[i]);
+					
 					Board b = service.get(id);
-					b.setCategoryId(names[i]);
+					b.setCategoryId(cid);
 
 					list.add(b);
 				}
@@ -77,4 +79,5 @@ public class ListController extends HttpServlet{
 		// --------------------- 요청 ---------------------
 		response.sendRedirect("list");
 	}
+	
 }

@@ -42,7 +42,7 @@ public class ReportedController extends HttpServlet{
 			for (int i = 0; i < ids.length; i++)
 				ids[i] = Integer.parseInt(dels[i]);
 
-			service.deleteList(ids);
+			service.deleteBoardList(ids);
 		}
 
 		// --------------------- 요청 ---------------------

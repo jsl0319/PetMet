@@ -197,7 +197,7 @@ public class JdbcCommentReportDao implements CommentReportDao{
 
 	@Override
 	public List<CommentReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex) {
-		String sql = "SELECT * FROM REPORTED_COMMENT_VIEW WHERE NUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM COMMENT_REPORT_VIEW WHERE NUM BETWEEN ? AND ?";
 
 		// 검색폼의 검색 경우의 수
 		if (query != null)
@@ -223,7 +223,8 @@ public class JdbcCommentReportDao implements CommentReportDao{
 			while (rs.next()) {
 				int num = rs.getInt("NUM");
 			    int id = rs.getInt("ID");
-			    String categoryId = rs.getString("CATEGORY_ID");
+			    int categoryId = rs.getInt("CATEGORY_ID");
+			    String categoryName = rs.getString("CATEGORY_NAME");
 			    int boardId = rs.getInt("BOARD_ID");
 			    String title = rs.getString("TITLE");
 			    String writerId = rs.getString("WRITER_ID");
@@ -231,7 +232,7 @@ public class JdbcCommentReportDao implements CommentReportDao{
 			    Date regDate = rs.getDate("REG_DATE");
 			    int reported = rs.getInt("REPORTED");
 			    
-				CommentReportView cv = new CommentReportView(num, id, categoryId, boardId, title, writerId, content, regDate, reported);
+				CommentReportView cv = new CommentReportView(num, id, categoryId, categoryName, boardId, title, writerId, content, regDate, reported);
 
 				list.add(cv);
 			}

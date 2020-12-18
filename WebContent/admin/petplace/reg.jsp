@@ -107,8 +107,8 @@
                                     <th>카테고리</th>
                                     <td>
                                         <select name="categoryId">
-                                        	<c:forEach var="ppc" items="${list }">
-                                            	<option value="${ppc.name }">${ppc.name }</option>
+                                        	<c:forEach var="ppc" items="${list}">
+                                            	<option value="${ppc.id}">${ppc.name}</option>
                                         	</c:forEach>
                                         </select>
                                     </td>

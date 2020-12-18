@@ -43,4 +43,9 @@ public class PetPlaceService {
 
 		return ppDao.getViewList();
 	}
+
+	public PetPlaceView getView(int id) {
+
+		return ppDao.getView(id);
+	}
 }

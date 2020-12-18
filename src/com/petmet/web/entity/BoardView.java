@@ -10,15 +10,16 @@ public class BoardView {
 	private String writerId;
 	private Date regDate;
 	private String files;
-	private String categoryId;
+	private int categoryId;
+    private String categoryName;
 	private int cmtCnt;
 
 	public BoardView() {
-		this(0, 0, null, 0, null, null, null, null, 0);
+		this(0, 0, null, 0, null, null, null, 0, null, 0);
 	}
 
 	public BoardView(int num, int id, String title, int hit, String writerId, Date regDate, String files,
-			String categoryId, int cmtCnt) {
+			int categoryId, String categoryName, int cmtCnt) {
 		this.num = num;
 		this.id = id;
 		this.title = title;
@@ -27,6 +28,7 @@ public class BoardView {
 		this.regDate = regDate;
 		this.files = files;
 		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 		this.cmtCnt = cmtCnt;
 	}
 
@@ -86,12 +88,20 @@ public class BoardView {
 		this.files = files;
 	}
 
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public int getCmtCnt() {
@@ -105,8 +115,8 @@ public class BoardView {
 	@Override
 	public String toString() {
 		return "BoardView [num=" + num + ", id=" + id + ", title=" + title + ", hit=" + hit + ", writerId=" + writerId
-				+ ", regDate=" + regDate + ", files=" + files + ", categoryId=" + categoryId + ", cmtCnt=" + cmtCnt
-				+ "]";
+				+ ", regDate=" + regDate + ", files=" + files + ", categoryId=" + categoryId + ", categoryName="
+				+ categoryName + ", cmtCnt=" + cmtCnt + "]";
 	}
 	
 }

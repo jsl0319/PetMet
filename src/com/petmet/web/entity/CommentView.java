@@ -5,7 +5,8 @@ import java.util.Date;
 public class CommentView {
 	private int num;
     private int id;
-    private String categoryId;
+    private int categoryId;
+    private String categoryName;
     private int boardId;
     private String title;
     private String writerId;
@@ -13,15 +14,15 @@ public class CommentView {
     private Date regDate;
     
     public CommentView() {
-		this(0, 0, null, 0, null, null, null, null);
+		this(0, 0, 0, null, 0, null, null, null, null);
 	}
 
-	public CommentView(int num, int id, String categoryId, int boardId, String title, String writerId, String content,
-			Date regDate) {
-
+	public CommentView(int num, int id, int categoryId, String categoryName, int boardId, String title, String writerId,
+			String content, Date regDate) {
 		this.num = num;
 		this.id = id;
 		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 		this.boardId = boardId;
 		this.title = title;
 		this.writerId = writerId;
@@ -45,12 +46,20 @@ public class CommentView {
 		this.id = id;
 	}
 
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public int getBoardId() {
@@ -95,8 +104,9 @@ public class CommentView {
 
 	@Override
 	public String toString() {
-		return "Comment_View [num=" + num + ", id=" + id + ", categoryId=" + categoryId + ", boardId=" + boardId
-				+ ", title=" + title + ", writerId=" + writerId + ", content=" + content + ", regDate=" + regDate + "]";
+		return "CommentView [num=" + num + ", id=" + id + ", categoryId=" + categoryId + ", categoryName="
+				+ categoryName + ", boardId=" + boardId + ", title=" + title + ", writerId=" + writerId + ", content="
+				+ content + ", regDate=" + regDate + "]";
 	}
     
 }

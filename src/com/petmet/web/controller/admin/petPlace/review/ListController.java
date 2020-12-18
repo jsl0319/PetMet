@@ -1,6 +1,7 @@
-package com.petmet.web.controller.admin.petPlace;
+package com.petmet.web.controller.admin.petPlace.review;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmet.web.entity.PetPlaceView;
 import com.petmet.web.service.PetPlaceService;
 
-@WebServlet("/admin/petplace/detail")
-public class DetailController extends HttpServlet {
+@WebServlet("/admin/petplace/review/list")
+public class ListController extends HttpServlet {
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int id = Integer.parseInt(request.getParameter("id"));
-
 		PetPlaceService service = new PetPlaceService();
-		PetPlaceView p = service.getView(id);
+		List<PetPlaceView> list = service.getList();
 
-		request.setAttribute("p", p);
-		request.getRequestDispatcher("/admin/petplace/detail.jsp").forward(request, response);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("list.jsp").forward(request, response);
 
 	}
+
 }
