@@ -122,8 +122,8 @@
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td class="col-l">이름</td>
-                                <td class="col-s">작성자</td>
+                                <td class="col-m">이름</td>
+                                <td class="col-l">주소</td>
                                 <td class="col-m">작성일</td>
                                 <td>조회수</td>
                                 <td class="col-m">공개여부</td>
@@ -136,7 +136,7 @@
                                 <tr>
                                     <td>${p.num}</td>
                                     <td><a href="detail?id=${p.id}">${p.name}</a></td>
-                                    <td>${p.writerName}</td>
+                                    <td>${p.address}</td>
                                     <td>${p.regDate}</td>
                                     <td>${p.hit}</td>
                                     <td><input type="checkbox"></td>
