@@ -16,11 +16,12 @@ public interface NoticeDao {
 
 	
 	
-	List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate, Date endDate, int page);
+
 	List<Notice> pubList(List<Integer> ids);
 	int deleteList(List<Integer> ids);
 	
 	List<Notice> getList();
+	List<Notice> getList(String query, String pub, String startDate, String endDate, int page, int num);
 
 
 }

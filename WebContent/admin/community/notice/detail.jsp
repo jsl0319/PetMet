@@ -120,7 +120,7 @@
                 <table class ="detail-table">
                     <tr>
                         <th>제목</th>
-                        <td colspan="3">1${n.title}</td>
+                        <td colspan="3">${n.title}</td>
                     </tr>
     
                     <tr>

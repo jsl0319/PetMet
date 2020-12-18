@@ -51,9 +51,14 @@ public class RegController extends HttpServlet {
 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int pub = Integer.parseInt(request.getParameter("pub"));
+		int pub_ = Integer.parseInt(request.getParameter("pub"));
+		boolean pub = true;
+		if(pub_ ==1){
+			pub = false;
+		}
+		
+	//	System.out.print(title+content+pub);
 	
-
 		// 파일등록
 		Collection<Part> fileParts = request.getParts();
 
@@ -92,16 +97,15 @@ public class RegController extends HttpServlet {
 		}
 		
 		NoticeService service = new NoticeService();
-		Notice notice = new Notice (title,content,pub);
+		Notice notice = new Notice(0,title,content,pub,0,null,null,null);
+				
 		notice.setFiles(fileNames);
+		notice.setWriterId("관리자");
 
 		// null방지
 		
 
 		service.insert(notice);
-
-		
-
 		response.sendRedirect("list");
 
 	}

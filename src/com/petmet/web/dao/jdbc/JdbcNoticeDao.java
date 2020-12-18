@@ -24,18 +24,19 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "INSERT INTO NOTICE(TITLE,CONTENT,PUB) VALUES(?,?,?)";
+		String sql = "INSERT INTO NOTICE(TITLE,CONTENT,PUB,WRITERID) VALUES(?,?,?,?)";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			// 연결
 			Connection con = DriverManager.getConnection(url, uid, pwd);
-
+		    
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());
-			st.setInt(3, notice.getpub());
+			st.setBoolean(3, notice.getpub());
+			st.setString(4, notice.getWriterId());
 
 			result = st.executeUpdate();
 			st.close();
@@ -60,7 +61,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=? WHERE ID =?";
+		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=?,PUB=? WHERE ID =?";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -71,7 +72,10 @@ public class JdbcNoticeDao implements NoticeDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());
-			st.setInt(3, notice.getId());
+			st.setBoolean(3, notice.getpub());
+			st.setInt(4, notice.getId());
+		
+			
 
 			result = st.executeUpdate();
 			st.close();
@@ -145,7 +149,7 @@ public class JdbcNoticeDao implements NoticeDao {
 				// int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				int pub = rs.getInt("pub");
+				Boolean pub = rs.getBoolean("pub");
 				int hit = rs.getInt("hit");
 
 				String writerId = rs.getString("writerid");
@@ -190,7 +194,7 @@ public class JdbcNoticeDao implements NoticeDao {
 				int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				int pub = rs.getInt("pub");
+				Boolean pub = rs.getBoolean("pub");
 				int hit = rs.getInt("hit");
 
 				String writerId = rs.getString("writerid");
@@ -228,14 +232,47 @@ public class JdbcNoticeDao implements NoticeDao {
 	
 
 	@Override
-	public List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate,
-			Date endDate, int page) {
+	public List<Notice> getList(String query, String pub, String startDate,
+			String endDate, int page,int num) {
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "INSERT INTO NOTICE(TITLE,CONTENT,PUB) VALUES(?,?,?)";
+		String sql = "SELECT *FROM NOTICE"
+				+" WHERE"+field+"LIKE?AND"
+				+"REG_DATE>? AND"
+				+"REG_DATE<(SELECT TO_DATE(??'YY-MM-DD')+1 FROM DUAL)";
 		
-		return null;
+		List<Notice> list = new ArrayList<>();
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// 연결
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+		    
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1,"%"+query+"%");
+			st.setString(2,startDate);
+			st.setString(3, endDate);
+
+			ResultSet rs = st.executeQuery();
+			st.close();
+			con.close();
+
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+
 	}
+
+		
+
 
 	@Override
 	public List<Notice> pubList(List<Integer> ids) {

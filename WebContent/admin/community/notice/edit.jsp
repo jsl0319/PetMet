@@ -115,20 +115,25 @@
                     </nav>
             </aside>
             <main class = "main">
+            <form method="post" enctype="multipart/form-data">
                 <h1>공지사항 상세 내용</h1>
                 <section>
                 <table class ="detail-table">
                     <tr>
                         <th>제목</th>
-                        <td colspan="3">1${n.title}</td>
+                     <td>  <input type="text" name="title" value="${n.title}" /></td>
                     </tr>
     
                     <tr>
                         <th>등록일</th>
                        <td> <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
                         <th>공개여부</th>
-                        
-                                 <td><input name="check_delete" type="checkbox"> 비공개</td>
+                        <td>
+                            <select name="pub">
+                                        	<option value="1">공개</option>
+                                        	<option value="0">비공개</option>
+                                        </select>
+                                        </td>
                            
                     </tr>
     
@@ -147,21 +152,23 @@
                 </tr>
                     <tr class="content">
                        <td colspan="4">
-                                <textarea name = "content">
+                                <textarea name = "content" style="width: 900px; height: 500px; resize: none;">
                                 ${n.content}
                                 </textarea>
                                 </td>
                     </tr>
                 </table>
+                
             </section>
     
                 <section class = "button-list">
                     <h1 class= "d-none">이벤트 버튼</h1>
     
                  <a href="list">  <input class="button" type="button" value="목록"></a>
-                <input class="button" type="submit" value="수정완료">
+         <input class="button" type="submit" value="수정완료">
                  <a href="del?id=${n.id}"><input class="button" type="button" value="삭제"></a>
                 </section>
+                </form>
             </main>
 
         </div>

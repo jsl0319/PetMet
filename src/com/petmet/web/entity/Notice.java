@@ -6,7 +6,7 @@ public class Notice {
 	private int id;
 	private String title;
 	private String content;
-	private int pub;
+	private Boolean pub;
 	private int hit;
 	private String writerId;
 	private Date regdate;
@@ -15,9 +15,10 @@ public class Notice {
 	
 	public Notice() {
 		
+		
 	}
 
-	public Notice(int id,String title, String content, int pub, int hit, String writerId, Date regdate, String files
+	public Notice(int id,String title, String content, Boolean pub, int hit, String writerId, Date regdate, String files
 			) {
 
 		this.title = title;
@@ -30,10 +31,10 @@ public class Notice {
 		this.id = id;
 	}
 
+
 	
 
-
-
+	
 
 	public String getTitle() {
 		return title;
@@ -51,11 +52,11 @@ public class Notice {
 		this.content = content;
 	}
 
-	public int getpub() {
+	public Boolean getpub() {
 		return pub;
 	}
 
-	public void setpub(int pub) {
+	public void setpub(Boolean pub) {
 		this.pub = pub;
 	}
 

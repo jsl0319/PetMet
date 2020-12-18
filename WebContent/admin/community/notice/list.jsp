@@ -130,18 +130,18 @@
                    <form class="search__container">
                         
                         <label class="search__title">제목</label>
-                        <input class="search__input" type="text" >
+                        <input class="search__input" type="text" name= "q">
                         
 
                          <!-- <label class="search__title" >공개여부</label> -->
-                         <input type="checkbox" id="cb1">
+                         <input type="radio" id="cb1"  name ="p"  value = "0">
                          <label for="cb1"></label> <label class="search__title" >공개</label>
-                         <input type="checkbox" id="cb2">
+                         <input type="radio" id="cb2" name = "p" value = "1">
                          <label for="cb2"></label> <label class="search__title" >비공개</label>
                        
 
                          <label class="search__title" >일자</label>
-                         <input class="search__input" type="date">~<input class="search__input" type="date">
+                         <input class="search__input" type="date"name ="sd">~<input class="search__input" type="date" name="ed">
                          <input class="button" type="submit" value="검색">
      
                     </form>
@@ -185,7 +185,7 @@
                     <h1 class="d-none">이벤트 버튼</h1>
                     <a href="pub?id"><input class="button" type="button" value="모두 공개"></a>
                     <a href="del?id=${n.id}"><input class="button" type="button" value="모두 삭제"></a>
-                    <a href="reg.jsp"><input class="button" type="button" value="게시글 작성"></a>
+                    <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
                 </section>
 
                 <div class="pager">

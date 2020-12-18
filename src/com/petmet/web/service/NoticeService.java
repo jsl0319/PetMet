@@ -42,5 +42,17 @@ public class NoticeService {
 	}
 
 
+	public static List<Notice> getList(String query, String pub, String startDate, String endDate,
+			int page, int num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+
+
 
 }
