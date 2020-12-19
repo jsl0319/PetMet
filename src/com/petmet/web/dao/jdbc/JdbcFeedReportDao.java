@@ -162,6 +162,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	           
 	           ResultSet rs = st.executeQuery();
 
+	           if(rs.next())
 	           count = rs.getInt("count");
 	         
 	         rs.close();
@@ -196,6 +197,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	           
 	           ResultSet rs = st.executeQuery();
 	           
+	           if(rs.next())
 	           count = rs.getInt("count");
 
 	         
@@ -220,12 +222,12 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	@Override
 	public List<FeedReport> getList(String field, String query, String startDate, String endDate, int startIndex,
 			int endIndex) {
-		  String sql = "SELECT * FROM "
-		  		+ "(SELECT ROWNUM NUM, FR.* FROM FEED_REPORT FR "
-		  		+ "WHERE "+field+" LIKE ?  AND "
-		  		+ "REPO_DATE>? AND "
-		  		+ "REPO_DATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)) "
-		  		+ "WHERE NUM BETWEEN ? AND ?";
+		  String sql = "SELECT  A.* FROM "
+		  		+ "(SELECT ROWNUM NUM2, R.* "
+		  		+ "FROM(SELECT ROWNUM NUM, FR.* "
+		  		+ "FROM FEED_REPORT FR ORDER BY REPO_DATE DESC) R "
+		  		+ "WHERE "+field+" LIKE ? AND REPO_DATE> ? AND REPO_DATE <(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)) A "
+		  		+ "WHERE NUM2 BETWEEN ? AND ?";
 		  
 		  
 	      List<FeedReport> list= new ArrayList<>();
@@ -328,9 +330,11 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	public FeedReport getPrev(int id) {
 		FeedReport feedReport = null;
 		
-		String sql ="SELECT ID FROM (SELECT * FROM FEED_REPORT ORDER BY REPO_DATE DESC)"
-				+ " WHERE REPO_DATE < (SELECT REPO_DATE FROM FEED_REPORT WHERE ID = ?)"
-				+ "AND ROWNUM = 1";
+		String sql ="SELECT * "
+				+ "FROM FEED_REPORT "
+				+ "WHERE ID=(SELECT ID FROM FEED_REPORT "
+				+ "WHERE REPO_DATE > (SELECT REPO_DATE FROM FEED_REPORT WHERE ID=?) "
+				+ "AND ROWNUM = 1)";
 		
 		
 
@@ -373,12 +377,14 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	public FeedReport getNext(int id) {
 		FeedReport feedReport = null;
 		
+		String sql ="SELECT ID "
+				+ "FROM "
+				+ "(SELECT * FROM "
+				+ "(SELECT * FROM FEED_REPORT WHERE REPO_DATE < (SELECT REPO_DATE FROM FEED_REPORT WHERE ID=?)) "
+				+ "ORDER BY REPO_DATE DESC) "
+				+ "WHERE ROWNUM = 1";
 		
-		String sql ="SELECT * "
-				+ "FROM FEED_REPORT "
-				+ "WHERE ID=(SELECT ID FROM FEED_REPORT "
-				+ "WHERE REPO_DATE > (SELECT REPO_DATE FROM FEED_REPORT WHERE ID=?) "
-				+ "AND ROWNUM = 1)";
+		
 		
 
 		 try {

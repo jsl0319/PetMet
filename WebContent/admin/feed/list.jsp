@@ -124,40 +124,42 @@
   
               <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
               <c:set var="startNum" value="${ page-(page-1)%5}"/>
-              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13),'.')}"/>
-              
+              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13), '.')}"/>
+              <div>${lastNum } </div>
               
               <div class="pager">
               
-                <div>
-                  <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                </div>
+              	<c:if test="${startNum >= 1 }">
+	                <div>
+	                  <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+	                </div>
+                </c:if>
                 
+                <c:if test="${startNum >= 1 }">
                 <div>
-                <c:if test="${startNum>1 }">
-                  <a href="?p=${startNum-1}&t=&q="><i class="fas fa-angle-left"></i></a>
-                 </c:if>
-                 
+                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
                 </div>
+                </c:if>
                 
                 <ul>
               <c:forEach var="i" begin="0" end="4">	
-              	<%-- <c:if test="${(startNum+i)<=lastNum }"> --%>
-                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum+i}&f=${param.f}&q=${param.q}" >${startNum+i}</a></li>
-              	<%-- </c:if> --%>
+              	<c:if test="${(startNum+i)<=lastNum }">
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}">${startNum + i}</a></li>
+              	</c:if>
               </c:forEach>
                 </ul>
                 
-                <div>
                 <c:if test="${startNum+4 < lastNum }">
-                  <a href="?p=${startNum+5} &t= &q="><i class="fas fa-angle-left"></i></a>
-                 </c:if>
-                </div>
-                
                 <div>
-                  <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                  <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
                 </div>
-                 
+                 </c:if>
+                
+                <c:if test="${startNum+4 < lastNum }">
+                <div>
+                  <a href="${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+                </div>
+                 </c:if>
               </div>
             </main>
           </div>

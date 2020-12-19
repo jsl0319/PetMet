@@ -34,8 +34,6 @@ public class DetailListController extends HttpServlet{
 		
 		if(page_!= null && !page_.equals(""))
 			page = Integer.parseInt(page_);
-//		if(field_ != null && !field_.equals(""))
-//			field = field_;
 		if(query_ != null && !query_.equals(""))
 			query = query_;
 		if(startDate_ != null && !startDate_.equals(""))
@@ -47,7 +45,11 @@ public class DetailListController extends HttpServlet{
 		FeedReportService service = new FeedReportService();
 		List<FeedReport> list = service.getList(field, query, startDate, endDate, page, size);
 		
+		int count = service.getListCount(field, query);
+		
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		
 		request.getRequestDispatcher("detail-list.jsp").forward(request, response);
 	}
 	

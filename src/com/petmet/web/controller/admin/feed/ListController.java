@@ -45,10 +45,11 @@ public class ListController extends HttpServlet{
 		FeedReportService service = new FeedReportService();
 		List<ReportedFeedView> list = service.getViewList(field, query, page, size);
 		
-//		int count = service.getViewListCount(field, query);
+		int count = service.getViewListCount(field, query);
 		
 		request.setAttribute("list", list);
-//		request.setAttribute("count", count);
+		request.setAttribute("count", count);
+		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		
 	}
