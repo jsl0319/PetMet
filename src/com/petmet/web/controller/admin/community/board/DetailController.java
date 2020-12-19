@@ -26,6 +26,9 @@ public class DetailController extends HttpServlet{
 		
 		BoardService service = new BoardService();
 		Board b = service.get(id);
+		b.setHit(b.getHit()+1);
+		service.update(b);
+		
 		List<BoardCategory> cList= service.getCategoryList();
 		
 		request.setAttribute("b", b);
