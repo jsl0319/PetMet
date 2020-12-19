@@ -92,7 +92,8 @@
                         <input type="date" name="ed" value="${param.ed}">
                     <input class="button" type="submit" value="검색" />
                     
-                    </form>
+                  </form>
+                  
               <table class="list-table" border="1">
                 <thead>
                   <tr>
@@ -119,14 +120,14 @@
           </section>
             
             
-          <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-		      <c:set var="startNum" value="${page-(page-1)%5}"/>
+          <c:set var="page" value="${(param.p == null) ? 1 : param.p}"/>
+		  <c:set var="startNum" value="${page-(page-1)%5}"/>
           <div class="pager">
             <div>
               <a href="#"><i class="fas fa-angle-double-left"></i></a>
             </div>
             <div>
-              <a href="#"><i class="fas fa-angle-left"></i></a>
+              <a href="?p=${startNum-5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
             </div>
           <ul>
             <c:forEach var="i" begin="0" end="4">		

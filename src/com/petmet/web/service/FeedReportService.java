@@ -14,6 +14,8 @@ public class FeedReportService {
 		feedReportDao = new JdbcFeedReportDao();
 	}
 	
+
+	
 	public FeedReport get(int id) {
 		return feedReportDao.get(id);
 	}
@@ -27,12 +29,33 @@ public class FeedReportService {
 		return feedReportDao.delete(id);
 	}
 	
+
+	
+	public FeedReport getPrev(int id) {
+		return feedReportDao.getPrev(id);
+	}
+	public FeedReport getNext(int id) {
+		return feedReportDao.getNext(id);
+	}
+	
+	
+	
+	public int getListCount(String field, String query) {
+		return feedReportDao.getListCount(field, query);
+	}
+	
+	public int getViewListCount(String field, String query) {
+		return feedReportDao.getViewListCount(field, query);
+	}
+//	
+
+	
 	
 	
 	public List<FeedReport> getList(String field, String query, String startDate, String endDate, int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
-	    int endIndex = page*15;
+	    int endIndex = page*size;
 	      
 		return feedReportDao.getList(field, query, startDate, endDate, startIndex, endIndex);
 	}
@@ -43,7 +66,7 @@ public class FeedReportService {
 	public List<ReportedFeedView> getViewList(String field, String query, int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
-	    int endIndex = page*15;
+	    int endIndex = page * size;
 	      
 		return feedReportDao.getViewList(field, query, startIndex, endIndex);
 	}
@@ -56,5 +79,9 @@ public class FeedReportService {
 		
 		return fr.getId();
 	}
+
+
+
+	
 	
 }

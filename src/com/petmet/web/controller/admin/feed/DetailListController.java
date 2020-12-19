@@ -16,9 +16,10 @@ import com.petmet.web.service.FeedReportService;
 
 @WebServlet("/admin/feed/detail-list")
 public class DetailListController extends HttpServlet{
+	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String page_ = request.getParameter("p");
 		String query_ = request.getParameter("q");
 		String startDate_ = request.getParameter("sd");
@@ -44,7 +45,7 @@ public class DetailListController extends HttpServlet{
 		
 		
 		FeedReportService service = new FeedReportService();
-		List<FeedReport> list = service.getList(field,query,startDate,endDate,page,size);
+		List<FeedReport> list = service.getList(field, query, startDate, endDate, page, size);
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("detail-list.jsp").forward(request, response);
