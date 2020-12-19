@@ -15,21 +15,18 @@ public class DogService {
 		dogDao = new JdbcDogDao();
 	}
 	
-	public int insert(Member dog) {
-		int result=0;
-		
-		return result;
-		
-	}
-	
+
 	public Dog get(int id) {
 		Dog dog = dogDao.get(id);
 		return dog;
 	}
-	
-	public List<Dog> getList() {
-		List<Dog> list = dogDao.getList();
-		return list;
+
+
+	public List<Dog> getList(String field, String query, String query2, int page, int num) {
+		int startIndex = 1+(page-1)*num;     
+		int endIndex = page*num;	 
+		return dogDao.getList(field,query,query2,startIndex,endIndex);
 	}
+	
 
 }

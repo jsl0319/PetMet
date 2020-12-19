@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,9 +64,9 @@
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
                     <li><a href="list">회원 목록</a></li>
-                    <li><a href="dog-list.html">강아지 목록</a></li>
-                    <li><a href="matching-list.html">매칭 목록</a></li>
-                    <li><a href="report-num-list.html">신고 목록</a></li>
+                    <li><a href="doglist">강아지 목록</a></li>
+                    <li><a href="matchinglist">매칭 목록</a></li>
+                    <li><a href="reportlist">신고 목록</a></li>
 
                 </ul>
             </aside>
@@ -74,37 +75,47 @@
                 <section>
                     <h1 class="d-none">디테일 테이블</h1>
                     <table>
-                       <tr>
-                           <td>닉네임</td>
-                           <td>${mv.nickname}</td>
-                           <td>가입일</td>
-                           <td>${mv.regDate}</td>
-                       </tr>
-                       <tr>
-                        <td>등록강아지</td>
-                        <td><a href="">${mv.dogNum}</a></td>
-                        <td>신고횟수</td>
-                        <td>${mv.repNum}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>매칭 요청 횟수</td>
-                        <td>${mv.mtReqNum}</td>
-                        <td>매칭 요청 받은 횟수</td>
-                        <td>${mv.mtRespNum}</td>
+                        <tr>
+                            <td>요청 회원</td>
+                            <td>${mt.reqId}</td>
+                            <td></td>
+                            <td>요청 받은 회원</td>
+                            <td>${mt.respId}</td>
+                            
+                        </tr>
+                        <tr>
+                        	<td>강아지</td>
+                            <td>${mt.reqDogName}</td>
+                            <td></td>
+                            <td>강아지</td>
+                            <td>${mt.respDogName}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><img src="/static/dog/2020/12/${mt.reqDogFiles}"></td>
                         
-                    </tr>
-                    <tr>
-                    	<td>매칭 성사 횟수</td>
-                        <td>${mv.mtSuccess}</td>
-                    </tr>
+                            <td></td>
+                            <td colspan="2"><img src="/static/dog/2020/12/${mt.respDogFiles}"></td>
+                        </tr>
+                        <tr>
+                            <td>매칭상태</td>
+                            <td colspan="4">
+                            	<c:if test="${mt.result==0 }">진행중</c:if>
+                                <c:if test="${mt.result==1 }">수락</c:if>
+                                <c:if test="${mt.result==2 }">거절</c:if>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td colspan="5">${mt.matchContent}</td>
+                        </tr>
+                        <tr>
 
+                        </tr>
                     </table>
 
                 </section>
                 <div class="pager">
-                  <a href="list"><input type="button" value="회원 목록으로 가기"></a>
-                  <a href="report-num-list.html"><input type="button" value="신고 목록으로 가기"></a>
+                    <a href="matchinglist"><input type="button" value="목록으로 가기"></a>
                 </div>
             </main>
 

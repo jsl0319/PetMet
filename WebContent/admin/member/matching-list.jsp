@@ -10,6 +10,7 @@
     <title>Document</title>
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
     <link href="../../css/admin/components/table/list.css" type="text/css" rel="stylesheet">
+    <link href="../../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -28,7 +29,7 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="list.html">
+                        <a href="list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
@@ -63,7 +64,7 @@
             <aside class="aside">
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
-                  <li><a href="list.html">회원 목록</a></li>
+                  <li><a href="list">회원 목록</a></li>
                   <li><a href="dog-list.html">강아지 목록</a></li>
                   <li><a href="matching-list.html">매칭 목록</a></li>
                   <li><a href="report-num-list.html">신고 목록</a></li>
@@ -74,24 +75,22 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                    <form>
+                    <form class="search__container">
                         <div>
-                            <select name="f">
-                                <option value="master_id" ${param.f=="master_id"?"selected":""}>닉네임</option>
+                          
+
+                            <select class="search__title" name="f">
+                                <option value="-1" ${param.f==-1?"selected":""}>매칭 상태</option>
+                                <option value="0" ${param.f==0?"selected":""}>진행중</option>
+                                <option value="1" ${param.f==1?"selected":""}>수락</option>
+                                <option value="2" ${param.f==2?"selected":""}>거절</option>
                             </select>
-                            <input type="text" name="q" value="${param.q}">
                         </div>
 
-                        <label>견종</label>
-                        <select name="q2">
-                          <option value="">견종</option>
-                          <option value="푸들" ${param.q2=="푸들"?"selected":""}>푸들</option>
-                          <option value="비숑" ${param.q2=="비숑"?"selected":""}>비숑</option>
-                          <option value="말티즈" ${param.q2=="말티즈"?"selected":""}>말티즈</option>
-                          <option value="진돗개" ${param.q2=="진돗개"?"selected":""}>진돗개</option>
-                          <option value="포메라니안" ${param.q2=="포메라니안"?"selected":""}>포메라니안</option>
-                      </select>
-                        <input type="submit" value="검색">
+                        <label>등록일</label>
+                        <input type="date" name="sd" value="${param.sd}">~
+                        <input type="date" name="ed" value="${param.ed}">
+                        <input type="submit" class="button" value="검색">
 
                     </form>
                 </section>
@@ -100,29 +99,33 @@
                     <h1 class="d-none">테이블</h1>
                     <table class="list-table">
                         <thead>
+                       
                             <tr>
                                 <td>번호</td>
-                                <td class="col-m">회원</td>
-                                <td class="col-m">이름</td>
-                                <td class="col-s">성별</td>
-                                <td class="col-m">생일</td>
-                                <td class="col-l">성격</td>
-                                <td class="col-s">몸무게</td>
-                                <td class="col-m">견종</td>
+                                <td class="col-m">요청회원</td>
+                                <td>강아지</td>
+                                <td>응답회원</td>
+                                <td class="col-m">강아지</td>
+                                <td class="col-m">매칭 상태</td>
+                                <td class="col-m">날짜</td>
                             </tr>
+                        
                         </thead>
                 
                         <tbody>
-                        <c:forEach var="d" items="${list}">
+                         <c:forEach var="mt" items="${list}">
                             <tr>
-                              <td>${d.id}</td>
-                                <td>${d.masterId}</td>
-                                <td><a href="dogdetail?id=${d.id}">${d.name}</a></td>
-                                <td>${d.gender==1?"남":"여"}</td>
-                                <td>${d.birth}</td>
-                                <td>${d.character}</td>
-                                <td>${d.weight}kg</td>
-                                <td>${d.kind}</td>
+                                <td>${mt.id}</td>
+                                <td>${mt.reqId}</td>
+                                <td>${mt.reqDogName}</td>
+                                <td>${mt.respId}</td>
+                                <td>${mt.respDogName}</td>
+                                <td>
+                                	<c:if test="${mt.result==0 }"><a href="matchingdetail?id=${mt.id}">진행중</a></c:if>
+                                	<c:if test="${mt.result==1 }"><a href="matchingdetail?id=${mt.id}">수락</a></c:if>
+                                	<c:if test="${mt.result==2 }"><a href="matchingdetail?id=${mt.id}">거절</a></c:if>
+                                </td>
+                                <td>${mt.reqDate}</td>
                             </tr>
                             </c:forEach>
                         </tbody>

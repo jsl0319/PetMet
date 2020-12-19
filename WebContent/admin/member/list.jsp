@@ -65,9 +65,9 @@
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
                   <li><a href="list">회원 목록</a></li>
-                  <li><a href="dog-list.html">강아지 목록</a></li>
-                  <li><a href="matching-list.html">매칭 목록</a></li>
-                  <li><a href="report-num-list.html">신고 목록</a></li>
+                  <li><a href="doglist">강아지 목록</a></li>
+                  <li><a href="matchinglist">매칭 목록</a></li>
+                  <li><a href="reportlist">신고 목록</a></li>
 
                 </ul>
               </aside>

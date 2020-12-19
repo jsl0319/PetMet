@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
-    <link href="../../css/admin/components/table/list.css" type="text/css" rel="stylesheet">
+    <link href="../../css/admin/components/table/detail.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -60,67 +62,43 @@
             <aside class="aside">
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
-                  <li><a href="list">회원 목록</a></li>
-                  <li><a href="dog-list.html">강아지 목록</a></li>
-                  <li><a href="matching-list.html">매칭 목록</a></li>
-                  <li><a href="report-num-list.html">신고 목록</a></li>
+                    <li><a href="list">회원 목록</a></li>
+                    <li><a href="dog-list.html">강아지 목록</a></li>
+                    <li><a href="matching-list.html">매칭 목록</a></li>
+                    <li><a href="report-list">신고 목록</a></li>
 
                 </ul>
-              </aside>
+            </aside>
             <main id="main" class="main">
                 <h1 class="d-none">메인이다</h1>
                 <section>
-                    <h1 class="d-none">검색폼</h1>
-                    <form>
+                    <h1 class="d-none">디테일 테이블</h1>
+                    <table>
+                        <tr>
+                            <td>신고 회원 닉네임</td>
+                            <td>${r.repId}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>신고 일자</td>
+                            <td>${r.repDate}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">내용</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">${r.repContent}</td>
+
+                        </tr>
+
                         
 
-                        <label>회원 닉네임</label>
-                        <input type="text">
-                        <input type="submit" value="검색">
-
-                    </form>
-                </section>
-
-                <section>
-                    <h1 class="d-none">테이블</h1>
-                    <table class="list-table">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td class="col-m">이메일</td>
-                                <td>닉네임</td>
-                                <td>신고횟수</td>
-                            </tr>
-                        </thead>
-                
-                        <tbody>
-                            <tr>
-                                <td>5</td>
-                                <td><a href="detail.html">dqq9744@naver.com</a></td>
-                                <td>노온이</td>
-                                <td><a href="report-list.html">3</a></td>           
-                            </tr>
-                        </tbody>
                     </table>
 
                 </section>
                 <div class="pager">
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
-                    </div>
-                    <ul>
-                      <li><a href="#">1</a></li>
-                    </ul>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                    </div>
-                  </div>
+                    <a href="reportlist"><input type="button" value="목록으로 가기"></a>
+                </div>
             </main>
 
 

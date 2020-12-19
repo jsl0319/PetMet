@@ -27,7 +27,7 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="list">
+                        <a href="list.html">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../petplace/list">
+                        <a href="../petplace/list.html">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
@@ -62,7 +62,7 @@
             <aside class="aside">
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
-                    <li><a href="list">회원 목록</a></li>
+                    <li><a href="list.html">회원 목록</a></li>
                     <li><a href="dog-list.html">강아지 목록</a></li>
                     <li><a href="matching-list.html">매칭 목록</a></li>
                     <li><a href="report-num-list.html">신고 목록</a></li>
@@ -73,38 +73,53 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">디테일 테이블</h1>
+                    <img src="../../static/dog/2020/12/${d.files}">
                     <table>
                        <tr>
-                           <td>닉네임</td>
-                           <td>${mv.nickname}</td>
-                           <td>가입일</td>
-                           <td>${mv.regDate}</td>
+                           <td>이름</td>
+                           <td>${d.name}</td>
+                           <td>회원</td>
+                           <td>${d.masterId}</td>
                        </tr>
+
                        <tr>
-                        <td>등록강아지</td>
-                        <td><a href="">${mv.dogNum}</a></td>
-                        <td>신고횟수</td>
-                        <td>${mv.repNum}</td>
+                        <td>성별</td>
+                        <td>${d.gender==1?"남":"여"}</td>
+                        <td>견종</td>
+                        <td>${d.kind}</td>
                     </tr>
                     
                     <tr>
-                        <td>매칭 요청 횟수</td>
-                        <td>${mv.mtReqNum}</td>
-                        <td>매칭 요청 받은 횟수</td>
-                        <td>${mv.mtRespNum}</td>
-                        
-                    </tr>
-                    <tr>
-                    	<td>매칭 성사 횟수</td>
-                        <td>${mv.mtSuccess}</td>
+                        <td>중성화</td>
+                        <td>${d.neut==1?"O":"X"}</td>
+                        <td>생일</td>
+                        <td>${d.birth}</td>
                     </tr>
 
+                    <tr>
+                        <td>무게</td>
+                        <td>${d.weight}kg</td>
+                        <td>성격</td>
+                        <td>${d.character}</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">등록일자</td>
+                        <td colspan="2">${d.regDate}</td>
+                        
+                    </tr>
+                    
+                    <tr>
+                    	<td>내용</td>
+                        <td colspan="3">${d.content}</td>
+                    </tr>
+                     
+                  
                     </table>
 
                 </section>
                 <div class="pager">
-                  <a href="list"><input type="button" value="회원 목록으로 가기"></a>
-                  <a href="report-num-list.html"><input type="button" value="신고 목록으로 가기"></a>
+                  <a href="doglist"><input type="button" value="목록으로 가기"></a>
                 </div>
             </main>
 

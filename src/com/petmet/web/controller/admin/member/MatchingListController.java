@@ -9,23 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.petmet.web.entity.Member;
-import com.petmet.web.service.MemberService;
+import com.petmet.web.entity.Matching;
+import com.petmet.web.entity.MatchingView;
+import com.petmet.web.service.MatchingService;
 
-@WebServlet("/admin/member/list")
-public class ListController extends HttpServlet {
+@WebServlet("/admin/member/matchinglist")
+public class MatchingListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String page_ = request.getParameter("p");
 		String field_ = request.getParameter("f");
-		String query_ = request.getParameter("q");
 		String startDate_ = request.getParameter("sd");
 		String endDate_ = request.getParameter("ed");
 		
-		String field = "nickname";
-		String query = "";
+		int field = -1;
 		String startDate = "01-01-01";
 		String endDate = "30-12-31";
 		int page=1;
@@ -34,19 +33,18 @@ public class ListController extends HttpServlet {
 		if(page_!= null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 		if(field_ != null && !field_.equals(""))
-			field = field_;
-		if(query_ != null && !query_.equals(""))
-			query = query_;
+			field = Integer.parseInt(field_);
 		if(startDate_ != null && !startDate_.equals(""))
 			startDate = startDate_;
 		if(endDate_ != null && !endDate_.equals(""))
 			endDate = endDate_;
 
-		MemberService memberService = new MemberService();
-		List<Member> list = memberService.getList(field,query,startDate,endDate,page,num);
+		MatchingService matchingService = new MatchingService();
+		List<MatchingView> list = matchingService.getList(field,startDate,endDate,page,num);
+		
 		request.setAttribute("list", list);
 
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		request.getRequestDispatcher("matching-list.jsp").forward(request, response);
 	}
 
 }

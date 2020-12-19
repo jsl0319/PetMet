@@ -8,8 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../../css/style.css" type="text/css" rel="stylesheet">
+   <link href="../../css/style.css" type="text/css" rel="stylesheet">
     <link href="../../css/admin/components/table/list.css" type="text/css" rel="stylesheet">
+    <link href="../../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -28,7 +29,7 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="list.html">
+                        <a href="list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
@@ -46,7 +47,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../petplace/list.html">
+                        <a href="../petplace/list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
@@ -63,10 +64,10 @@
             <aside class="aside">
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
-                  <li><a href="list.html">회원 목록</a></li>
-                  <li><a href="dog-list.html">강아지 목록</a></li>
-                  <li><a href="matching-list.html">매칭 목록</a></li>
-                  <li><a href="report-num-list.html">신고 목록</a></li>
+                  <li><a href="list">회원 목록</a></li>
+                  <li><a href="doglist">강아지 목록</a></li>
+                  <li><a href="matchinglist">매칭 목록</a></li>
+                  <li><a href="reportlist">신고 목록</a></li>
 
                 </ul>
               </aside>
@@ -74,24 +75,18 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                    <form>
+                    <form class="search__container">
                         <div>
-                            <select name="f">
-                                <option value="master_id" ${param.f=="master_id"?"selected":""}>닉네임</option>
+                            <select class="search__title" name="f">
+                                <option ${param.f=="rep_id"?"selected":""} value="rep_id">신고회원 닉네임</option>
+                        
                             </select>
-                            <input type="text" name="q" value="${param.q}">
+                            <input type="text" class="search__input" name="q" value="${param.q}">
+                            <input type="submit" class="button" value="검색">
                         </div>
 
-                        <label>견종</label>
-                        <select name="q2">
-                          <option value="">견종</option>
-                          <option value="푸들" ${param.q2=="푸들"?"selected":""}>푸들</option>
-                          <option value="비숑" ${param.q2=="비숑"?"selected":""}>비숑</option>
-                          <option value="말티즈" ${param.q2=="말티즈"?"selected":""}>말티즈</option>
-                          <option value="진돗개" ${param.q2=="진돗개"?"selected":""}>진돗개</option>
-                          <option value="포메라니안" ${param.q2=="포메라니안"?"selected":""}>포메라니안</option>
-                      </select>
-                        <input type="submit" value="검색">
+                        
+                        
 
                     </form>
                 </section>
@@ -102,29 +97,26 @@
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td class="col-m">회원</td>
-                                <td class="col-m">이름</td>
-                                <td class="col-s">성별</td>
-                                <td class="col-m">생일</td>
-                                <td class="col-l">성격</td>
-                                <td class="col-s">몸무게</td>
-                                <td class="col-m">견종</td>
+                                <td class="col-m">매치요청 회원</td>
+                                <td class="col-m">매치요청 받은 회원</td>
+                                <td class="col-m">신고자</td>
+                                <td class="col-m">신고날짜</td>
                             </tr>
                         </thead>
                 
                         <tbody>
-                        <c:forEach var="d" items="${list}">
+                           <c:forEach var="r" items="${list}">
                             <tr>
-                              <td>${d.id}</td>
-                                <td>${d.masterId}</td>
-                                <td><a href="dogdetail?id=${d.id}">${d.name}</a></td>
-                                <td>${d.gender==1?"남":"여"}</td>
-                                <td>${d.birth}</td>
-                                <td>${d.character}</td>
-                                <td>${d.weight}kg</td>
-                                <td>${d.kind}</td>
+                                <td>${r.id}</td>
+                                <td>${r.reqId}</td>
+                                <td>${r.respId}</td>
+                                <td>
+                                	<a href="reportdetail?id=${r.id}">${r.repId}</a>                      
+                                </td>
+                                <td>${r.repDate}</td>
+                            
                             </tr>
-                            </c:forEach>
+                          </c:forEach>
                         </tbody>
                     </table>
 

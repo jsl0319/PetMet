@@ -5,6 +5,7 @@ import java.util.List;
 import com.petmet.web.dao.MemberDao;
 import com.petmet.web.dao.jdbc.JdbcMemberDao;
 import com.petmet.web.entity.Member;
+import com.petmet.web.entity.MemberView;
 
 public class MemberService {
 	
@@ -20,6 +21,12 @@ public class MemberService {
 		int endIndex = page*num;	 		
 		List<Member> list = memberDao.getList(field, query, startDate, endDate, startIndex, endIndex);
 		return list;
+	}
+
+
+	public MemberView get(int id) {
+		// TODO Auto-generated method stub
+		return memberDao.get(id);
 	}
 
 }
