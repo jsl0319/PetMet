@@ -1,112 +1,125 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
-
-    .search__container {
-      padding-top: 20px;
-    }
-    
-    .search__title {
-        font-size: 18px;
-        font-weight: 900;
-        text-align: center;
-        color: #ff8b88;
-    }
-    
-    .search__input {
-
-        width: 150px;
-
-        padding: 12px 24px;
-
-        background-color: transparent;
-        transition: transform 250ms ease-in-out;
-        font-size: 14px;
-        line-height: 18px;
-        
-        color: #575756;
-        background-color: transparent;
-
-        border-radius: 50px;
-        border: 1px solid #ff8b88;;
-        transition: all 250ms ease-in-out;
-        backface-visibility: hidden;
-        transform-style: preserve-3d;
-     
-    }
-        .search__input:hover,
-        .search__input:focus {
-            padding: 12px 0;
-            outline: 0;
-            border: 1px solid transparent;
-            border-bottom: 1px solid #575756;
-            border-radius: 0;
-            background-position: 100% center;
-        }
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700,900");
 
 
-    .button {
-            width: 120px;
-            color: #ff8b88;
-            border:#ff8b88 solid 1px;
-            border-radius: 20px;
-            padding: 10px;
-            background-color: #ffffff;
-            
-         
-        }
-     /* ----------------버튼-----------    */
-    .button:hover {
-          
-            color: #ffffff;
-            background-color: #ff8b88;
-        }
-    .button:focus{
-        
-        display: none;
-    }
+input[type="submit"]{
+	text-decoration: none;
+	padding:17px;
+}
+.search__container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  padding-right: 10px;
+}
+.search__form {
+  align-items: center;
+  margin-bottom:5px;
+}
+.search__form input{
+  margin-left:10px;
+}
+.search__form .search-button{
+  padding:10px;
+  font-weight: 700;
+}
+.search__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  height: 30%;
+  color: #ff8b88;
+}
 
-    /* ------------체크박스---------------------------- */
+.search__input {
+  width: 150px;
+  padding: 12px 24px;
 
-    input[id="cb1"] + label {
-        
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #bcbcbc;
-        cursor: pointer;
-    }
-    input[id="cb1"]:checked + label {
-        background-color: #ff8b88;
-    }
-    input[id="cb1"] {
-        display: none;
-    }
+  background-color: transparent;
+  transition: transform 250ms ease-in-out;
+  font-size: 14px;
+  line-height: 18px;
 
-    
-    input[id="cb2"] + label {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #bcbcbc;
-        cursor: pointer;
-    }
-    input[id="cb2"]:checked + label {
-        background-color: #ff8b88;
-    }
-    input[id="cb2"] {
-        display: none;
-    }
-    
+  color: #575756;
+  background-color: transparent;
 
-    .selectbox { 
-        width: 50px; 
-        height: 20px; 
-        font-size: 15px; 
-        color:#ff8b88; 
-        border:2px solid #ddd; 
-        background:  no-repeat right 13px center;
-        appearance:none; -webkit-appearance:none;
-    }
-    .selecbox::-ms-expand {  
-        display: none;
-    }
-  
+  border-radius: 50px;
+  border: 1px solid #ff8b88;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.search__input:hover,
+.search__input:focus {
+  padding: 12px 0;
+  outline: 0;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #575756;
+  border-radius: 0;
+  background-position: 100% center;
+}
+
+.button {
+  width: 100px;
+  color: #ff8b88;
+  border: #ff8b88 solid 1px;
+  border-radius: 100px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+/* ----------------버튼-----------    */
+.button:hover {
+  color: #ffffff;
+  background-color: #ff8b88;
+}
+.button:focus {
+  display: none;
+}
+
+/* ------------체크박스---------------------------- */
+
+input[id="cb1"] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bcbcbc;
+  cursor: pointer;
+}
+input[id="cb1"]:checked + label {
+  background-color: #ff8b88;
+}
+input[id="cb1"] {
+  display: none;
+}
+
+input[id="cb2"] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bcbcbc;
+  cursor: pointer;
+}
+input[id="cb2"]:checked + label {
+  background-color: #ff8b88;
+}
+input[id="cb2"] {
+  display: none;
+}
+
+.selectbox {
+  width: 70px;
+  height: 20px;
+  font-size: 15px;
+  color: #ff8b88;
+  border: 2px solid #ddd;
+  background: no-repeat right 13px center;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+}
+.selecbox::-ms-expand {
+  display: none;
+}
+

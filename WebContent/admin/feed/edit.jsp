@@ -106,8 +106,8 @@
 	          <section class="search__container">
 	          
 	          <input type="hidden" name="id" value="${fr.id }">
-	           <a class="search__title button" href="detail=${fr.id }">취소</a>
-	           <input type="submit" value="저장">
+	           <input class="search__title button" type="submit" value="저장">
+	           <a class="search__title button" href="detail?id=${fr.id }">취소</a>
 	           
 	          </section>
 	          
