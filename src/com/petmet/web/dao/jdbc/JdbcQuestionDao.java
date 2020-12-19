@@ -148,8 +148,11 @@ public class JdbcQuestionDao implements QuestionDao {
 				int pub = rs.getInt("pub");
 
 				Date regdate = rs.getDate("regdate");
+				
+				int isAnswer = rs.getInt("isAnswer");
+				Date anDate = rs.getDate("anDate");
 
-				 q = new Question(id, writerId, title, content, pub, regdate);
+				 q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
 
 			}
 			;
@@ -190,8 +193,10 @@ public class JdbcQuestionDao implements QuestionDao {
 				int pub = rs.getInt("pub");
 
 				Date regdate = rs.getDate("regdate");
+				int isAnswer = rs.getInt("isAnswer");
+				Date anDate = rs.getDate("anDate");
 
-				Question q = new Question(id, writerId, title, content, pub, regdate);
+				Question q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
 
 				list.add(q);
 			}

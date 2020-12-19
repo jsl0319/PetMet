@@ -130,18 +130,13 @@
                    <form class="search__container">
                         
                         <label class="search__title">제목</label>
-                        <input class="search__input" type="text" name= "q">
+                        <input class="search__input" type="text" name= "q" value="${param.q}">
                         
 
-                         <!-- <label class="search__title" >공개여부</label> -->
-                         <input type="radio" id="cb1"  name ="pub"  value = "0">
-                         <label for="cb1"></label> <label class="search__title" >공개</label>
-                         <input type="radio" id="cb2" name = "pub" value = "1">
-                         <label for="cb2"></label> <label class="search__title" >비공개</label>
-                       
+                  
 
                          <label class="search__title" >일자</label>
-                         <input class="search__input" type="date"name ="sd">~<input class="search__input" type="date" name="ed">
+                         <input class="search__input" type="date"name ="sd" value="${param.sd}">~<input class="search__input" type="date" name="ed"  value="${param.ed}">
                          <input class="button" type="submit" value="검색">
      
                     </form>
@@ -158,7 +153,7 @@
                                 <td>작성자</td>
                                 <td>작성일</td>
                                 <td>조회수</td>
-                                <td>공개여부</td>
+                                
                                 <td>삭제</td>
                             </tr>
                         </thead>
@@ -172,7 +167,7 @@
                                 <td>${n.writerId}</td>
                                 <td> ${n.regdate}</td>
                                 <td>${n.hit}</td>
-                                <td><input type="checkbox"></td>
+                              
                                 <td><input type="checkbox"></td>
                                 
                             </tr>
@@ -183,39 +178,36 @@
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
-                    <a href="pub?id"><input class="button" type="button" value="모두 공개"></a>
+                  
                     <a href="del?id=${n.id}"><input class="button" type="button" value="모두 삭제"></a>
                     <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
                 </section>
-                
-                <c:set var="page" value="${(param.p==null)?1:param.p}"/> 
-                <c:set var="startNum" value="${page-(page-1)%5}" />
 
+				  <c:set var="page" value="${(param.p==null)?1:param.p}"/>
+				<c:set var="startNum" value="${page-(page-1)%5}"/>
                 <div class="pager">
-                 <div>
-              <a href="#"><i class="fas fa-angle-double-left"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fas fa-angle-left"></i></a>
-            </div>
-          <ul>
-             <c:forEach var = "i" begin = "0" end="4" > 
-            <li><a href="?p=${startNum+i}&t=&q="></a></li>
-            </c:forEach>
-          </ul>
-          <div>
-            <a href="#"><i class="fas fa-angle-right"></i></a>
-          </div>
-          <div>
-            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-          </div>
-                
-                
-                
-                 
+                    <div>
+                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div>
+                      <a href="#"><i class="fas fa-angle-left"></i></a>
+                    </div>
+                    <ul>
+                    <c:forEach var="i" begin="0" end="4">		
+						<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+					</c:forEach>
+					</ul>
+                    <div>
+                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div>
+                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                    </div>
                   </div>
-			
-            </main>
+
+
+
+			</main>
         </div>
     </section>
 

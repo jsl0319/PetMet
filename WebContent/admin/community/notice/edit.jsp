@@ -127,13 +127,7 @@
                     <tr>
                         <th>등록일</th>
                        <td> <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
-                        <th>공개여부</th>
-                        <td>
-                            <select name="pub">
-                                        	<option value="1">공개</option>
-                                        	<option value="0">비공개</option>
-                                        </select>
-                                        </td>
+                      
                            
                     </tr>
     

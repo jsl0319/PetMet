@@ -52,10 +52,10 @@ public class RegController extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int pub_ = Integer.parseInt(request.getParameter("pub"));
-		boolean pub = true;
-		if(pub_ ==1){
-			pub = false;
-		}
+//		boolean pub = true;
+//		if(pub_ ==1){
+//			pub = false;
+//		}
 		
 	//	System.out.print(title+content+pub);
 	
@@ -97,7 +97,7 @@ public class RegController extends HttpServlet {
 		}
 		
 		NoticeService service = new NoticeService();
-		Notice notice = new Notice(0,title,content,pub,0,null,null,null);
+		Notice notice = new Notice(0,title,content,0,null,null,null);
 				
 		notice.setFiles(fileNames);
 		notice.setWriterId("관리자");

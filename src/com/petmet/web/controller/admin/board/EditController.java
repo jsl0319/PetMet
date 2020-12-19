@@ -87,7 +87,7 @@ public class EditController extends HttpServlet {
 		}
 		
 		
-		Notice notice = new Notice(id,title,content,pub,0,null,null,null);
+		Notice notice = new Notice(id,title,content,0,null,null,null);
 
 		NoticeService service = new NoticeService();
 		service.update(notice);

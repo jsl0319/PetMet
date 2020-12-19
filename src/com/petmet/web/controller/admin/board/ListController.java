@@ -21,16 +21,13 @@ public class ListController extends HttpServlet{
 			throws ServletException, IOException {
 		
 		String query_ = request.getParameter("q");
-		String pub_ = request.getParameter("pub");
-		
 		String startDate_ = request.getParameter("sd");
 		String endDate_ = request.getParameter("ed");
-		
+		String page_ = request.getParameter("p");
 			
 					 
 			 
 		String query = "";
-		String pub = "0" ;
 		String startDate = "01-01-01";
 		String endDate = "22-12-31";
 		int page = 1;
@@ -39,11 +36,10 @@ public class ListController extends HttpServlet{
 		
 		if(query !=null && !query_.equals(""))
 			query = query_;
+		if(page_!= null && !page_.equals(""))
+			page = Integer.parseInt(page_);
 
-		if(pub !=null && !pub_.equals(""))
-			pub = pub_;
-		
-		
+
 		if(startDate_ !=null && !startDate_.equals(""))
 			startDate= startDate_;
 		
@@ -51,17 +47,9 @@ public class ListController extends HttpServlet{
 			endDate= endDate_;
 		
 		NoticeService noticeservice = new NoticeService();
-		List<Notice> list= NoticeService.getList(query,pub,startDate,endDate,page,num);
+		List<Notice> list= NoticeService.getList(query,startDate,endDate,page,num);
+		request.setAttribute("list",list);
+		request.getRequestDispatcher("list.jsp").forward(request,response);
 	}
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		NoticeService service = new NoticeService();
-		List<Notice> list = service.getList();
-		//서블릿 요청
-		req.setAttribute("list",list);
-		req.getRequestDispatcher("list.jsp").forward(req,resp);
-		
 
-	}
-	
 }

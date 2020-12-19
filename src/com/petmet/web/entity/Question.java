@@ -9,22 +9,34 @@ public class Question {
 	 private String	content;
 	 private int pub;
 	 private Date regDate;
+	 private int isAnswer;
+	 private Date anDate;
 	 
 	 public Question() {
-		this(0, null, null, null, 0, null);
+		
 	}
 	
 	 
-	public Question(int id, String writerId, String title, String content, int pub, Date regDate) {
+	
+	
+	
+	public Question(int id, String writerId, String title, String content, int pub, Date regDate, int isAnswer,
+			Date anDate) {
+	
 		this.id = id;
 		this.writerId = writerId;
 		this.title = title;
 		this.content = content;
 		this.pub = pub;
 		this.regDate = regDate;
+		this.isAnswer = isAnswer;
+		this.anDate = anDate;
 	}
-	
-	
+
+
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -85,10 +97,48 @@ public class Question {
 	}
 	
 	
+	
+	
+	public int getIsAnswer() {
+		return isAnswer;
+	}
+
+
+
+
+
+	public void setIsAnswer(int isAnswer) {
+		this.isAnswer = isAnswer;
+	}
+
+
+
+
+
+	public Date getAnDate() {
+		return anDate;
+	}
+
+
+
+
+
+	public void setAnDate(Date anDate) {
+		this.anDate = anDate;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", writerId=" + writerId + ", title=" + title + ", content=" + content + ", pub="
-				+ pub + ", regDate=" + regDate + "]";
+				+ pub + ", regDate=" + regDate + ", isAnswer=" + isAnswer + ", anDate=" + anDate + "]";
 	}
-	 
+
+
+
+
+
 }

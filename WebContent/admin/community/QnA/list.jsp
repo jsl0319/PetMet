@@ -160,15 +160,15 @@
                         </thead>
 
                         <tbody>
-                         <c:forEach var="q" items="${qlist}" var="a" items="${alist}">
+                         <c:forEach var="q" items="${qlist}">
                          <tr>
                             <td>${q.id}</td>
                             <td><a href="detail?id=${q.id}">${q.title}</a></td>
                             <td>${q.writerId}</td>
                             <td>${q.regDate}</td>
                             <td>${q.pub}</td>
-                            <td></td>
-                            <td>${a.regdate}</td>
+                            <td>${q.isAnswer}</td>
+                            <td>${q.anDate}</td>
                             </tr>
                              </c:forEach>
                         </tbody>
@@ -176,22 +176,27 @@
                 </section>
 
 
+              <c:set var="page" value="${(param.p==null)?1:param.p}"/>
+				<c:set var="startNum" value="${page-(page-1)%5}"/>
                 <div class="pager">
                     <div>
-                        <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
                     </div>
                     <div>
-                        <a href="#"><i class="fas fa-angle-left"></i></a>
+                      <a href="#"><i class="fas fa-angle-left"></i></a>
                     </div>
                     <ul>
-                        <li><a href="#"">1</a></li>
-              </ul>
-              <div>
-                <a href=" #"><i class="fas fa-angle-right"></i></a>
-                </div>
-                <div>
-                    <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                </div>
+                    <c:forEach var="i" begin="0" end="4">		
+						<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+					</c:forEach>
+					</ul>
+                    <div>
+                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div>
+                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                  </div>
         
 
 

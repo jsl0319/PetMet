@@ -20,15 +20,15 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		QuestionService qservice = new QuestionService();
-		AnswerService aservice = new AnswerService();
+		
 		
 		List<Question> qlist = qservice.getList();
-		List<Answer> alist = aservice.getList();
+		
 		
 		
 		
 		request.setAttribute("qlist",qlist);
-		request.setAttribute("alist",alist);
+		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		
 	

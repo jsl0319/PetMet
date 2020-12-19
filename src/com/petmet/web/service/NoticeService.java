@@ -15,9 +15,9 @@ public class NoticeService {
 	}
 	
 
-	public List<Notice> getList( ) {
-		return noticeDao.getList();
-	}
+//	public List<Notice> getList( ) {
+//		return noticeDao.getList();
+//	}
 
 	// --------------------------------------------
 	public Notice get(int id) { 
@@ -42,7 +42,7 @@ public class NoticeService {
 	}
 
 
-	public static List<Notice> getList(String query, String pub, String startDate, String endDate,
+	public static List<Notice> getList(String query,  String startDate, String endDate,
 			int page, int num) {
 		// TODO Auto-generated method stub
 		return null;
