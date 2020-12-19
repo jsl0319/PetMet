@@ -12,8 +12,9 @@ public interface BoardReportDao {
 	int delete(int id);
 	BoardReport get(int id);
 	
-	List<BoardReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex);
-	List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex);
+	List<BoardReport> getList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
+	List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate);
+	List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
 	List<BoardReport> getListByBoardId(int boardId);
 	
 }

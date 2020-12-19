@@ -138,8 +138,8 @@
                             </tr>
                         </thead>
                         <tbody>
-	                        <c:forEach var="r" items="${list }">
-	                            <tr>
+	                        <c:forEach var="r" items="${list }" varStatus="st">
+	                        	<tr ${st.count % 2==0?"class='even'":""}>
 	                                <td>${r.id }</td>
 	                                <td>${r.memId }</td>
 	                                <td>${r.content }</td>

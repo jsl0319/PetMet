@@ -109,7 +109,7 @@
             <main class = "main">
                 <h1 class="d-none">게시글/신고된 게시글 상세 내용</h1>
                 <section>
-                    <h1>상세 게시글 내용</h1>
+                    <h1 class="d-none">상세 게시글 내용</h1>
                     
                     <form action="detail" method="post">
                     <table class="detail-table">

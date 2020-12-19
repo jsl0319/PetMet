@@ -114,34 +114,34 @@
                 <section>
                     <h1 class="d-none">검색폼</h1>
 
-                    <form class="search__container">
-                        <select name="search" class="selectbox">
-                            <option value="제목">제목</option>
-                            <option value="작성자">작성자</option>
+                    <form class="search__container" action="reported">
+                        <select name="f" class="selectbox">
+                            <option ${(param.f == "title")?"selected":"" } value="title">제목</option>
+                            <option ${(param.f == "writer_id")?"selected":"" } value="writer_id">작성자</option>
                         </select>
-                        <input name="query" class="search__input" type="text">
-                        <select name="category" class="selectbox">
-                            <option>게시판</option>
+                        <input name="q" class="search__input" type="text" value="${param.q }">
+                        <select name="b" class="selectbox">
+                            <option>모든 게시판</option>
                             <c:forEach var="c" items="${cList }">
-	                            <option value="${c.id }">${c.name }</option>
+	                            <option  ${(param.b == c.name)? "selected" : "" } value="${c.name }">${c.name }</option>
                             </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
-                        <input name="start_date" class="search__input" type="date"> - <input name="end_date" class="search__input" type="date">
+                        <input name="sd" class="search__input" type="date" value="${param.sd }"> - <input name="ed" class="search__input" type="date" value="${param.ed }">
                         <input class="button" type="submit" value="검색">
+                        
+                        <div>
+	                        <select name="s">
+	                            <option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
+	                            <option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
+	                            <option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
+	                        </select>
+	                    </div>
                     </form>
                 </section>
 
                 <section>
                     <h1 class="d-none">신고된 게시글 관리</h1>
-                    
-                    <div>
-                        <select>
-                            <option value="20개">20개</option>
-                            <option value="50개">50개</option>
-                            <option value="50개">100개</option>
-                        </select>
-                    </div>
                     
 					<form action="reported" method="post">
 					
@@ -160,8 +160,8 @@
                         </thead>
 
                         <tbody>
-                        	<c:forEach var="br" items="${list }">
-	                            <tr>
+                        	<c:forEach var="br" items="${list }" varStatus="st">
+	                            <tr ${st.count % 2==0?"class='even'":""}>
 	                                <td>${br.num }</td>
 	                                <td>${br.writerId }</td>
 	                                <td>${br.categoryName }</td>
@@ -183,25 +183,33 @@
                 </section>
                 </form>
                 
+                <c:set var="page" value="${(empty param.p)?1:param.p }"/>
+                <c:set var="startNum" value="${page-(page-1)%5}"/>
+                <c:set var="lastNum" value="${tp }"/>
                 <div class="pager">
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
-                    </div>
+	                <c:if test="${1 <= startNum-5}">
+	                    <div>
+	                      <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+	                    </div>
+	                    <div>
+	                      <a href="?p=${startNum - 5 }"><i class="fas fa-angle-left"></i></a>
+	                    </div>
+                    </c:if>
                     <ul>
-                      <li><a href="#"">1</a></li>
-                      <li><a href="#"">1</a></li>
-                      <li><a href="#"">1</a></li>
-                      <li><a href="#"">1</a></li>
+                    	<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum + i) <= lastNum }">
+								<li><a href="?p=${startNum + i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}&s=${param.s}">${startNum + i}</a></li>
+							</c:if>
+						</c:forEach>
                     </ul>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                    </div>
+                    <c:if test="${startNum+5 <= lastNum}">
+	                    <div>
+	                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+	                    </div>
+	                    <div>
+	                      <a href="?p=${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+	                    </div>
+                    </c:if>
                 </div>
 
             </main>
