@@ -24,7 +24,7 @@ public class ListController extends HttpServlet{
 		String query = "";
 		
 		int page = 1;
-		int num = 5; //페이지에 표시할 레코드 개수
+		int size = 5; //페이지에 표시할 레코드 개수
 		
 		if(page_!= null && !page_.equals(""))
 			page = Integer.parseInt(page_);
@@ -33,7 +33,7 @@ public class ListController extends HttpServlet{
 		
 		PetPlaceCategoryService service = new PetPlaceCategoryService();
 //		List<PetPlaceCategoryView> list = service.getViewList();
-		List<PetPlaceCategoryView> list = service.getViewList(query, page, num);
+		List<PetPlaceCategoryView> list = service.getViewList(query, page, size);
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);

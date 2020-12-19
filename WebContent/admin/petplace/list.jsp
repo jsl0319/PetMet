@@ -96,9 +96,9 @@
 
                     <h1 class="d-none">검색폼</h1>
 
-                    <form class="search__container">
+                    <form class="search__container search__form">
 
-                        <select class="search__title" name="f">
+                        <select class="selectbox" name="f">
                             <option ${param.f=="name" ?"selected":""} value="name">이름</option>
                             <option ${param.f=="content" ?"selected":""} value="content">내용</option>
                             <option ${param.f=="address" ?"selected":""} value="address">지역</option>
@@ -133,7 +133,7 @@
 
                         <tbody>
                             <c:forEach var="p" items="${list}">
-                                <tr>
+                                <tr ${p.num%2==0?"class='even'":""}>
                                     <td>${p.num}</td>
                                     <td><a href="detail?id=${p.id}">${p.name}</a></td>
                                     <td>${p.address}</td>
