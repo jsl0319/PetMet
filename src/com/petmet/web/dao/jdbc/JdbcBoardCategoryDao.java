@@ -121,10 +121,8 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 			pst.close();
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -133,9 +131,40 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 
 	@Override
 	public List<BoardCategory> getList() {
-		return getList(1, 20);
+		String sql = "SELECT ROWNUM NUM, BC.* " +
+						"    FROM(" +
+						"        SELECT * FROM BOARD_CATEGORY ORDER BY ID" +
+						"    ) BC";
+
+		List<BoardCategory> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+
+				BoardCategory b = new BoardCategory(id, name);
+
+				list.add(b);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
-	
+
 	@Override
 	public List<BoardCategory> getList(int startIndex, int endIndex) {
 		String sql = "SELECT * " + 
@@ -143,7 +172,7 @@ public class JdbcBoardCategoryDao implements BoardCategoryDao{
 					"    SELECT ROWNUM NUM, BC.* " + 
 					"    FROM(" + 
 					"        SELECT * FROM BOARD_CATEGORY ORDER BY ID" + 
-					"    ) BC" + 
+					"    ) BC" +
 					"    ) " + 
 					"WHERE NUM BETWEEN ? AND ?";
 

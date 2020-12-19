@@ -16,14 +16,26 @@ import com.petmet.web.service.BoardCategoryService;
 
 @WebServlet("/admin/community/category/list")
 public class ListController extends HttpServlet{
+	
 	@Override
 	protected void doGet(HttpServletRequest request
 							, HttpServletResponse response) throws ServletException, IOException {
+		
+		String page_ = request.getParameter("p");
+		int page = 1;
+		int size = 5;
+		
+		if(page_ != null && !page_.equals(""))
+			page = Integer.parseInt(page_);
+		
 		BoardCategoryService service = new BoardCategoryService();
-		List<BoardCategoryView> list = service.getViewList();
+		List<BoardCategoryView> list = service.getViewList(page, size);
+		int totalPage = service.getPageTotal(size);
 
 		request.setAttribute("list", list);
+		request.setAttribute("tp", totalPage);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
+		
 	}
 	
 	@Override
@@ -36,8 +48,9 @@ public class ListController extends HttpServlet{
 		switch(button) {
 		case "삭제":
 			String[] dels = request.getParameterValues("del");
-			
+
 			if (dels != null) {
+
 				int[] ids = new int[dels.length];
 
 				for (int i = 0; i < ids.length; i++)

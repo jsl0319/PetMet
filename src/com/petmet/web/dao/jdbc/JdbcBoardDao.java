@@ -53,7 +53,7 @@ public class JdbcBoardDao implements BoardDao {
 	@Override
 	public int update(Board board) {
 		int result = 0;
-		String sql = "UPDATE BOARD SET TITLE=?, CONTENT=?, WRITER_ID=?, FILES=?, CATEGORY_ID=? WHERE ID=?";
+		String sql = "UPDATE BOARD SET TITLE=?, CONTENT=?, WRITER_ID=?, FILES=?, CATEGORY_ID=?, HIT=? WHERE ID=?";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -65,7 +65,8 @@ public class JdbcBoardDao implements BoardDao {
 			pst.setString(3, board.getWriterId());
 			pst.setString(4, board.getFiles());
 			pst.setInt(5, board.getCategoryId());
-			pst.setInt(6, board.getId());
+			pst.setInt(6, board.getHit());
+			pst.setInt(7, board.getId());
 
 			result = pst.executeUpdate();
 
