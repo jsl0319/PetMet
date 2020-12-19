@@ -13,6 +13,7 @@ import com.petmet.web.entity.Board;
 import com.petmet.web.entity.BoardCategory;
 import com.petmet.web.entity.BoardReport;
 import com.petmet.web.entity.BoardReportView;
+import com.petmet.web.entity.BoardView;
 
 public class BoardReportService {
 	private BoardReportDao boardReportDao;
@@ -138,6 +139,17 @@ public class BoardReportService {
 		return result;
 	}
 
+	public int deleteBoardList(int[] ids) {
+		int result = 0;
+		BoardDao boardDao = new JdbcBoardDao();
+		
+		for(int i=0; i < ids.length; i++, result++) {
+			int id = ids[i];
+			boardDao.delete(id);
+		}
+		
+		return result;
+	}
 	public BoardReport getPrev(int id) {
 		return boardReportDao.get(id - 1);
 	}
@@ -155,7 +167,12 @@ public class BoardReportService {
 		BoardDao boardDao = new JdbcBoardDao();
 		return boardDao.get(id);
 	}
-
+	
+	public BoardView getBoardView(int id) {
+		BoardDao boardDao = new JdbcBoardDao();
+		return boardDao.getView(id);
+	}
+	
 	// -------------- getViewList --------------
 	public List<BoardReportView> getViewList() {
 		return getViewList(null, null, null, null, null, 1, 20);

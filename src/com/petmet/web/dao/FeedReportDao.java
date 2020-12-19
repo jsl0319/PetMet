@@ -13,11 +13,12 @@ public interface FeedReportDao {
 	FeedReport get(int id);
 //	List<FeedReport> getList();
 //	List<FeedReport> getList(int startIndex);
-	List<FeedReport> getList(int startIndex, int endIndex);
+	List<FeedReport> getList(String field, String query, String startDate, String endDate, int startIndex, int endIndex);
 	
 //	List<ReportedFeedView> getViewList();
 //	List<ReportedFeedView> getViewList(int startIndex, int endIndex);
-	List<ReportedFeedView> getViewList(int startIndex, int endIndex);
+	List<ReportedFeedView> getViewList(String field, String query, int startIndex, int endIndex);
+	
 	FeedReport getLast();
 	
 }

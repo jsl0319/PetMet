@@ -29,33 +29,23 @@ public class FeedReportService {
 	
 	
 	
-	public List<FeedReport> getList(int page, int size){
+	public List<FeedReport> getList(String field, String query, String startDate, String endDate, int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
 	    int endIndex = page*15;
 	      
-		return feedReportDao.getList(startIndex,endIndex);
-	}
-	public List<FeedReport> getList(int page) {
-		return feedReportDao.getList(page,15);
-	}
-	public List<FeedReport> getList() {
-		return feedReportDao.getList(1,15);
+		return feedReportDao.getList(field, query, startDate, endDate, startIndex, endIndex);
 	}
 	
 	
-	public List<ReportedFeedView> getViewList(int page, int size){
+	
+	
+	public List<ReportedFeedView> getViewList(String field, String query, int page, int size){
 		
 		int startIndex = 1+(page-1)*size;
-	    int endIndex = page*10;
+	    int endIndex = page*15;
 	      
-		return feedReportDao.getViewList(startIndex, endIndex);
-	}
-	public List<ReportedFeedView> getViewList(int page){
-		return feedReportDao.getViewList(page,10);
-	}
-	public List<ReportedFeedView> getViewList(){
-		return feedReportDao.getViewList(1,10);
+		return feedReportDao.getViewList(field, query, startIndex, endIndex);
 	}
 	
 	

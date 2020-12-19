@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -74,51 +73,64 @@
     <!----------------------------------main--------------------------------------->
         <main id="main" class="main feed-list">
           <h1 class="d-none">Feed-list 관리자 페이지</h1>
-            
-          <section class="main-section">
-            <h1 class="d-none">신고 리스트</h1>
-            <table class="detail-table" border="1">
-                <tr>
-                  <th>번호</th>
-                  <td>${fr.id}</td>
-                </tr>
-                
-                <tr>
-                  <th>작성자</th>
-                  <td>${fr.memId}</td>
-                </tr>
-
-                <tr>
-                  <th>신고받은ID</th>
-                  <td>${fr.feedId}</td>
-                </tr>
-
-                <tr>
-                  <th>신고일</th>
-                  <td><fmt:formatDate value="${fr.repoDate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
-                </tr>
-            </table>
-
-            <div style="margin-top:20px" style="border:1px solid black">
-              ${fr.content}
-            </div>
-          </section>
+         <form action="edit" method = "post">
+	          <section>
+	            <h1 class="d-none">신고 리스트</h1>
+	            <table class="detail-table" border="1">
+	                <tr>
+	                  <th>번호</th>
+	                  <td>${fr.id}</td>
+	                </tr>
+	                
+	                <tr>
+	                  <th>작성자</th>
+	                  <td>${fr.memId}</td>
+	                </tr>
+	
+	                <tr>
+	                  <th>신고받은ID</th>
+	                  <td>${fr.feedId}</td>
+	                </tr>
+	
+	                <tr>
+	                  <th>신고일</th>
+	                  <td>${fr.repoDate}</td>
+	                </tr>
+	            </table>
+	
+	            <textarea class="detail-textarea" name="content" style="margin-top:20px">
+	              ${fr.content}
+	            </textarea>
+	          </section>
+	          
+	          <section class="search__container">
+	          
+	          <input type="hidden" name="id" value="${fr.id }">
+	           <input class="search__title button" type="submit" value="저장">
+	           <a class="search__title button" href="detail?id=${fr.id }">취소</a>
+	           
+	          </section>
+	          
+          </form>
           
-          <section class="search__container">
-	          <a class="search__title button" href="detail-list">목록</a>
-	          <a class="search__title button" href="edit?id=${fr.id}">수정</a>
-	          <a class="search__title button" href="del?id=${fr.id}">삭제</a>
-          </section>
-          
-          <div class="prev-next-button">
+          <div class="pager">
             <div>
-              <a href="#">이전글</a>
+              <a href="#"><i class="fas fa-angle-double-left"></i></a>
             </div>
             <div>
-              <a href="#">다음글</a>
+              <a href="#"><i class="fas fa-angle-left"></i></a>
             </div>
+          <ul>
+            <li><a href="#">1</a></li>
+          </ul>
+          <div>
+            <a href="#"><i class="fas fa-angle-right"></i></a>
           </div>
-          
+          <div>
+            <a href="#"><i class="fas fa-angle-double-right"></i></a>
+          </div>
+          </div>
+
         </main>
       </div>
   </div>

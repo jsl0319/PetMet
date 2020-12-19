@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmet.web.entity.CommentReport;
 import com.petmet.web.entity.Comments;
 import com.petmet.web.service.CommentReportService;
+import com.petmet.web.service.CommentsService;
 
 @WebServlet("/admin/community/comment/reported-detail")
 public class ReportedDetailController extends HttpServlet{
@@ -28,5 +29,16 @@ public class ReportedDetailController extends HttpServlet{
 		request.setAttribute("c", c);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("reported-detail.jsp").forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		CommentsService service = new CommentsService();
+		service.delete(id);
+		
+		response.sendRedirect("reported");
 	}
 }

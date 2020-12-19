@@ -47,7 +47,7 @@ public class RegController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String categoryId = request.getParameter("categoryId");
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String homepage = request.getParameter("homepage");
@@ -97,7 +97,7 @@ public class RegController extends HttpServlet {
 		p.setFiles(fileNames);
 
 		// null방지
-		p.setWriterId("관리자");
+		p.setWriterId(1);
 
 		service.insert(p);
 

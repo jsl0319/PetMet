@@ -78,11 +78,18 @@
 }
 
 .body .main {
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
 }
 
 .body .main section {
   width: 95%;
+  background-color: pink;
+}
+
+.body .main-section {
+  flex-grow: 1;
   background-color: white;
 }
 
@@ -94,9 +101,9 @@
   display: flex;
   justify-content: center;
   width: 95%;
-  position: absolute;
-  bottom: 0px;
-  background-color:white;
+  /* position: absolute; */
+  /* bottom: 0px; */
+  --background-color: white;
 }
 
 .body .main .pager div {

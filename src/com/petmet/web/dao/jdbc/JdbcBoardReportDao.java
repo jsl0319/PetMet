@@ -198,7 +198,7 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	@Override
 	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
 			Date endDate, int startIndex, int endIndex) {
-		String sql = "SELECT * FROM REPORTED_BOARD_VIEW WHERE NUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM BOARD_REPORT_VIEW WHERE NUM BETWEEN ? AND ?";
 
 		// 검색폼의 검색 경우의 수
 		if (query != null)
@@ -224,14 +224,15 @@ public class JdbcBoardReportDao implements BoardReportDao {
 			while (rs.next()) {
 				int num = rs.getInt("NUM");
 				int boardId = rs.getInt("BOARD_ID");
-				String categoryId = rs.getString("CATEGORY_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
 				String writerId = rs.getString("WRITER_ID");
 				String title = rs.getString("TITLE");
 				Date regDate = rs.getDate("REG_DATE");
 				int hit = rs.getInt("HIT");
 				int reported = rs.getInt("REPORTED");
 
-				BoardReportView brv = new BoardReportView(num, boardId, writerId, categoryId, title, regDate, hit, reported);
+				BoardReportView brv = new BoardReportView(num, boardId, writerId, categoryId, categoryName, title, regDate, hit, reported);
 
 				list.add(brv);
 			}

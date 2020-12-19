@@ -33,7 +33,6 @@ body {
   flex-grow: 1;
   flex-shrink: 0;
   width: 1200px;
-  --background: tomato;
 }
 .body .aside {
   flex-basis: 200px;
@@ -45,8 +44,6 @@ body {
   flex-shrink: 0;
   padding-top: 30px;
   padding-left: 30px;
-  position: relative;
-  background:skyblue;
 }
 
 /* ---------------------------------------footer---------------------------------------- */

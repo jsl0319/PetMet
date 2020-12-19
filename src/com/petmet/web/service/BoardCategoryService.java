@@ -18,6 +18,7 @@ public class BoardCategoryService {
 	}
 
 	// ---------------------------------- Functions ----------------------------------
+	// -------------- 기본 CRUD 기능 --------------
 	public int insert(BoardCategory boardCategory) {
 		return boardCategoryDao.insert(boardCategory);
 	}
@@ -34,19 +35,7 @@ public class BoardCategoryService {
 		return boardCategoryDao.get(id);
 	}
 
-	// -------------- getList --------------
-	public List<BoardCategory> getList() {
-		return getList(1);
-	}
-	
-	public List<BoardCategory> getList(int page) {
-		int startIndex = 1 + (page - 1) * 20;
-		int endIndex = 20 * page;
-		
-		return boardCategoryDao.getList(startIndex, endIndex);
-	}
-	
-	// ---------------------------------------
+	// -------------- 추가 기능 --------------
 	public int deleteList(int[] ids) {
 		int result = 0;
 
@@ -87,16 +76,48 @@ public class BoardCategoryService {
 	public BoardCategory getNext(int id) {
 		return boardCategoryDao.get(id + 1);
 	}
+	
+	public int getPageTotal(int size){
+		int records = 0;
+		
+		List<BoardCategory> cList = boardCategoryDao.getList();
+		for(BoardCategory c : cList)
+			records++;
+		
+		int pages = (int)Math.ceil(records / (float)size);
+		
+		return pages;
+	}
+	
+	// -------------- getList --------------
+	public List<BoardCategory> getList() {
+		return getList(1);
+	}
+
+	public List<BoardCategory> getList(int page) {
+		return getList(page, 10);
+	}
+	
+	public List<BoardCategory> getList(int page, int size) {
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = size * page;
+
+		return boardCategoryDao.getList(startIndex, endIndex);
+	}
 
 	// -------------- getViewList --------------
 	public List<BoardCategoryView> getViewList() {
 		return getViewList(1);
 	}
-	
+
 	public List<BoardCategoryView> getViewList(int page) {
-		int startIndex = 1 + (page - 1) * 20;
-		int endIndex = 20 * page;
-		
+		return getViewList(1, 10);
+	}
+	
+	public List<BoardCategoryView> getViewList(int page, int size) {
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = size * page;
+
 		return boardCategoryDao.getViewList(startIndex, endIndex);
 	}
 }

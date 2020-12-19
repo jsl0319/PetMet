@@ -17,7 +17,6 @@
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
 <script src="list.js"></script>
-
 </head>
 
 <body>
@@ -104,16 +103,17 @@
 								</tr>
 							</thead>
 
-
 							<tbody>
 								<c:forEach var="c" items="${list }">
 									<tr>
-										<input hidden name="id" value="${c.id }">
-										<td>${c.id }</td>
-										<td class="col-l"><input name="name" type="text"
-											value="${c.name }"></td>
+										<td>${c.num }</td>
+										<td class="col-l">
+											<input hidden type="text" name="id" value="${c.id }">
+											<input type="text" name="name" value="${c.name }">
+										</td>
 										<td class="col-m">${c.cntBoard }</td>
-										<td><input name="del" value="${c.id }" type="checkbox">
+										<td>
+											<input name="del" value="${c.id }" type="checkbox">
 										</td>
 									</tr>
 								</c:forEach>
@@ -129,25 +129,33 @@
 				</section>
 				</form>
 				
+				<c:set var="page" value="${(empty param.p)? 1 : param.p}"/>
+				<c:set var="startNum" value="${page - (page-1)%5 }"/>
+				<c:set var="lastNum" value="${tp }"/>
 				<div class="pager">
-					<div>
-						<a href="#"><i class="fas fa-angle-double-left"></i></a>
-					</div>
-					<div>
-						<a href="#"><i class="fas fa-angle-left"></i></a>
-					</div>
+					<c:if test="${1 <= startNum-5}">
+						<div>
+							<a href="#"><i class="fas fa-angle-double-left"></i></a>
+						</div>
+						<div>
+							<a href="?p=${startNum-5}"><i class="fas fa-angle-left"></i></a>
+						</div>
+					</c:if>
 					<ul>
-						<li><a href="#"">1</a></li>
-						<li><a href="#"">1</a></li>
-						<li><a href="#"">1</a></li>
-						<li><a href="#"">1</a></li>
+						<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum + i) <= lastNum }">
+								<li><a href="?p=${startNum + i}">${startNum + i}</a></li>
+							</c:if>
+						</c:forEach>
 					</ul>
-					<div>
-						<a href="#"><i class="fas fa-angle-right"></i></a>
-					</div>
-					<div>
-						<a href="#"><i class="fas fa-angle-double-right"></i></a>
-					</div>
+					<c:if test="${startNum+5 <= lastNum}">
+						<div>
+							<a href="?p=${startNum+5}"><i class="fas fa-angle-right"></i></a>
+						</div>
+						<div>
+							<a href="#"><i class="fas fa-angle-double-right"></i></a>
+						</div>
+					</c:if>
 				</div>
 			</main>
 		</div>
@@ -158,6 +166,6 @@
 			<h1>Footer</h1>
 		</div>
 	</footer>
-
+	
 </body>
 </html>

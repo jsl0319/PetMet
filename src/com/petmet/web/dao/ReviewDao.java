@@ -3,6 +3,7 @@ package com.petmet.web.dao;
 import java.util.List;
 
 import com.petmet.web.entity.Review;
+import com.petmet.web.entity.ReviewView;
 
 public interface ReviewDao {
 
@@ -12,5 +13,6 @@ public interface ReviewDao {
 	
 	Review get(int id);
 	List<Review> getList();
+	List<ReviewView> getViewList(int id);
 	
 }

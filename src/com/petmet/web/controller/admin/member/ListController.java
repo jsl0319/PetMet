@@ -28,8 +28,8 @@ public class ListController extends HttpServlet {
 		String query = "";
 		String startDate = "01-01-01";
 		String endDate = "30-12-31";
-		int page=1;
-		int num=10;
+		int page = 1;
+		int num = 10;
 		
 		if(page_!= null && !page_.equals(""))
 			page = Integer.parseInt(page_);

@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +105,7 @@
                 </section>
                 
                 <section>
-                    <h1>Pet Place : 카페1</h1>
+                    <h1>Pet Place : ${list[0].categoryName}</h1>
                 
                     <table class="list-table">
                         <thead>
@@ -114,27 +119,15 @@
                         </thead>
                 
                         <tbody>
+                        	<c:forEach var="l" items="${list}">
                             <tr>
-                                <td>1</td>
-                                <td>회원1</td>
-                                <td>좋아요</td>
-                                <td>7</td>
+                                <td>${l.num}</td>
+                                <td>${l.memberName}</td>
+                                <td>${l.content}</td>
+                                <td>${l.rating}</td>
                                 <td><input type="checkbox"></td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>회원1</td>
-                                <td>좋아요</td>
-                                <td>7</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>회원1</td>
-                                <td>좋아요</td>
-                                <td>7</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </section>

@@ -125,7 +125,7 @@
                         <select class="selectbox" name="category">
                             <option>게시판</option>
                             <c:forEach var="c" items="${cList }">
-                            	<option value="${c.name }">${c.name }</option>
+                            	<option value="${c.id }">${c.name }</option>
                             </c:forEach>
                         </select>
                         <label class="search__title" for="date">일자</label>
@@ -151,7 +151,6 @@
                             <tr>
                                 <td>번호</td>
                                 <td>카테고리</td>
-                                <td>게시글 번호</td>
                                 <td>게시글 제목</td>
                                 <td>작성자</td>
                                 <td>내용</td>
@@ -164,8 +163,7 @@
 	                        <c:forEach var="c" items="${list }">
 	                            <tr>
 	                                <td>${c.num }</td>
-	                                <td>${c.categoryId }</td>
-	                                <td>${c.boardId }</td>
+	                                <td>${c.categoryName }</td>
 	                                <td><a href="../board/detail?id=${c.boardId }">${c.title }</a></td>
 	                                <td>${c.writerId }</td>
 	                                <td><a href="detail?id=${c.id }&bId=${c.boardId}">${c.content }</a></td>
