@@ -12,6 +12,7 @@ public interface CommentsDao {
 	int delete(int id);
 	Comments get(int id);
 
-	List<Comments> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex);
-	List<CommentView> getViewList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex);
+	List<Comments> getList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
+	List<CommentView> getViewList(String field, String query, String board, String startDate, String endDate);
+	List<CommentView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
 }

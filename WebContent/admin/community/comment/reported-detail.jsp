@@ -137,8 +137,8 @@
                             </tr>
                         </thead>
                         <tbody>
-	                        <c:forEach var="cr" items="${list }">
-	                            <tr>
+	                        <c:forEach var="cr" items="${list }" varStatus="st">
+	                            <tr ${st.count % 2==0?"class='even'":""}>
 	                                <td>${cr.id }</td>
 	                                <td>${cr.memId }</td>
 	                                <td>${cr.regDate }</td>

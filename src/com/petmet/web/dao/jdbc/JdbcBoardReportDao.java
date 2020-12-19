@@ -139,26 +139,19 @@ public class JdbcBoardReportDao implements BoardReportDao {
 	}
 
 	@Override
-	public List<BoardReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate,
+	public List<BoardReport> getList(String selectBox, String query, String boardCategory, String startDate, String endDate,
 			int startIndex, int endIndex) {
 		String sql = "SELECT * " + 
 					"FROM(" + 
 					"    SELECT ROWNUM NUM, BR.* " + 
 					"    FROM(" + 
 					"        SELECT * FROM BOARD_REPORT ORDER BY REG_DATE DESC" + 
-					"    ) BR " + 
+					"    ) BR " +
+					"	WHERE " + selectBox + " LIKE '%" + query + "%'" +
+					" AND CATEGORY_ID LIKE '%" + boardCategory + "%'" +
+					" AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'" +
 					") " + 
 					"WHERE NUM BETWEEN ? AND ?";
-
-		// 검색폼의 검색 경우의 수
-		if (query != null || !(query.equals("")))
-			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
-
-		if (boardCategory != null || !(boardCategory.equals("게시판")))
-			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
-
-		if (startDate != null || endDate != null)
-			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
 
 		List<BoardReport> list = new ArrayList<>();
 
@@ -194,21 +187,62 @@ public class JdbcBoardReportDao implements BoardReportDao {
 
 		return list;
 	}
+	
+	@Override
+	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate) {
+		String sql = "SELECT * FROM("
+						+ "SELECT ROWNUM NUM2, BRV.* FROM BOARD_REPORT_VIEW BRV "
+						+ "WHERE " + selectBox + " LIKE '%" + query + "%' "
+						+ "AND CATEGORY_NAME LIKE '%" + boardCategory + "%' "
+						+ "AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
+						+ ") ";
+
+		List<BoardReportView> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				int num = rs.getInt("NUM");
+				int boardId = rs.getInt("BOARD_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				String writerId = rs.getString("WRITER_ID");
+				String title = rs.getString("TITLE");
+				Date regDate = rs.getDate("REG_DATE");
+				int hit = rs.getInt("HIT");
+				int reported = rs.getInt("REPORTED");
+
+				BoardReportView brv = new BoardReportView(num, boardId, writerId, categoryId, categoryName, title, regDate, hit, reported);
+
+				list.add(brv);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 
 	@Override
-	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
-			Date endDate, int startIndex, int endIndex) {
-		String sql = "SELECT * FROM BOARD_REPORT_VIEW WHERE NUM BETWEEN ? AND ?";
-
-		// 검색폼의 검색 경우의 수
-		if (query != null)
-			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
-
-		if (boardCategory != null)
-			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
-
-		if (startDate != null || endDate != null)
-			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
+	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate,
+			String endDate, int startIndex, int endIndex) {
+		String sql = "SELECT * FROM("
+						+ "SELECT ROWNUM NUM2, BRV.* FROM BOARD_REPORT_VIEW BRV "
+						+ "WHERE " + selectBox + " LIKE '%" + query + "%' "
+						+ "AND CATEGORY_NAME LIKE '%" + boardCategory + "%' "
+						+ "AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
+						+ ") "
+						+ "WHERE NUM2 BETWEEN ? AND ?";
 
 		List<BoardReportView> list = new ArrayList<>();
 
