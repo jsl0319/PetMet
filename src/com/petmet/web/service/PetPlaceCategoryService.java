@@ -42,10 +42,8 @@ public class PetPlaceCategoryService {
 
 	public List<PetPlaceCategoryView> getViewList(String query, int page, int size) {
 		
-		int lastIndex = ppcDao.getLastIndex();
-		
-		int startIndex = lastIndex + page * size * (-1) + 1;
-		int endIndex = lastIndex + (page - 1) * size * (-1);
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = page * size;
 		
 		return ppcDao.getViewList(query, startIndex, endIndex);
 	}

@@ -54,21 +54,17 @@ public class PetPlaceService {
 	public List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate, int page,
 			int size) {
 
-		int lastIndex = ppDao.getLastIndex();
-
-//		int startIndex = lastIndex + (page - 1) * size * (-1);
-//		int endIndex = lastIndex + page * size * (-1) + 1;
-		int startIndex = lastIndex + page * size * (-1) + 1;
-		int endIndex = lastIndex + (page - 1) * size * (-1);
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = page * size;
+		
 		return ppDao.getViewList(field, query, startDate, endDate, startIndex, endIndex);
 	}
 
 	// review관리 페이지를 위한 getViewList
 	public List<PetPlaceView> getViewList(String field, String query, int page, int size) {
-		int lastIndex = ppDao.getLastIndex();
-
-		int startIndex = lastIndex + page * size * (-1) + 1;
-		int endIndex = lastIndex + (page - 1) * size * (-1);
+		
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = page * size;
 
 		return ppDao.getViewList(field, query, startIndex, endIndex);
 	}
