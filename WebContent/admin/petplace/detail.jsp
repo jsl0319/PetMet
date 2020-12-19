@@ -98,10 +98,14 @@
                     <table class="detail-table">
                         <tbody>
                             <tr>
-                                <th>제목</th>
+                                <th>이름</th>
                                 <td>${p.name}</td>
                                 <th>카테고리</th>
                                 <td>${p.categoryName}</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td colspan="3">${p.address}</td>
                             </tr>
                             <tr>
                                 <th>작성일</th>
@@ -115,7 +119,7 @@
                                 <th>작성자</th>
                                 <td>${p.writerName}</td>
                                 <th>좋아요</th>
-                                <td>${p.likes }</td>
+                                <td>${p.likes}</td>
                             </tr>
                             <tr>
                                 <th>첨부파일</th>

@@ -39,5 +39,15 @@ public class PetPlaceCategoryService {
 		
 		return ppcDao.getViewList();
 	}
+
+	public List<PetPlaceCategoryView> getViewList(String query, int page, int num) {
+		
+		int lastIndex = ppcDao.getLastIndex();
+		
+		int startIndex = lastIndex + page * num * (-1) + 1;
+		int endIndex = lastIndex + (page - 1) * num * (-1);
+		
+		return ppcDao.getViewList(query, startIndex, endIndex);
+	}
 	
 }

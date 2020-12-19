@@ -197,12 +197,14 @@ public class JdbcFeedReportDao implements FeedReportDao{
 //	}
 
 	@Override
-	public List<FeedReport> getList(int startIndex, int endIndex) {
-		  String sql = "SELECT ROWNUM NUM ,FR.* "
-		  		+ "FROM ("
-		  		+ "SELECT FEED_REPORT.* "
-		  		+ "FROM "
-		  		+ "FEED_REPORT ORDER BY REPO_DATE DESC) FR WHERE ROWNUM BETWEEN ? AND ?";
+	public List<FeedReport> getList(String field, String query, String startDate, String endDate, int startIndex,
+			int endIndex) {
+		  String sql = "SELECT * FROM "
+		  		+ "(SELECT ROWNUM NUM, FR.* FROM FEED_REPORT FR "
+		  		+ "WHERE "+field+" LIKE ?  AND "
+		  		+ "REPO_DATE>? AND "
+		  		+ "REPO_DATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)) "
+		  		+ "WHERE NUM BETWEEN ? AND ?";
 		  
 		  
 		  String url = DBContext.URL;
@@ -216,8 +218,11 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
 	          
-	           st.setInt(1, startIndex);
-	           st.setInt(2, endIndex);
+	            st.setString(1, "%"+query+"%");
+				st.setString(2, startDate);
+				st.setString(3, endDate);
+				st.setInt(4, startIndex);
+				st.setInt(5, endIndex);
 	           
 	           ResultSet rs = st.executeQuery();
 
@@ -249,9 +254,13 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	}
 
 	@Override
-	public List<ReportedFeedView> getViewList(int startIndex, int endIndex) {
+	public List<ReportedFeedView> getViewList(String field, String query, int startIndex, int endIndex) {
 		
-		String sql = "SELECT * FROM REPORTED_FEED_VIEW WHERE NUM BETWEEN ? AND ?";
+		String sql = "SELECT * "
+				+ "FROM(SELECT * FROM "
+				+ "REPORTED_FEED_VIEW "
+				+ "WHERE "+field+" LIKE ?)"
+				+ "WHERE ROWNUM BETWEEN ? AND ?";
 		  
 		  
 		  String url = DBContext.URL;
@@ -265,8 +274,9 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	          Connection con = DriverManager.getConnection(url,uid,pwd);
 	          PreparedStatement st = con.prepareStatement(sql);
 	          
-	           st.setInt(1, startIndex);
-	           st.setInt(2, endIndex);
+	           st.setNString(1, '%'+query+'%');
+	           st.setInt(2, startIndex);
+	           st.setInt(3, endIndex);
 	           
 	           ResultSet rs = st.executeQuery();
 

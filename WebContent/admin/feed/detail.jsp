@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +75,7 @@
         <main id="main" class="main feed-list">
           <h1 class="d-none">Feed-list 관리자 페이지</h1>
             
-          <section>
+          <section class="main-section">
             <h1 class="d-none">신고 리스트</h1>
             <table class="detail-table" border="1">
                 <tr>
@@ -94,7 +95,7 @@
 
                 <tr>
                   <th>신고일</th>
-                  <td>${fr.repoDate}</td>
+                  <td><fmt:formatDate value="${fr.repoDate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
                 </tr>
             </table>
 
@@ -104,29 +105,20 @@
           </section>
           
           <section class="search__container">
-           <a class="search__title button" href="list">목록</a>
-           <a class="search__title button" href="edit?id=${fr.id}">수정</a>
-           <a class="search__title button" href="del?id=${fr.id}">삭제</a>
+	          <a class="search__title button" href="detail-list">목록</a>
+	          <a class="search__title button" href="edit?id=${fr.id}">수정</a>
+	          <a class="search__title button" href="del?id=${fr.id}">삭제</a>
           </section>
           
-          <div class="pager">
+          <div class="prev-next-button">
             <div>
-              <a href="#"><i class="fas fa-angle-double-left"></i></a>
+              <a href="#">이전글</a>
             </div>
             <div>
-              <a href="#"><i class="fas fa-angle-left"></i></a>
+              <a href="#">다음글</a>
             </div>
-          <ul>
-            <li><a href="#">1</a></li>
-          </ul>
-          <div>
-            <a href="#"><i class="fas fa-angle-right"></i></a>
           </div>
-          <div>
-            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-          </div>
-          </div>
-
+          
         </main>
       </div>
   </div>
