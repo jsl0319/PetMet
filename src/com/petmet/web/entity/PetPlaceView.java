@@ -27,6 +27,18 @@ public class PetPlaceView extends PetPlace {
 		this.categoryName = categoryName;
 	}
 
+	public PetPlaceView(int id, int writerId, int categoryId, String name, String address, String homepage,
+			String phone, String location, String content, Date regDate, String files, int hit, int likes, int pub,
+			int reviewCount, double avgRating, String writerName, String categoryName) {
+		super(id, writerId, categoryId, name, address, homepage, phone, location, content, regDate, files, hit, likes,
+				pub);
+
+		this.reviewCount = reviewCount;
+		this.avgRating = avgRating;
+		this.writerName = writerName;
+		this.categoryName = categoryName;
+	}
+
 	public int getNum() {
 		return num;
 	}

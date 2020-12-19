@@ -297,14 +297,13 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				int hit = rs.getInt("HIT");
 				int likes = rs.getInt("LIKES");
 				int pub = rs.getInt("PUB");
-				int num = rs.getInt("NUM");
 				int reviewCount = rs.getInt("REVIEW_COUNT");
 				double avgRating = rs.getDouble("AVG_RATING");
 				String writerName = rs.getString("WRITER_NAME");
 				String categoryName = rs.getString("CATEGORY_NAME");
 
 				pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location, content,
-						regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
+						regDate, files, hit, likes, pub, reviewCount, avgRating, writerName, categoryName);
 			}
 
 			rs.close();
@@ -380,9 +379,12 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	public List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate, int startIndex,
 			int endIndex) {
 
-		String sql = "SELECT * FROM" + "(SELECT * FROM PETPLACE_VIEW" + "    WHERE " + field
-				+ " LIKE ? AND REG_DATE > ?" + "    AND REG_DATE < (SELECT TO_DATE(? ,'YY-MM-DD')+1 FROM DUAL) )"
-				+ "WHERE NUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM"
+				+ "(SELECT ROWNUM NUM2, P.* FROM"
+				+ "(SELECT * FROM PETPLACE_VIEW"
+				+ "    WHERE " + field + " LIKE ? AND REG_DATE > ? AND"
+				+ "    REG_DATE < (SELECT TO_DATE(?, 'YY-MM-DD')+1 FROM DUAL)) P)"
+				+ "    WHERE NUM2 BETWEEN ? AND ?";
 
 		List<PetPlaceView> list = new ArrayList<>();
 
@@ -440,11 +442,16 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 
 		return list;
 	}
-
+	
+	
+	// review 전용
 	@Override
 	public List<PetPlaceView> getViewList(String field, String query, int startIndex, int endIndex) {
-		String sql = "SELECT * FROM" + "(SELECT * FROM PETPLACE_VIEW" + "    WHERE " + field + " LIKE ? )"
-				+ "WHERE NUM BETWEEN ? AND ?";
+		String sql = " SELECT * FROM"
+				+ "(SELECT ROWNUM NUM2, P.* FROM"
+				+ "(SELECT * FROM PETPLACE_VIEW"
+				+ "    WHERE " + field + " LIKE ? ) P )"
+				+ "    WHERE NUM2 BETWEEN ? AND ?";
 
 		List<PetPlaceView> list = new ArrayList<>();
 

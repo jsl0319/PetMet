@@ -137,8 +137,8 @@
                             </tr>
                         </thead>
                         <tbody>
-	                        <c:forEach var="cr" items="${list }">
-	                            <tr>
+	                        <c:forEach var="cr" items="${list }" varStatus="st">
+	                            <tr ${st.count % 2==0?"class='even'":""}>
 	                                <td>${cr.id }</td>
 	                                <td>${cr.memId }</td>
 	                                <td>${cr.regDate }</td>
@@ -147,6 +147,14 @@
                             </c:forEach>
                         </tbody>
                     </table>
+                </section>
+                
+                <section>
+                    <h1 class="d-none">페이저</h1>
+                    <ul>
+                        <li><a href="detail?next=${b.id }">다음 게시글</a></li>
+                        <li><a href="detail?prev=${b.id }">이전 게시글</a></li>
+                    </ul>
                 </section>
                 
                 <form action="reported-detail" method="post">

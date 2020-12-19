@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	6c3f482aeb9a4689468c97bf295d500e"></script>
+	<script src="detail.js"></script>
 </head>
 
 <body>
@@ -134,7 +136,9 @@
                                 </td>
                             </tr>
                             <tr class="content">
-                                <td colspan="4">${p.location }</td>
+                                <td colspan="4">${p.location}
+                                	<div id="map" style="width:900px;height:400px;"></div>
+                                </td>
                             </tr>
                             <tr class="content">
                                 <td colspan="4">${p.content }</td>

@@ -21,10 +21,48 @@ public class ListController extends HttpServlet{
 	protected void doGet(HttpServletRequest request
 							, HttpServletResponse response) throws ServletException, IOException {
 		
-		BoardService service = new BoardService();
-		List<BoardView> list = service.getViewList();
-		List<BoardCategory> cList = service.getCategoryList();
+		String field_ = request.getParameter("f");
+		String query_ = request.getParameter("q");
+		String board_ = request.getParameter("b");
+		String startDate_ = request.getParameter("sd");
+		String endDate_ = request.getParameter("ed");
+		String size_ = request.getParameter("s");
+		String page_ = request.getParameter("p");
 		
+		String field = "title";
+		if(field_ != null && !field_.equals(""))
+			field = field_;
+		
+		String query = "";
+		if(query_ != null && !query_.equals(""))
+			query = query_;
+
+		String board = "";
+		if(board_ != null && !board_.equals("모든 게시판"))
+			board = board_;
+		
+		String startDate = "01-01-01";
+		if(startDate_ != null && !startDate_.equals(""))
+			startDate = startDate_;
+		
+		String endDate = "30-12-31";
+		if(endDate_ != null && !endDate_.equals(""))
+			endDate = endDate_;
+		
+		int size = 20;
+		if(size_ != null && !size_.equals(""))
+			size = Integer.parseInt(size_);
+		
+		int page = 1;
+		if(page_ != null && !page_.equals(""))
+			page = Integer.parseInt(page_);
+		
+		BoardService service = new BoardService();
+		List<BoardView> list = service.getViewList(field, query, board, startDate, endDate, page, size);
+		List<BoardCategory> cList = service.getCategoryList();
+		int totalPages = service.getTotalPage(field, query, board, startDate, endDate, page, size);
+		
+		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.setAttribute("cList", cList);
 		request.getRequestDispatcher("list.jsp").forward(request, response);

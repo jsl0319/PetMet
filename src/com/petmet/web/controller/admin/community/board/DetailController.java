@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.petmet.web.entity.Board;
 import com.petmet.web.entity.BoardCategory;
+import com.petmet.web.entity.BoardView;
 import com.petmet.web.service.BoardService;
 
 import oracle.security.o3logon.b;
@@ -22,18 +23,45 @@ public class DetailController extends HttpServlet{
 	protected void doGet(HttpServletRequest request
 							, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("id"));
-		
+		String queryString_ = request.getQueryString();
+		int equalIndex = queryString_.indexOf("=");
+		String queryString = queryString_.substring(0, equalIndex);
+
 		BoardService service = new BoardService();
-		Board b = service.get(id);
-		b.setHit(b.getHit()+1);
-		service.update(b);
 		
-		List<BoardCategory> cList= service.getCategoryList();
+		switch(queryString) {
+		case "id":
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			Board b = service.get(id);
+			b.setHit(b.getHit()+1);
+			service.update(b);
+			
+			List<BoardCategory> cList= service.getCategoryList();
+			
+			request.setAttribute("b", b);
+			request.setAttribute("cList", cList);
+			request.getRequestDispatcher("detail.jsp").forward(request, response);
+			
+			break;
+
+		case "prev":
+			int prev = Integer.parseInt(request.getParameter("prev"));
+			BoardView preBv = service.getPrev(prev);
+			int prevId = preBv.getId();
+			
+			response.sendRedirect("?id=" + prevId);
+			break;
 		
-		request.setAttribute("b", b);
-		request.setAttribute("cList", cList);
-		request.getRequestDispatcher("detail.jsp").forward(request, response);
+		case "next":
+			int next = Integer.parseInt(request.getParameter("next"));
+			BoardView nextBv = service.getNext(next);
+			int nextId = nextBv.getId();
+			
+			response.sendRedirect("?id=" + nextId);
+			break;
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -62,8 +90,7 @@ public class DetailController extends HttpServlet{
 			
 			break;
 		}
-
-		// --------------------- 요청 ---------------------
+		
 	}
 
 }
