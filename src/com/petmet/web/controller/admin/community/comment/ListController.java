@@ -49,7 +49,7 @@ public class ListController extends HttpServlet{
 		if(endDate_ != null && !endDate_.equals(""))
 			endDate = endDate_;
 		
-		int size = 2;
+		int size = 20;
 		if(size_ != null && !size_.equals(""))
 			size = Integer.parseInt(size_);
 		

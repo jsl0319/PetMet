@@ -14,6 +14,7 @@ public interface BoardDao {
 
 	List<Board> getList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
 	BoardView getView(int id);
+	BoardView getView(String subQuery);
 	List<BoardView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
 	List<BoardView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate);
 	

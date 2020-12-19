@@ -73,12 +73,14 @@ public class BoardService {
 		return result;
 	}
 	
-	public Board getPrev(int id) {
-		return boardDao.get(id-1);
+	public BoardView getPrev(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM BOARD_VIEW WHERE ID = " + id + ") + 1";
+		return boardDao.getView(subQuery);
 	}
 	
-	public Board getNext(int id) {
-		return boardDao.get(id+1);
+	public BoardView getNext(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM BOARD_VIEW WHERE ID = " + id + ") - 1";
+		return boardDao.getView(subQuery);
 	}
 	
 	public List<BoardCategory> getCategoryList(){

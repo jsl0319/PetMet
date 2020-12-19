@@ -150,8 +150,8 @@
                             <tr>
                                 <td>번호</td>
                                 <td>작성자</td>
-                                <td class="col-m">카테고리</td>
-                                <td class="col-l">제목</td>
+                                <td>카테고리</td>
+                                <td>제목</td>
                                 <td>작성일</td>
                                 <td>조회수</td>
                                 <td>신고수</td>

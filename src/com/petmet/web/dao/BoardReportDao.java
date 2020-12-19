@@ -13,6 +13,7 @@ public interface BoardReportDao {
 	BoardReport get(int id);
 	
 	List<BoardReport> getList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
+	BoardReportView getView(String subQuery);
 	List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate);
 	List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
 	List<BoardReport> getListByBoardId(int boardId);

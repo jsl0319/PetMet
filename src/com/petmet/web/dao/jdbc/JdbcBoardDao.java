@@ -241,6 +241,47 @@ public class JdbcBoardDao implements BoardDao {
 
 		return bv;
 	}
+	
+	@Override
+	public BoardView getView(String subQuery) {
+		String sql = "SELECT * FROM BOARD_VIEW ";
+		sql += subQuery;
+		
+		BoardView bv = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				int hit = rs.getInt("HIT");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int cmtCnt = rs.getInt("CMT_CNT");
+
+				bv = new BoardView(num, id, title, hit, writerId, regDate, files, categoryId, categoryName, cmtCnt);
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return bv;
+	}
 
 	@Override
 	public List<BoardView> getViewList(String selectBox, String query, String boardCategory, String startDate,

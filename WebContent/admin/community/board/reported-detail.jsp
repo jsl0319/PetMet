@@ -153,8 +153,8 @@
                 <section>
                     <h1 class="d-none">페이저</h1>
                     <ul>
-                        <li>이전 게시글</li>
-                        <li>이후 게시글</li>
+                        <li><a href="reported-detail?next=${b.id }">다음 게시글</a></li>
+                        <li><a href="reported-detail?prev=${b.id }">이전 게시글</a></li>
                     </ul>
                 </section>
                  

@@ -149,6 +149,14 @@
                     </table>
                 </section>
                 
+                <section>
+                    <h1 class="d-none">페이저</h1>
+                    <ul>
+                        <li><a href="detail?next=${b.id }">다음 게시글</a></li>
+                        <li><a href="detail?prev=${b.id }">이전 게시글</a></li>
+                    </ul>
+                </section>
+                
                 <form action="reported-detail" method="post">
                 <input hidden name="id" value="${c.id }">
                 

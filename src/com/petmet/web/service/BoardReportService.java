@@ -82,12 +82,16 @@ public class BoardReportService {
 		
 		return result;
 	}
-	public BoardReport getPrev(int id) {
-		return boardReportDao.get(id - 1);
+	public BoardReportView getPrev(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM BOARD_REPORT_VIEW WHERE BOARD_ID = " + id + ") + 1";
+		
+		return boardReportDao.getView(subQuery);
 	}
 
-	public BoardReport getNext(int id) {
-		return boardReportDao.get(id + 1);
+	public BoardReportView getNext(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM BOARD_REPORT_VIEW WHERE BOARD_ID = " + id + ") - 1";
+		
+		return boardReportDao.getView(subQuery);
 	}
 	
 	public List<BoardCategory> getCategoryList(){
