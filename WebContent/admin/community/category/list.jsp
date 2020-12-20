@@ -89,49 +89,51 @@
 			<!----------------------------------main--------------------------------------->
 			<main class="main">
 				<h1 class="d-none">Main Content</h1>
-
-				<section>
-					<h1 class="d-none">게시글 리스트</h1>
-
-					<input class="button addBtn" type="button" value="+ Add">
-
-					<form action="list" method="post">
-
-						<table class="list-table">
-							<thead>
-								<tr>
-									<td>번호</td>
-									<td class="col-l">카테고리명</td>
-									<td class="col-m">게시글 수</td>
-									<td>삭제</td>
-								</tr>
-							</thead>
-
-							<tbody>
-								<c:forEach var="c" items="${list }" varStatus="st">
-									<tr ${st.count % 2==0?"class='even'":""}>
-										<td>${c.num }</td>
-										<td class="col-l">
-											<input hidden type="text" name="id" value="${c.id }">
-											<input type="text" name="name" value="${c.name }">
-										</td>
-										<td class="col-m">${c.cntBoard }</td>
-										<td>
-											<input name="del" value="${c.id }" type="checkbox">
-										</td>
+				
+				<!-- <section class="main-section"> -->
+					<section>
+						<h1 class="d-none">게시글 리스트</h1>
+	
+						<input class="button addBtn" type="button" value="+ Add">
+	
+						<form action="list" method="post">
+	
+							<table class="list-table">
+								<thead>
+									<tr>
+										<td>번호</td>
+										<td class="col-l">카테고리명</td>
+										<td class="col-m">게시글 수</td>
+										<td>삭제</td>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-				</section>
-
-				<section>
-					<h1 class="d-none">이벤트 버튼</h1>
-
-					<input class="button" name="button" type="submit" value="저장">
-                    <input class="button" name="button" type="submit" value="삭제">
-				</section>
-				</form>
+								</thead>
+	
+								<tbody>
+									<c:forEach var="c" items="${list }" varStatus="st">
+										<tr ${st.count % 2==0?"class='even'":""}>
+											<td>${c.num }</td>
+											<td class="col-l">
+												<input hidden type="text" name="id" value="${c.id }">
+												<input type="text" name="name" value="${c.name }">
+											</td>
+											<td class="col-m">${c.cntBoard }</td>
+											<td>
+												<input name="del" value="${c.id }" type="checkbox">
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+					</section>
+	
+					<section>
+						<h1 class="d-none">이벤트 버튼</h1>
+	
+						<input class="button" name="button" type="submit" value="저장">
+	                    <input class="button" name="button" type="submit" value="삭제">
+					</section>
+					</form>
+				<!-- </section> -->
 				
 				<c:set var="page" value="${(empty param.p)? 1 : param.p}"/>
 				<c:set var="startNum" value="${page - (page-1)%5 }"/>

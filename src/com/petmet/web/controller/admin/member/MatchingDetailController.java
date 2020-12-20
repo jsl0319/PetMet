@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.petmet.web.entity.MemberView;
-import com.petmet.web.service.MemberService;
+import com.petmet.web.entity.MatchingView;
+import com.petmet.web.service.MatchingService;
 
-@WebServlet("/admin/member/detail")
-public class DetailController extends HttpServlet{
+@WebServlet("/admin/member/matchingdetail")
+public class MatchingDetailController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		MemberService memberService= new MemberService();
-		MemberView memberView = memberService.get(id);
+		MatchingService matchingService= new MatchingService();
+		MatchingView matchingView = matchingService.get(id);
 		
-		request.setAttribute("mv", memberView);
-		request.getRequestDispatcher("detail.jsp").forward(request, response);
+		request.setAttribute("mt", matchingView);
+		request.getRequestDispatcher("matching-detail.jsp").forward(request, response);
 	}
 }
