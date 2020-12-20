@@ -41,8 +41,11 @@ public class MatchingListController extends HttpServlet {
 
 		MatchingService matchingService = new MatchingService();
 		List<MatchingView> list = matchingService.getList(field,startDate,endDate,page,num);
+		int count = matchingService.getCount(field,startDate,endDate);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("num", num);
 
 		request.getRequestDispatcher("matching-list.jsp").forward(request, response);
 	}

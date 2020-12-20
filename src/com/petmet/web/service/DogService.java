@@ -27,6 +27,12 @@ public class DogService {
 		int endIndex = page*num;	 
 		return dogDao.getList(field,query,query2,startIndex,endIndex);
 	}
+
+
+	public int getCount(String field, String query, String query2) {
+		
+		return dogDao.getCount(field,query,query2);
+	}
 	
 
 }

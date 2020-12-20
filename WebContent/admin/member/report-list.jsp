@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,13 +36,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/index.html">
+                        <a href="../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index.html">
+                         <a href="../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
@@ -75,14 +76,14 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                    <form class="search__container">
+                    <form class="search__form search__container">
                         <div>
-                            <select class="search__title" name="f">
+                            <select class="selectbox" name="f">
                                 <option ${param.f=="rep_id"?"selected":""} value="rep_id">신고회원 닉네임</option>
                         
                             </select>
                             <input type="text" class="search__input" name="q" value="${param.q}">
-                            <input type="submit" class="button" value="검색">
+                            <input type="submit" class="button search-button" value="검색">
                         </div>
 
                         
@@ -105,8 +106,8 @@
                         </thead>
                 
                         <tbody>
-                           <c:forEach var="r" items="${list}">
-                            <tr>
+                           <c:forEach var="r" items="${list}" varStatus="st">
+                            <tr class="${st.index%2==0?'even':''}">
                                 <td>${r.id}</td>
                                 <td>${r.reqId}</td>
                                 <td>${r.respId}</td>
@@ -121,21 +122,40 @@
                     </table>
 
                 </section>
+               <c:set var="page" value="${(empty param.p)?1:param.p}"/>
+		        <c:set var="startNum" value="${page-(page-1)%5}"/>
+		        <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/num),'.')}"/>
                 <div class="pager">
                     <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                      <a href="?p=${1}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-left"></i></a>
                     </div>
                     <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
+                      <c:if test="${startNum>1}">
+                    	<a href="?p=${startNum-5}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
+                    </c:if>
+                    <c:if test="${startNum<=1}">
+                    	<a href="?p=${1}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
+                    </c:if>
+                     
                     </div>
                     <ul>
-                      <li><a href="#">1</a></li>
-                    </ul>
+                    <c:forEach var="i" begin="0" end="4">	
+                    <c:if test="${(startNum+i)<=lastNum}">
+						<li><a class="${page==(startNum+i)?"current-page":""}" href="?p=${startNum+i}&f=${param.f}&q=${param.q}" >${startNum+i}</a></li>
+					</c:if>	
+					</c:forEach>
+					</ul>
                     <div>
-                      <a href="#"><i class="fas fa-angle-right"></i></a>
+                    <c:if test="${startNum+5<=lastNum}">
+                    	<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+                    </c:if>
+                    <c:if test="${startNum+5>lastNum}">
+                    	<a href="?p=${lastNum}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+                    </c:if>
+                      
                     </div>
                     <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                      <a href="?p=${lastNum}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-right"></i></a>
                     </div>
                   </div>
             </main>

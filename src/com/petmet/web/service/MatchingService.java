@@ -42,4 +42,14 @@ public class MatchingService {
 		
 		return matchingDao.get(id);
 	}
+
+	public int getCount(int field, String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return matchingDao.getCount(field,startDate,endDate);
+	}
+
+	public int getReportCount(String field, String query) {
+		
+		return matchingDao.getReportCount(field,query);
+	}
 }

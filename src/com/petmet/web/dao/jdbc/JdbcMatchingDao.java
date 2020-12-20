@@ -224,6 +224,84 @@ public class JdbcMatchingDao implements MatchingDao {
 		return matchingView;
 	}
 
+	@Override
+	public int getCount(int field, String startDate, String endDate) {
+		int count = 0;
+
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd = DBContext.PWD;
+
+		String sqlMiddle = "";
+		switch (field) {
+		case -1:
+			break;
+
+		default:
+			sqlMiddle = "AND RESULT=" + field;
+			break;
+		}
+		String sql = "SELECT COUNT(ID) COUNT FROM " + "(SELECT ROWNUM NUM,M.* FROM " + "(SELECT * FROM MATCHING_VIEW "
+				+ "WHERE REQ_DATE>? AND REQ_DATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL) " + sqlMiddle
+				+ " ORDER BY REQ_DATE DESC) M)";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, startDate);
+			st.setString(2, endDate);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next())
+				count = rs.getInt("COUNT");
+				
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return count;
+	}
+
+	@Override
+	public int getReportCount(String field, String query) {
+		int count=0;
+
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd = DBContext.PWD;
+
+		String sql = "SELECT COUNT(ID) COUNT FROM " + "(SELECT ROWNUM NUM,M.* FROM " + "(SELECT * FROM MATCHING " + "WHERE " + field
+				+ " LIKE ? " + "ORDER BY REP_DATE DESC) M ) ";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%" + query + "%");
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next())
+				count = rs.getInt("COUNT");
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return count;
+	}
+
 //	@Override
 //	public int insert(Matching matching) {
 //		int result = 0;

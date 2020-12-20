@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link href="../../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
     <link href="../../css/admin/components/table/detail.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
@@ -33,13 +34,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/index.html">
+                        <a href="../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index.html">
+              			 <a href="../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
@@ -63,9 +64,9 @@
                 <h1 class="d-none">페이지 목록</h1>
                 <ul>
                     <li><a href="list">회원 목록</a></li>
-                    <li><a href="dog-list.html">강아지 목록</a></li>
-                    <li><a href="matching-list.html">매칭 목록</a></li>
-                    <li><a href="report-list">신고 목록</a></li>
+                    <li><a href="doglist">강아지 목록</a></li>
+                    <li><a href="matchinglist">매칭 목록</a></li>
+                    <li><a href="reportlist">신고 목록</a></li>
 
                 </ul>
             </aside>
@@ -73,22 +74,21 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">디테일 테이블</h1>
-                    <table>
+                    <table class="detail-table">
                         <tr>
-                            <td>신고 회원 닉네임</td>
+                            <th>신고 회원 닉네임</th>
                             <td>${r.repId}</td>
                             
                         </tr>
                         <tr>
-                            <td>신고 일자</td>
+                            <th>신고 일자</th>
                             <td>${r.repDate}</td>
                         </tr>
                         <tr>
-                            <td colspan="2">내용</td>
+                            <th colspan="2">내용</th>
                         </tr>
-                        <tr>
+                        <tr class="content">
                             <td colspan="2">${r.repContent}</td>
-
                         </tr>
 
                         
@@ -97,7 +97,7 @@
 
                 </section>
                 <div class="pager">
-                    <a href="reportlist"><input type="button" value="목록으로 가기"></a>
+                    <a href="reportlist"><input type="button" class="button search-button" value="목록"></a>
                 </div>
             </main>
 

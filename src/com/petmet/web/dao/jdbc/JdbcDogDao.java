@@ -72,7 +72,7 @@ public class JdbcDogDao implements DogDao {
 		String sql = "SELECT * FROM " + 
 				"(SELECT ROWNUM NUM,D.* FROM " + 
 				"(SELECT * FROM DOG " + 
-				"WHERE KIND LIKE ?"+
+				"WHERE "+field+" LIKE ? AND "+"KIND LIKE ?"+ 
 				" ORDER BY REG_DATE DESC) D)" + 
 				"WHERE NUM BETWEEN ? AND ?";
 
@@ -80,9 +80,10 @@ public class JdbcDogDao implements DogDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, "%"+query2+"%");
-			st.setInt(2, startIndex);
-			st.setInt(3, endIndex);
+			st.setString(1, "%"+query+"%");
+			st.setString(2, "%"+query2+"%");
+			st.setInt(3, startIndex);
+			st.setInt(4, endIndex);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
@@ -115,6 +116,45 @@ public class JdbcDogDao implements DogDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public int getCount(String field, String query, String query2) {
+
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd = DBContext.PWD;
+
+		String sql = "SELECT COUNT(ID) COUNT FROM " + 
+				"(SELECT ROWNUM NUM,D.* FROM " + 
+				"(SELECT * FROM DOG " + 
+				"WHERE KIND LIKE ?"+
+				" ORDER BY REG_DATE DESC) D)";
+			
+		int count =0;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query2+"%");
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) 
+				count = rs.getInt("COUNT");
+
+		
+		
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return count;
 	}
 
 }

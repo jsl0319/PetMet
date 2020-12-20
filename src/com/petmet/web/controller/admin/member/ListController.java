@@ -44,7 +44,10 @@ public class ListController extends HttpServlet {
 
 		MemberService memberService = new MemberService();
 		List<Member> list = memberService.getList(field,query,startDate,endDate,page,num);
+		int count = memberService.getCount(field,query,startDate,endDate);
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("num", num);
 
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}

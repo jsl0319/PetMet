@@ -23,5 +23,9 @@ public interface MatchingDao {
 	List<MatchingView> getList(int field, String startDate, String endDate, int startIndex, int endIndex);
 	MatchingView get(int id);
 
+	int getCount(int field, String startDate, String endDate);
+
+	int getReportCount(String field, String query);
+
 
 }

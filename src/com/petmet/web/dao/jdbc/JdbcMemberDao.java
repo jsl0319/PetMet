@@ -114,6 +114,46 @@ public class JdbcMemberDao implements MemberDao {
 		return memberView;
 	}
 
+	@Override
+	public int getCount(String field, String query, String startDate, String endDate) {
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd = DBContext.PWD;
+
+		String sql = "SELECT COUNT(ID) COUNT FROM "
+						+ "(SELECT ROWNUM NUM,M.* FROM "
+						+ "(SELECT * FROM MEMBER "
+						+ "WHERE "+field+" LIKE ? AND "
+						+ "REG_DATE>? AND "
+						+ "REG_DATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)"
+						+ " ORDER BY REG_DATE DESC) M ) ";
+						
+
+		int count = 0;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			st.setString(2, startDate);
+			st.setString(3, endDate);
+			ResultSet rs = st.executeQuery();
+
+			if(rs.next())
+				count = rs.getInt("COUNT");
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return count;
+	}
+
 	
 	
 }

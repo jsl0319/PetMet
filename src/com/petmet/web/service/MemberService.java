@@ -29,4 +29,10 @@ public class MemberService {
 		return memberDao.get(id);
 	}
 
+
+	public int getCount(String field, String query, String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return memberDao.getCount(field,query,startDate,endDate);
+	}
+
 }

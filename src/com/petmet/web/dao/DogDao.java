@@ -10,4 +10,5 @@ public interface DogDao {
 //	int update(Dog dog);
 //	int delete(int id);
 	List<Dog> getList(String field,String query, String query2, int startIndex, int endIndex);
+	int getCount(String field, String query, String query2);
 }

@@ -39,7 +39,10 @@ public class ReportListController extends HttpServlet {
 
 		MatchingService matchingService = new MatchingService();
 		List<Matching> list = matchingService.getReportList(field,query,page,num);
+		int count = matchingService.getReportCount(field,query);
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("num", num);
 
 		request.getRequestDispatcher("report-list.jsp").forward(request, response);
 	}

@@ -40,8 +40,10 @@ public class DogListController extends HttpServlet {
 		
 		DogService dogService = new DogService();
 		List<Dog> list = dogService.getList(field,query,query2,page,num);
-		
+		int count = dogService.getCount(field,query,query2);
 		request.setAttribute("list", list);
+		request.setAttribute("num", num);
+		request.setAttribute("count", count);
 
 		request.getRequestDispatcher("dog-list.jsp").forward(request, response);
 	}
