@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.petmet.web.entity.PetPlaceView;
-import com.petmet.web.entity.ReportedFeedView;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/list")
