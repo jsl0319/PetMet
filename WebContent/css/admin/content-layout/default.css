@@ -78,9 +78,9 @@
 }
 
 .body .main {
-  /* position: relative; */
   display: flex;
   flex-direction: column;
+  background: white;
 }
 
 .body .main section {

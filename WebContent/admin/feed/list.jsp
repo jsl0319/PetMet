@@ -120,16 +120,17 @@
                   
               </section>
   
+  
+  
               <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
               <c:set var="startNum" value="${ page-(page-1)%5}"/>
-              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13), '.')}"/>
-              <div>${lastNum } </div>
+              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
               
               <div class="pager">
               
               	<c:if test="${startNum >= 1 }">
 	                <div>
-	                  <a href="?p=1&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-left"></i></a>
+	                  <a href="?p=1&f=${param.f}&q=${param.q}""><i class="fas fa-angle-double-left"></i></a>
 	                </div>
                 </c:if>
                 
