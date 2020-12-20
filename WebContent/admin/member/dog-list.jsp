@@ -77,7 +77,6 @@
                     <form>
                         <div>
                             <select>
-                                <option>회원</option>
                                 <option>닉네임</option>
                             </select>
                             <input type="text">
