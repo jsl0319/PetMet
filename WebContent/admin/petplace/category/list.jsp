@@ -97,9 +97,9 @@
 
                     <h1 class="d-none">검색폼</h1>
                 
-                    <form>
-                        <input type="text">
-                        <input type="submit" value="검색">
+                    <form class="search__container search__form">
+                        <input type="text" class="search__input" name="q" value="${param.q}">
+                        <input type="submit" class="button" value="검색">
                     </form>
                 
                 </section>
@@ -121,7 +121,7 @@
                 
                         <tbody>
                         <c:forEach var="ppc" items="${list}">
-                            <tr>
+                            <tr  ${ppc.num%2==0?"class='even'":""}>
                                 <td>${ppc.num}</td>
                                 <td><a href="">${ppc.name}</a></td>
                                 <td>${ppc.regDate}</td>
@@ -149,6 +149,8 @@
                 </section>
 
                 <section>
+                	<c:set var="page" value="${(param.p==null)?1:param.p}" />
+                    <c:set var="startNum" value="${page-(page-1)%5}" />
                     <div class="pager">
                         <div>
                             <a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -157,11 +159,11 @@
                             <a href="#"><i class="fas fa-angle-left"></i></a>
                         </div>
                         <ul>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            <c:forEach var="i" begin="0" end="4">
+                                <li>
+                                    <a href="?p=${startNum+i}&q=${param.q}">${startNum+i}</a>
+                                </li>
+                            </c:forEach>
                         </ul>
                         <div>
                             <a href="#"><i class="fas fa-angle-right"></i></a>

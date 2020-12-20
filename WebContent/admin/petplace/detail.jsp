@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	6c3f482aeb9a4689468c97bf295d500e"></script>
+	<script src="detail.js"></script>
 </head>
 
 <body>
@@ -98,10 +100,14 @@
                     <table class="detail-table">
                         <tbody>
                             <tr>
-                                <th>제목</th>
+                                <th>이름</th>
                                 <td>${p.name}</td>
                                 <th>카테고리</th>
                                 <td>${p.categoryName}</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td colspan="3">${p.address}</td>
                             </tr>
                             <tr>
                                 <th>작성일</th>
@@ -115,7 +121,7 @@
                                 <th>작성자</th>
                                 <td>${p.writerName}</td>
                                 <th>좋아요</th>
-                                <td>${p.likes }</td>
+                                <td>${p.likes}</td>
                             </tr>
                             <tr>
                                 <th>첨부파일</th>
@@ -130,7 +136,9 @@
                                 </td>
                             </tr>
                             <tr class="content">
-                                <td colspan="4">${p.location }</td>
+                                <td colspan="4">${p.location}
+                                	<div id="map" style="width:900px;height:400px;"></div>
+                                </td>
                             </tr>
                             <tr class="content">
                                 <td colspan="4">${p.content }</td>

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	6c3f482aeb9a4689468c97bf295d500e"></script>
+	<script src="reg.js"></script>
 </head>
 
 <body>
@@ -136,10 +138,20 @@
                                         <input type="file" name="file" />
                                     </td>
                                 </tr>
+                                <tr>
+                                	<th>주소</th>
+                                	<td colspan="3" class="location" name="location"></td>
+                                </tr>
+                                <tr>
+                                	<th>검색</th>
+                                	<td colspan="3">
+                                		<input type="text" name="psText">
+                                		<input type="button" class="search-map" value="지도 검색">
+                                	</td>
+                                </tr>
                                 <tr class="content">
                                     <td colspan="4">
-                                        <textarea class="location" name="location" placeholder="지도(좌표)"
-                                            style="width: 900px; height: 400px; resize: none;"></textarea>
+                                        <div id="map" style="width:900px;height:400px;"></div>
                                     </td>
                                 </tr>
                                 <tr class="content">

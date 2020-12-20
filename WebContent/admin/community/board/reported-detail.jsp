@@ -138,8 +138,8 @@
                             </tr>
                         </thead>
                         <tbody>
-	                        <c:forEach var="r" items="${list }">
-	                            <tr>
+	                        <c:forEach var="r" items="${list }" varStatus="st">
+	                        	<tr ${st.count % 2==0?"class='even'":""}>
 	                                <td>${r.id }</td>
 	                                <td>${r.memId }</td>
 	                                <td>${r.content }</td>
@@ -153,8 +153,8 @@
                 <section>
                     <h1 class="d-none">페이저</h1>
                     <ul>
-                        <li>이전 게시글</li>
-                        <li>이후 게시글</li>
+                        <li><a href="reported-detail?next=${b.id }">다음 게시글</a></li>
+                        <li><a href="reported-detail?prev=${b.id }">이전 게시글</a></li>
                     </ul>
                 </section>
                  

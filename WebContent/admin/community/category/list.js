@@ -15,7 +15,7 @@ window.addEventListener("load", function(){
 
     // 수정 이벤트 발생 시
     tbody.addEventListener("change", function(e){
-        if(e.target.name != "new-name"){
+        if(e.target.name != "new-name" && e.target.name != "del"){
             e.target.name = "changed";
             e.target.previousElementSibling.name = "changed-id";
         }

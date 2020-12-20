@@ -44,8 +44,29 @@ public class PetPlaceService {
 		return ppDao.getViewList();
 	}
 
+//	public Pet
+
 	public PetPlaceView getView(int id) {
 
 		return ppDao.getView(id);
 	}
+
+	public List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate, int page,
+			int size) {
+
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = page * size;
+		
+		return ppDao.getViewList(field, query, startDate, endDate, startIndex, endIndex);
+	}
+
+	// review관리 페이지를 위한 getViewList
+	public List<PetPlaceView> getViewList(String field, String query, int page, int size) {
+		
+		int startIndex = 1 + (page - 1) * size;
+		int endIndex = page * size;
+
+		return ppDao.getViewList(field, query, startIndex, endIndex);
+	}
+
 }

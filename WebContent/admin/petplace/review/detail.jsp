@@ -92,17 +92,6 @@
 
             <main class="main">
                 <h1>리뷰 관리</h1>
-
-                <section class="search-form">
-
-                    <h1 class="d-none">검색폼</h1>
-                
-                    <form>
-                        <input type="text">
-                        <input type="submit" value="검색">
-                    </form>
-                
-                </section>
                 
                 <section>
                     <h1>Pet Place : ${list[0].categoryName}</h1>
@@ -120,7 +109,7 @@
                 
                         <tbody>
                         	<c:forEach var="l" items="${list}">
-                            <tr>
+                            <tr  ${l.num%2==0?"class='even'":""}>
                                 <td>${l.num}</td>
                                 <td>${l.memberName}</td>
                                 <td>${l.content}</td>

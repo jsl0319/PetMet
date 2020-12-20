@@ -103,10 +103,9 @@
 								</tr>
 							</thead>
 
-
 							<tbody>
-								<c:forEach var="c" items="${list }">
-									<tr>
+								<c:forEach var="c" items="${list }" varStatus="st">
+									<tr ${st.count % 2==0?"class='even'":""}>
 										<td>${c.num }</td>
 										<td class="col-l">
 											<input hidden type="text" name="id" value="${c.id }">
@@ -130,25 +129,33 @@
 				</section>
 				</form>
 				
+				<c:set var="page" value="${(empty param.p)? 1 : param.p}"/>
+				<c:set var="startNum" value="${page - (page-1)%5 }"/>
+				<c:set var="lastNum" value="${tp }"/>
 				<div class="pager">
-					<div>
-						<a href="#"><i class="fas fa-angle-double-left"></i></a>
-					</div>
-					<div>
-						<a href="#"><i class="fas fa-angle-left"></i></a>
-					</div>
+					<c:if test="${1 <= startNum-5}">
+						<div>
+							<a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+						</div>
+						<div>
+							<a href="?p=${startNum-5}"><i class="fas fa-angle-left"></i></a>
+						</div>
+					</c:if>
 					<ul>
-						<li><a href="#"">1</a></li>
-						<li><a href="#"">1</a></li>
-						<li><a href="#"">1</a></li>
-						<li><a href="#"">1</a></li>
+						<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum + i) <= lastNum }">
+								<li><a href="?p=${startNum + i}">${startNum + i}</a></li>
+							</c:if>
+						</c:forEach>
 					</ul>
-					<div>
-						<a href="#"><i class="fas fa-angle-right"></i></a>
-					</div>
-					<div>
-						<a href="#"><i class="fas fa-angle-double-right"></i></a>
-					</div>
+					<c:if test="${startNum+5 <= lastNum}">
+						<div>
+							<a href="?p=${startNum+5}"><i class="fas fa-angle-right"></i></a>
+						</div>
+						<div>
+							<a href="?p=${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+						</div>
+					</c:if>
 				</div>
 			</main>
 		</div>

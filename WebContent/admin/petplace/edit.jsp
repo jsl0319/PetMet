@@ -109,7 +109,7 @@
                                     <td>
                                         <select name="categoryId">
                                         	<c:forEach var="ppc" items="${list}">
-                                            	<option value="${ppc.id}">${ppc.name}</option>
+                                            	<option value="${ppc.id}" ${pp.categoryId==ppc.id?"selected":""}>${ppc.name}</option>
                                         	</c:forEach>
                                         </select>
                                     </td>
@@ -120,8 +120,8 @@
                                 	<th>공개 여부</th>
                                 	<td>
                                         <select name="pub">
-                                        	<option value="1">공개</option>
-                                        	<option value="0">비공개</option>
+                                        	<option value="1" ${pp.pub=1?"selected":""}>공개</option>
+                                        	<option value="0" ${pp.pub=0?"selected":""}>비공개</option>
                                         </select>
                                     </td>
                                 </tr>

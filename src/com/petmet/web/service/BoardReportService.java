@@ -49,76 +49,8 @@ public class BoardReportService {
 		return getList(null, null, null, null, null, 1, 20);
 	}
 	
-	public List<BoardReport> getList(int page) {
-		return getList(null, null, null, null, null, page, 20);
-	}
-
-	public List<BoardReport> getList(int page, int size) {
-		return getList(null, null, null, null, null, page, size);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query) {
-		return getList(selectBox, query, null, null, null, 1, 20);
-	}
-
-	public List<BoardReport> getList(String boardCategory) {
-		return getList(null, null, boardCategory, null, null, 1, 20);
-	}
-
-	public List<BoardReport> getList(Date startDate, Date endDate) {
-		return getList(null, null, null, startDate, endDate, 1, 20);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query, int page) {
-		return getList(selectBox, query, null, null, null, page, 20);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query, int page, int size) {
-		return getList(selectBox, query, null, null, null, page, size);
-	}
-
-	public List<BoardReport> getList(String boardCategory, int page) {
-		return getList(null, null, boardCategory, null, null, page, 20);
-	}
-
-	public List<BoardReport> getList(String boardCategory, int page, int size) {
-		return getList(null, null, boardCategory, null, null, page, size);
-	}
-
-	public List<BoardReport> getList(Date startDate, Date endDate, int page) {
-		return getList(null, null, null, startDate, endDate, page, 20);
-	}
-
-	public List<BoardReport> getList(Date startDate, Date endDate, int page, int size) {
-		return getList(null, null, null, startDate, endDate, page, size);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query, String boardCategory, int page) {
-		return getList(selectBox, query, boardCategory, null, null, page, 20);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query, String boardCategory, int page, int size) {
-		return getList(selectBox, query, boardCategory, null, null, page, size);
-	}
-
-	public List<BoardReport> getList(String boardCategory, Date startDate, Date endDate, int page) {
-		return getList(null, null, boardCategory, startDate, endDate, page, 20);
-	}
-
-	public List<BoardReport> getList(String boardCategory, Date startDate, Date endDate, int page, int size) {
-		return getList(null, null, boardCategory, startDate, endDate, page, size);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query, Date startDate, Date endDate, int page) {
-		return getList(selectBox, query, null, startDate, endDate, page, 20);
-	}
-
-	public List<BoardReport> getList(String selectBox, String query, Date startDate, Date endDate, int page, int size) {
-		return getList(selectBox, query, null, startDate, endDate, page, size);
-	}
-
 	// ---- getList 최종
-	public List<BoardReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate,
+	public List<BoardReport> getList(String selectBox, String query, String boardCategory, String startDate, String endDate,
 			int page, int size) {
 		// page & size
 		int startIndex = 1 + (page - 1) * size;
@@ -150,12 +82,16 @@ public class BoardReportService {
 		
 		return result;
 	}
-	public BoardReport getPrev(int id) {
-		return boardReportDao.get(id - 1);
+	public BoardReportView getPrev(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM BOARD_REPORT_VIEW WHERE BOARD_ID = " + id + ") + 1";
+		
+		return boardReportDao.getView(subQuery);
 	}
 
-	public BoardReport getNext(int id) {
-		return boardReportDao.get(id + 1);
+	public BoardReportView getNext(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM BOARD_REPORT_VIEW WHERE BOARD_ID = " + id + ") - 1";
+		
+		return boardReportDao.getView(subQuery);
 	}
 	
 	public List<BoardCategory> getCategoryList(){
@@ -172,84 +108,26 @@ public class BoardReportService {
 		BoardDao boardDao = new JdbcBoardDao();
 		return boardDao.getView(id);
 	}
+
+	public int getTotalPage(String field, String query, String board, String startDate, String endDate, int page, int size) {
+		int records = 0;
+
+		List<BoardReportView> list = boardReportDao.getViewList(field, query, board, startDate, endDate);
+		for (BoardReportView b : list)
+			records++;
+
+		int pages = (int) Math.ceil(records / (float) size);
+
+		return pages;
+	}
 	
 	// -------------- getViewList --------------
 	public List<BoardReportView> getViewList() {
 		return getViewList(null, null, null, null, null, 1, 20);
 	}
-
-	public List<BoardReportView> getViewList(int page) {
-		return getViewList(null, null, null, null, null, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(int page, int size) {
-		return getViewList(null, null, null, null, null, page, size);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query) {
-		return getViewList(selectBox, query, null, null, null, 1, 20);
-	}
-
-	public List<BoardReportView> getViewList(String boardCategory) {
-		return getViewList(null, null, boardCategory, null, null, 1, 20);
-	}
-
-	public List<BoardReportView> getViewList(Date startDate, Date endDate) {
-		return getViewList(null, null, null, startDate, endDate, 1, 20);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query, int page) {
-		return getViewList(selectBox, query, null, null, null, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query, int page, int size) {
-		return getViewList(selectBox, query, null, null, null, page, size);
-	}
-
-	public List<BoardReportView> getViewList(String boardCategory, int page) {
-		return getViewList(null, null, boardCategory, null, null, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(String boardCategory, int page, int size) {
-		return getViewList(null, null, boardCategory, null, null, page, size);
-	}
-
-	public List<BoardReportView> getViewList(Date startDate, Date endDate, int page) {
-		return getViewList(null, null, null, startDate, endDate, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(Date startDate, Date endDate, int page, int size) {
-		return getViewList(null, null, null, startDate, endDate, page, size);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, int page) {
-		return getViewList(selectBox, query, boardCategory, null, null, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, int page, int size) {
-		return getViewList(selectBox, query, boardCategory, null, null, page, size);
-	}
-
-	public List<BoardReportView> getViewList(String boardCategory, Date startDate, Date endDate, int page) {
-		return getViewList(null, null, boardCategory, startDate, endDate, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(String boardCategory, Date startDate, Date endDate, int page, int size) {
-		return getViewList(null, null, boardCategory, startDate, endDate, page, size);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query, Date startDate, Date endDate, int page) {
-		return getViewList(selectBox, query, null, startDate, endDate, page, 20);
-	}
-
-	public List<BoardReportView> getViewList(String selectBox, String query, Date startDate, Date endDate, int page,
-			int size) {
-		return getViewList(selectBox, query, null, startDate, endDate, page, size);
-	}
-
 	// ---- getViewList 최종
-	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
-			Date endDate, int page, int size) {
+	public List<BoardReportView> getViewList(String selectBox, String query, String boardCategory, String startDate,
+			String endDate, int page, int size) {
 		// page & size
 		int startIndex = 1 + (page - 1) * size;
 		int endIndex = size * page;
@@ -257,4 +135,5 @@ public class BoardReportService {
 		return boardReportDao.getViewList(selectBox, query, boardCategory, startDate, endDate, startIndex, endIndex);
 	}
 	// ---------------------------------------
+
 }

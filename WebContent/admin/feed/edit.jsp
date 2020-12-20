@@ -73,6 +73,8 @@
     <!----------------------------------main--------------------------------------->
         <main id="main" class="main feed-list">
           <h1 class="d-none">Feed-list 관리자 페이지</h1>
+          
+          
          <form action="edit" method = "post">
 	          <section>
 	            <h1 class="d-none">신고 리스트</h1>
@@ -112,24 +114,6 @@
 	          </section>
 	          
           </form>
-          
-          <div class="pager">
-            <div>
-              <a href="#"><i class="fas fa-angle-double-left"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fas fa-angle-left"></i></a>
-            </div>
-          <ul>
-            <li><a href="#">1</a></li>
-          </ul>
-          <div>
-            <a href="#"><i class="fas fa-angle-right"></i></a>
-          </div>
-          <div>
-            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-          </div>
-          </div>
 
         </main>
       </div>

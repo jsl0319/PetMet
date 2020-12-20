@@ -140,26 +140,19 @@ public class JdbcCommentReportDao implements CommentReportDao{
 	}
 
 	@Override
-	public List<CommentReport> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex) {
+	public List<CommentReport> getList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex) {
 		String sql = "SELECT * "
 					+ "FROM("
 					+ "    SELECT ROWNUM NUM, C.* "
 					+ "    FROM("
 					+ "        SELECT * FROM COMMENT_REPORT ORDER BY REG_DATE DESC"
-					+ "    ) C"
+					+ "    ) C "
+					+ "		WHERE " + selectBox + " LIKE '%" + query + "%'"
+					+ " 	AND CATEGORY_ID LIKE '%" + boardCategory + "%'"
+					+ " 	AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
 					+ ") "
 					+ "WHERE NUM BETWEEN ? AND ?";
 	
-		// 검색폼의 검색 경우의 수
-		if (query != null)
-			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
-	
-		if (boardCategory != null)
-			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
-	
-		if (startDate != null || endDate != null)
-			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
-
 		List<CommentReport> list = new ArrayList<>();
 
 		try {
@@ -196,19 +189,64 @@ public class JdbcCommentReportDao implements CommentReportDao{
 	}
 
 	@Override
-	public List<CommentReportView> getViewList(String selectBox, String query, String boardCategory, Date startDate, Date endDate, int startIndex, int endIndex) {
-		String sql = "SELECT * FROM COMMENT_REPORT_VIEW WHERE NUM BETWEEN ? AND ?";
+	public List<CommentReportView> getViewList(String field, String query, String board, String startDate, String endDate) {
+		String sql = "SELECT * FROM("
+				+ "SELECT ROWNUM NUM2, CRV.* FROM COMMENT_REPORT_VIEW CRV "
+				+ "WHERE " + field + " LIKE '%" + query + "%' "
+				+ "AND CATEGORY_NAME LIKE '%" + board + "%' "
+				+ "AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
+				+ ") ";
 
-		// 검색폼의 검색 경우의 수
-		if (query != null)
-			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
+		List<CommentReportView> list = new ArrayList<>();
 
-		if (boardCategory != null)
-			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
 
-		if (startDate != null || endDate != null)
-			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
-		
+			while (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int boardId = rs.getInt("BOARD_ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				int reported = rs.getInt("REPORTED");
+
+				CommentReportView cv = new CommentReportView(num, id, categoryId, categoryName, boardId, title,
+						writerId, content, regDate, reported);
+
+				list.add(cv);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<CommentReportView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex) {
+		String sql = "SELECT * FROM("
+						+ "SELECT ROWNUM NUM2, CRV.* FROM COMMENT_REPORT_VIEW CRV "
+						+ "WHERE " + selectBox + " LIKE '%" + query + "%' "
+						+ "AND CATEGORY_NAME LIKE '%" + boardCategory + "%' "
+						+ "AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
+						+ ") "
+					+ "WHERE NUM2 BETWEEN ? AND ?";
+ 
 		List<CommentReportView> list = new ArrayList<>();
 
 		try {

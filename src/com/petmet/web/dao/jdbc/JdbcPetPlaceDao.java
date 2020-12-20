@@ -105,6 +105,7 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 			st.setInt(1, id);
 
 			result = st.executeUpdate();
+
 			st.close();
 			con.close();
 
@@ -165,8 +166,8 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 
 	@Override
 	public List<PetPlace> getList() {
-		String sql = "SELECT * FROM (\r\n" + "    SELECT ROWNUM NUM, P.* \r\n"
-				+ "    FROM(SELECT * FROM PETPLACE ORDER BY REG_DATE ASC)P)\r\n" + "    ORDER BY NUM DESC;";
+		String sql = "SELECT * FROM (" + "SELECT ROWNUM NUM, P.*"
+				+ "FROM(SELECT * FROM PETPLACE ORDER BY REG_DATE ASC)P)" + "ORDER BY NUM DESC;";
 
 		List<PetPlace> list = new ArrayList<>();
 
@@ -216,10 +217,10 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 	// ==========================view===========================
 
 	@Override
-	public PetPlace getLast() {
-		PetPlace pp = null;
+	public PetPlaceView getLast() {
+		PetPlaceView pp = null;
 
-		String sql = "SELECT * FROM PETPLACE WHERE ID = (SELECT MAX(ID) FROM NOTICE)";
+		String sql = "SELECT * FROM PETPLACE_VIEW WHERE ID = (SELECT MAX(ID) FROM PETPLACE_VIEW)";
 
 		try {
 
@@ -244,9 +245,15 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				int hit = rs.getInt("HIT");
 				int likes = rs.getInt("LIKES");
 				int pub = rs.getInt("PUB");
+				int num = rs.getInt("NUM");
+				int reviewCount = rs.getInt("REVIEW_COUNT");
+				double avgRating = rs.getDouble("AVG_RATING");
+				String writerName = rs.getString("WRITER_NAME");
+				String categoryName = rs.getString("CATEGORY_NAME");
 
-				pp = new PetPlace(id, writerId, categoryId, name, address, homepage, phone, location, content, regDate,
-						files, hit, likes, pub);
+				pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location, content,
+						regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
+
 			}
 
 			rs.close();
@@ -290,14 +297,13 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				int hit = rs.getInt("HIT");
 				int likes = rs.getInt("LIKES");
 				int pub = rs.getInt("PUB");
-				int num = rs.getInt("NUM");
 				int reviewCount = rs.getInt("REVIEW_COUNT");
 				double avgRating = rs.getDouble("AVG_RATING");
 				String writerName = rs.getString("WRITER_NAME");
 				String categoryName = rs.getString("CATEGORY_NAME");
 
 				pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location, content,
-						regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
+						regDate, files, hit, likes, pub, reviewCount, avgRating, writerName, categoryName);
 			}
 
 			rs.close();
@@ -347,9 +353,10 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 				double avgRating = rs.getDouble("AVG_RATING");
 				String writerName = rs.getString("WRITER_NAME");
 				String categoryName = rs.getString("CATEGORY_NAME");
-				
+
 				PetPlaceView pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location,
-						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
+						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName,
+						categoryName);
 
 				list.add(pp);
 
@@ -366,6 +373,193 @@ public class JdbcPetPlaceDao implements PetPlaceDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate, int startIndex,
+			int endIndex) {
+
+		String sql = "SELECT * FROM"
+				+ "(SELECT ROWNUM NUM2, P.* FROM"
+				+ "(SELECT * FROM PETPLACE_VIEW"
+				+ "    WHERE " + field + " LIKE ? AND REG_DATE > ? AND"
+				+ "    REG_DATE < (SELECT TO_DATE(?, 'YY-MM-DD')+1 FROM DUAL)) P)"
+				+ "    WHERE NUM2 BETWEEN ? AND ?";
+
+		List<PetPlaceView> list = new ArrayList<>();
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%" + query + "%");
+			st.setString(2, startDate);
+			st.setString(3, endDate);
+			st.setInt(4, startIndex);
+			st.setInt(5, endIndex);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String name = rs.getString("NAME");
+				String address = rs.getString("ADDRESS");
+				String homepage = rs.getString("HOMEPAGE");
+				String phone = rs.getString("PHONE");
+				String location = rs.getString("LOCATION");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
+				int num = rs.getInt("NUM");
+				int reviewCount = rs.getInt("REVIEW_COUNT");
+				double avgRating = rs.getDouble("AVG_RATING");
+				String writerName = rs.getString("WRITER_NAME");
+				String categoryName = rs.getString("CATEGORY_NAME");
+
+				PetPlaceView pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location,
+						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName,
+						categoryName);
+
+				list.add(pp);
+
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	
+	// review 전용
+	@Override
+	public List<PetPlaceView> getViewList(String field, String query, int startIndex, int endIndex) {
+		String sql = " SELECT * FROM"
+				+ "(SELECT ROWNUM NUM2, P.* FROM"
+				+ "(SELECT * FROM PETPLACE_VIEW"
+				+ "    WHERE " + field + " LIKE ? ) P )"
+				+ "    WHERE NUM2 BETWEEN ? AND ?";
+
+		List<PetPlaceView> list = new ArrayList<>();
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%" + query + "%");
+			st.setInt(2, startIndex);
+			st.setInt(3, endIndex);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String name = rs.getString("NAME");
+				String address = rs.getString("ADDRESS");
+				String homepage = rs.getString("HOMEPAGE");
+				String phone = rs.getString("PHONE");
+				String location = rs.getString("LOCATION");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
+				int num = rs.getInt("NUM");
+				int reviewCount = rs.getInt("REVIEW_COUNT");
+				double avgRating = rs.getDouble("AVG_RATING");
+				String writerName = rs.getString("WRITER_NAME");
+				String categoryName = rs.getString("CATEGORY_NAME");
+
+				PetPlaceView pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location,
+						content, regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName,
+						categoryName);
+
+				list.add(pp);
+
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public int getLastIndex() {
+
+		PetPlaceView pp = null;
+
+		String sql = "SELECT * FROM PETPLACE_VIEW WHERE ID = (SELECT MAX(ID) FROM PETPLACE_VIEW)";
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+
+				int id = rs.getInt("ID");
+				int writerId = rs.getInt("WRITER_ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String name = rs.getString("NAME");
+				String address = rs.getString("ADDRESS");
+				String homepage = rs.getString("HOMEPAGE");
+				String phone = rs.getString("PHONE");
+				String location = rs.getString("LOCATION");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				String files = rs.getString("FILES");
+				int hit = rs.getInt("HIT");
+				int likes = rs.getInt("LIKES");
+				int pub = rs.getInt("PUB");
+				int num = rs.getInt("NUM");
+				int reviewCount = rs.getInt("REVIEW_COUNT");
+				double avgRating = rs.getDouble("AVG_RATING");
+				String writerName = rs.getString("WRITER_NAME");
+				String categoryName = rs.getString("CATEGORY_NAME");
+
+				pp = new PetPlaceView(id, writerId, categoryId, name, address, homepage, phone, location, content,
+						regDate, files, hit, likes, pub, num, reviewCount, avgRating, writerName, categoryName);
+
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return pp.getNum();
 	}
 
 }
