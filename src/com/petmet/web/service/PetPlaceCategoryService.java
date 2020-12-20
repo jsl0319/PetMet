@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.petmet.web.dao.PetPlaceCategoryDao;
 import com.petmet.web.dao.jdbc.JdbcPetPlaceCategoryDao;
+import com.petmet.web.entity.BoardCategory;
 import com.petmet.web.entity.PetPlaceCategory;
 import com.petmet.web.entity.PetPlaceCategoryView;
-import com.petmet.web.entity.PetPlaceView;
 
 public class PetPlaceCategoryService {
 
@@ -59,6 +59,32 @@ public class PetPlaceCategoryService {
 		int pages = (int) Math.ceil(records / (float) size);
 
 		return pages;
+	}
+
+	public int insertList(List<PetPlaceCategory> list) {
+		
+		int result = 0;
+		
+		for (PetPlaceCategory p : list) {
+			ppcDao.insert(p);
+			result++;
+		}
+		
+		return result;
+		
+	}
+
+	public int updateList(List<PetPlaceCategory> list) {
+		
+		int result = 0;
+		
+		for(PetPlaceCategory p : list) {
+			ppcDao.update(p);
+			result++;
+		}
+		
+		return result;
+		
 	}
 
 }

@@ -13,11 +13,18 @@ public class PetPlaceCategory {
 	}
 
 	public PetPlaceCategory(int id, String name, Date regDate, Date editDate) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.regDate = regDate;
 		this.editDate = editDate;
+	}
+
+	public PetPlaceCategory(String name) {
+		this(0, name, null, null);
+	}
+
+	public PetPlaceCategory(int id, String name) {
+		this(id, name, null, null);
 	}
 
 	@Override

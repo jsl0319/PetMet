@@ -60,7 +60,6 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, ppc.getName());
 			st.setInt(2, ppc.getId());
-
 			result = st.executeUpdate();
 			st.close();
 			con.close();
@@ -114,10 +113,9 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 			ResultSet rs = st.executeQuery(sql);
 
 			if (rs.next()) {
-
 				String name = rs.getString("NAME");
 
-				ppc = new PetPlaceCategory();
+				ppc = new PetPlaceCategory(id, name);
 			}
 
 			rs.close();
