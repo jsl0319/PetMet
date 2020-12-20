@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +83,7 @@
                 <form class="search__container">
                     <div>
                     <select class="selectbox" name="f">
-                      <option ${param.f=="nickname" ? "selected":""} value="nickname">닉네임</option>
+                      <option ${param.f=="feed_id" ? "selected":""} value="feed_id">닉네임</option>
                     </select>
                     
                     <input class="search__input" type="text" name = "q" value="${param.q }">
@@ -92,7 +93,8 @@
                         <input type="date" name="ed" value="${param.ed}">
                     <input class="button" type="submit" value="검색" />
                     
-                    </form>
+                  </form>
+                  
               <table class="list-table" border="1">
                 <thead>
                   <tr>
@@ -105,7 +107,7 @@
 
                 <tbody>
                 <c:forEach var = "rf" items="${list}">
-                <tr>
+                <tr ${rf.num%2==0?"class='even'":""}>
                   <td>${rf.num}</td>
                   <td><a href ="detail?id=${rf.id}">${rf.feedId }</a></td>
                   <td>${rf.memId}</td>
@@ -119,27 +121,44 @@
           </section>
             
             
-          <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-		      <c:set var="startNum" value="${page-(page-1)%5}"/>
+           <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
+           <c:set var="startNum" value="${ page-(page-1)%5}"/>
+           <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13), '.')}"/>
+           
           <div class="pager">
-            <div>
-              <a href="#"><i class="fas fa-angle-double-left"></i></a>
-            </div>
-            <div>
-              <a href="#"><i class="fas fa-angle-left"></i></a>
-            </div>
-          <ul>
-            <c:forEach var="i" begin="0" end="4">		
-				<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
-			</c:forEach>
-          </ul>
-          <div>
-            <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
-          </div>
-          <div>
-            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-          </div>
-          </div>
+              
+              	<c:if test="${startNum >= 1 }">
+	                <div>
+	                  <a href="?p=1&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-left"></i></a>
+	                </div>
+                </c:if>
+                
+                <c:if test="${startNum >= 1 }">
+                <div>
+                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
+                </div>
+                </c:if>
+                
+                <ul>
+              <c:forEach var="i" begin="0" end="4">	
+              	<c:if test="${(startNum+i)<=lastNum }">
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}">${startNum + i}</a></li>
+              	</c:if>
+              </c:forEach>
+                </ul>
+                
+                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
+                <div>
+                  <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                </div>
+                 <%-- </c:if> --%>
+                
+                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
+                <div>
+                  <a href="?p=${lastNum }&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-right"></i></a>
+                </div>
+                 <%-- </c:if> --%>
+              </div>
 
         </main>
       </div>

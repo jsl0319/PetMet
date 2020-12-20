@@ -9,14 +9,17 @@ public class ReportedFeedView extends FeedReport{
 	private String files;
 	private String content;
 	private int repoCnt;
-	private String action;
+	private int action;
+	
 	
 	public ReportedFeedView() {
-		this(0,0,null,null,null,0,null);
+		this(0,0,null,null,null,0,0);
 	}
 
-	public ReportedFeedView(int id, int num, String reportedId, String files, String content, int repoCnt,
-			String action) {
+	
+	
+	public ReportedFeedView(int id, int num, String reportedId, String files, String content, int repoCnt, int action) {
+		super();
 		this.id = id;
 		this.num = num;
 		this.reportedId = reportedId;
@@ -25,6 +28,7 @@ public class ReportedFeedView extends FeedReport{
 		this.repoCnt = repoCnt;
 		this.action = action;
 	}
+
 
 
 	public int getId() {
@@ -75,11 +79,11 @@ public class ReportedFeedView extends FeedReport{
 		this.repoCnt = repoCnt;
 	}
 
-	public String getAction() {
+	public int getAction() {
 		return action;
 	}
 
-	public void setAction(String action) {
+	public void setAction(int action) {
 		this.action = action;
 	}
 
@@ -88,6 +92,8 @@ public class ReportedFeedView extends FeedReport{
 		return "ReportedFeedView [id=" + id + ", num=" + num + ", reportedId=" + reportedId + ", files=" + files
 				+ ", content=" + content + ", repoCnt=" + repoCnt + ", action=" + action + "]";
 	}
+
+	
 	
 	
 }

@@ -29,7 +29,7 @@ public class ListController extends HttpServlet{
 		String startDate = "01-01-01";
 		String endDate = "30-12-31";
 		int page = 1;
-		int num = 10; //페이지에 표시할 레코드 개수
+		int size = 10; //페이지에 표시할 레코드 개수
 		
 		if(page_!= null && !page_.equals(""))
 			page = Integer.parseInt(page_);
@@ -46,8 +46,11 @@ public class ListController extends HttpServlet{
 		PetPlaceService service = new PetPlaceService();
 //		List<PetPlace> list = service.getList();
 //		List<PetPlaceView> list = service.getList();
-		List<PetPlaceView> list = service.getViewList(field, query, startDate, endDate, page, num);
+		List<PetPlaceView> list = service.getViewList(field, query, startDate, endDate, page, size);
+		int totalPages = service.getTotalPage(field, query, startDate, endDate, page, size);
+
 		
+		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		

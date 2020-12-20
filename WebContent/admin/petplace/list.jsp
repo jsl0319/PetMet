@@ -96,9 +96,9 @@
 
                     <h1 class="d-none">검색폼</h1>
 
-                    <form class="search__container">
+                    <form class="search__container search__form">
 
-                        <select class="search__title" name="f">
+                        <select class="selectbox" name="f">
                             <option ${param.f=="name" ?"selected":""} value="name">이름</option>
                             <option ${param.f=="content" ?"selected":""} value="content">내용</option>
                             <option ${param.f=="address" ?"selected":""} value="address">지역</option>
@@ -126,20 +126,18 @@
                                 <td class="col-l">주소</td>
                                 <td class="col-m">작성일</td>
                                 <td>조회수</td>
-                                <td class="col-m">공개여부</td>
                                 <td>삭제</td>
                             </tr>
                         </thead>
 
                         <tbody>
                             <c:forEach var="p" items="${list}">
-                                <tr>
+                                <tr ${p.num%2==0?"class='even'":""}>
                                     <td>${p.num}</td>
                                     <td><a href="detail?id=${p.id}">${p.name}</a></td>
                                     <td>${p.address}</td>
                                     <td>${p.regDate}</td>
                                     <td>${p.hit}</td>
-                                    <td><input type="checkbox"></td>
                                     <td><input type="checkbox"></td>
                                 </tr>
                             </c:forEach>
@@ -155,28 +153,33 @@
                 </section>
 
                 <section>
-                    <c:set var="page" value="${(param.p==null)?1:param.p}" />
+                    <c:set var="page" value="${(empty param.p)?1:param.p }"/>
                     <c:set var="startNum" value="${page-(page-1)%5}" />
+                    <c:set var="lastNum" value="${tp}"/>
                     <div class="pager">
-                        <div>
-                            <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-left"></i></a>
-                        </div>
+                        <c:if test="${1 <= startNum-5}">
+		                    <div>
+		                      <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+		                    </div>
+		                    <div>
+		                      <a href="?p=${startNum - 5 }"><i class="fas fa-angle-left"></i></a>
+		                    </div>
+                   		</c:if>
                         <ul>
-                            <c:forEach var="i" begin="0" end="4">
-                                <li>
-                                    <a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}">${startNum+i}</a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-right"></i></a>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                        </div>
+                    	<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum + i) <= lastNum }">
+								<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}">${startNum+i}</a></li>
+							</c:if>
+						</c:forEach>
+                    	</ul>
+                        <c:if test="${startNum+5 <= lastNum}">
+		                    <div>
+		                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+		                    </div>
+		                    <div>
+		                      <a href="?p=${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+		                    </div>
+                    	</c:if>
                     </div>
                 </section>
             </main>

@@ -139,26 +139,19 @@ public class JdbcCommentsDao implements CommentsDao{
 	}
 
 	@Override
-	public List<Comments> getList(String selectBox, String query, String boardCategory, Date startDate, Date endDate,
+	public List<Comments> getList(String selectBox, String query, String boardCategory, String startDate, String endDate,
 			int startIndex, int endIndex) {
 		String sql = "SELECT * "
 					+ "FROM("
 					+ "    SELECT ROWNUM NUM, C.* "
 					+ "    FROM("
 					+ "        SELECT * FROM COMMENTS ORDER BY REG_DATE DESC"
-					+ "    ) C"
+					+ "    ) C "
+					+ "		WHERE " + selectBox + " LIKE '%" + query + "%'"
+					+ " 	AND CATEGORY_ID LIKE '%" + boardCategory + "%'"
+					+ " 	AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
 					+ ") "
 					+ "WHERE NUM BETWEEN ? AND ?";
-
-		// 검색폼의 검색 경우의 수
-		if (query != null)
-			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
-
-		if (boardCategory != null)
-			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
-
-		if (startDate != null || endDate != null)
-			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
 
 		List<Comments> list = new ArrayList<>();
 
@@ -198,21 +191,102 @@ public class JdbcCommentsDao implements CommentsDao{
 	}
 
 	@Override
-	public List<CommentView> getViewList(String selectBox, String query, String boardCategory, Date startDate,
-			Date endDate, int startIndex, int endIndex) {
-
-		String sql = "SELECT * FROM COMMENT_VIEW WHERE NUM BETWEEN ? AND ?";
-
-		// 검색폼의 검색 경우의 수
-		if (query != null)
-			sql += " AND " + selectBox + " LIKE '%" + query + "%'";
-
-		if (boardCategory != null)
-			sql += " AND CATEGORY_ID LIKE '%" + boardCategory + "%'";
-
-		if (startDate != null || endDate != null)
-			sql += " AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'";
+	public CommentView getView(String subQuery) {
+		String sql = "SELECT * FROM COMMENT_VIEW ";
+		sql += subQuery;
 		
+		CommentView cv = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int boardId = rs.getInt("BOARD_ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String content = rs.getString("CONTENT");
+
+				cv = new CommentView(num, id, categoryId, categoryName, boardId, title, writerId, content, regDate);
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return cv;
+	}
+
+	@Override
+	public List<CommentView> getViewList(String field, String query, String board, String startDate, String endDate) {
+		String sql = "SELECT * FROM(" +
+						"SELECT ROWNUM NUM2, CV.* FROM COMMENT_VIEW CV " +
+						"WHERE " + field + " LIKE '%" + query + "%' " +
+						"AND CATEGORY_NAME LIKE '%" + board + "%' " +
+						"AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'" + ") ";
+
+		List<CommentView> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int boardId = rs.getInt("BOARD_ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String content = rs.getString("CONTENT");
+
+				CommentView cv = new CommentView(num, id, categoryId, categoryName, boardId, title, writerId, content,
+						regDate);
+
+				list.add(cv);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<CommentView> getViewList(String selectBox, String query, String boardCategory, String startDate,
+			String endDate, int startIndex, int endIndex) {
+
+		String sql = "SELECT * FROM("
+						+ "SELECT ROWNUM NUM2, CV.* FROM COMMENT_VIEW CV "
+						+ "WHERE " + selectBox + " LIKE '%" + query + "%' "
+						+ "AND CATEGORY_NAME LIKE '%" + boardCategory + "%' "
+						+ "AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'"
+						+ ") "
+					+ "WHERE NUM2 BETWEEN ? AND ?";
+
 		List<CommentView> list = new ArrayList<>();
 
 		try {

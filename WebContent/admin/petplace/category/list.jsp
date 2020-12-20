@@ -97,7 +97,7 @@
 
                     <h1 class="d-none">검색폼</h1>
                 
-                    <form>
+                    <form class="search__container search__form">
                         <input type="text" class="search__input" name="q" value="${param.q}">
                         <input type="submit" class="button" value="검색">
                     </form>
@@ -121,7 +121,7 @@
                 
                         <tbody>
                         <c:forEach var="ppc" items="${list}">
-                            <tr>
+                            <tr  ${ppc.num%2==0?"class='even'":""}>
                                 <td>${ppc.num}</td>
                                 <td><a href="">${ppc.name}</a></td>
                                 <td>${ppc.regDate}</td>

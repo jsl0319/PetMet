@@ -254,9 +254,12 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 	public List<PetPlaceCategoryView> getViewList(String query, int startIndex, int endIndex) {
 		
 		String sql = "SELECT * FROM"
-				+ "(SELECT * FROM PETPLACE_CATEGORY_VIEW"
-				+ "    WHERE NAME LIKE ? )"
-				+ "WHERE NUM BETWEEN ? AND ?";
+				+ "(SELECT ROWNUM NUM2, PV.* FROM"
+				+ "(SELECT * FROM"
+				+ "    (SELECT * FROM PETPLACE_CATEGORY_VIEW"
+				+ "        WHERE NAME LIKE ? )) PV )"
+				+ "        WHERE NUM2 BETWEEN ? AND ?";
+		
 		
 		List<PetPlaceCategoryView> list = new ArrayList<>();
 		
