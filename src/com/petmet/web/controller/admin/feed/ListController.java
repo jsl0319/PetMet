@@ -29,7 +29,7 @@ public class ListController extends HttpServlet{
 		String query = "";
 		
 		int page = 1;
-		int size = 13;
+		int size = 10;
 		
 		
 		

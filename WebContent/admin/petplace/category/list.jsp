@@ -31,25 +31,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="../member/list">
+                        <a href="../../member/list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/list">
+                        <a href="../../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index">
+                        <a href="../../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
                     </li>
                     <li>
-                        <a href="list">
+                        <a href="../list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
@@ -151,28 +151,33 @@
 				</form>
 				
                 <section>
-                	<c:set var="page" value="${(param.p==null)?1:param.p}" />
+                    <c:set var="page" value="${(empty param.p)?1:param.p }"/>
                     <c:set var="startNum" value="${page-(page-1)%5}" />
+                    <c:set var="lastNum" value="${tp}"/>
                     <div class="pager">
-                        <div>
-                            <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-left"></i></a>
-                        </div>
+                        <c:if test="${1 <= startNum-5}">
+		                    <div>
+		                      <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+		                    </div>
+		                    <div>
+		                      <a href="?p=${startNum - 5 }"><i class="fas fa-angle-left"></i></a>
+		                    </div>
+                   		</c:if>
                         <ul>
-                            <c:forEach var="i" begin="0" end="4">
-                                <li>
-                                    <a href="?p=${startNum+i}&q=${param.q}">${startNum+i}</a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-right"></i></a>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                        </div>
+                    	<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum + i) <= lastNum }">
+								<li><a href="?p=${startNum+i}&q=${param.q}">${startNum+i}</a></li>
+							</c:if>
+						</c:forEach>
+                    	</ul>
+                        <c:if test="${startNum+5 <= lastNum}">
+		                    <div>
+		                      <a href="?p=${startNum+5}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+		                    </div>
+		                    <div>
+		                      <a href="?p=${lastNum}"><i class="fas fa-angle-double-right"></i></a>
+		                    </div>
+                    	</c:if>
                     </div>
                 </section>
             </main>

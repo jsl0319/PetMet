@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index">
+                        <a href="../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>

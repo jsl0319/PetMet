@@ -22,11 +22,20 @@ public class DetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String page_ = request.getParameter("p");
 		int id = Integer.parseInt(request.getParameter("id"));
+		
+		int page = 1;
+		int size = 10;
+		
+		if(page_!= null && !page_.equals(""))
+			page = Integer.parseInt(page_);
 
 		ReviewService service = new ReviewService();
 		List<ReviewView> list = service.getViewList(id);
-
+		int totalPages = service.getTotalPage(id, page, size);
+		
+		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 

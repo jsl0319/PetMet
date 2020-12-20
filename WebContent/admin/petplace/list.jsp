@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index">
+                        <a href="../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
@@ -154,7 +154,7 @@
                 </section>
 				</form>
                 <section>
-                    <c:set var="page" value="${(empty param.p)?1:param.p }"/>
+                    <c:set var="page" value="${(empty param.p)?1:param.p}"/>
                     <c:set var="startNum" value="${page-(page-1)%5}" />
                     <c:set var="lastNum" value="${tp}"/>
                     <div class="pager">
