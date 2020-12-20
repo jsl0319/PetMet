@@ -34,7 +34,9 @@ public class ListController extends HttpServlet{
 		PetPlaceCategoryService service = new PetPlaceCategoryService();
 //		List<PetPlaceCategoryView> list = service.getViewList();
 		List<PetPlaceCategoryView> list = service.getViewList(query, page, size);
+		int totalPages = service.getTotalPage(query, page, size);
 		
+		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		

@@ -298,6 +298,51 @@ public class JdbcPetPlaceCategoryDao implements PetPlaceCategoryDao {
 		
 		return list;
 	}
+
+	@Override
+	public List<PetPlaceCategoryView> getViewList(String query) {
+		String sql = "SELECT * FROM"
+				+ "(SELECT ROWNUM NUM2, PV.* FROM"
+				+ "(SELECT * FROM"
+				+ "    (SELECT * FROM PETPLACE_CATEGORY_VIEW"
+				+ "        WHERE NAME LIKE ? )) PV )";
+		
+		
+		List<PetPlaceCategoryView> list = new ArrayList<>();
+		
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				Date regDate = rs.getDate("REG_DATE");
+				Date editDate = rs.getDate("EDIT_DATE");
+				int num = rs.getInt("NUM");
+
+				PetPlaceCategoryView ppc = new PetPlaceCategoryView(id, name, regDate, editDate, num);
+				
+				list.add(ppc);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	
 
