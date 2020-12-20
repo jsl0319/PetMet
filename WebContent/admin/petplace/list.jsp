@@ -115,6 +115,7 @@
 
                 </section>
 
+				<form action="list" method= "post">
                 <section>
                     <h1 class="d-none">Pet Place 관리</h1>
 
@@ -138,7 +139,7 @@
                                     <td>${p.address}</td>
                                     <td>${p.regDate}</td>
                                     <td>${p.hit}</td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input name="del" value="${p.id }" type="checkbox"></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -149,9 +150,9 @@
                     <h1 class="d-none">버튼</h1>
                     <a class="button" href="reg">Pet Place 등록</a>
                     <input class="button" type="submit" value="선택 공개">
-                    <input class="button" type="submit" value="선택 삭제">
+                    <input class="button"  type="submit" value="선택 삭제">
                 </section>
-
+				</form>
                 <section>
                     <c:set var="page" value="${(empty param.p)?1:param.p}"/>
                     <c:set var="startNum" value="${page-(page-1)%5}" />

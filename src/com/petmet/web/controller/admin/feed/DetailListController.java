@@ -35,7 +35,7 @@ public class DetailListController extends HttpServlet{
 		
 		
 		int page = 1;
-		int size = 13;
+		int size = 2;
 		
 		
 		

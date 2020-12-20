@@ -42,4 +42,23 @@ public class ListController extends HttpServlet{
 		
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PetPlaceCategoryService service = new PetPlaceCategoryService();
+		
+		String[] dels = request.getParameterValues("del");
+		
+		 int[] ids = new int[dels.length];
+		 
+		 for(int i = 0; i<dels.length; i++) {
+			ids[i] = Integer.parseInt(dels[i]);
+			service.delete(ids[i]);
+		 }
+		 
+		 response.sendRedirect("list");
+		 
+//		service.delete(id)
+	}
+	
 }

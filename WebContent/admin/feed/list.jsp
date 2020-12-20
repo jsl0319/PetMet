@@ -147,17 +147,13 @@
               </c:forEach>
                 </ul>
                 
-                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
                 <div>
                   <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
                 </div>
-                 <%-- </c:if> --%>
                 
-                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
                 <div>
                   <a href="?p=${lastNum }&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-right"></i></a>
                 </div>
-                 <%-- </c:if> --%>
               </div>
             </main>
           </div>

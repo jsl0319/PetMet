@@ -93,9 +93,9 @@
             <main class="main">
                 <h1>리뷰 관리</h1>
                 
+                <form action="detail" method="post">
                 <section>
                     <h1>Pet Place : ${list[0].categoryName}</h1>
-                
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -109,13 +109,13 @@
                 
                         <tbody>
                         	<c:forEach var="l" items="${list}">
-                            <tr  ${l.num%2==0?"class='even'":""}>
-                                <td>${l.num}</td>
-                                <td>${l.memberName}</td>
-                                <td>${l.content}</td>
-                                <td>${l.rating}</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+	                            <tr  ${l.num%2==0?"class='even'":""}>
+	                                <td>${l.num}</td>
+	                                <td>${l.memberName}</td>
+	                                <td>${l.content}</td>
+	                                <td>${l.rating}</td>
+	                                <td><input name="del" value="${l.id}" type="checkbox"></td>
+	                            </tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -125,7 +125,8 @@
                     <h1 class="d-none">버튼</h1>
                     <input class="button" type="submit" value="선택 삭제">
                 </section>
-
+				</form>
+				
                 <section>
                     <c:set var="page" value="${(empty param.p)?1:param.p}"/>
                     <c:set var="startNum" value="${page-(page-1)%5}" />
