@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
-    <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="list.js"></script>
 </head>
@@ -119,99 +118,101 @@
             <main class="main">
                 <h1 class="d-none">Main Content</h1>
 
-                <section>
-                    <h1 class="d-none">검색폼</h1>
-                    
-                    <form class="search__container" action="list">
-                        <select class="selectbox" name="f">
-                            <option ${(param.f == "title")?"selected":"" } value="title">제목</option>
-                            <option ${(param.f == "writer_id")?"selected":"" } value="writer_id">작성자</option>
-                        </select>
-                        <input class="search__input" name="q" type="text" value="${param.q }">
-                        
-                        <select class="selectbox" name="b">
-                            <option>모든 게시판</option>
-                            <c:forEach var="c" items="${cList }">
-	                            <option ${(param.b == c.name)? "selected" : "" } value="${c.name }">${c.name }</option>
-                            </c:forEach>
-                        </select>
-                        
-                        <label class="search__title" for="date">일자</label>
-                        <input class="search__input" name="sd" type="date" value="${param.sd }">
-                         - 
-                        <input class="search__input" name="ed" type="date" value="${param.ed }">
-                        
-                        <div>
-	                        <select name="s" class="selectbox">
-	                            <option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
-	                            <option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
-	                            <option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
-	                        </select>
-	                    </div>
-                        
-                        <input class="button" type="submit" value="검색">
-                    </form>
-                </section>
+				<!-- <section class="main-section"> -->
+	                <section>
+	                    <h1 class="d-none">검색폼</h1>
+	                    
+	                    <form class="search__container search__form" action="list">
 
-                <section>
-                    <h1 class="d-none">게시글 리스트</h1>
+							<select class="selectbox" name="f">
+								<option ${(param.f == "title")?"selected":"" } value="title">제목</option>
+								<option ${(param.f == "writer_id")?"selected":"" }
+									value="writer_id">작성자</option>
+							</select>
+							<input class="search__input" name="q" type="text" value="${param.q }">
+								<select class="selectbox" name="b">
+									<option>게시판</option>
+									<c:forEach var="c" items="${cList }">
+									<option ${(param.b == c.name)? "selected" : "" }
+										value="${c.name }">${c.name }</option>
+								</c:forEach>
+							</select> <label class="search__title" for="date">일자</label> <input
+								name="sd" type="date" value="${param.sd }">
+							- <input name="ed" type="date"
+								value="${param.ed }">
 
-                    <form action="list" method="post">
-                    
-                    <table class="list-table">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td>작성자</td>
-                                <td>카테고리</td>
-                                <td>제목</td>
-                                <td>댓글수</td>
-                                <td>작성일</td>
-                                <td>조회수</td>
-                                <td>파일</td>
-                                <td>삭제</td>
-                            </tr>
-                        </thead>
+							<div>
+								<select name="s" class="selectbox">
+									<option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
+									<option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
+									<option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
+								</select>
+							</div>
 
-                        <tbody>
-	                        <c:forEach var="b" items="${list }" varStatus="st">
-	                            <tr ${st.count % 2==0?"class='even'":""}>
-	                            	<input hidden name="id" value="${b.id }">
-	                                <td>${b.num }</td>
-	                                <td>${b.writerId }</td>
-	                                <td>
-                                        <input hidden type="text" name="id" value="${b.id }">
-	                                	<select name="name">
-		                                	<c:forEach var="c" items="${cList }">
-		                                		<c:choose>
-		                                			<c:when test="${b.categoryId eq c.id }">
-		                                				<option value="${c.id }" selected>${c.name }</option>
-		                                			</c:when>
-		                                			<c:otherwise>
-		                                        		<option value="${c.id }">${c.name }</option>
-		                                        	</c:otherwise>
-		                                        </c:choose>
-	                                    	</c:forEach>
-	                                    </select>
-	                                </td>
-	                                <td><a href="detail?id=${b.id }">${b.title }</a></td>
-	                                <td>${b.cmtCnt }</td>
-	                                <td>${b.regDate }</td>
-	                                <td>${b.hit }</td>
-	                                <td>${b.files }</td>
-	                                <td><input name="del" value="${b.id }" type="checkbox">
+							<input class="button search-button" type="submit" value="검색">
+	                    </form>
+	                </section>
+	
+	                <section>
+	                    <h1 class="d-none">게시글 리스트</h1>
+	
+	                    <form action="list" method="post">
+	                    
+	                    <table class="list-table">
+	                        <thead>
+	                            <tr>
+	                                <td>번호</td>
+	                                <td>작성자</td>
+	                                <td>게시판</td>
+	                                <td>제목</td>
+	                                <td>댓글수</td>
+	                                <td>작성일</td>
+	                                <td>조회수</td>
+	                                <td>파일</td>
+	                                <td>삭제</td>
 	                            </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section>
-                    <h1 class="d-none">이벤트 버튼</h1>
-                    <input class="button" name="button" type="submit" value="저장">
-                    <input class="button" name="button" type="submit" value="삭제">
-                </section>
-                </form>
+	                        </thead>
+	
+	                        <tbody>
+		                        <c:forEach var="b" items="${list }" varStatus="st">
+		                            <tr ${st.count % 2==0?"class='even'":""}>
+		                            	<input hidden name="id" value="${b.id }">
+		                                <td>${b.num }</td>
+		                                <td>${b.writerId }</td>
+		                                <td>
+	                                        <input hidden type="text" name="id" value="${b.id }">
+		                                	<select name="name">
+			                                	<c:forEach var="c" items="${cList }">
+			                                		<c:choose>
+			                                			<c:when test="${b.categoryId eq c.id }">
+			                                				<option value="${c.id }" selected>${c.name }</option>
+			                                			</c:when>
+			                                			<c:otherwise>
+			                                        		<option value="${c.id }">${c.name }</option>
+			                                        	</c:otherwise>
+			                                        </c:choose>
+		                                    	</c:forEach>
+		                                    </select>
+		                                </td>
+		                                <td><a href="detail?id=${b.id }">${b.title }</a></td>
+		                                <td>${b.cmtCnt }</td>
+		                                <td>${b.regDate }</td>
+		                                <td>${b.hit }</td>
+		                                <td>${b.files }</td>
+		                                <td><input name="del" value="${b.id }" type="checkbox">
+		                            </tr>
+	                            </c:forEach>
+	                        </tbody>
+	                    </table>
+	                </section>
+	                
+	                <section>
+	                    <h1 class="d-none">이벤트 버튼</h1>
+	                    <input class="button" name="button" type="submit" value="저장">
+	                    <input class="button" name="button" type="submit" value="삭제">
+	                </section>
+	                </form>
+	            <!-- </section> -->
                 
                 <c:set var="page" value="${(empty param.p)?1:param.p }"/>
                 <c:set var="startNum" value="${page-(page-1)%5}"/>
