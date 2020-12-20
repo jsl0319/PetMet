@@ -60,7 +60,7 @@ public class JdbcQuestionDao implements QuestionDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=? WHERE ID =?";
+		String sql = "UPDATE QUESTION SET TITLE=?,CONTENT=? WHERE ID =?";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -129,7 +129,7 @@ public class JdbcQuestionDao implements QuestionDao {
 		Question q = null;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "SELECT * FROM NOTICE WHERE ID=" + id;
+		String sql = "SELECT * FROM QUESTION WHERE ID=" + id;
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -141,16 +141,15 @@ public class JdbcQuestionDao implements QuestionDao {
 
 			if (rs.next()) {
 
-				// int id = rs.getInt("id");
-				String writerId = rs.getString("writerid");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				int pub = rs.getInt("pub");
 
-				Date regdate = rs.getDate("regdate");
-				
-				int isAnswer = rs.getInt("isAnswer");
-				Date anDate = rs.getDate("anDate");
+			//	int id = rs.getInt("ID");
+				String writerId = rs.getString("WRITER_ID");
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				int pub = rs.getInt("PUB");
+				Date regdate = rs.getDate("REG_DATE");
+				String isAnswer = rs.getString("IS_ANSWER");
+				Date anDate = rs.getDate("AN_DATE");
 
 				 q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
 
@@ -174,7 +173,7 @@ public class JdbcQuestionDao implements QuestionDao {
 	@Override
 	public List<Question> getList() {
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "SELECT * FROM NOTICE ";
+		String sql = "SELECT * FROM QUESTION";
 		Connection con;
 		List<Question> list = new ArrayList<>();
 		try {
@@ -186,15 +185,14 @@ public class JdbcQuestionDao implements QuestionDao {
 
 			while (rs.next()) {
 
-				int id = rs.getInt("id");
-				String writerId = rs.getString("writerid");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				int pub = rs.getInt("pub");
-
-				Date regdate = rs.getDate("regdate");
-				int isAnswer = rs.getInt("isAnswer");
-				Date anDate = rs.getDate("anDate");
+				int id = rs.getInt("ID");
+				String writerId = rs.getString("WRITER_ID");
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				int pub = rs.getInt("PUB");
+				Date regdate = rs.getDate("REG_DATE");
+				String isAnswer = rs.getString("IS_ANSWER");
+				Date anDate = rs.getDate("AN_DATE");
 
 				Question q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
 
@@ -214,6 +212,40 @@ public class JdbcQuestionDao implements QuestionDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public int updateAnswer(Question q) {
+		int result = 0;
+
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "UPDATE QUESTION SET IS_ANSWER='"+"답변완료"+"'WHERE ID="+q.getId();
+		// Connection con;
+		// List<Notice> list = new ArrayList<>();
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// 연결
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+
+			PreparedStatement st = con.prepareStatement(sql);
+			
+
+			result = st.executeUpdate();
+			st.close();
+			con.close();
+
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
 	}
 
 }

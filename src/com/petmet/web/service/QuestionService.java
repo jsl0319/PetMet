@@ -44,6 +44,13 @@ private QuestionDao questionDao;
 		return questionDao.delet(id);
 	}
 
+
+	public int updateAnswer(Question q) {
+		return questionDao.updateAnswer(q);
+		
+		
+	}
+
 	
 
 

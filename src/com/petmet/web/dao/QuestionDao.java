@@ -13,5 +13,6 @@ public interface QuestionDao {
 	
 	Question get(int id);
 	List<Question> getList();
+	int updateAnswer(Question q);
 
 }

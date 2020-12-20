@@ -1,22 +1,21 @@
-<%@page import="com.petmet.web.entity.Question"%>
-<%@page import="com.petmet.web.service.QuestionService"%>
-
-
-<%@page import="java.util.List"%>
-
+<%@page import="com.petmet.web.entity.Question" %>
+<%@page import="com.petmet.web.service.QuestionService" %>
+<%@page import="com.petmet.web.entity.Answer" %>
+<%@page import="com.petmet.web.service.AnswerService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티> QnA관리 > 리스트 </title>
+    <title>관리자 > 커뮤니티 > QnA > 답변등록</title>
 
-    <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/table/detail.css" type="text/css">
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
 
@@ -117,94 +116,69 @@
                     </nav>
             </aside>
 
-            <main class="main">
-                <h1 class="d-none">Main Content</h1>
 
-                <section>
-                    <h1 class="d-none">검색폼</h1>
+       
+    
 
-                    <form class="search__container">
+    
+    <main class = "main">
+        <h1>QnA 상세페이지</h1>
+        <section>
+        <table class="detail-table">
+         
+            <tr>
+                <th>제목</th>
+                <td colspan="3">${q.title}</td>
+            </tr>
 
-                        <label class="search__title">제목</label>
-                        <input class="search__input" type="text">
+            <tr>
+                <th>작성자</th>
+                <td >${q.writerId}</td>
+                <th>등록일</th>
+                <td>${q.regDate}</td>
+            </tr>
+            
+            <tr>
+                <th>공개</th>
+                <td>${q.pub}</td>
+           
+            </tr>
 
+          
 
-                        <!-- <label class="search__title" >공개여부</label> -->
-                        <input type="checkbox" id="cb1">
-                        <label for="cb1"></label> <label class="search__title">공개</label>
-                        <input type="checkbox" id="cb2">
-                        <label for="cb2"></label> <label class="search__title">비공개</label>
-
-
-                        <label class="search__title">일자</label>
-                        <input class="search__input" type="date">~<input class="search__input" type="date">
-                        <input class="button" type="submit" value="검색">
-
-                    </form>
-                </section>
-
-                <section>
-                    <br>
-                    <h1>QnA 리스트</h1>
-
-                    <table class="list-table">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td>제목</td>
-                                <td>작성자</td>
-                                <td>등록일</td>
-                                <td>공개</td>
-                                <td>답변</td>
-                                <td>답변일자</td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                         <c:forEach var="q" items="${qlist}">
-                         <tr>
-                            <td>${q.id}</td>
-                            <td><a href="detail?id=${q.id}">${q.title}</a></td>
-                            <td>${q.writerId}</td>
-                            <td>${q.regDate}</td>
-                            <td>${q.pub}</td>
-                            <td>${q.isAnswer}</td>
-                            <td>${q.anDate}</td>
-                            </tr>
-                             </c:forEach>
-                        </tbody>
-                    </table>
-                </section>
-
-
-              <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-				<c:set var="startNum" value="${page-(page-1)%5}"/>
-                <div class="pager">
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
-                    </div>
-                    <ul>
-                    <c:forEach var="i" begin="0" end="4">		
-						<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
-					</c:forEach>
-					</ul>
-                    <div>
-                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                    </div>
-                  </div>
+            <tr class="content">
+                <td colspan="4">${q.content}</td>
+            </tr>
+        </table>
+    </section>
+           
+            <section>
+        <form method="post">
+     
+                <table class= "detail-table">
+                    <tr>
+                    <th>관리자 답변<th>
+                    </tr>
+                 <tr class="content">
+                 
+                     <td><textarea name = "content" style="width: 900px; height: 200px; resize: none;">${a.content}</textarea></td>
+                 </tr>
+        </table>
+           </section>
         
 
+        <section>
+            <h1 class="d-none">이벤트 버튼</h1>
 
-            </main>
-        </div>
-    </section>
+            <input class="button"type="button" value="목록">
+            <input  class="button" type="submit" value="등록">
+        </section>
+      
+       </form>
 
+    </main>
+    </div>
+</section>
 
 
 

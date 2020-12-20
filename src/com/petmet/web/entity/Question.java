@@ -9,7 +9,7 @@ public class Question {
 	 private String	content;
 	 private int pub;
 	 private Date regDate;
-	 private int isAnswer;
+	 private String isAnswer;
 	 private Date anDate;
 	 
 	 public Question() {
@@ -20,7 +20,7 @@ public class Question {
 	
 	
 	
-	public Question(int id, String writerId, String title, String content, int pub, Date regDate, int isAnswer,
+	public Question(int id, String writerId, String title, String content, int pub, Date regDate, String isAnswer,
 			Date anDate) {
 	
 		this.id = id;
@@ -99,7 +99,7 @@ public class Question {
 	
 	
 	
-	public int getIsAnswer() {
+	public String getIsAnswer() {
 		return isAnswer;
 	}
 
@@ -107,7 +107,7 @@ public class Question {
 
 
 
-	public void setIsAnswer(int isAnswer) {
+	public void setIsAnswer(String isAnswer) {
 		this.isAnswer = isAnswer;
 	}
 
