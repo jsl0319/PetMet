@@ -36,7 +36,7 @@ public class ReportedController extends HttpServlet{
 			query = query_;
 
 		String board = "";
-		if(board_ != null && !board_.equals("모든 게시판"))
+		if(board_ != null && !board_.equals("게시판"))
 			board = board_;
 		
 		String startDate = "01-01-01";

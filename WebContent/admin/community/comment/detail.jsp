@@ -114,56 +114,58 @@
             <main class = "main">
                 <h1 class="d-none">게시글/신고된 게시글 상세 내용</h1>
 
-                <section>
-                    <h1>게시글</h1>
+			<!-- <section class="main-section"> -->
+	                <section>
+	                    <h1>게시글</h1>
+	
+	                    <table class="detail-table">
+	                        <tr>
+	                            <th>제목</th>
+	                            <td colspan="3">${b.title }</td>
+	                        </tr>
+	
+	                        <tr>
+	                            <th>작성자</th>
+	                            <td>${b.writerId }</td>
+	                            <th>카테고리</th>
+	                            <td>${b.categoryId }</td>
+	                        </tr>
+	                    </table>
+	                </section>
+	                <section>
+	                    <h1>댓글</h1>
+	
+	                    <table class="detail-table">
+	                        <tr>
+	                            <td>${c.id }</td>
+	                            <td>${c.writerId }</td>
+	                            <td>${c.content }</td>
+	                            <td>${c.regDate }</td>
+	                        </tr>
+	                    </table>
+	                </section>
 
-                    <table class="detail-table">
-                        <tr>
-                            <th>제목</th>
-                            <td colspan="3">${b.title }</td>
-                        </tr>
-
-                        <tr>
-                            <th>작성자</th>
-                            <td>${b.writerId }</td>
-                            <th>카테고리</th>
-                            <td>${b.categoryId }</td>
-                        </tr>
-                    </table>
-                </section>
-                <section>
-                    <h1>댓글</h1>
-
-                    <table class="detail-table">
-                        <tr>
-                            <td>${c.id }</td>
-                            <td>${c.writerId }</td>
-                            <td>${c.content }</td>
-                            <td>${c.regDate }</td>
-                        </tr>
-                    </table>
-                </section>
-
-                <section>
-                    <h1 class="d-none">페이저</h1>
-                    <ul>
-                        <li><a href="detail?next=${c.id }">다음 게시글</a></li>
-                        <li><a href="detail?prev=${c.id }">이전 게시글</a></li>
-                    </ul>
-                </section>
+	                <section>
+	                    <h1 class="d-none">페이저</h1>
+	                    <ul>
+	                        <li><a href="detail?next=${c.id }">다음 게시글</a></li>
+	                        <li><a href="detail?prev=${c.id }">이전 게시글</a></li>
+	                    </ul>
+	                </section>
                 
-                <form action="detail" method="post">
-                <input hidden name="id" value="${c.id }">
-                
-                <section>
-                    <h1 class="d-none">이벤트 버튼</h1>
-
-                    <a href="list">
-                        <input class="button" type="button" value="목록">
-                    </a>
-                    <input class="button" type="submit" value="삭제">
-                </section>
-                </form>
+	                <form action="detail" method="post">
+	                <input hidden name="id" value="${c.id }">
+	                
+	                <section>
+	                    <h1 class="d-none">이벤트 버튼</h1>
+	
+	                    <a href="list">
+	                        <input class="button" type="button" value="목록">
+	                    </a>
+	                    <input class="button" type="submit" value="삭제">
+	                </section>
+	                </form>
+	            <!-- </section> -->
             </main>
         </div>
     </section>

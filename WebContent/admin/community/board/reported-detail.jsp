@@ -113,67 +113,69 @@
 			<!----------------------------------main--------------------------------------->
             <main class = "main">
                 <h1 class="d-none">게시글/신고된 게시글 상세 내용</h1>
-                <section>
-                    <h1>신고된 게시글</h1>
-                    
-                    <table class="detail-table">
-                        <tr>
-                            <th>제목</th>
-                            <td colspan="3">${b.title }</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>작성자</th>
-                            <td>${b.writerId }</td>
-                            <th>카테고리</th>
-                            <td>${b.categoryName }</td>
-                        </tr>
-                    </table>
-                </section>
-                <section>
-                    <h1>신고 리스트</h1>
-                    <table class="list-table">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td>신고자 닉네임</td>
-                                <td>신고 내용</td>
-                                <td>신고일</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-	                        <c:forEach var="r" items="${list }" varStatus="st">
-	                        	<tr ${st.count % 2==0?"class='even'":""}>
-	                                <td>${r.id }</td>
-	                                <td>${r.memId }</td>
-	                                <td>${r.content }</td>
-	                                <td>${r.regDate }</td>
+                
+                <!-- <section class="main-section"> -->
+	                <section>
+	                    <h1>신고된 게시글</h1>
+	                    
+	                    <table class="detail-table">
+	                        <tr>
+	                            <th>제목</th>
+	                            <td colspan="3">${b.title }</td>
+	                        </tr>
+	                        
+	                        <tr>
+	                            <th>작성자</th>
+	                            <td>${b.writerId }</td>
+	                            <th>카테고리</th>
+	                            <td>${b.categoryName }</td>
+	                        </tr>
+	                    </table>
+	                </section>
+	                <section>
+	                    <h1>신고 리스트</h1>
+	                    <table class="list-table">
+	                        <thead>
+	                            <tr>
+	                                <td>번호</td>
+	                                <td>신고자 닉네임</td>
+	                                <td>신고 내용</td>
+	                                <td>신고일</td>
 	                            </tr>
-	                        </c:forEach>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section>
-                    <h1 class="d-none">페이저</h1>
-                    <ul>
-                        <li><a href="reported-detail?next=${b.id }">다음 게시글</a></li>
-                        <li><a href="reported-detail?prev=${b.id }">이전 게시글</a></li>
-                    </ul>
-                </section>
-                 
-                <form action="reported-detail" method="post">
-                <input hidden name="id" value="${b.id }">
-                <section>
-                    <h1 class="d-none">이벤트 버튼</h1>
-                    
-                    <a href="reported">
-                        <input class="button" type="button" value="목록">
-                    </a>
-                    <input class="button" type="submit" value="삭제">
-                </section>
-                </form>
-
+	                        </thead>
+	                        <tbody>
+		                        <c:forEach var="r" items="${list }" varStatus="st">
+		                        	<tr ${st.count % 2==0?"class='even'":""}>
+		                                <td>${r.id }</td>
+		                                <td>${r.memId }</td>
+		                                <td>${r.content }</td>
+		                                <td>${r.regDate }</td>
+		                            </tr>
+		                        </c:forEach>
+	                        </tbody>
+	                    </table>
+	                </section>
+				
+	                <section>
+	                    <h1 class="d-none">페이저</h1>
+	                    <ul>
+	                        <li><a href="reported-detail?next=${b.id }">다음 게시글</a></li>
+	                        <li><a href="reported-detail?prev=${b.id }">이전 게시글</a></li>
+	                    </ul>
+	                </section>
+                
+	                <form action="reported-detail" method="post">
+	                <input hidden name="id" value="${b.id }">
+	                <section>
+	                    <h1 class="d-none">이벤트 버튼</h1>
+	                    
+	                    <a href="reported">
+	                        <input class="button" type="button" value="목록">
+	                    </a>
+	                    <input class="button" type="submit" value="삭제">
+	                </section>
+	                </form>
+ 				<!-- </section> -->
             </main>
         </div>
     </section>
