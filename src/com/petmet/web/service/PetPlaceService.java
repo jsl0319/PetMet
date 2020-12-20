@@ -44,8 +44,6 @@ public class PetPlaceService {
 		return ppDao.getViewList();
 	}
 
-//	public Pet
-
 	public PetPlaceView getView(int id) {
 
 		return ppDao.getView(id);
@@ -67,6 +65,20 @@ public class PetPlaceService {
 		int endIndex = page * size;
 
 		return ppDao.getViewList(field, query, startIndex, endIndex);
+	}
+
+	public int getTotalPage(String field, String query, String startDate, String endDate, int page, int size) {
+		
+		int records = 0;
+		
+		List<PetPlaceView> list = ppDao.getViewList(field, query, startDate, endDate);
+		for(PetPlaceView v : list)
+			records++;
+		
+		int pages = (int) Math.ceil(records / (float) size);
+		
+		return pages;
+		
 	}
 
 }
