@@ -279,7 +279,7 @@ public class JdbcFeedReportDao implements FeedReportDao{
 				+ "FROM(SELECT * FROM "
 				+ "REPORTED_FEED_VIEW "
 				+ "WHERE "+field+" LIKE ?)"
-				+ "WHERE ROWNUM BETWEEN ? AND ?";
+				+ "WHERE NUM BETWEEN ? AND ?";
 		  
 
 		List<ReportedFeedView> list = new ArrayList<>();
@@ -351,12 +351,8 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         if(rs.next()){
 
 	        	int nid = rs.getInt("id");
-	        	String memId = rs.getNString("mem_id");
-	        	String feedId = rs.getString("feed_id");
-	        	Date repoDate = rs.getDate("repo_date");
-	        	String content = rs.getNString("content");
-	        	
-	        	feedReport = new FeedReport(nid, 0 ,memId, feedId, repoDate, content);
+//	        	
+	        	feedReport = new FeedReport(nid, 0 ,null, null, null, null);
 	        	
 	         }
 	         
@@ -378,11 +374,10 @@ public class JdbcFeedReportDao implements FeedReportDao{
 		FeedReport feedReport = null;
 		
 		String sql ="SELECT ID "
-				+ "FROM "
-				+ "(SELECT * FROM "
-				+ "(SELECT * FROM FEED_REPORT WHERE REPO_DATE < (SELECT REPO_DATE FROM FEED_REPORT WHERE ID=?)) "
-				+ "ORDER BY REPO_DATE DESC) "
-				+ "WHERE ROWNUM = 1";
+				+ "FROM (SELECT * "
+				+ "FROM FEED_REPORT ORDER BY REPO_DATE DESC) "
+				+ "WHERE REPO_DATE < (SELECT REPO_DATE FROM FEED_REPORT WHERE ID = ?) "
+				+ "AND ROWNUM = 1";
 		
 		
 		
@@ -400,12 +395,9 @@ public class JdbcFeedReportDao implements FeedReportDao{
 	         if(rs.next()){
 	        	
 	        	int nid = rs.getInt("id");
-	        	String memId = rs.getNString("mem_id");
-	        	String feedId = rs.getString("feed_id");
-	        	Date repoDate = rs.getDate("repo_date");
-	        	String content = rs.getNString("content");
+////	       
 	        	
-	        	feedReport = new FeedReport(nid, 0 ,memId, feedId, repoDate, content);
+	        	feedReport = new FeedReport(nid, 0 ,null, null, null, null);
 	        	
 	         }
 	         
@@ -465,50 +457,5 @@ public class JdbcFeedReportDao implements FeedReportDao{
 		}
 			return fr;
 	}
-
-	
-
-//	@Override
-//	public List<FeedReport> getList() {
-//		
-//		  String sql = "SELECT * FROM FEED_REPORT";
-//		  String url = DBContext.URL;
-//		  String uid = DBContext.UID;
-//		  String pwd = DBContext.PWD;
-//
-//	      List<FeedReport> list= new ArrayList<>();
-//
-//	      try {
-//	    	  Class.forName("oracle.jdbc.driver.OracleDriver");
-//	          Connection con = DriverManager.getConnection(url,uid,pwd);
-//	          Statement st = con.createStatement();
-//	          ResultSet rs = st.executeQuery(sql);
-//	         
-//	         
-//	         while(rs.next()){
-//	        	int id = rs.getInt("id");
-//	        	String memId = rs.getNString("mem_id");
-//	        	String feedId = rs.getString("feed_id");
-//	        	Date repoDate = rs.getDate("repo_date");
-//	        	String content = rs.getNString("content");
-//	        	
-//	        	FeedReport fr = new FeedReport(id, memId, feedId, repoDate, content);
-//	        	
-//	        	list.add(fr);
-//	         }
-//	         
-//	         rs.close();
-//	         st.close();
-//	         con.close();
-//	         
-//	         
-//	      } catch (SQLException e) {
-//	         e.printStackTrace();
-//	      } catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//			return list;
-//	}
-	
 
 }

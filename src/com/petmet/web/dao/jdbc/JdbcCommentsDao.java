@@ -191,6 +191,44 @@ public class JdbcCommentsDao implements CommentsDao{
 	}
 
 	@Override
+	public CommentView getView(String subQuery) {
+		String sql = "SELECT * FROM COMMENT_VIEW ";
+		sql += subQuery;
+		
+		CommentView cv = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int boardId = rs.getInt("BOARD_ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regDate = rs.getDate("REG_DATE");
+				String content = rs.getString("CONTENT");
+
+				cv = new CommentView(num, id, categoryId, categoryName, boardId, title, writerId, content, regDate);
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return cv;
+	}
+
+	@Override
 	public List<CommentView> getViewList(String field, String query, String board, String startDate, String endDate) {
 		String sql = "SELECT * FROM(" +
 						"SELECT ROWNUM NUM2, CV.* FROM COMMENT_VIEW CV " +

@@ -189,6 +189,45 @@ public class JdbcCommentReportDao implements CommentReportDao{
 	}
 
 	@Override
+	public CommentReportView getView(String subQuery) {
+		String sql = "SELECT * FROM COMMENT_REPORT_VIEW ";
+		sql += subQuery;
+		
+		CommentReportView crv = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				int num = rs.getInt("NUM");
+				int id = rs.getInt("ID");
+				int categoryId = rs.getInt("CATEGORY_ID");
+				String categoryName = rs.getString("CATEGORY_NAME");
+				int boardId = rs.getInt("BOARD_ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				String content = rs.getString("CONTENT");
+				Date regDate = rs.getDate("REG_DATE");
+				int reported = rs.getInt("REPORTED");
+				
+				crv = new CommentReportView(num, id, categoryId, categoryName, boardId, title, writerId, content, regDate, reported);
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return crv;
+	}
+	
+	@Override
 	public List<CommentReportView> getViewList(String field, String query, String board, String startDate, String endDate) {
 		String sql = "SELECT * FROM("
 				+ "SELECT ROWNUM NUM2, CRV.* FROM COMMENT_REPORT_VIEW CRV "
