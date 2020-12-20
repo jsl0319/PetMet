@@ -16,7 +16,7 @@ import com.petmet.web.service.PetPlaceService;
 public class ListController extends HttpServlet{
 	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String page_ = request.getParameter("p");
 		String field_ = request.getParameter("f");
@@ -47,10 +47,30 @@ public class ListController extends HttpServlet{
 //		List<PetPlace> list = service.getList();
 //		List<PetPlaceView> list = service.getList();
 		List<PetPlaceView> list = service.getViewList(field, query, startDate, endDate, page, size);
+		int totalPages = service.getTotalPage(field, query, startDate, endDate, page, size);
+
 		
+		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PetPlaceService service = new PetPlaceService();
+		
+		String[] dels = request.getParameterValues("del");
+		
+		int[] ids = new int[dels.length];
+		
+		for(int i = 0; i < dels.length; i++) {
+		 	 ids[i] = Integer.parseInt(dels[i]);
+		 	 service.delete(ids[i]);
+		}
+		
+		response.sendRedirect("list");
+			
+	}
 }

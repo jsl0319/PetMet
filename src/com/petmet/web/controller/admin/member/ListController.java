@@ -18,8 +18,7 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String page_ = request.getParameter("p"); // null 
+		String page_ = request.getParameter("p");
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
 		String startDate_ = request.getParameter("sd");
@@ -45,7 +44,10 @@ public class ListController extends HttpServlet {
 
 		MemberService memberService = new MemberService();
 		List<Member> list = memberService.getList(field,query,startDate,endDate,page,num);
+		int count = memberService.getCount(field,query,startDate,endDate);
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("num", num);
 
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}

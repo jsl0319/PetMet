@@ -83,7 +83,7 @@
                 <form class="search__container">
                     <div>
                     <select class="selectbox" name="f">
-                      <option ${param.f=="nickname" ? "selected":""} value="nickname">닉네임</option>
+                      <option ${param.f=="feed_id" ? "selected":""} value="feed_id">닉네임</option>
                     </select>
                     
                     <input class="search__input" type="text" name = "q" value="${param.q }">
@@ -107,7 +107,7 @@
 
                 <tbody>
                 <c:forEach var = "rf" items="${list}">
-                <tr>
+                <tr ${rf.num%2==0?"class='even'":""}>
                   <td>${rf.num}</td>
                   <td><a href ="detail?id=${rf.id}">${rf.feedId }</a></td>
                   <td>${rf.memId}</td>
@@ -123,41 +123,37 @@
             
            <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
            <c:set var="startNum" value="${ page-(page-1)%5}"/>
-           <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13), '.')}"/>
+           <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
            
           <div class="pager">
               
               	<c:if test="${startNum >= 1 }">
 	                <div>
-	                  <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+	                  <a href="?p=1&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-left"></i></a>
 	                </div>
                 </c:if>
                 
                 <c:if test="${startNum >= 1 }">
                 <div>
-                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
+                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
                 </div>
                 </c:if>
                 
                 <ul>
               <c:forEach var="i" begin="0" end="4">	
               	<c:if test="${(startNum+i)<=lastNum }">
-                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}">${startNum + i}</a></li>
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}">${startNum + i}</a></li>
               	</c:if>
               </c:forEach>
                 </ul>
                 
-                <c:if test="${startNum+4 < lastNum }">
                 <div>
-                  <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+                  <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
                 </div>
-                 </c:if>
                 
-                <c:if test="${startNum+4 < lastNum }">
                 <div>
-                  <a href="${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+                  <a href="?p=${lastNum }&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-right"></i></a>
                 </div>
-                 </c:if>
               </div>
 
         </main>

@@ -17,5 +17,6 @@ public interface PetPlaceCategoryDao {
 	
 	int getLastIndex();
 	List<PetPlaceCategoryView> getViewList(String query, int startIndex, int endIndex);
+	List<PetPlaceCategoryView> getViewList(String query);
 	
 }

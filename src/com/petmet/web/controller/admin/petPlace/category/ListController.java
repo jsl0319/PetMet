@@ -34,10 +34,31 @@ public class ListController extends HttpServlet{
 		PetPlaceCategoryService service = new PetPlaceCategoryService();
 //		List<PetPlaceCategoryView> list = service.getViewList();
 		List<PetPlaceCategoryView> list = service.getViewList(query, page, size);
+		int totalPages = service.getTotalPage(query, page, size);
 		
+		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PetPlaceCategoryService service = new PetPlaceCategoryService();
+		
+		String[] dels = request.getParameterValues("del");
+		
+		 int[] ids = new int[dels.length];
+		 
+		 for(int i = 0; i<dels.length; i++) {
+			ids[i] = Integer.parseInt(dels[i]);
+			service.delete(ids[i]);
+		 }
+		 
+		 response.sendRedirect("list");
+		 
+//		service.delete(id)
 	}
 	
 }

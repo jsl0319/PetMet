@@ -28,9 +28,13 @@ public interface PetPlaceDao {
 
 	List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate, int startIndex,
 			int endIndex);
+	List<PetPlaceView> getViewList(String field, String query, String startDate, String endDate);
 
 	int getLastIndex();
 
 	List<PetPlaceView> getViewList(String field, String query, int startIndex, int endIndex);
+
+	List<PetPlaceView> getViewList(String field, String query);
+
 	
 }

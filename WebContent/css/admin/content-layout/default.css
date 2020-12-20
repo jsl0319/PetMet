@@ -38,7 +38,7 @@
 .header nav ul li {
   flex-basis: 100%;
   height: 100%;
-  background-color: red;
+  
 }
 
 .header nav ul a {
@@ -53,7 +53,7 @@
 /* -----------------------------------body----------------------------------- */
 .body .container {
   flex-basis: 1200px;
-  background-color: red;
+ 
 }
 
 .body .aside {
@@ -78,9 +78,9 @@
 }
 
 .body .main {
-  /* position: relative; */
   display: flex;
   flex-direction: column;
+  background: white;
 }
 
 .body .main section {
@@ -101,9 +101,7 @@
   display: flex;
   justify-content: center;
   width: 95%;
-  /* position: absolute; */
-  /* bottom: 0px; */
-  --background-color: white;
+ 
 }
 
 .body .main .pager div {

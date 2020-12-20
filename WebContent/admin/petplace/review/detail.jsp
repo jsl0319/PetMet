@@ -31,25 +31,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="../member/list">
+                        <a href="../../member/list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/list">
+                        <a href="../../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../community/index">
+                        <a href="../../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
                     </li>
                     <li>
-                        <a href="list">
+                        <a href="../list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
@@ -93,9 +93,9 @@
             <main class="main">
                 <h1>리뷰 관리</h1>
                 
+                <form action="detail" method="post">
                 <section>
                     <h1>Pet Place : ${list[0].categoryName}</h1>
-                
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -109,13 +109,13 @@
                 
                         <tbody>
                         	<c:forEach var="l" items="${list}">
-                            <tr  ${l.num%2==0?"class='even'":""}>
-                                <td>${l.num}</td>
-                                <td>${l.memberName}</td>
-                                <td>${l.content}</td>
-                                <td>${l.rating}</td>
-                                <td><input type="checkbox"></td>
-                            </tr>
+	                            <tr  ${l.num%2==0?"class='even'":""}>
+	                                <td>${l.num}</td>
+	                                <td>${l.memberName}</td>
+	                                <td>${l.content}</td>
+	                                <td>${l.rating}</td>
+	                                <td><input name="del" value="${l.id}" type="checkbox"></td>
+	                            </tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -125,28 +125,36 @@
                     <h1 class="d-none">버튼</h1>
                     <input class="button" type="submit" value="선택 삭제">
                 </section>
-
+				</form>
+				
                 <section>
+                    <c:set var="page" value="${(empty param.p)?1:param.p}"/>
+                    <c:set var="startNum" value="${page-(page-1)%5}" />
+                    <c:set var="lastNum" value="${tp}"/>
                     <div class="pager">
-                        <div>
-                            <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-left"></i></a>
-                        </div>
+                        <c:if test="${1 <= startNum-5}">
+		                    <div>
+		                      <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+		                    </div>
+		                    <div>
+		                      <a href="?p=${startNum - 5}"><i class="fas fa-angle-left"></i></a>
+		                    </div>
+                   		</c:if>
                         <ul>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                        </ul>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-right"></i></a>
-                        </div>
-                        <div>
-                            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                        </div>
+                    	<c:forEach var="i" begin="0" end="4">
+							<c:if test="${(startNum + i) <= lastNum }">
+								<li><a href="?p=${startNum+i}">${startNum+i}</a></li>
+							</c:if>
+						</c:forEach>
+                    	</ul>
+                        <c:if test="${startNum+5 <= lastNum}">
+		                    <div>
+		                      <a href="?p=${startNum+5}"><i class="fas fa-angle-right"></i></a>
+		                    </div>
+		                    <div>
+		                      <a href="?p=${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+		                    </div>
+                    	</c:if>
                     </div>
                 </section>
             </main>

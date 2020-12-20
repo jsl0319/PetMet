@@ -40,4 +40,16 @@ public class ReviewService {
 		return rDao.getViewList(id);
 	}
 
+	public int getTotalPage(int id, int page, int size) {
+		int records = 0;
+		
+		List<ReviewView> list = rDao.getViewList(id);
+		for(ReviewView v : list)
+			records++;
+		
+		int pages = (int) Math.ceil(records / (float) size);
+		
+		return pages;
+	}
+
 }

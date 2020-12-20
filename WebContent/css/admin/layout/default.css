@@ -33,6 +33,7 @@ body {
   flex-grow: 1;
   flex-shrink: 0;
   width: 1200px;
+  background-color: wheat;
 }
 .body .aside {
   flex-basis: 200px;

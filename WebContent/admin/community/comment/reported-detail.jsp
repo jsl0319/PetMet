@@ -18,10 +18,11 @@
 </head>
 
 <body>
+	<!----------------------------------header--------------------------------------->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../../index.html">
+                <a href="../../index">
                   <i class="fas fa-dog fa-3x"></i>
                   <h1>PetMet</h1>
                 </a>
@@ -31,25 +32,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                   <li>
-                    <a href="../../user/index.html">
+                    <a href="../../member/list">
                       <i class="fas fa-users fa-2x"></i>
                       <span>USER</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../../feed/index.html">
+                    <a href="../../feed/list">
                       <i class="fas fa-camera-retro fa-2x"></i>
                       <span>FEED</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../index.html">
+                    <a href="../notice/list">
                       <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                       <span>COMMUNITY</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../../petplace/index.html">
+                    <a href="../../petplace/list">
                       <i class="fas fa-map-marked-alt fa-2x"></i>
                       <span>PLACE</span>
                     </a>
@@ -67,9 +68,11 @@
         </div>
     </header>
 
+	<!----------------------------------body--------------------------------------->
     <section class="body">
         <h1 class="d-none">Content Body</h1>
         <div class="container">
+        	<!----------------------------------aside--------------------------------------->
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
 
@@ -108,67 +111,71 @@
                 </nav>
             </aside>
 
+			<!----------------------------------main--------------------------------------->
             <main class = "main">
                 <h1 class="d-none">신고된 댓글</h1>
 
-                <section>
-                    <h1>댓글</h1>
-
-                    <table class="detail-table">
-                        <tr>
-                            <td>${c.id }</td>
-                            <td>${c.writerId }</td>
-                            <td>${c.content }</td>
-                            <td>${c.regDate }</td>
-                        </tr>
-                    </table>
-                </section>
-
-                <section>
-                    <h1>댓글 신고 리스트</h1>
-
-                    <table class="list-table">
-                        <thead>
-                            <tr>
-                                <td>번호</td>
-                                <td>신고자</td>
-                                <td>신고일</td>
-                                <td>신고내용</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-	                        <c:forEach var="cr" items="${list }" varStatus="st">
-	                            <tr ${st.count % 2==0?"class='even'":""}>
-	                                <td>${cr.id }</td>
-	                                <td>${cr.memId }</td>
-	                                <td>${cr.regDate }</td>
-	                                <td>${cr.content }</td>
+			<!-- <section class="main-section"> -->
+	                <section>
+	                    <h1>댓글</h1>
+	
+	                    <table class="detail-table">
+	                        <tr>
+	                            <td>${c.id }</td>
+	                            <td>${c.writerId }</td>
+	                            <td>${c.content }</td>
+	                            <td>${c.regDate }</td>
+	                        </tr>
+	                    </table>
+	                </section>
+	
+	                <section>
+	                    <h1>댓글 신고 리스트</h1>
+	
+	                    <table class="list-table">
+	                        <thead>
+	                            <tr>
+	                                <td>번호</td>
+	                                <td>신고자</td>
+	                                <td>신고일</td>
+	                                <td>신고내용</td>
 	                            </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </section>
+	                        </thead>
+	                        <tbody>
+		                        <c:forEach var="cr" items="${list }" varStatus="st">
+		                            <tr ${st.count % 2==0?"class='even'":""}>
+		                                <td>${cr.id }</td>
+		                                <td>${cr.memId }</td>
+		                                <td>${cr.regDate }</td>
+		                                <td>${cr.content }</td>
+		                            </tr>
+	                            </c:forEach>
+	                        </tbody>
+	                    </table>
+	                </section>
                 
-                <section>
-                    <h1 class="d-none">페이저</h1>
-                    <ul>
-                        <li><a href="detail?next=${b.id }">다음 게시글</a></li>
-                        <li><a href="detail?prev=${b.id }">이전 게시글</a></li>
-                    </ul>
-                </section>
-                
-                <form action="reported-detail" method="post">
-                <input hidden name="id" value="${c.id }">
-                
-                <section>
-                    <h1 class="d-none">이벤트 버튼</h1>
-
-                    <a href="reported">
-                        <input class="button" type="button" value="목록">
-                    </a>
-                    <input class="button" type="submit" value="삭제">
-                </section>
-                </form>
+	                <section>
+	                    <h1 class="d-none">페이저</h1>
+	                    <ul>
+	                        <li><a href="detail?next=${c.id }">다음 게시글</a></li>
+	                        <li><a href="detail?prev=${c.id }">이전 게시글</a></li>
+	                    </ul>
+	                </section>
+	                
+	                <form action="reported-detail" method="post">
+	                <input hidden name="id" value="${c.id }">
+	                
+	                <section>
+	                    <h1 class="d-none">이벤트 버튼</h1>
+	
+	                    <a href="reported">
+	                        <input class="button" type="button" value="목록">
+	                    </a>
+	                    <input class="button" type="submit" value="삭제">
+	                </section>
+	                </form>
+	            <!-- </section> -->
+	            
             </main>
         </div>
     </section>
