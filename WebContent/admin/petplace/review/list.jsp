@@ -31,13 +31,13 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="../member/list">
+                        <a href="../../member/list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/list">
+                        <a href="../../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
