@@ -93,7 +93,7 @@
 				<section>
 					<h1 class="d-none">게시글 리스트</h1>
 
-					<input class="button addBtn" type="button" value="+ Add Category">
+					<input class="button addBtn" type="button" value="+ Add">
 
 					<form action="list" method="post">
 

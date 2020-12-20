@@ -140,15 +140,16 @@
 						<input class="search__input" type="date" name="sd" value="${param.sd }">
 						-
 						<input class="search__input" type="date" name="ed" value="${param.ed }">
-						<input class="button search-button" type="submit" value="검색">
 
-					<div>
-						<select name="s">
-							<option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
-							<option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
-							<option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
-						</select>
-					</div>
+						<div>
+							<select name="s" class="selectbox">
+								<option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
+								<option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
+								<option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
+							</select>
+						</div>
+						
+						<input class="button search-button" type="submit" value="검색">
 					</form>
 				</section>
 				
@@ -161,11 +162,11 @@
                         <thead>
                             <tr>
                                 <td>번호</td>
-                                <td>카테고리</td>
-                                <td>게시글 제목</td>
                                 <td>작성자</td>
                                 <td>내용</td>
                                 <td>작성일</td>
+                                <td>카테고리</td>
+                                <td>게시글 제목</td>
                                 <td>누적 신고 횟수</td>
                                 <td>삭제</td>
                             </tr>
@@ -175,11 +176,11 @@
 	                        <c:forEach var="c" items="${list}" varStatus="st">
 	                            <tr ${st.count % 2==0?"class='even'":""}>
 	                                <td>${c.num }</td>
-	                                <td>${c.categoryName }</td>
-	                                <td><a href="../board/detail?id=${c.boardId }">${c.title }</a></td>
 	                                <td>${c.writerId }</td>
 	                                <td><a href="detail?id=${c.id }&bId=${c.boardId}">${c.content }</a></td>
 	                                <td>${c.regDate }</td>
+	                                <td>${c.categoryName }</td>
+	                                <td><a href="../board/detail?id=${c.boardId }">${c.title }</a></td>
 	                                <td><a href="reported-detail?id=${c.id }">${c.reported }</a></td>
 	                                <td><input name="del" value="${c.id }" type="checkbox">
 	                            </tr>

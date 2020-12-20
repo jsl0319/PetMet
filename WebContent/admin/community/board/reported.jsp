@@ -69,7 +69,7 @@
     </header>
 
 	<!----------------------------------body--------------------------------------->
-    <section class="body">
+    <section class="body feed-screen">
         <h1 class="d-none">Content Body</h1>
         <div class="container">
         	<!----------------------------------aside--------------------------------------->
@@ -112,7 +112,7 @@
             </aside>
 
 			<!----------------------------------main--------------------------------------->
-            <main class="main">
+            <main class="main feed-index">
                 <h1 class="d-none">Main Content</h1>
 
                 <section>
@@ -132,15 +132,15 @@
                         </select>
                         <label class="search__title" for="date">일자</label>
                         <input name="sd" class="search__input" type="date" value="${param.sd }"> - <input name="ed" class="search__input" type="date" value="${param.ed }">
-                        <input class="button" type="submit" value="검색">
-                        
                         <div>
-	                        <select name="s">
+	                        <select name="s" class="selectbox">
 	                            <option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
 	                            <option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
 	                            <option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
 	                        </select>
 	                    </div>
+                        
+                        <input class="button" type="submit" value="검색">
                     </form>
                 </section>
 

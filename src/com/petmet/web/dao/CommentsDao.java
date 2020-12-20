@@ -13,6 +13,7 @@ public interface CommentsDao {
 	Comments get(int id);
 
 	List<Comments> getList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
+	CommentView getView(String subQuery);
 	List<CommentView> getViewList(String field, String query, String board, String startDate, String endDate);
 	List<CommentView> getViewList(String selectBox, String query, String boardCategory, String startDate, String endDate, int startIndex, int endIndex);
 }

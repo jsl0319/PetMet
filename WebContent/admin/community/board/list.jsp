@@ -141,15 +141,15 @@
                          - 
                         <input class="search__input" name="ed" type="date" value="${param.ed }">
                         
-                        <input class="button" type="submit" value="검색">
-                        
                         <div>
-	                        <select name="s">
+	                        <select name="s" class="selectbox">
 	                            <option ${(param.s == "20")? "selected" : "" } value="20">20개</option>
 	                            <option ${(param.s == "50")? "selected" : "" } value="50">50개</option>
 	                            <option ${(param.s == "100")? "selected" : "" } value="100">100개</option>
 	                        </select>
 	                    </div>
+                        
+                        <input class="button" type="submit" value="검색">
                     </form>
                 </section>
 
