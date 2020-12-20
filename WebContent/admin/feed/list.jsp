@@ -107,7 +107,7 @@
                     <tbody>
                     
                     <c:forEach var = "rf" items="${list}">
-                      <tr>
+                      <tr ${rf.num%2==0?"class='even'":""}>
                         <td>${rf.num}</td>
                         <td><a href="feed-detail.jsp">${rf.reportedId}</a></td>
                         <td><a href="detail-list">${rf.repoCnt }</a></td>
@@ -131,7 +131,7 @@
               
               	<c:if test="${startNum >= 1 }">
 	                <div>
-	                  <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+	                  <a href="?p=1&f=${param.f}&q=${param.q}""><i class="fas fa-angle-double-left"></i></a>
 	                </div>
                 </c:if>
                 
@@ -144,22 +144,22 @@
                 <ul>
               <c:forEach var="i" begin="0" end="4">	
               	<c:if test="${(startNum+i)<=lastNum }">
-                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}">${startNum + i}</a></li>
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}&f=${param.f}&q=${param.q}">${startNum + i}</a></li>
               	</c:if>
               </c:forEach>
                 </ul>
                 
-                <c:if test="${startNum+4 < lastNum }">
+                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
                 <div>
-                  <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+                  <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
                 </div>
-                 </c:if>
+                 <%-- </c:if> --%>
                 
-                <c:if test="${startNum+4 < lastNum }">
+                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
                 <div>
-                  <a href="${lastNum }"><i class="fas fa-angle-double-right"></i></a>
+                  <a href="?p=${lastNum }&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-right"></i></a>
                 </div>
-                 </c:if>
+                 <%-- </c:if> --%>
               </div>
             </main>
           </div>
