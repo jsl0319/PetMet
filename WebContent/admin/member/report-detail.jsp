@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link href="../../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
     <link href="../../css/admin/components/table/detail.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
@@ -15,7 +18,7 @@
     <header id="header" class="header">
         <div class="container">
             <div class="logo">
-                <a href="../index.html">
+                <a href="../index">
                     <i class="fas fa-dog fa-3x"></i>
                     <h1>PetMet</h1>
                 </a>
@@ -25,19 +28,19 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                     <li>
-                        <a href="list.html">
+                        <a href="list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/index.html">
+                        <a href="../feed/list">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
                     </li>
                     <li>
-                         <a href="../community/notice/list">
+              			 <a href="../community/notice/list">
                             <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                             <span>COMMUNITY</span>
                         </a>
@@ -71,49 +74,30 @@
                 <h1 class="d-none">메인이다</h1>
                 <section>
                     <h1 class="d-none">디테일 테이블</h1>
-                    <img src="../../static/dog/2020/12/">
-                    <table>
-                       <tr>
-                           <td>이름</td>
-                           <td>아띠</td>
-                           <td>회원</td>
-                           <td>recordtve@gmail.com</td>
-                       </tr>
+                    <table class="detail-table">
+                        <tr>
+                            <th>신고 회원 닉네임</th>
+                            <td>${r.repId}</td>
+                            
+                        </tr>
+                        <tr>
+                            <th>신고 일자</th>
+                            <td>${r.repDate}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">내용</th>
+                        </tr>
+                        <tr class="content">
+                            <td colspan="2">${r.repContent}</td>
+                        </tr>
 
-                       <tr>
-                        <td>성별</td>
-                        <td>여</td>
-                        <td>견종</td>
-                        <td>비숑</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>중성화</td>
-                        <td>X</td>
-                        <td>생일</td>
-                        <td>20.04.21</td>
-                    </tr>
+                        
 
-                    <tr>
-                        <td>무게</td>
-                        <td>4kg</td>
-                        <td>성격</td>
-                        <td>활발</td>
-                    </tr>
-
-                    <tr>
-                        <td>등록일자</td>
-                        <td>20.12.25</td>
-                        <td>내용</td>
-                        <td>쿠쿠와 크리스마스 파티!</td>
-                    </tr>
-                     
-                  
                     </table>
 
                 </section>
                 <div class="pager">
-                  <a href="doglist"><input type="button" value="목록으로 가기"></a>
+                    <a href="reportlist"><input type="button" class="button search-button" value="목록"></a>
                 </div>
             </main>
 

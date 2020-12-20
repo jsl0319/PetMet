@@ -112,74 +112,77 @@
 			<!----------------------------------main--------------------------------------->
             <main class = "main">
                 <h1 class="d-none">게시글/신고된 게시글 상세 내용</h1>
-                <section>
-                    <h1 class="d-none">상세 게시글 내용</h1>
-                    
-                    <form action="detail" method="post">
-                    <table class="detail-table">
-                    <input hidden name="id" value="${b.id }">
-                        <tr>
-                            <th>제목</th>
-                            <td colspan="3">${b.title }</td>
-                        </tr>
-
-                        <tr>
-                            <th>작성자</th>
-                            <td>${b.writerId }</td>
-                            <th>등록일</th>
-                            <td>${b.regDate }</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>카테고리</th>
-                            <td>
-                                <select name="category" class="selectbox">
-	                                <c:forEach var="c" items="${cList }">
-	                                	<c:choose>
-	                                		<c:when test="${c.id eq b.categoryId }">
-	                                    		<option value="${c.id }" selected>${c.name }</option>
-	                                    	</c:when>
-	                                    	<c:otherwise>
-	                                    		<option value="${c.id }">${c.name }</option>
-	                                    	</c:otherwise>
-	                                    </c:choose>
-	                                </c:forEach>
-                                </select>
-                            </td>
-                            <th>조회수</th>
-                            <td>${b.hit }</td>
-                        </tr>
-
-                        <tr>
-                            <th>첨부파일</th>
-                            <td colspan="3">${b.files }</td>
-                        </tr>
-
-                        <tr class="content">
-                            <td colspan="4">
-                                ${b.content }
-                            </td>
-                        </tr>
-                    </table>
-                </section>
-                <section>
-                    <h1 class="d-none">이벤트 버튼</h1>
-
-                    <a href="list">
-                        <input class="button" type="button" value="목록">
-                    </a>
-                    <input class="button" name="button" type="submit" value="저장">
-                    <input class="button" name="button" type="submit" value="삭제">
-                </section>
-				</form>
+                
+                <!-- <section class="main-section"> -->
+	                <section>
+	                    <h1 class="d-none">상세 게시글 내용</h1>
+	                    
+	                    <form action="detail" method="post">
+	                    <table class="detail-table">
+	                    <input hidden name="id" value="${b.id }">
+	                        <tr>
+	                            <th>제목</th>
+	                            <td colspan="3">${b.title }</td>
+	                        </tr>
+	
+	                        <tr>
+	                            <th>작성자</th>
+	                            <td>${b.writerId }</td>
+	                            <th>등록일</th>
+	                            <td>${b.regDate }</td>
+	                        </tr>
+	                        
+	                        <tr>
+	                            <th>카테고리</th>
+	                            <td>
+	                                <select name="category" class="selectbox">
+		                                <c:forEach var="c" items="${cList }">
+		                                	<c:choose>
+		                                		<c:when test="${c.id eq b.categoryId }">
+		                                    		<option value="${c.id }" selected>${c.name }</option>
+		                                    	</c:when>
+		                                    	<c:otherwise>
+		                                    		<option value="${c.id }">${c.name }</option>
+		                                    	</c:otherwise>
+		                                    </c:choose>
+		                                </c:forEach>
+	                                </select>
+	                            </td>
+	                            <th>조회수</th>
+	                            <td>${b.hit }</td>
+	                        </tr>
+	
+	                        <tr>
+	                            <th>첨부파일</th>
+	                            <td colspan="3">${b.files }</td>
+	                        </tr>
+	
+	                        <tr class="content">
+	                            <td colspan="4">
+	                                ${b.content }
+	                            </td>
+	                        </tr>
+	                    </table>
+	                </section>
+	                <section>
+	                    <h1 class="d-none">이벤트 버튼</h1>
+	
+	                    <a href="list">
+	                        <input class="button" type="button" value="목록">
+	                    </a>
+	                    <input class="button" name="button" type="submit" value="저장">
+	                    <input class="button" name="button" type="submit" value="삭제">
+	                </section>
+					</form>
 				
-                <section>
-                    <h1 class="d-none">페이저</h1>
-                    <ul>
-                        <li><a href="detail?next=${b.id }">다음 게시글</a></li>
-                        <li><a href="detail?prev=${b.id }">이전 게시글</a></li>
-                    </ul>
-                </section>
+	                <section>
+	                    <h1 class="d-none">페이저</h1>
+	                    <ul>
+	                        <li><a href="detail?next=${b.id }">다음 게시글</a></li>
+	                        <li><a href="detail?prev=${b.id }">이전 게시글</a></li>
+	                    </ul>
+	                </section>
+                <!-- </section> -->
             </main>
         </div>
     </section>

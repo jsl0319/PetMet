@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.petmet.web.entity.Dog;
-import com.petmet.web.service.DogService;
+import com.petmet.web.entity.Matching;
+import com.petmet.web.service.MatchingService;
 
-@WebServlet("/admin/member/doglist")
-public class DogListController extends HttpServlet {
+@WebServlet("/admin/member/reportlist")
+public class ReportListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -21,11 +21,11 @@ public class DogListController extends HttpServlet {
 		String page_ = request.getParameter("p");
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
-		String query2_ = request.getParameter("q2");
 		
-		String field = "master_id";
+		
+		String field = "rep_id";
 		String query = "";
-		String query2 = "";
+	
 		int page=1;
 		int num=10;
 		
@@ -35,17 +35,16 @@ public class DogListController extends HttpServlet {
 			field = field_;
 		if(query_ != null && !query_.equals(""))
 			query = query_;
-		if(query2_ != null && !query2_.equals(""))
-			query2 = query2_;
 		
-		DogService dogService = new DogService();
-		List<Dog> list = dogService.getList(field,query,query2,page,num);
-		int count = dogService.getCount(field,query,query2);
-		request.setAttribute("list", list);
-		request.setAttribute("num", num);
-		request.setAttribute("count", count);
 
-		request.getRequestDispatcher("dog-list.jsp").forward(request, response);
+		MatchingService matchingService = new MatchingService();
+		List<Matching> list = matchingService.getReportList(field,query,page,num);
+		int count = matchingService.getReportCount(field,query);
+		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("num", num);
+
+		request.getRequestDispatcher("report-list.jsp").forward(request, response);
 	}
 
 }

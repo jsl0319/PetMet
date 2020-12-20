@@ -22,3 +22,8 @@
 	height:300px;
 }
 
+.current-page{
+  color : palevioletred;
+  font-weight: 700;
+  font-style: italic;
+}
