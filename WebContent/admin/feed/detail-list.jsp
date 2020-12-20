@@ -123,7 +123,7 @@
             
            <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
            <c:set var="startNum" value="${ page-(page-1)%5}"/>
-           <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13), '.')}"/>
+           <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/2), '.')}"/>
            
           <div class="pager">
               
@@ -147,17 +147,13 @@
               </c:forEach>
                 </ul>
                 
-                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
                 <div>
                   <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
                 </div>
-                 <%-- </c:if> --%>
                 
-                <%-- <c:if test="${startNum+4 < lastNum }"> --%>
                 <div>
                   <a href="?p=${lastNum }&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-right"></i></a>
                 </div>
-                 <%-- </c:if> --%>
               </div>
 
         </main>

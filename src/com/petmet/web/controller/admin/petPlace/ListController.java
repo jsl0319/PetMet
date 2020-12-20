@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.petmet.web.entity.PetPlaceView;
+import com.petmet.web.entity.ReportedFeedView;
 import com.petmet.web.service.PetPlaceService;
 
 @WebServlet("/admin/petplace/list")
 public class ListController extends HttpServlet{
 	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String page_ = request.getParameter("p");
 		String field_ = request.getParameter("f");
@@ -56,4 +57,21 @@ public class ListController extends HttpServlet{
 		
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PetPlaceService service = new PetPlaceService();
+		
+		String[] dels = request.getParameterValues("del");
+		
+		int[] ids = new int[dels.length];
+		
+		for(int i = 0; i < dels.length; i++) {
+		 	 ids[i] = Integer.parseInt(dels[i]);
+		 	 service.delete(ids[i]);
+		}
+		
+		response.sendRedirect("list");
+			
+	}
 }

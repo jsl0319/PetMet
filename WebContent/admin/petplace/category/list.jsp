@@ -104,6 +104,7 @@
                 
                 </section>
                 
+                <form action="list" method="post">
                 <section>
                     <h1 class="d-none">카테고리 관리</h1>
                 
@@ -134,7 +135,7 @@
                                 	</c:otherwise>
                                 </c:choose>
                                 <td><input type="radio" name="edit-clicked"></td>
-                                <td><input type="checkbox"></td>
+                                <td><input name="del" value="${ppc.id }" type="checkbox"></td>
                             </tr>
                         </c:forEach>    
                         </tbody>
@@ -147,7 +148,8 @@
                     <input class="button" type="submit" value="수정">
                     <input class="button" type="submit" value="선택 삭제">
                 </section>
-
+				</form>
+				
                 <section>
                 	<c:set var="page" value="${(param.p==null)?1:param.p}" />
                     <c:set var="startNum" value="${page-(page-1)%5}" />
