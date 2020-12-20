@@ -121,14 +121,13 @@
 						<form class="search__container search__form" action="list">
 
 							<select class="selectbox" name="f">
-								<option ${(param.f == "title")?"selected":"" } value="title">게시글
-									제목</option>
+								<option ${(param.f == "title")?"selected":"" } value="title">제목</option>
 								<option ${(param.f == "writer_id")?"selected":"" }
 									value="writer_id">작성자</option>
 								<option ${(param.f == "content")?"selected":"" } value="content">내용</option>
 							</select> <input name="q" class="search__input" type="text"
 								value="${param.q }"> <select class="selectbox" name="b">
-								<option>모든 게시판</option>
+								<option>게시판</option>
 								<c:forEach var="c" items="${cList }">
 									<option ${(param.b == c.name)? "selected" : "" }
 										value="${c.name }">${c.name }</option>
@@ -158,11 +157,11 @@
 	                        <thead>
 	                            <tr>
 	                                <td>번호</td>
-	                                <td>카테고리</td>
-	                                <td>게시글 제목</td>
 	                                <td>작성자</td>
 	                                <td>내용</td>
 	                                <td>작성일</td>
+	                                <td>게시판</td>
+	                                <td>게시글 제목</td>
 	                                <td>삭제</td>
 	                            </tr>
 	                        </thead>

@@ -128,10 +128,11 @@
 								<option ${(param.f == "title")?"selected":"" } value="title">제목</option>
 								<option ${(param.f == "writer_id")?"selected":"" }
 									value="writer_id">작성자</option>
-							</select> <input class="search__input" name="q" type="text"
-								value="${param.q }"> <select class="selectbox" name="b">
-								<option>모든 게시판</option>
-								<c:forEach var="c" items="${cList }">
+							</select>
+							<input class="search__input" name="q" type="text" value="${param.q }">
+								<select class="selectbox" name="b">
+									<option>게시판</option>
+									<c:forEach var="c" items="${cList }">
 									<option ${(param.b == c.name)? "selected" : "" }
 										value="${c.name }">${c.name }</option>
 								</c:forEach>
@@ -162,7 +163,7 @@
 	                            <tr>
 	                                <td>번호</td>
 	                                <td>작성자</td>
-	                                <td>카테고리</td>
+	                                <td>게시판</td>
 	                                <td>제목</td>
 	                                <td>댓글수</td>
 	                                <td>작성일</td>

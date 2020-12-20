@@ -126,7 +126,7 @@
 									value="writer_id">작성자</option>
 							</select> <input name="q" class="search__input" type="text"
 								value="${param.q }"> <select name="b" class="selectbox">
-								<option>모든 게시판</option>
+								<option>게시판</option>
 								<c:forEach var="c" items="${cList }">
 									<option ${(param.b == c.name)? "selected" : "" }
 										value="${c.name }">${c.name }</option>
@@ -158,7 +158,7 @@
 	                            <tr>
 	                                <td>번호</td>
 	                                <td>작성자</td>
-	                                <td>카테고리</td>
+	                                <td>게시판</td>
 	                                <td>제목</td>
 	                                <td>작성일</td>
 	                                <td>조회수</td>
