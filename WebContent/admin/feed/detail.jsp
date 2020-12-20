@@ -112,10 +112,10 @@
           
           <div class="prev-next-button">
             <div>
-              <a href="#">이전글</a>
+              <a href="?id=${prev.id}">이전글</a>
             </div>
             <div>
-              <a href="#">다음글</a>
+              <a href="?id=${next.id}">다음글</a>
             </div>
           </div>
           

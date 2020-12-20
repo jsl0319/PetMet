@@ -14,23 +14,26 @@ import com.petmet.web.entity.ReportedFeedView;
 import com.petmet.web.service.FeedReportService;
 
 @WebServlet("/admin/feed/list")
+
 public class ListController extends HttpServlet{
+	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String page_ = request.getParameter("p");
+		
+		String page_ = request.getParameter("p"); 
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
-		
 		
 		String field = "reported_id";
 		String query = "";
 		
 		int page = 1;
-		int num = 13;
+		int size = 13;
 		
 		
-		if(page_!= null && !page_.equals(""))
+		
+		if(page_ != null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 		if(field_ != null && !field_.equals(""))
 			field = field_;
@@ -39,11 +42,17 @@ public class ListController extends HttpServlet{
 		
 		
 		
-		
 		FeedReportService service = new FeedReportService();
-		List<ReportedFeedView> list = service.getViewList(field,query,page,num);
+		List<ReportedFeedView> list = service.getViewList(field, query, page, size);
+		
+		int count = service.getViewListCount(field, query);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
+		
 	}
+	
+
 }

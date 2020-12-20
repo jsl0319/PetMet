@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,14 +84,15 @@
                 <h1 class="d-none">신고 리스트</h1>
                 
                   <form class="search__container search__form">
-                    <select class="selectbox">
-                      <option>닉네임</option>
+                  
+                    <select class="selectbox" name="f">
+                      <option  value="reported_id">닉네임</option>
                     </select>
                     
                     <input type="text" class="search__input" name="q" value="${param.q}">
                     <input class="button search-button" type="submit" value="검색" />
                     
-                    </form>
+                   </form>
                     
                   <table class="list-table" border="1">
                     <thead>
@@ -102,6 +105,7 @@
                     </thead>
   
                     <tbody>
+                    
                     <c:forEach var = "rf" items="${list}">
                       <tr>
                         <td>${rf.num}</td>
@@ -110,33 +114,52 @@
                         <td>${rf.action}</td>
                       </tr>
                     </c:forEach>
+                    
                     </tbody>
                   </table>
+                  
               </section>
   
-              <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-              <c:set var="startNum" value="${page-(page-1)%5}"/>
+  
+  
+              <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
+              <c:set var="startNum" value="${ page-(page-1)%5}"/>
+              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/13), '.')}"/>
+              <div>${lastNum } </div>
               
               <div class="pager">
               
+              	<c:if test="${startNum >= 1 }">
+	                <div>
+	                  <a href="?p=1"><i class="fas fa-angle-double-left"></i></a>
+	                </div>
+                </c:if>
+                
+                <c:if test="${startNum >= 1 }">
                 <div>
-                  <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
                 </div>
-                <div>
-                  <a href="#"><i class="fas fa-angle-left"></i></a>
-                </div>
+                </c:if>
                 
                 <ul>
-              <c:forEach var="i" begin="0" end="4">		
-                <li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+              <c:forEach var="i" begin="0" end="4">	
+              	<c:if test="${(startNum+i)<=lastNum }">
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}">${startNum + i}</a></li>
+              	</c:if>
               </c:forEach>
                 </ul>
+                
+                <c:if test="${startNum+4 < lastNum }">
                 <div>
-                  <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                  <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
                 </div>
+                 </c:if>
+                
+                <c:if test="${startNum+4 < lastNum }">
                 <div>
-                  <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                  <a href="${lastNum }"><i class="fas fa-angle-double-right"></i></a>
                 </div>
+                 </c:if>
               </div>
             </main>
           </div>
