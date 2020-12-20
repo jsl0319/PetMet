@@ -65,12 +65,14 @@ public class CommentsService {
 		return result;
 	}
 
-	public Comments getPrev(int id) {
-		return commentsDao.get(id - 1);
+	public CommentView getPrev(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM COMMENT_VIEW WHERE ID = " + id + ") + 1";
+		return commentsDao.getView(subQuery);
 	}
 
-	public Comments getNext(int id) {
-		return commentsDao.get(id + 1);
+	public CommentView getNext(int id) {
+		String subQuery = "WHERE NUM = (SELECT NUM FROM COMMENT_VIEW WHERE ID = " + id + ") - 1";
+		return commentsDao.getView(subQuery);
 	}
 	
 	public Board getBoard(int boardId) {

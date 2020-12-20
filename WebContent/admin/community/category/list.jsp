@@ -20,10 +20,11 @@
 </head>
 
 <body>
+	<!----------------------------------header--------------------------------------->
 	<header class="header">
 		<div class="container">
 			<div class="logo">
-				<a href="../../index.html"> <i class="fas fa-dog fa-3x"></i>
+				<a href="../../index"> <i class="fas fa-dog fa-3x"></i>
 					<h1>PetMet</h1>
 				</a>
 			</div>
@@ -31,16 +32,16 @@
 			<nav>
 				<h1 class="d-none">헤더 목록</h1>
 				<ul>
-					<li><a href="../../user/index.html"> <i
+					<li><a href="../../member/list"> <i
 							class="fas fa-users fa-2x"></i> <span>USER</span>
 					</a></li>
-					<li><a href="../../feed/index.html"> <i
+					<li><a href="../../feed/list"> <i
 							class="fas fa-camera-retro fa-2x"></i> <span>FEED</span>
 					</a></li>
-					<li><a href="../index.html"> <i
+					<li><a href="../notice/list"> <i
 							class="fas fa-american-sign-language-interpreting fa-2x"></i> <span>COMMUNITY</span>
 					</a></li>
-					<li><a href="../../petplace/index.html"> <i
+					<li><a href="../../petplace/list"> <i
 							class="fas fa-map-marked-alt fa-2x"></i> <span>PLACE</span>
 					</a></li>
 				</ul>
@@ -56,9 +57,11 @@
 		</div>
 	</header>
 
+	<!----------------------------------body--------------------------------------->
 	<section class="body">
 		<h1 class="d-none">Content Body</h1>
 		<div class="container">
+			<!----------------------------------aside--------------------------------------->
 			<aside class="aside">
 				<h1 class="d-none">Aside 메뉴</h1>
 
@@ -83,13 +86,14 @@
 				</nav>
 			</aside>
 
+			<!----------------------------------main--------------------------------------->
 			<main class="main">
 				<h1 class="d-none">Main Content</h1>
 
 				<section>
 					<h1 class="d-none">게시글 리스트</h1>
 
-					<input class="button addBtn" type="button" value="+ Add Category">
+					<input class="button addBtn" type="button" value="+ Add">
 
 					<form action="list" method="post">
 
