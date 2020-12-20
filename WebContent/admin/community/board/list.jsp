@@ -23,10 +23,11 @@
 </head>
 
 <body>
+	<!----------------------------------header--------------------------------------->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../../index.html">
+                <a href="../../index">
                   <i class="fas fa-dog fa-3x"></i>
                   <h1>PetMet</h1>
                 </a>
@@ -36,25 +37,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                   <li>
-                    <a href="../../user/index.html">
+                    <a href="../../member/list">
                       <i class="fas fa-users fa-2x"></i>
                       <span>USER</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../../feed/index.html">
+                    <a href="../../feed/list">
                       <i class="fas fa-camera-retro fa-2x"></i>
                       <span>FEED</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../index.html">
+                    <a href="../notice/list">
                       <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                       <span>COMMUNITY</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../../petplace/index.html">
+                    <a href="../../petplace/list">
                       <i class="fas fa-map-marked-alt fa-2x"></i>
                       <span>PLACE</span>
                     </a>
@@ -72,9 +73,11 @@
         </div>
     </header>
 
+	<!----------------------------------body--------------------------------------->
     <section class="body">
         <h1 class="d-none">Content Body</h1>
         <div class="container">
+        	<!----------------------------------aside--------------------------------------->
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
                 <nav>
@@ -112,6 +115,7 @@
                 </nav>
             </aside>
 
+			<!----------------------------------main--------------------------------------->
             <main class="main">
                 <h1 class="d-none">Main Content</h1>
 

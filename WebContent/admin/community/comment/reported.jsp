@@ -18,10 +18,11 @@
 </head>
 
 <body>
+	<!----------------------------------header--------------------------------------->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../../index.html">
+                <a href="../../index">
                   <i class="fas fa-dog fa-3x"></i>
                   <h1>PetMet</h1>
                 </a>
@@ -31,25 +32,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                   <li>
-                    <a href="../../user/index.html">
+                    <a href="../../member/list">
                       <i class="fas fa-users fa-2x"></i>
                       <span>USER</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../../feed/index.html">
+                    <a href="../../feed/list">
                       <i class="fas fa-camera-retro fa-2x"></i>
                       <span>FEED</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../index.html">
+                    <a href="../notice/list">
                       <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                       <span>COMMUNITY</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../../petplace/index.html">
+                    <a href="../../petplace/list">
                       <i class="fas fa-map-marked-alt fa-2x"></i>
                       <span>PLACE</span>
                     </a>
@@ -67,10 +68,12 @@
         </div>
     </header>
 
-    <section class="body">
+	<!----------------------------------body--------------------------------------->
+    <section class="body feed-screen">
         <h1 class="d-none">Content Body</h1>
 
         <div class="container">
+        <!----------------------------------aside--------------------------------------->
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
 
@@ -109,13 +112,14 @@
                 </nav>
             </aside>
 
-            <main class="main">
+			<!----------------------------------main--------------------------------------->
+            <main class="main feed-index">
                 <h1 class="d-none">Main Content</h1>
 
-                <section>
+                <section class="main-section">
 					<h1 class="d-none">검색폼</h1>
 
-					<form class="search__container" action="list">
+					<form class="search__container search__form" action="list">
 						<select class="selectbox" name="f">
 							<option ${(param.f == "title")?"selected":"" } value="title">게시글 제목</option>
 							<option ${(param.f == "writer_id")?"selected":"" } value="writer_id">작성자</option>
@@ -136,7 +140,7 @@
 						<input class="search__input" type="date" name="sd" value="${param.sd }">
 						-
 						<input class="search__input" type="date" name="ed" value="${param.ed }">
-						<input class="button" type="submit" value="검색">
+						<input class="button search-button" type="submit" value="검색">
 
 					<div>
 						<select name="s">
@@ -150,13 +154,6 @@
 				
                 <section>
                     <h1 class="d-none">신고된 댓글 관리</h1>
-                    <div>
-                        <select>
-                            <option value="20개">20개</option>
-                            <option value="50개">50개</option>
-                            <option value="50개">100개</option>
-                        </select>
-                    </div>
                     
                     <form action="reported" method="post">
                     
