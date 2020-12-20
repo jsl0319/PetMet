@@ -126,9 +126,7 @@
                     <tr>
                         <th>등록일</th>
                        <td> <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
-                        <th>공개여부</th>
-                         
-                                 <td><input name="check_delete" type="checkbox"> 비공개</td>
+                       
                             
                     </tr>
     

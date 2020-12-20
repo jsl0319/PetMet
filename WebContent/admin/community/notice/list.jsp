@@ -144,6 +144,7 @@
 
                 <section>
                     <h1>공지사항 관리</h1>
+                    <form method="post" action="list">
 
                     <table class="list-table">
                         <thead>
@@ -160,6 +161,7 @@
 
                         <tbody>
                          <c:forEach var="n" items="${list}">
+                       
                             <tr>
                                 <td>${n.id}</td>
                   <td><a href="detail?id=${n.id}">${n.title}</a></td>
@@ -167,22 +169,25 @@
                                 <td>${n.writerId}</td>
                                 <td> ${n.regdate}</td>
                                 <td>${n.hit}</td>
-                              
-                                <td><input type="checkbox"></td>
+                         
+                         
+                                <td><input name="del-id" value ="${n.id}" type="checkbox"></td>
                                 
                             </tr>
                                  </c:forEach>
                         </tbody>
                     </table>
+                
                 </section>
 
                 <section>
                     <h1 class="d-none">이벤트 버튼</h1>
                   
-                    <a href="del?id=${n.id}"><input class="button" type="button" value="모두 삭제"></a>
+                   <input class="button" type="submit" value="모두 삭제">
+                    
                     <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
                 </section>
-
+ 				</form>
 				  <c:set var="page" value="${(param.p==null)?1:param.p}"/>
 				<c:set var="startNum" value="${page-(page-1)%5}"/>
                 <div class="pager">
@@ -205,7 +210,7 @@
                     </div>
                   </div>
 
-
+  
 
 			</main>
         </div>

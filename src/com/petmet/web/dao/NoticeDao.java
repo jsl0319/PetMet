@@ -21,8 +21,8 @@ public interface NoticeDao {
 	
 	List<Notice> getList(String query, String startDate, String endDate, int page, int num);
 
-	List<Notice> pubList(List<Integer> ids);
-	int deleteList(List<Integer> ids);
 	
+	int getdelNotceAll(int[] ids);
+	Notice getLastId();
 
 }

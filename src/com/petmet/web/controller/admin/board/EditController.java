@@ -44,11 +44,11 @@ public class EditController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int pub_ = Integer.parseInt(request.getParameter("pub"));
-		boolean pub = true;
-		if(pub_ ==1){
-			pub = false;
-		}
+//		int pub_ = Integer.parseInt(request.getParameter("pub"));
+//		boolean pub = true;
+//		if(pub_ ==1){
+//			pub = false;
+//		}
 		
 		Collection<Part> fileParts = request.getParts();
 

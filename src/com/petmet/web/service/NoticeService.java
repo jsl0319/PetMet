@@ -42,11 +42,31 @@ public class NoticeService {
 	}
 
 
-	public static List<Notice> getList(String query,  String startDate, String endDate,
+	public List<Notice> getList(String query, String startDate, String endDate,
 			int page, int num) {
 		// TODO Auto-generated method stub
-		return null;
+		return noticeDao.getList(query,startDate,endDate,
+			page,num);
 	}
+
+
+	public int delNoticeAll(int[] ids) {
+		
+		return noticeDao.getdelNotceAll(ids);
+	}
+
+
+	public int getLastId() {
+	Notice n =noticeDao.getLastId();
+	
+		if(n==null)
+			return 0;
+		else 
+			return n.getId();
+		
+	
+	}
+
 
 
 

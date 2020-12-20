@@ -27,7 +27,8 @@ import com.petmet.web.service.NoticeService;
 public class RegController extends HttpServlet {
 
 	private NoticeService service;
-
+	
+	
 	public RegController() {
 		service = new NoticeService();
 	}
@@ -35,7 +36,7 @@ public class RegController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		
 		
 
@@ -51,7 +52,7 @@ public class RegController extends HttpServlet {
 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int pub_ = Integer.parseInt(request.getParameter("pub"));
+//		int pub_ = Integer.parseInt(request.getParameter("pub"));
 //		boolean pub = true;
 //		if(pub_ ==1){
 //			pub = false;
@@ -97,7 +98,11 @@ public class RegController extends HttpServlet {
 		}
 		
 		NoticeService service = new NoticeService();
-		Notice notice = new Notice(0,title,content,0,null,null,null);
+		int newId= service.getLastId()+1;
+
+		Notice notice = new Notice(newId,title,content,0,null,null,null);
+		
+	
 				
 		notice.setFiles(fileNames);
 		notice.setWriterId("관리자");
