@@ -7,6 +7,7 @@ window.addEventListener("load", function() {
 	var id = searchParam('id');
 
 	var request = new window.XMLHttpRequest();
+	
 	request.onload = function() {
 
 		var location = JSON.parse(request.responseText);
@@ -26,8 +27,6 @@ window.addEventListener("load", function() {
 
 		marker.setMap(map);
 		
-		
-
 	}
 
 	request.open("GET", "/api/petplace/detail?id=" + id, true);
