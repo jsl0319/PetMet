@@ -6,28 +6,35 @@ public class Notice {
 	private int id;
 	private String title;
 	private String content;
-	private int pub;
+	
 	private int hit;
 	private String writerId;
 	private Date regdate;
 	private String files;
 
+	
 	public Notice() {
 		
+		
 	}
-	
-	public Notice(int id,String title, String content, int pub, int hit, String writerId, Date regdate, String files
+
+	public Notice(int id,String title, String content, int hit, String writerId, Date regdate, String files
 			) {
 
 		this.title = title;
 		this.content = content;
-		this.pub = pub;
+	
 		this.hit = hit;
 		this.writerId = writerId;
 		this.regdate = regdate;
 		this.files = files;
 		this.id = id;
 	}
+
+
+	
+
+	
 
 	public String getTitle() {
 		return title;
@@ -45,13 +52,7 @@ public class Notice {
 		this.content = content;
 	}
 
-	public int getpub() {
-		return pub;
-	}
 
-	public void setpub(int pub) {
-		this.pub = pub;
-	}
 
 	public int getHit() {
 		return hit;
@@ -95,7 +96,7 @@ public class Notice {
 
 	@Override
 	public String toString() {
-		return "Notice [title=" + title + ", content=" + content + ", pub=" + pub + ", hit=" + hit
+		return "Notice [title=" + title + ", content=" + content + ", hit=" + hit
 				+ ", writerId=" + writerId + ", regdate=" + regdate + ", files=" + files + ", id=" + id + "]";
 	}
 

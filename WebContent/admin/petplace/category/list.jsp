@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-    <script src="list.js"></script>
+    <script src="../../../js/admin/community/category/list.js"></script>
 </head>
 
 <body>
