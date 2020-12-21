@@ -67,7 +67,6 @@
                   <li><a href="doglist">강아지 목록</a></li>
                   <li><a href="matchinglist">매칭 목록</a></li>
                   <li><a href="reportlist">신고 목록</a></li>
-
                 </ul>
             </aside>
             <main id="main" class="main">

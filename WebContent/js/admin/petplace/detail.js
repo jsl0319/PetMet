@@ -5,6 +5,7 @@ window.addEventListener("load", function() {
 	}
 
 	var id = searchParam('id');
+	
 
 	var request = new window.XMLHttpRequest();
 	
@@ -12,8 +13,8 @@ window.addEventListener("load", function() {
 
 		var location = JSON.parse(request.responseText);
 
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
+		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+		var	mapOption = {
 			center: new kakao.maps.LatLng(location.longitude, location.latitude), // 지도의 중심좌표
 			level: 3 // 지도의 확대 레벨
 		};
