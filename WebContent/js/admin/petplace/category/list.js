@@ -7,7 +7,7 @@ window.addEventListener("load", function() {
 	var ev = "even";
 	// 행 추가
 	addBtn.onclick = function() {
-		if(index%2==0){
+		if (index % 2 == 0) {
 			index++;
 			ev = "even";
 		}
@@ -15,7 +15,7 @@ window.addEventListener("load", function() {
 			index++;
 			ev = "";
 		}
-		var tr = '  <tr class='+ev+ '> \
+		var tr = '  <tr class=' + ev + '> \
 					<td></td> \
                     <td><input name="new-name" type="text""></td> \
                     <td></td> \
@@ -32,5 +32,5 @@ window.addEventListener("load", function() {
 			e.target.previousElementSibling.name = "changed-id";
 		}
 	})
-	
+
 });
