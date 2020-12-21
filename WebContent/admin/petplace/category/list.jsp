@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="../../../js/admin/community/category/list.js"></script>
 </head>
 
 <body>
@@ -107,6 +108,8 @@
                 <form action="list" method="post">
                 <section>
                     <h1 class="d-none">카테고리 관리</h1>
+                    
+                    <input class="button addBtn" type="button" value="+ Add">
                 
                     <table class="list-table">
                         <thead>
@@ -115,16 +118,18 @@
                                 <td class="col-m">카테고리명</td>
                                 <td class="col-m">등록일</td>
                                 <td class="col-m">수정일</td>
-                                <td class="col-s">수정</td>
                                 <td class="col-s">삭제</td>
                             </tr>
                         </thead>
                 
                         <tbody>
                         <c:forEach var="ppc" items="${list}">
-                            <tr  ${ppc.num%2==0?"class='even'":""}>
+                            <tr ${ppc.num%2==0?"class='even'":""}>
                                 <td>${ppc.num}</td>
-                                <td><a href="">${ppc.name}</a></td>
+                                <td>
+                                	<input hidden type="text" name="id" value="${ppc.id}">
+                                	<input type="text" name="name" value="${ppc.name}">
+                                </td>
                                 <td>${ppc.regDate}</td>
                                 <c:choose>
                                 	<c:when test="${ppc.regDate eq ppc.editDate}">
@@ -134,8 +139,7 @@
                                 		<td>${ppc.editDate}</td>
                                 	</c:otherwise>
                                 </c:choose>
-                                <td><input type="radio" name="edit-clicked"></td>
-                                <td><input name="del" value="${ppc.id }" type="checkbox"></td>
+                                <td><input name="check" value="${ppc.id }" type="checkbox"></td>
                             </tr>
                         </c:forEach>    
                         </tbody>
@@ -144,9 +148,8 @@
 
                 <section>
                     <h1 class="d-none">버튼</h1>
-                    <input class="button" type="submit" value="등록">
-                    <input class="button" type="submit" value="수정">
-                    <input class="button" type="submit" value="선택 삭제">
+                    <input class="button" type="submit" name="button" value="저장">
+                    <input class="button" type="submit" name="button" value="선택 삭제">
                 </section>
 				</form>
 				

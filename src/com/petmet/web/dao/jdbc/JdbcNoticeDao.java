@@ -24,7 +24,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "INSERT INTO NOTICE(TITLE,CONTENT) VALUES(?,?)";
+		String sql = "INSERT INTO NOTICE(ID,TITLE,CONTENT,WRITERID) VALUES(?,?,?,?)";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -33,8 +33,10 @@ public class JdbcNoticeDao implements NoticeDao {
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, notice.getTitle());
-			st.setString(2, notice.getContent());
+			st.setInt(1, notice.getId());
+			st.setString(2, notice.getTitle());
+			st.setString(3, notice.getContent());
+			st.setString(4, notice.getWriterId());
 
 			result = st.executeUpdate();
 			st.close();
@@ -59,7 +61,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=? WHERE ID =?";
+		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=?,HIT=? WHERE ID =? ";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -70,7 +72,8 @@ public class JdbcNoticeDao implements NoticeDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());
-			st.setInt(3, notice.getId());
+			st.setInt(3, notice.getHit());
+			st.setInt(4, notice.getId());
 
 			result = st.executeUpdate();
 			st.close();
@@ -144,14 +147,14 @@ public class JdbcNoticeDao implements NoticeDao {
 				// int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				int pub = rs.getInt("pub");
+				Boolean pub = rs.getBoolean("pub");
 				int hit = rs.getInt("hit");
 
 				String writerId = rs.getString("writerid");
 				Date regdate = rs.getDate("regdate");
 
 				String files = rs.getString("files");
-				n = new Notice(id, title, content, pub, hit, writerId, regdate, files);
+				n = new Notice(id, title, content, hit, writerId, regdate, files);
 
 			}
 			;
@@ -172,34 +175,32 @@ public class JdbcNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public List<Notice> getList() {
+	public Notice getLastId() {
+		Notice n = null;
+
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "SELECT * FROM NOTICE ";
-		Connection con;
-		List<Notice> list = new ArrayList<>();
+		String sql = "SELECT * FROM NOTICE WHERE ID = (SELECT MAX(ID) FROM NOTICE)";
+		// Connection con;
+		// List<Notice> list = new ArrayList<>();
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection(url, uid, pwd);
+			Connection con = DriverManager.getConnection(url, uid, pwd);
 
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 
-			while (rs.next()) {
+			if (rs.next()) {
 
 				int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				int pub = rs.getInt("pub");
 				int hit = rs.getInt("hit");
-
 				String writerId = rs.getString("writerid");
 				Date regdate = rs.getDate("regdate");
-
 				String files = rs.getString("files");
 
-				Notice n = new Notice(id, title, content, pub, hit, writerId, regdate, files);
+				n = new Notice(id, title, content, hit, writerId, regdate, files);
 
-				list.add(n);
 			}
 			;
 
@@ -214,60 +215,200 @@ public class JdbcNoticeDao implements NoticeDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return n;
+	}
+
+//
+
+//
+//	@Override
+//	public List<Notice> getList() {
+//		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+//		String sql = "SELECT * FROM NOTICE ";
+//		Connection con;
+//		List<Notice> list = new ArrayList<>();
+//		try {
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			con = DriverManager.getConnection(url, uid, pwd);
+//
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+//
+//			while (rs.next()) {
+//
+//				int id = rs.getInt("id");
+//				String title = rs.getString("title");
+//				String content = rs.getString("content");
+//				Boolean pub = rs.getBoolean("pub");
+//				int hit = rs.getInt("hit");
+//
+//				String writerId = rs.getString("writerid");
+//				Date regdate = rs.getDate("regdate");
+//
+//				String files = rs.getString("files");
+//
+//				Notice n = new Notice(id, title, content,  hit, writerId, regdate, files);
+//
+//				list.add(n);
+//			}
+//			;
+//
+//			rs.close();
+//			st.close();
+//			con.close();
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return list;
+//	}
+//
+
+	@Override
+	public List<Notice> getList(String query, String startDate, String endDate, int startIndex, int endIndex) {
+
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "SELECT * "
+				+ "FROM("
+				+ "    SELECT ROWNUM NUM, N.* "
+				+ "    FROM("
+				+ "        SELECT * FROM NOTICE ORDER BY REGDATE ASC"
+				+ "    ) N"
+				+ "		WHERE TITLE LIKE '%" + query + "%'"
+				+ " 	AND REGDATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'" 
+				+ ") "
+				+ "WHERE NUM BETWEEN '"+startIndex+"' AND '"+endIndex+"' ";
+				
+				
+			
+
+		List<Notice> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				int hit = rs.getInt("hit");
+				String writerId = rs.getString("writerid");
+				Date regdate = rs.getDate("regdate");
+				String files = rs.getString("files");
+
+				Notice n = new Notice(id, title, content, hit, writerId, regdate, files);
+
+				list.add(n);
+
+			}
+			;
+			rs.close();
+			st.close();
+			con.close();
+
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
+
 	}
 
 	@Override
-	public int deleteList(List<Integer> ids) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getdelNotceAll(int[] ids) {
+		int result = 0;
+
+		String params = "";
+
+		for (int i = 0; i < ids.length; i++) {
+			params += ids[i];
+
+			if (i < ids.length - 1) //
+				params += ",";
+		}
+
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "DELETE FROM NOTICE WHERE ID IN (" + params + ")";
+		List<Notice> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			Statement st = con.createStatement();
+
+			result = st.executeUpdate(sql);
+
+			st.close();
+			con.close();
+
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	@Override
-	public List<Notice> getList(int category, String searchContent, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public int getCount(String query, String startDate, String endDate) {
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd = DBContext.PWD;
 
-	@Override
-	public List<Notice> getList(int pubId, boolean pub, boolean nonPub, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String sql = "SELECT COUNT(ID) COUNT FROM "
+						+ "(SELECT ROWNUM NUM,M.* FROM "
+						+ "(SELECT * FROM NOTICE "
+						+ "WHERE TITLE LIKE ? AND "
+						+ "REGDATE>? AND "
+						+ "REGDATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)"
+						+ " ORDER BY REGDATE DESC) M ) ";
+						
 
-	@Override
-	public List<Notice> getList(int pubId, boolean pub, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		int count = 0;
 
-	@Override
-	public List<Notice> getList(Date startDate, Date endDate, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			st.setString(2, startDate);
+			st.setString(3, endDate);
+			ResultSet rs = st.executeQuery();
 
-	@Override
-	public List<Notice> getList(int category, String searchContent, boolean pub, boolean nonPub, Date startDate,
-			Date endDate, int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+			if(rs.next())
+				count = rs.getInt("COUNT");
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
-	@Override
-	public List<Notice> pubList(List<Integer> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return count;
 
-	@Override
-	public List<Notice> getList(int page) {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
 
 
 	
-
 }

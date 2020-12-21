@@ -1,18 +1,19 @@
-<%@page import="com.petmet.web.entity.Notice" %>
-<%@page import="com.petmet.web.service.NoticeService" %>
+<%@page import="com.petmet.web.entity.Question" %>
+<%@page import="com.petmet.web.service.QuestionService" %>
+<%@page import="com.petmet.web.entity.Answer" %>
+<%@page import="com.petmet.web.service.AnswerService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 공지사항관리 > 상세페이지</title>
+    <title>관리자 > 커뮤니티 > QnA > 답변등록</title>
 
     <link rel="stylesheet" href="../../../css/admin/components/table/detail.css" type="text/css">
     <link rel="stylesheet" href="../../../css/style.css">
@@ -36,25 +37,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                   <li>
-                    <a href="../user/index.html">
+                    <a href="../user/index">
                       <i class="fas fa-users fa-2x"></i>
                       <span>USER</span>
                     </a>
                   </li>
                   <li>
-                    <a href="index.html">
+                    <a href="index">
                       <i class="fas fa-camera-retro fa-2x"></i>
                       <span>FEED</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../community/index.html">
+                    <a href="../community/notice/list">
                       <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                       <span>COMMUNITY</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../petplace/list.html">
+                    <a href="../petplace/list">
                       <i class="fas fa-map-marked-alt fa-2x"></i>
                       <span>PLACE</span>
                     </a>
@@ -79,88 +80,105 @@
 
                             <li>
                                 <i class="fas fa-bullhorn"></i>
-                                <a href="../notice/list.html">공지사항관리</a>
+                                <a href="../notice/list">공지사항관리</a>
                             </li>
 
                             <li>
                                 <i class="fas fa-bullhorn"></i>
-                                <a href="list.html">QnA 관리</a>
+                                <a href="list">QnA 관리</a>
                             </li>
 
                             <li>
                                 <i class="fas fa-clipboard-list"></i>
-                                <a href="../category/list.html">카테고리 관리</a>
+                                <a href="../category/list">카테고리 관리</a>
                             </li>
 
                             <li>
                                 <i class="fas fa-clipboard-list"></i>
-                                <a href="../board/list.html">게시글 관리</a>
+                                <a href="../board/list">게시글 관리</a>
                             </li>
 
                             <li>
                                 <i class="fas fa-ban"></i>
-                                <a href="../board/reported.html">신고된 게시글 관리</a>
+                                <a href="../board/reported">신고된 게시글 관리</a>
                             </li>
 
                             <li>
                                 <i class="fas fa-comment"></i>
-                                <a href="../comment/list.html">댓글 관리</a>
+                                <a href="../comment/list">댓글 관리</a>
                             </li>
 
                             <li>
                                 <i class="fas fa-comment-slash"></i>
-                                <a href="../comment/reported.html">신고된 댓글 관리</a>
+                                <a href="../comment/reported">신고된 댓글 관리</a>
                             </li>
                         </ul>
                     </nav>
             </aside>
-            <main class = "main">
-                <h1>공지사항 상세 내용</h1>
-                <section>
-                <table class ="detail-table">
-                    <tr>
-                        <th>제목</th>
-                        <td colspan="3">${n.title}</td>
-                    </tr>
-    
-                    <tr>
-                        <th>등록일</th>
-                       <td> <fmt:formatDate value="${n.regdate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
-                       
-                            
-                    </tr>
-    
-                    <tr>
-    
-                    <th>첨부파일</th>
-                    <td>
-                    <c:forTokens var="fileName" items="${n.files}" delims="," varStatus = "st">
-                                   <fmt:formatDate value="${n.regdate}" pattern="yyyy"/>
-                                      <a download href="/static/notice/2020/${n.id}/${fileName}">${fileName} </a> 
-                                      <c:if test = "${st.last==false }">
-                                      /
-                                      </c:if>
-                                   </c:forTokens>
-                 </td>
-                </tr>
-                    <tr class="content">
-                        <td colspan="4">${n.content}</td>
-                    </tr>
-                </table>
-            </section>
-    
-                <section class = "button-list">
-                    <h1 class= "d-none">이벤트 버튼</h1>
-    
-                 <a href="list">  <input class="button" type="button" value="목록"></a>
-               		<a href="edit?id=${n.id}">     <input class="button" type="button" value="수정"></a>
-                 <a href="del?id=${n.id}"><input class="button" type="button" value="삭제"></a>
-                </section>
-            </main>
 
-        </div>
+
+       
+    
+
+    
+    <main class = "main">
+        <h1>QnA 상세페이지</h1>
+        <section>
+        <table class="detail-table">
+         
+            <tr>
+                <th>제목</th>
+                <td colspan="3">${q.title}</td>
+            </tr>
+
+            <tr>
+                <th>작성자</th>
+                <td >${q.writerId}</td>
+                <th>등록일</th>
+                <td>${q.regDate}</td>
+            </tr>
+            
+            <tr>
+                <th>공개</th>
+                <td>${q.pub}</td>
+           
+            </tr>
+
+          
+
+            <tr class="content">
+                <td colspan="4">${q.content}</td>
+            </tr>
+        </table>
     </section>
+           
+            <section>
+        <form method="post">
+     
+                <table class= "detail-table">
+                    <tr>
+                    <th>관리자 답변<th>
+                    </tr>
+                 <tr class="content">
+                 
+                     <td><textarea name = "content" style="width: 900px; height: 200px; resize: none;">${a.content}</textarea></td>
+                 </tr>
+        </table>
+           </section>
+        
 
+        <section>
+            <h1 class="d-none">이벤트 버튼</h1>
+
+           <a href="list">     <input class="button"type="button" value="목록"></a>
+            <input  class="button" type="submit" value="등록">
+        </section>
+      
+       </form>
+
+    </main>
+    </div>
+</section>
 
 
 

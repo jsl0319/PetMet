@@ -1,14 +1,22 @@
+<%@page import="com.petmet.web.entity.Question"%>
+<%@page import="com.petmet.web.service.QuestionService"%>
+
+
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 공지사항관리 > 등록</title>
+    <title>관리자 > 커뮤니티> QnA관리 > 리스트 </title>
 
-    <link rel="stylesheet" href="../../../css/admin/components/table/detail.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
 
@@ -42,7 +50,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="../community/notic/list">
+                    <a href="../community/notice/list">
                       <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                       <span>COMMUNITY</span>
                     </a>
@@ -108,54 +116,92 @@
                         </ul>
                     </nav>
             </aside>
-            <main class = "main">
-             <form method="post" enctype="multipart/form-data">
-                <h1>공지사항 글쓰기</h1>
+
+            <main class="main">
+                <h1 class="d-none">Main Content</h1>
+
                 <section>
-                    <table class ="detail-table">
+                    <h1 class="d-none">검색폼</h1>
+
+                    <form class="search__container">
+
                         
-                     <thead>
-                    <tr>
-                        <th>제목</th>
-                        <td>
-                            <input type="text" name="title" />
-                        </td>
-                      
-                        </tr>
+                        <label class="search__title">제목</label>
+                        <input class="search__input" type="text" name= "q" value="${param.q}">
+                        
 
-                        <tr>
-                           
-                            <th>공개여부</th>
-                            
-                         	
-                            
-                            <th>첨부파일</th>
-                           <td>
-                            <input type="button" value="이미지">
-                            <input type="button" value="동영상">
-                            <input type="button" value="링크">
-                            <input type="button" value="파일">
-                        </td>
+                        <!-- <label class="search__title" >공개여부</label> -->
+                        <input type="checkbox" id="cb1">
+                        <label for="cb1"></label> <label class="search__title">공개</label>
+                        <input type="checkbox" id="cb2">
+                        <label for="cb2"></label> <label class="search__title">비공개</label>
 
-                        </tr>
-                    </thead>
-                      
-                      <tbody>
-    
-                        <tr class="content">
-                           <td colspan="4"><textarea class="content" name="content" style="width: 900px; height: 500px; resize: none;"></textarea></td>
-                        </tr>
-    
-                    </tbody>
-                    </table>
-                    <input class="button" type="submit" value="등록">
-                     <a class="button" href="list">취소</a>
-                     
+
+                    <label class="search__title" >일자</label>
+                         <input class="search__input" type="date"name ="sd" value="${param.sd}">~<input class="search__input" type="date" name="ed"  value="${param.ed}">
+                         <input class="button" type="submit" value="검색">
+                    </form>
                 </section>
-    
-                </form>
-            </main>
 
+                <section>
+                    <br>
+                    <h1>QnA 리스트</h1>
+
+                    <table class="list-table">
+                        <thead>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>작성자</td>
+                                <td>등록일</td>
+                                <td>공개</td>
+                                <td>답변</td>
+                                <td>답변일자</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                         <c:forEach var="q" items="${qlist}">
+                         <tr>
+                            <td>${q.id}</td>
+                            <td><a href="detail?id=${q.id}">${q.title}</a></td>
+                            <td>${q.writerId}</td>
+                            <td>${q.regDate}</td>
+                            <td>${q.pub}</td>
+                            <td>${q.isAnswer}</td>
+                            <td>${q.anDate}</td>
+                            </tr>
+                             </c:forEach>
+                        </tbody>
+                    </table>
+                </section>
+
+
+              <c:set var="page" value="${(param.p==null)?1:param.p}"/>
+				<c:set var="startNum" value="${page-(page-1)%5}"/>
+                <div class="pager">
+                    <div>
+                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div>
+                      <a href="#"><i class="fas fa-angle-left"></i></a>
+                    </div>
+                    <ul>
+                    <c:forEach var="i" begin="0" end="4">		
+						<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+					</c:forEach>
+					</ul>
+                    <div>
+                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div>
+                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                  </div>
+        
+
+
+            </main>
         </div>
     </section>
 

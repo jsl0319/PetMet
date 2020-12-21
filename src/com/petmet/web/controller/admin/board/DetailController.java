@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.petmet.web.entity.Notice;
 import com.petmet.web.service.NoticeService;
 
@@ -21,6 +22,10 @@ public class DetailController extends HttpServlet {
 
 		NoticeService service = new NoticeService();
 		Notice n =service.get(id);
+		
+		
+		n.setHit(n.getHit()+1);
+		service.update(n);
 		
 		
 		request.setAttribute("n", n);

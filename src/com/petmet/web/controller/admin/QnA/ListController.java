@@ -1,7 +1,6 @@
-package com.petmet.web.controller.admin.board;
+package com.petmet.web.controller.admin.QnA;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,11 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.petmet.web.entity.Answer;
+import com.petmet.web.entity.BoardCategory;
+import com.petmet.web.entity.BoardView;
 import com.petmet.web.entity.Notice;
+import com.petmet.web.entity.Question;
+import com.petmet.web.service.AnswerService;
+import com.petmet.web.service.BoardService;
 import com.petmet.web.service.NoticeService;
+import com.petmet.web.service.QuestionService;
 
-@WebServlet("/admin/community/notice/list")
+
+@WebServlet("/admin/community/QnA/list")
 public class ListController extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,39 +54,24 @@ public class ListController extends HttpServlet {
 	
 
 
-		NoticeService service = new NoticeService();
-		List<Notice> list = service.getList(query, startDate, endDate, page, size);
-		int count = service.getCount(query,startDate,endDate);
-		request.setAttribute("list", list);
-		request.setAttribute("count", count);
-		request.setAttribute("size", size);
+		QuestionService qservice = new QuestionService();
+		List<Question> qlist = qservice.getList(query, startDate, endDate, page, size);
+		
+		
+		
+		
+		request.setAttribute("qlist",qlist);
+		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		
-		
-		//----------------------------------------------------
-		NoticeService service = new NoticeService();
 
-		String[] delIds = request.getParameterValues("del-id");
-
-		if (delIds != null) {
-			System.out.print(delIds);
-			int[] ids = new int[delIds.length];
-				
-			for (int i = 0; i < delIds.length; i++)
-				ids[i] = Integer.parseInt(delIds[i]);
-			int result = service.delNoticeAll(ids);
-			
-		}
-
-
-		response.sendRedirect("list");// 겟요청을 받기위해 재요청.
+	
+	
+	
+	
+	
 
 	}
 
-}
+
