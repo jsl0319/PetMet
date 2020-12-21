@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="list.js"></script>
 </head>
 
 <body>
@@ -149,7 +150,6 @@
                 <section>
                     <h1 class="d-none">버튼</h1>
                     <a class="button" href="reg">Pet Place 등록</a>
-                    <input class="button" type="submit" value="선택 공개">
                     <input class="button"  type="submit" value="선택 삭제">
                 </section>
 				</form>
