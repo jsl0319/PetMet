@@ -95,4 +95,9 @@ public class PetPlaceService {
 		
 	}
 
+	public List<PetPlaceView> getViewList() {
+		
+		return ppDao.getViewList();
+	}
+
 }

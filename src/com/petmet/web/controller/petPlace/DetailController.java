@@ -26,12 +26,12 @@ public class DetailController extends HttpServlet {
 		PetPlaceService ppService = new PetPlaceService();
 		PetPlaceView p = ppService.getView(id);
 		
+		request.setAttribute("p", p);
+
 		ReviewService rService = new ReviewService();
 		List<ReviewView> list = rService.getViewList(id);
 		
 		request.setAttribute("list", list);
-		
-		request.setAttribute("p", p);
 		request.getRequestDispatcher("/petplace/detail.jsp").forward(request, response);
 
 	}
