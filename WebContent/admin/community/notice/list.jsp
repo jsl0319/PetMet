@@ -1,3 +1,4 @@
+
 <%@page import="com.petmet.web.entity.Notice"%>
 <%@page import="com.petmet.web.service.NoticeService"%>
 <%@page import="java.util.List"%>
@@ -6,6 +7,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,159 +16,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 > 커뮤니티 > 공지사항 관리</title>
+
     <link rel="stylesheet" href="../../css/reset.css" type="text/css">
-    <!-- <link rel="stylesheet" href="../../css/admin/community/index.css" type="text/css"> -->
+
+    <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+
+
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
     <header class="header">
-        <h1><a href="../index.html">logo</a></h1>
-
-        <nav>
-            <h1>헤더 메뉴 목록</h1>
-
-            <ul>
-                <li><a href="../user/index.html">User</a></li>
-                <li><a href="../feed/index.html">Feed</a></li>
-                <li><a href="../index.html">Community</a></li>
-                <li><a href="../place/index.html">Place</a></li>
-            </ul>
-        </nav>
-
-        <nav>
-            <h1>바로가기 메뉴</h1>
-              
-                    <il><a href="">로그아웃</a></li>
-            
-        </nav>
-    </header>
-
-    <section class="body">
-        <h1>Content Body</h1>
-
-        <aside class="aside">
-            <h1>Aside 메뉴</h1>
+        <div class="container">
+            <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
 
             <nav>
-                <h1>세부 메뉴 목록</h1>
+                <h1 class="d-none">헤더 메뉴 목록</h1>
 
                 <ul>
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="list.html">공지사항관리</a>
+                        <a href="list">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>MEMBER</span>
+                        </a>
                     </li>
-
                     <li>
-                        <i class="fas fa-bullhorn"></i>
-                        <a href="../QnA/list.html">QnA 관리</a>
+                        <a href="../feed/index">
+                            <i class="fas fa-camera-retro fa-2x"></i>
+                            <span>FEED</span>
+                        </a>
                     </li>
-
                     <li>
-                        <i class="fas fa-clipboard-list"></i>
-                        <a href="../category/list.html">카테고리 관리</a>
+                        <a href="../notice/list">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
                     </li>
-                    
                     <li>
-                        <i class="fas fa-clipboard-list"></i>
-                        <a href="../board/list.html">게시글 관리</a>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-ban"></i>
-                        <a href="../board/reported.html">신고된 게시글 관리</a>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-comment"></i>
-                        <a href="../comment/list.html">댓글 관리</a>
-                    </li>
-
-                    <li>
-                        <i class="fas fa-comment-slash"></i>
-                        <a href="../comment/reported.html">신고된 댓글 관리</a>
+                        <a href="../petplace/list">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
+
             
-          
-        </aside>
+        </div>
+    </header>
 
-        <main class="main">
-            <h1>Main Content</h1>
+    <section class="body">
+        <h1 class="d-none">Content Body</h1>
+        <div class="container">
 
-            <section>
-                <h1>검색폼</h1>
+            <aside class="aside">
+                <h1 class="d-none">Aside 메뉴</h1>
 
-                <form>
-                    <label for="title">제목</label>
-                    <input type="text" id="title">
-                    <label for="date">일자</label>
-                    <input type="date">~<input type="date">
-                    <input type="button" value="검색">
-                </form>
-            </section>
+                <nav>
+                    <h1 class= "d-none">세부 메뉴 목록</h1>
 
-            <section>
-                <h1>공지사항 관리</h1>
-
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <td>번호</td>
-                            <td>제목</td>
-                            <td>작성자</td>
-                            <td>작성일</td>
-                            <td>조회수</td>
-                            <td>공개여부</td>
-                            <td>삭제</td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                     <c:forEach var="n" items="${list}"> 
-                     
-                        <tr>
-                            <td>${n.id}</td>
-                            <td><a href="detail?id=${n.id}">${n.title}></a></td>
-                            <td>${n.writerId}</td>
-                            <td>${n.regdate}</td>
-                            <td>${n.hit}</td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </section>
-
-            <section>
-                <h1>이벤트 버튼</h1>
-                <a href=""><input type="button" value="모두 공개"></a>
-                <a href=""><input type="button" value="모두 삭제"></a>
-                <a href="reg.html"><input type="button" value="게시글 작성"></a>
-            </section>
-
-            <section>
-                <h1>페이지 목록</h1>
-               
-                    이전
                     <ul>
-                    <c:forEach begin = "0" end="4" varStatus="st">
-                        <li><a href="?p=1&t=&q=">${i+1}</a></li>
-                       </c:forEach>
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="../notice/list">공지사항관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-bullhorn"></i>
+                            <a href="../QnA/list">QnA 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-clipboard-list"></i>
+                            <a href="../category/list">카테고리 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-clipboard-list"></i>
+                            <a href="../board/list">게시글 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-ban"></i>
+                            <a href="../board/reported">신고된 게시글 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-comment"></i>
+                            <a href="../comment/list">댓글 관리</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-comment-slash"></i>
+                            <a href="../comment/reported">신고된 댓글 관리</a>
+                        </li>
                     </ul>
-                    다음 
-            </section>
+                </nav>
 
 
-        </main>
+            </aside>
+
+            <main class="main">
+                <h1 class="d-none">Main Content</h1>
+
+                <section>
+                    <h1 class="d-none">검색폼</h1>
+                   <form class="search__container">
+                        
+                        <label class="search__title">제목</label>
+                        <input class="search__input" type="text" name= "q" value="${param.q}">
+                        
+
+                  
+
+                         <label class="search__title" >일자</label>
+                         <input class="search__input" type="date"name ="sd" value="${param.sd}">~<input class="search__input" type="date" name="ed"  value="${param.ed}">
+                         <input class="button" type="submit" value="검색">
+     
+                    </form>
+                </section>
+
+                <section>
+                    <h1>공지사항 관리</h1>
+                    <form method="post" action="list">
+
+                    <table class="list-table">
+                        <thead>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>작성자</td>
+                                <td>작성일</td>
+                                <td>조회수</td>
+                                
+                                <td>삭제</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                         <c:forEach var="n" items="${list}">
+                       
+                            <tr>
+                                <td>${n.id}</td>
+                  <td><a href="detail?id=${n.id}">${n.title}</a></td>
+
+                                <td>${n.writerId}</td>
+                                <td> ${n.regdate}</td>
+                                <td>${n.hit}</td>
+                         
+                         
+                                <td><input name="del-id" value ="${n.id}" type="checkbox"></td>
+                                
+                            </tr>
+                                 </c:forEach>
+                        </tbody>
+                    </table>
+                
+                </section>
+
+                <section>
+                    <h1 class="d-none">이벤트 버튼</h1>
+                  
+                   <input class="button" type="submit" value="모두 삭제">
+                    
+                    <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
+                </section>
+ 				</form>
+				 <c:set var="page" value="${(empty param.p)?1:param.p}"/>
+		        <c:set var="startNum" value="${page-(page-1)%5}"/>
+		        <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/num),'.')}"/>
+                <div class="pager">
+                    <div>
+                      <a href="?p=${1}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-left"></i></a>
+                    </div>
+                    <div>
+                      <c:if test="${startNum>1}">
+                    	<a href="?p=${startNum-5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
+                    </c:if>
+                    <c:if test="${startNum<=1}">
+                    	<a href="?p=${1}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
+                    </c:if>
+                     
+                    </div>
+                    <ul>
+                    <c:forEach var="i" begin="0" end="4">	
+                    <c:if test="${(startNum+i)<=lastNum}">
+						<li><a class="${page==(startNum+i)?"current-page":""}" href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+					</c:if>	
+					</c:forEach>
+					</ul>
+                    <div>
+                    <c:if test="${startNum+5<=lastNum}">
+                    	<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </c:if>
+                    <c:if test="${startNum+5>lastNum}">
+                    	<a href="?p=${lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </c:if>
+                      
+                    </div>
+                    <div>
+                      <a href="?p=${lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                  </div>
+            </main>
+				 
+        </div>
     </section>
 
     <footer class="footer">
-        <h1>Footer</h1>
+        <div class="container">
+            <h1>Footer</h1>
+        </div>
     </footer>
 
 </body>
+
 </html>
