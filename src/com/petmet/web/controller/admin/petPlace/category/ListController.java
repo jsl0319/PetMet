@@ -72,11 +72,7 @@ public class ListController extends HttpServlet {
 			String[] newNames = request.getParameterValues("new-name");
 			String[] changed = request.getParameterValues("changed");
 			String[] changedIds = request.getParameterValues("changed-id");
-			
-			for(String s : changedIds)
-				System.out.println(s);
-			
-			
+
 			// 삽입
 			if (newNames != null) {
 				List<PetPlaceCategory> list = new ArrayList<>();
