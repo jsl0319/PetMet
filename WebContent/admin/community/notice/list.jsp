@@ -7,6 +7,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,13 +43,13 @@
 
                 <ul>
                     <li>
-                        <a href="list.html">
+                        <a href="list">
                             <i class="fas fa-users fa-2x"></i>
                             <span>MEMBER</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../feed/index.html">
+                        <a href="../feed/index">
                             <i class="fas fa-camera-retro fa-2x"></i>
                             <span>FEED</span>
                         </a>
@@ -59,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../petplace/list.html">
+                        <a href="../petplace/list">
                             <i class="fas fa-map-marked-alt fa-2x"></i>
                             <span>PLACE</span>
                         </a>
@@ -188,31 +190,44 @@
                     <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
                 </section>
  				</form>
-				  <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-				<c:set var="startNum" value="${page-(page-1)%5}"/>
+				 <c:set var="page" value="${(empty param.p)?1:param.p}"/>
+		        <c:set var="startNum" value="${page-(page-1)%5}"/>
+		        <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/num),'.')}"/>
                 <div class="pager">
                     <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                      <a href="?p=${1}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-left"></i></a>
                     </div>
                     <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
+                      <c:if test="${startNum>1}">
+                    	<a href="?p=${startNum-5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
+                    </c:if>
+                    <c:if test="${startNum<=1}">
+                    	<a href="?p=${1}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
+                    </c:if>
+                     
                     </div>
                     <ul>
-                    <c:forEach var="i" begin="0" end="4">		
-						<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+                    <c:forEach var="i" begin="0" end="4">	
+                    <c:if test="${(startNum+i)<=lastNum}">
+						<li><a class="${page==(startNum+i)?"current-page":""}" href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
+					</c:if>	
 					</c:forEach>
 					</ul>
                     <div>
-                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    <c:if test="${startNum+5<=lastNum}">
+                    	<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </c:if>
+                    <c:if test="${startNum+5>lastNum}">
+                    	<a href="?p=${lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                    </c:if>
+                      
                     </div>
                     <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                      <a href="?p=${lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-right"></i></a>
                     </div>
                   </div>
-
-  
-
-			</main>
+            </main>
+				 
         </div>
     </section>
 

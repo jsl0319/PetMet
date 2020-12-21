@@ -61,7 +61,7 @@ public class JdbcNoticeDao implements NoticeDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=? WHERE ID =?";
+		String sql = "UPDATE NOTICE SET TITLE=?,CONTENT=?,HIT=? WHERE ID =? ";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -72,7 +72,8 @@ public class JdbcNoticeDao implements NoticeDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, notice.getTitle());
 			st.setString(2, notice.getContent());
-			st.setInt(3, notice.getId());
+			st.setInt(3, notice.getHit());
+			st.setInt(4, notice.getId());
 
 			result = st.executeUpdate();
 			st.close();
@@ -268,11 +269,22 @@ public class JdbcNoticeDao implements NoticeDao {
 //
 
 	@Override
-	public List<Notice> getList(String query, String startDate, String endDate, int page, int num) {
+	public List<Notice> getList(String query, String startDate, String endDate, int startIndex, int endIndex) {
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "SELECT * FROM NOTICE WHERE TITLE LIKE '%" + query + "%' AND " + "REGDATE>'" + startDate + "' AND "
-				+ "REGDATE<(SELECT TO_DATE('" + endDate + "','YY-MM-DD')+1 FROM DUAL)";
+		String sql = "SELECT * "
+				+ "FROM("
+				+ "    SELECT ROWNUM NUM, N.* "
+				+ "    FROM("
+				+ "        SELECT * FROM NOTICE ORDER BY REGDATE ASC"
+				+ "    ) N"
+				+ "		WHERE TITLE LIKE '%" + query + "%'"
+				+ " 	AND REGDATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'" 
+				+ ") "
+				+ "WHERE NUM BETWEEN '"+startIndex+"' AND '"+endIndex+"' ";
+				
+				
+			
 
 		List<Notice> list = new ArrayList<>();
 
@@ -356,4 +368,47 @@ public class JdbcNoticeDao implements NoticeDao {
 		return result;
 	}
 
+	@Override
+	public int getCount(String query, String startDate, String endDate) {
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd = DBContext.PWD;
+
+		String sql = "SELECT COUNT(ID) COUNT FROM "
+						+ "(SELECT ROWNUM NUM,M.* FROM "
+						+ "(SELECT * FROM NOTICE "
+						+ "WHERE TITLE LIKE ? AND "
+						+ "REGDATE>? AND "
+						+ "REGDATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)"
+						+ " ORDER BY REGDATE DESC) M ) ";
+						
+
+		int count = 0;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%"+query+"%");
+			st.setString(2, startDate);
+			st.setString(3, endDate);
+			ResultSet rs = st.executeQuery();
+
+			if(rs.next())
+				count = rs.getInt("COUNT");
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return count;
+
+	}
+
+
+	
 }

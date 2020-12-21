@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.petmet.web.entity.Answer;
-
+import com.petmet.web.entity.Board;
 import com.petmet.web.entity.Question;
 import com.petmet.web.service.AnswerService;
 
@@ -39,6 +39,11 @@ import com.petmet.web.service.QuestionService;
 			request.setAttribute("q", q);
 			request.setAttribute("a", a);
 			
+			
+			
+//			q.setAnDate(a.getRegDate());
+//			qservice.update(q);
+//			
 		
 			request.getRequestDispatcher("detail.jsp").forward(request,response);
 		}
@@ -71,8 +76,10 @@ import com.petmet.web.service.QuestionService;
 			else
 				aservice.update(answer);
 				
-				
-			
+		
+
+		
+		
 			
 			response.sendRedirect("list");
 		}

@@ -24,5 +24,7 @@ public interface NoticeDao {
 	
 	int getdelNotceAll(int[] ids);
 	Notice getLastId();
-
+	
+	int getCount(String query, String startDate, String endDate);
+	
 }

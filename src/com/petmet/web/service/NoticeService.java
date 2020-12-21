@@ -68,6 +68,15 @@ public class NoticeService {
 	}
 
 
+	public int getCount(String query, String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return noticeDao.getCount(query,startDate,endDate);
+	}
+
+
+	
+
+
 
 
 

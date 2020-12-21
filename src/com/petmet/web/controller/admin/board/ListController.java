@@ -23,12 +23,13 @@ public class ListController extends HttpServlet {
 		String startDate_ = request.getParameter("sd");
 		String endDate_ = request.getParameter("ed");
 		String page_ = request.getParameter("p");
+		String size_ = request.getParameter("s");
 
 		String query = "";
 		String startDate = "01-01-01";
 		String endDate = "22-12-31";
 		int page = 1;
-		int num = 10;
+		int size = 10;
 
 		if (query_ != null && !query_.equals(""))
 			query = query_;
@@ -42,14 +43,15 @@ public class ListController extends HttpServlet {
 		if (endDate_ != null && !endDate_.equals(""))
 			endDate = endDate_;
 		
+	
 
 
 		NoticeService service = new NoticeService();
-		
-		
-
-		List<Notice> list = service.getList(query, startDate, endDate, page, num);
+		List<Notice> list = service.getList(query, startDate, endDate, page, size);
+		int count = service.getCount(query,startDate,endDate);
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+		request.setAttribute("size", size);
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}
 

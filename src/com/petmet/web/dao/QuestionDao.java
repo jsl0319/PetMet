@@ -14,5 +14,7 @@ public interface QuestionDao {
 	Question get(int id);
 	List<Question> getList();
 	int updateAnswer(Question q);
+	List<Question> getList(String query, String startDate, String endDate, int page, int size);
+	int getCount(String query, String startDate, String endDate);
 
 }

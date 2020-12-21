@@ -11,7 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.petmet.web.dao.QuestionDao;
-
+import com.petmet.web.entity.Board;
+import com.petmet.web.entity.Notice;
 import com.petmet.web.entity.Question;
 
 public class JdbcQuestionDao implements QuestionDao {
@@ -25,7 +26,7 @@ public class JdbcQuestionDao implements QuestionDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "INSERT INTO NOTICE(TITLE,CONTENT) VALUES(?,?)";
+		String sql = "INSERT INTO QUESTION(TITLE,CONTENT) VALUES(?,?)";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -71,6 +72,7 @@ public class JdbcQuestionDao implements QuestionDao {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, question.getTitle());
 			st.setString(2, question.getContent());
+			
 			st.setInt(3, question.getId());
 
 			result = st.executeUpdate();
@@ -170,49 +172,49 @@ public class JdbcQuestionDao implements QuestionDao {
 		return q;
 	}
 
-	@Override
-	public List<Question> getList() {
-		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "SELECT * FROM QUESTION";
-		Connection con;
-		List<Question> list = new ArrayList<>();
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection(url, uid, pwd);
-
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-
-			while (rs.next()) {
-
-				int id = rs.getInt("ID");
-				String writerId = rs.getString("WRITER_ID");
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT");
-				int pub = rs.getInt("PUB");
-				Date regdate = rs.getDate("REG_DATE");
-				String isAnswer = rs.getString("IS_ANSWER");
-				Date anDate = rs.getDate("AN_DATE");
-
-				Question q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
-
-				list.add(q);
-			}
-			;
-
-			rs.close();
-			st.close();
-			con.close();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return list;
-	}
+//	@Override
+//	public List<Question> getList() {
+//		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+//		String sql = "SELECT * FROM QUESTION";
+//		Connection con;
+//		List<Question> list = new ArrayList<>();
+//		try {
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			con = DriverManager.getConnection(url, uid, pwd);
+//
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+//
+//			while (rs.next()) {
+//
+//				int id = rs.getInt("ID");
+//				String writerId = rs.getString("WRITER_ID");
+//				String title = rs.getString("TITLE");
+//				String content = rs.getString("CONTENT");
+//				int pub = rs.getInt("PUB");
+//				Date regdate = rs.getDate("REG_DATE");
+//				String isAnswer = rs.getString("IS_ANSWER");
+//				Date anDate = rs.getDate("AN_DATE");
+//
+//				Question q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
+//
+//				list.add(q);
+//			}
+//			;
+//
+//			rs.close();
+//			st.close();
+//			con.close();
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return list;
+//	}
 
 	@Override
 	public int updateAnswer(Question q) {
@@ -247,5 +249,77 @@ public class JdbcQuestionDao implements QuestionDao {
 		return result;
 		
 	}
+
+	@Override
+	public List<Question> getList(String query, String startDate, String endDate, int startIndex, int endIndex) {
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "SELECT * "
+				+ "FROM("
+				+ "    SELECT ROWNUM NUM, N.* "
+				+ "    FROM("
+				+ "        SELECT * FROM QUESTION ORDER BY REG_DATE DESC"
+				+ "    ) N"
+				+ "		WHERE TITLE LIKE '%" + query + "%'"
+				+ " 	AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'" 
+				+ ") "
+				+ "WHERE NUM BETWEEN '"+startIndex+"' AND '"+endIndex+"' ";
+				
+				
+			
+
+		List<Question> list = new ArrayList<>();
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd);
+			PreparedStatement st = con.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				String writerId = rs.getString("WRITER_ID");
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				int pub = rs.getInt("PUB");
+				Date regdate = rs.getDate("REG_DATE");
+				String isAnswer = rs.getString("IS_ANSWER");
+				Date anDate = rs.getDate("AN_DATE");
+
+				Question q = new Question(id, writerId, title, content, pub, regdate,isAnswer,anDate);
+
+				list.add(q);
+
+			}
+			;
+			rs.close();
+			st.close();
+			con.close();
+
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int getCount(String query, String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Question> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

@@ -51,6 +51,14 @@ private QuestionDao questionDao;
 		
 	}
 
+
+	public List<Question> getList(String query, String startDate, String endDate, int page, int size) {
+		
+		return questionDao.getList(query,startDate,endDate,page,size);
+	}
+
+
+	
 	
 
 
