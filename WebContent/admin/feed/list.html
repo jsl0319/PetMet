@@ -98,14 +98,7 @@
                     </thead>
   
                     <tbody>
-                    <c:forEach var = "rf" items="${list}">
-                      <tr>
-                        <td>${rf.num}</td>
-                        <td><a href="feed-detail.jsp">${rf.reportedId}</a></td>
-                        <td><a href="detail-list">${rf.repoCnt }</a></td>
-                        <td>${rf.action}</td>
-                      </tr>
-                    </c:forEach>
+                  
                     </tbody>
                   </table>
               </section>
@@ -116,8 +109,7 @@
                   <a class="search__title button" href="del?id=${fr.id}">삭제</a>
               </section>
   
-              <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-              <c:set var="startNum" value="${page-(page-1)%5}"/>
+              
               
               <div class="pager">
               
@@ -125,20 +117,25 @@
                   <a href="#"><i class="fas fa-angle-double-left"></i></a>
                 </div>
                 <div>
-                  <a href="#"><i class="fas fa-angle-left"></i></a>
+                  <a href="?p=1"><i class="fas fa-angle-left"></i></a>
                 </div>
                 
                 <ul>
-              <c:forEach var="i" begin="0" end="4">		
-                <li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
-              </c:forEach>
+                <li><a href="?p=1" >1</a></li>
+                <li><a href="?p=2" >2</a></li>
+                <li><a href="?p=3" >3</a></li>
+                <li><a href="?p=4" >4</a></li>
+                <li><a href="?p=5" >5</a></li>
                 </ul>
+                
                 <div>
-                  <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
+                  <a href="?p=5"><i class="fas fa-angle-right"></i></a>
                 </div>
+                
                 <div>
                   <a href="#"><i class="fas fa-angle-double-right"></i></a>
                 </div>
+                
               </div>
             </main>
           </div>

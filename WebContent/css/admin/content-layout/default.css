@@ -80,7 +80,7 @@
 .body .main {
   display: flex;
   flex-direction: column;
-  background: white;
+  background-color: pink;
 }
 
 .body .main section {
