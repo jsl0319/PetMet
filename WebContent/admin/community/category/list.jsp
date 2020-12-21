@@ -16,7 +16,7 @@
 	href="../../../css/admin/components/form/default.css" type="text/css">
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
-<script src="list.js"></script>
+<script src="../../../js/admin/community/category/list.js"></script>
 </head>
 
 <body>
