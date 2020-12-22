@@ -63,8 +63,3 @@ window.addEventListener("load", function() {
 	request.send();
 
 });
-
-
-
-
-
