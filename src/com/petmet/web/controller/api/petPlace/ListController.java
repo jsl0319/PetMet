@@ -1,6 +1,7 @@
 package com.petmet.web.controller.api.petPlace;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,22 +13,22 @@ import com.google.gson.Gson;
 import com.petmet.web.entity.PetPlaceView;
 import com.petmet.web.service.PetPlaceService;
 
-@WebServlet("/api/petplace/detail")
-public class DetailController extends HttpServlet {
+@WebServlet("/api/petplace/list")
+public class ListController extends HttpServlet {
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		int id = Integer.parseInt(request.getParameter("id"));
-
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/json; charset=UTF-8");
+		
 		PetPlaceService service = new PetPlaceService();
-		PetPlaceView p = service.getView(id);
-
-		String[] location = p.getLocation().split(",");
-		String json = "{\"longitude\":\"" + location[0] + "\"," + "\"latitude\":\"" + location[1] + "\"}";
-
+		List<PetPlaceView> list = service.getViewList();
+		
+		String json = new Gson().toJson(list);
 		response.getWriter().println(json);
 
 	}
+
 }

@@ -9,17 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/match/list")
-public class ListController extends HttpServlet {
+
+public class ListController extends HttpServlet{
+	//get vs post
+//	MatchInfoService m = new MatchInfoService();
+//	List<MatchInfoView> list = m.getViewList();
+//	
+//	for(MatchInfoView mi: list) 
+//		System.out.println(mi);
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//get vs post
-//		MatchInfoService m = new MatchInfoService();
-//		List<MatchInfoView> list = m.getViewList();
-//		
-//		for(MatchInfoView mi: list) 
-//			System.out.println(mi);
 		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
-		
 	}
+	
 }

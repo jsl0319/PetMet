@@ -12,4 +12,5 @@ public interface MatchInfoDao {
 	List<MatchInfoView> getViewList();
 	List<MatchInfoView> getViewList(int startIndex, int endIndex);
 	
+
 }

@@ -7,10 +7,16 @@ import com.petmet.web.dao.jdbc.JdbcMatchInfoDao;
 import com.petmet.web.entity.MatchInfoView;
 
 public class MatchInfoService {
-	MatchInfoDao matchInfoDao = new JdbcMatchInfoDao();
 
-	public List<MatchInfoView> getViewList(){
-		return matchInfoDao.getViewList(0,0);
+	private MatchInfoDao matchInfoDao;
+	public MatchInfoService() {
+		matchInfoDao = new JdbcMatchInfoDao();
 	}
-
+	
+	public List<MatchInfoView> getViewList(){
+		
+		int startIndex =1;
+		int endIndex = 10;
+		return matchInfoDao.getViewList(startIndex,endIndex);
+	}
 }

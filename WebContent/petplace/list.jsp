@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c3f482aeb9a4689468c97bf295d500e"></script>
+    <script src="../js/petplace/list.js"></script>
 </head>
 
 <body>
@@ -74,18 +75,8 @@
                     <ul>
                         <li>
                             <i class="fas fa-map-marked-alt"></i>
-                            <a href="list">&nbsp;&nbsp;Pet Place 관리</a>
+                            <a href="list">&nbsp;&nbsp;Pet Place</a>
                         </li>
-                        <li>
-                            <i class="fas fa-chalkboard"></i>
-                            <a href="category/list">&nbsp;&nbsp;카테고리 관리</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-clipboard"></i>
-                            <a href="review/list">&nbsp;&nbsp;후기 관리</a>
-                        </li>
-                    </ul>
-
                 </nav>
 
             </aside>
@@ -115,6 +106,14 @@
                     </form>
 
                 </section>
+                
+                <section>
+                
+                	<div id="map" style="width:450px;height:300px;">
+                		
+                	</div>
+                
+                </section>
 
 				<form action="list" method= "post">
                 <section>
@@ -128,7 +127,6 @@
                                 <td class="col-l">주소</td>
                                 <td class="col-m">작성일</td>
                                 <td>조회수</td>
-                                <td>삭제</td>
                             </tr>
                         </thead>
 
@@ -140,18 +138,12 @@
                                     <td>${p.address}</td>
                                     <td>${p.regDate}</td>
                                     <td>${p.hit}</td>
-                                    <td><input name="del" value="${p.id }" type="checkbox"></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 </section>
 
-                <section>
-                    <h1 class="d-none">버튼</h1>
-                    <a class="button" href="reg">Pet Place 등록</a>
-                    <input class="button"  type="submit" value="선택 삭제">
-                </section>
 				</form>
                 <section>
                     <c:set var="page" value="${(empty param.p)?1:param.p}"/>
@@ -196,4 +188,4 @@
 
 </body>
 
-</html>tml>
+</html>
