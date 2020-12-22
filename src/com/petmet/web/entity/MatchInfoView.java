@@ -10,15 +10,16 @@ public class MatchInfoView extends MatchInfo{
 	private int neut;
 	private Date birth;
 	private int weight;
-	private String content;
+	private String dogContent;
 	private String character;
 	private String files;
+	private String masterNickname;
 	private int masterGender;
 	private String address;
 	
 //				부모		dogId					regPub			content
 	public MatchInfoView(int id, Date regDate, int pub, String matchContent,
-			String name, String kind, int gender, int neut, Date birth, int weight, String content, String character, String files, int masterGender, String address) {
+			String name, String kind, int gender, int neut, Date birth, int weight, String dogContent, String character, String files, String masterNickname, int masterGender, String address) {
 		super(id, regDate, pub, matchContent);
 		this.name = name;
 		this.kind = kind;
@@ -26,13 +27,16 @@ public class MatchInfoView extends MatchInfo{
 		this.neut = neut;
 		this.birth = birth;
 		this.weight = weight;
-		this.content = content;
+		this.dogContent = dogContent;
 		this.character = character;
 		this.files = files;
+		this.masterNickname = masterNickname;
 		this.masterGender = masterGender;
 		this.address = address;
 	}
 	
+	
+
 	public int getId() {
 		return super.getDogId();
 	}
@@ -106,17 +110,6 @@ public class MatchInfoView extends MatchInfo{
 		this.weight = weight;
 	}
 
-
-	public String getContent() {
-		return content;
-	}
-
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-
 	public String getCharacter() {
 		return character;
 	}
@@ -156,14 +149,42 @@ public class MatchInfoView extends MatchInfo{
 		this.address = address;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMasterNickname() {
+		return masterNickname;
+	}
+
+	public void setMasterNickname(String masterNickname) {
+		this.masterNickname = masterNickname;
+	}
+
+	public void setDogContent(String dogContent) {
+		this.dogContent = dogContent;
+	}
+	
+	public String getDogContent() {
+		return dogContent;
+	}
+
 	@Override
 	public String toString() {
 		return "MatchInfoView [name=" + name + ", kind=" + kind + ", gender=" + gender + ", neut=" + neut + ", birth="
-				+ birth + ", weight=" + weight + ", content=" + content + ", character=" + character + ", files="
-				+ files + ", masterGender=" + masterGender + ", address=" + address + ", toString()=" + super.toString()
-				+ "]";
+				+ birth + ", weight=" + weight + ", dogContent=" + dogContent + ", character=" + character + ", files="
+				+ files + ", masterNickname=" + masterNickname + ", masterGender=" + masterGender + ", address="
+				+ address + "]";
 	}
+
 	
+
+	
+
 	
 
 

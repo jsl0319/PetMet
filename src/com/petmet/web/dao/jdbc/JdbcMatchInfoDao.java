@@ -42,9 +42,10 @@ public class JdbcMatchInfoDao implements MatchInfoDao{
 				int neut= rs.getInt("NEUT");
 				Date birth= rs.getDate("BIRTH"); 
 				int weight= rs.getInt("WEIGHT");
-				String content= rs.getString("CONTENT");
+				String dogContent= rs.getString("DOG_CONTENT");
 				String character= rs.getString("CHARACTER");
 				String files= rs.getString("FILES");
+				String masterNickname = rs.getString("MASTER_NICKNAME");
 				int masterGender= rs.getInt("MASTER_GENDER");
 				String address = rs.getString("ADDRESS");
 
@@ -59,9 +60,10 @@ public class JdbcMatchInfoDao implements MatchInfoDao{
 											neut,
 											birth,
 											weight,
-											content,
+											dogContent,
 											character,
 											files,
+											masterNickname,
 											masterGender,
 											address
 											);

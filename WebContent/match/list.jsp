@@ -147,7 +147,7 @@
                     	<a href=""><i class="fas fa-angle-left"></i></a>
                     
                   
-                    	<a href=""><i class="fas fa-angle-left"></i></a>
+            
                     
                      
                     </div>
@@ -160,7 +160,7 @@
                    
                     	<a href=""><i class="fas fa-angle-right"></i></a>
                    
-                    	<a href=""><i class="fas fa-angle-right"></i></a>
+                    
                   
                       
                     </div>
