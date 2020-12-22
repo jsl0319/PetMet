@@ -1,7 +1,6 @@
 package com.petmet.web.controller.api.match;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.petmet.web.entity.MatchInfoView;
 import com.petmet.web.service.MatchInfoService;
-
+//jsp가 아닌 ajax 비동기적으로 데이터 가져오기
+//전체 레코드 가져오기 V
+//필터(쿼리)
+//페이징
 @WebServlet("/api/match/list")
 public class ListController extends HttpServlet {
 

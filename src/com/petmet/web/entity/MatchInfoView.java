@@ -2,7 +2,7 @@ package com.petmet.web.entity;
 
 import java.util.Date;
 
-public class MatchInfoView extends MatchInfo{
+public class MatchInfoView extends MatchInfo {
 
 	private String name;
 	private String kind;
@@ -16,10 +16,11 @@ public class MatchInfoView extends MatchInfo{
 	private String masterNickname;
 	private int masterGender;
 	private String address;
-	
+
 //				부모		dogId					regPub			content
-	public MatchInfoView(int id, Date regDate, int pub, String matchContent,
-			String name, String kind, int gender, int neut, Date birth, int weight, String dogContent, String character, String files, String masterNickname, int masterGender, String address) {
+	public MatchInfoView(int id, Date regDate, int pub, String matchContent, String name, String kind, int gender,
+			int neut, Date birth, int weight, String dogContent, String character, String files, String masterNickname,
+			int masterGender, String address) {
 		super(id, regDate, pub, matchContent);
 		this.name = name;
 		this.kind = kind;
@@ -34,77 +35,66 @@ public class MatchInfoView extends MatchInfo{
 		this.masterGender = masterGender;
 		this.address = address;
 	}
-	
-	
 
 	public int getId() {
 		return super.getDogId();
 	}
-	
+
 	public void setId(int dogId) {
-		 super.setDogId(dogId);
+		super.setDogId(dogId);
 	}
-	
+
 	public int getPub() {
 		return super.getRegPub();
 	}
-	
+
 	public void setPub(int regPub) {
-		 super.setRegPub(regPub);
+		super.setRegPub(regPub);
 	}
-	
+
 	public String getMatchContent() {
 		return super.getContent();
 	}
-	
+
 	public void setMatchContent(String content) {
-		 super.setContent(content);
+		super.setContent(content);
 	}
-	
+
 	public String getKind() {
 		return kind;
 	}
-
 
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
 
-
 	public int getGender() {
 		return gender;
 	}
-
 
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
 
-
 	public int getNeut() {
 		return neut;
 	}
-
 
 	public void setNeut(int neut) {
 		this.neut = neut;
 	}
 
-
 	public Date getBirth() {
 		return birth;
 	}
-
 
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
-
 	public int getWeight() {
 		return weight;
 	}
-
 
 	public void setWeight(int weight) {
 		this.weight = weight;
@@ -114,36 +104,29 @@ public class MatchInfoView extends MatchInfo{
 		return character;
 	}
 
-
 	public void setCharacter(String character) {
 		this.character = character;
 	}
-
 
 	public String getFiles() {
 		return files;
 	}
 
-
 	public void setFiles(String files) {
 		this.files = files;
 	}
-
 
 	public int getMasterGender() {
 		return masterGender;
 	}
 
-
 	public void setMasterGender(int masterGender) {
 		this.masterGender = masterGender;
 	}
 
-
 	public String getAddress() {
 		return address;
 	}
-
 
 	public void setAddress(String address) {
 		this.address = address;
@@ -168,7 +151,7 @@ public class MatchInfoView extends MatchInfo{
 	public void setDogContent(String dogContent) {
 		this.dogContent = dogContent;
 	}
-	
+
 	public String getDogContent() {
 		return dogContent;
 	}
@@ -180,12 +163,5 @@ public class MatchInfoView extends MatchInfo{
 				+ files + ", masterNickname=" + masterNickname + ", masterGender=" + masterGender + ", address="
 				+ address + "]";
 	}
-
-	
-
-	
-
-	
-
 
 }

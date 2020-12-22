@@ -7,6 +7,7 @@ import com.petmet.web.dao.jdbc.JdbcMatchInfoDao;
 import com.petmet.web.entity.MatchInfoView;
 
 public class MatchInfoService {
+
 	private MatchInfoDao matchInfoDao;
 	public MatchInfoService() {
 		matchInfoDao = new JdbcMatchInfoDao();
