@@ -1,6 +1,7 @@
-package com.petmet.web.controller.api.petPlace;
+package com.petmet.web.controller.petPlace;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,11 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.petmet.web.entity.PetPlaceView;
+import com.petmet.web.entity.ReviewView;
 import com.petmet.web.service.PetPlaceService;
+import com.petmet.web.service.ReviewService;
 
-@WebServlet("/api/petplace/detail")
+@WebServlet("/petplace/detail")
 public class DetailController extends HttpServlet {
 
 	@Override
@@ -21,13 +23,16 @@ public class DetailController extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		PetPlaceService service = new PetPlaceService();
-		PetPlaceView p = service.getView(id);
+		PetPlaceService ppService = new PetPlaceService();
+		PetPlaceView p = ppService.getView(id);
+		
+		request.setAttribute("p", p);
 
-		String[] location = p.getLocation().split(",");
-		String json = "{\"longitude\":\"" + location[0] + "\"," + "\"latitude\":\"" + location[1] + "\"}";
-
-		response.getWriter().println(json);
+		ReviewService rService = new ReviewService();
+		List<ReviewView> list = rService.getViewList(id);
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/petplace/detail.jsp").forward(request, response);
 
 	}
 }
