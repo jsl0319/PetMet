@@ -1,7 +1,6 @@
 /* -----------------------------------header----------------------------------- */
 .header .container {
   justify-content: space-between;
-  background-color: orange;
 }
 
 .header .logo {
@@ -9,9 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
   margin-left: 50px;
-  background-color: black;
+  background-color: white;
 }
 
 .header .logo a {
@@ -24,7 +23,6 @@
 .header nav {
   flex-basis: 1000px;
   display: flex;
-  background-color: green;
 }
 
 .header nav ul {
@@ -32,13 +30,11 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: blue;
 }
 
 .header nav ul li {
   flex-basis: 100%;
   height: 100%;
-  
 }
 
 .header nav ul a {
@@ -47,13 +43,10 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: wheat;
-  border: 1px solid black;
 }
 /* -----------------------------------body----------------------------------- */
 .body .container {
   flex-basis: 1200px;
- 
 }
 
 .body .aside {
@@ -64,7 +57,6 @@
 .body .aside ul {
   display: flex;
   flex-direction: column;
-  background-color: wheat;
 }
 
 .body .aside ul li {
@@ -73,24 +65,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: indianred;
-  border: 1px solid black;
 }
 
 .body .main {
   display: flex;
   flex-direction: column;
-  background-color: pink;
 }
 
 .body .main section {
   width: 95%;
-  background-color: pink;
 }
 
 .body .main-section {
   flex-grow: 1;
-  background-color: white;
 }
 
 .body .main section table {
@@ -101,7 +88,6 @@
   display: flex;
   justify-content: center;
   width: 95%;
- 
 }
 
 .body .main .pager div {
@@ -117,10 +103,9 @@
   margin: 3px 0;
   padding: 0 5px;
   border: 1px solid black;
-  background-color: pink;
+  background: #e7708d;
 }
 /* -----------------------------------footer----------------------------------- */
 .footer .container {
   justify-content: center;
-  background-color: gray;
 }

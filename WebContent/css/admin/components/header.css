@@ -3,3 +3,9 @@
   font-size: 18px;
   font-weight: 600;
 }
+.header nav li {
+  color: black;
+}
+.header nav li:hover {
+  color: white;
+}
