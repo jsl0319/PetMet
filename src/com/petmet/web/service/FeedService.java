@@ -10,9 +10,12 @@ public class FeedService {
 
 	private FeedDao feedDao;
 	
+	//service 생성자
 	public FeedService() {
 		feedDao = new JdbcFeedDao();
 	}
+	
+	
 	
 	public List<Feed> getList() {
 	      
