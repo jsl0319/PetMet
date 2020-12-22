@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,17 +130,7 @@
                 
                         <tbody>
                         
-                            <tr>
-                                <td>1</td>
-                                <td>현지(남)</td>
-                                <td><a href="">쿠쿠</a></td>
-                                <td>남</td>
-                                <td>O</td>
-                                <td>활발,사나움</td>
-                                <td>비숑</td>
-                                <td>5km 이내</td>
-                                <td>2020-08</td>
-                            </tr>
+                            
                            
                         </tbody>
                     </table>
