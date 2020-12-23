@@ -22,48 +22,7 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-       <div class="logo">
-                <a href="../index">
-                    <i class="fas fa-dog fa-3x"></i>
-                    <h1>PetMet</h1>
-                </a>
-            </div>
-
-      
-            <nav>
-                <h1 class="d-none">헤더 목록</h1>
-              
-                <ul>
-                    <li>
-                        <a href="../../member/list">
-                            <i class="fas fa-users fa-2x"></i>
-                            <span>MEMBER</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../../feed/list">
-                            <i class="fas fa-camera-retro fa-2x"></i>
-                            <span>FEED</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../notice/list">
-                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
-                            <span>COMMUNITY</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../../petplace/list">
-                            <i class="fas fa-map-marked-alt fa-2x"></i>
-                            <span>PLACE</span>
-                        </a>
-                    </li>
-                </ul>
-              </nav>
-        </div>
-    </header>
+  <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
     <section class="body">
         <h1 class="d-none">Content Body</h1>

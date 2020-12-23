@@ -329,8 +329,8 @@ public class JdbcQuestionDao implements QuestionDao {
 			Connection con = DriverManager.getConnection(url, uid, pwd);
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, "%"+query+"%");
-			st.setString(3, startDate);
-			st.setString(4, endDate);
+			st.setString(2, startDate);
+			st.setString(3, endDate);
 			ResultSet rs = st.executeQuery();
 
 			if(rs.next())
