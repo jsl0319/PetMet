@@ -115,4 +115,6 @@ public class BoardService {
 		return boardDao.getViewList(selectBox, query, boardCategory, startDate, endDate, startIndex, endIndex);
 	}
 	// ---------------------------------------
+
+	
 }
