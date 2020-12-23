@@ -18,8 +18,8 @@ private QuestionDao questionDao;
 	}
 	
 
-	public List<Question> getList(String query, String pub, String startDate, String endDate, int page, int size) {
-		return questionDao.getList();
+	public List<Question> getList(String query, int radio,  String startDate, String endDate, int page, int size) {
+		return questionDao.getList( query,  radio,  startDate,  endDate, page,  size);
 	}
 
 	// --------------------------------------------
@@ -52,16 +52,17 @@ private QuestionDao questionDao;
 	}
 
 
-	public List<Question> getList(String query, String startDate, String endDate, int page, int size) {
-		
-		return questionDao.getList(query,startDate,endDate,page,size);
-	}
-
+	
 
 	public int getCount(String query, String startDate, String endDate) {
 		// TODO Auto-generated method stub
 		return questionDao.getCount(query,startDate,endDate);
 	}
+
+
+
+
+
 
 
 	
