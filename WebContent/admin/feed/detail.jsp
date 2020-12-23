@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
   <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+  <link rel="stylesheet" href="../../css/admin/components/feed.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
   <title>FEED-detail</title>
 </head>
@@ -57,11 +58,13 @@
                   <th>신고일</th>
                   <td><fmt:formatDate value="${fr.repoDate}" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
                 </tr>
+                
+                
             </table>
-
-            <div style="margin-top:20px" style="border:1px solid black">
-              ${fr.content}
-            </div>
+				<div class="content-box">
+				<span>${fr.content}</span>
+                </div>
+            
           </section>
           
           <section class="search__container">
@@ -72,10 +75,10 @@
           
           <div class="prev-next-button">
             <div>
-              <a href="?id=${prev.id}">이전글</a>
+              <i class="fas fa-caret-up fa-2x"></i><a href="?id=${prev.id}">이전글</a>
             </div>
             <div>
-              <a href="?id=${next.id}">다음글</a>
+              <i class="fas fa-caret-down fa-2x"></i><a href="?id=${next.id}">다음글</a>
             </div>
           </div>
           

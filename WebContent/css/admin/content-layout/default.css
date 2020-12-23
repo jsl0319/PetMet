@@ -14,7 +14,7 @@
   align-items: center;
   color: black;
   margin-left: 50px;
-  background-color: white;
+  --background-color: white;
 }
 
 .header .logo a {
