@@ -1,0 +1,41 @@
+html,
+body{
+	background:none;
+}
+
+.header nav li:hover,
+.aside li:hover,
+body .main .pager ul li:hover{
+	color:#e7708d;
+}
+.header nav ul .active,
+.aside ul .active,
+.body .main .pager ul .active{
+	color:#e7708d;
+}
+
+.search__container .selectbox{
+	width: 80px;
+	border-radius: 5px;
+	text-indent: 5px;
+}
+.search__container .search__input{
+
+}
+.search__container input[type="date"]{
+	color: #575756;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+.button{
+	width: 80px;
+}
+
+.body .main .pager ul li{
+	border: none;
+	background: none;
+}
+
+.list-table{
+	margin: 20px 0;
+}

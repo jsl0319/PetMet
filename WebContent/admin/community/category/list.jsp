@@ -17,6 +17,7 @@
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
 <script src="../../../js/admin/community/category/list.js"></script>
+<link rel="stylesheet" href="../../../css/admin/community/board/list.css" type="text/css">
 </head>
 
 <body>

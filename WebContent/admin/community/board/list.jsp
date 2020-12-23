@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../../../js/admin/community/board/list.js"></script>
+    <link rel="stylesheet" href="../../../css/admin/community/board/list.css" type="text/css">
 </head>
 
 <body>
@@ -34,7 +35,7 @@
                 <h1 class="d-none">Aside 메뉴</h1>
                 <nav>
                     <h1 class="d-none">세부 메뉴 목록</h1>
-
+                    
                     <ul>
                         <li>
                             <a href="../notice/list">공지사항관리</a>
