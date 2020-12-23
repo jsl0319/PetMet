@@ -1,6 +1,7 @@
 <%@page import="com.petmet.web.entity.Question"%>
 <%@page import="com.petmet.web.service.QuestionService"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="java.util.List"%>
 
@@ -24,47 +25,7 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-       <div class="logo">
-                <a href="../index">
-                    <i class="fas fa-dog fa-3x"></i>
-                    <h1>PetMet</h1>
-                </a>
-            </div>
-
-      
-            <nav>
-                <h1 class="d-none">헤더 목록</h1>
-                <ul>
-                  <li>
-                    <a href="../user/index">
-                      <i class="fas fa-users fa-2x"></i>
-                      <span>USER</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="index">
-                      <i class="fas fa-camera-retro fa-2x"></i>
-                      <span>FEED</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="../community/notice/list">
-                      <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
-                      <span>COMMUNITY</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="../petplace/list">
-                      <i class="fas fa-map-marked-alt fa-2x"></i>
-                      <span>PLACE</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-        </div>
-    </header>
+    <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
     <section class="body">
         <h1 class="d-none">Content Body</h1>
@@ -75,46 +36,46 @@
                 <h1 class="d-none">Aside 메뉴</h1>
 
                     <nav>
-                        <h1 class="d-none" >세부 메뉴 목록</h1>
+                    <h1 class= "d-none">세부 메뉴 목록</h1>
 
-                        <ul>
+                    <ul>
+                        <li>
+                          
+                            <a href="../notice/list">공지사항관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-bullhorn"></i>
-                                <a href="../notice/list">공지사항관리</a>
-                            </li>
+                        <li>
+                            
+                            <a href="../QnA/list">QnA 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-bullhorn"></i>
-                                <a href="list">QnA 관리</a>
-                            </li>
+                        <li>
+                         
+                            <a href="../category/list">카테고리 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-clipboard-list"></i>
-                                <a href="../category/list">카테고리 관리</a>
-                            </li>
+                        <li>
+                            
+                            <a href="../board/list">게시글 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-clipboard-list"></i>
-                                <a href="../board/list">게시글 관리</a>
-                            </li>
+                        <li>
+                            
+                            <a href="../board/reported">신고된 게시글 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-ban"></i>
-                                <a href="../board/reported">신고된 게시글 관리</a>
-                            </li>
+                        <li>
+                          
+                            <a href="../comment/list">댓글 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-comment"></i>
-                                <a href="../comment/list">댓글 관리</a>
-                            </li>
-
-                            <li>
-                                <i class="fas fa-comment-slash"></i>
-                                <a href="../comment/reported">신고된 댓글 관리</a>
-                            </li>
-                        </ul>
-                    </nav>
+                        <li>
+                           
+                            <a href="../comment/reported">신고된 댓글 관리</a>
+                        </li>
+                    </ul>
+                </nav>
+                   
             </aside>
 
             <main class="main">
@@ -123,7 +84,7 @@
                 <section>
                     <h1 class="d-none">검색폼</h1>
 
-                    <form class="search__container">
+                    <form class="search__container search__form" action="list">
 
                         
                         <label class="search__title">제목</label>
@@ -131,9 +92,9 @@
                         
 
                         <!-- <label class="search__title" >공개여부</label> -->
-                        <input type="checkbox" id="cb1">
+                        <input ${(param.pu == "0")? "공개" : "비공개" } type="checkbox" id="cb1">
                         <label for="cb1"></label> <label class="search__title">공개</label>
-                        <input type="checkbox" id="cb2">
+                        <input ${(param.pu == "0")? "공개" : "비공개" } type="checkbox" id="cb2">
                         <label for="cb2"></label> <label class="search__title">비공개</label>
 
 
@@ -176,29 +137,42 @@
                     </table>
                 </section>
 
-
-              <c:set var="page" value="${(param.p==null)?1:param.p}"/>
-				<c:set var="startNum" value="${page-(page-1)%5}"/>
-                <div class="pager">
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-left"></i></a>
-                    </div>
-                    <ul>
-                    <c:forEach var="i" begin="0" end="4">		
-						<li><a href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
-					</c:forEach>
-					</ul>
-                    <div>
-                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div>
-                      <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                    </div>
-                  </div>
-        
+ 
+              <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
+              <c:set var="startNum" value="${ page-(page-1)%5}"/>
+              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
+              
+              <div class="pager">
+              
+              	<c:if test="${startNum >= 1 }">
+	                <div>
+	                  <a href="?p=1&f=${param.f}&q=${param.q}""><i class="fas fa-angle-double-left"></i></a>
+	                </div>
+                </c:if>
+                
+                <c:if test="${startNum >= 1 }">
+                <div>
+                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
+                </div>
+                </c:if>
+                
+                <ul>
+              <c:forEach var="i" begin="0" end="4">	
+              	<c:if test="${(startNum+i)<=lastNum }">
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}&f=${param.f}&q=${param.q}">${startNum + i}</a></li>
+              	</c:if>
+              </c:forEach>
+                </ul>
+                
+                <div>
+                  <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+                </div>
+                
+                <div>
+                  <a href="?p=${lastNum }&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-right"></i></a>
+                </div>
+              </div>
+				
 
 
             </main>

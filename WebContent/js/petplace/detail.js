@@ -27,6 +27,7 @@ window.addEventListener("load", function() {
 		});
 
 		marker.setMap(map);
+		// ㅎㅎ
 		
 	}
 

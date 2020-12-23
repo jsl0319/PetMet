@@ -29,49 +29,7 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="../index">
-                    <i class="fas fa-dog fa-3x"></i>
-                    <h1>PetMet</h1>
-                </a>
-            </div>
-
-            <nav>
-                <h1 class="d-none">헤더 메뉴 목록</h1>
-
-                <ul>
-                    <li>
-                        <a href="list">
-                            <i class="fas fa-users fa-2x"></i>
-                            <span>MEMBER</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../feed/index">
-                            <i class="fas fa-camera-retro fa-2x"></i>
-                            <span>FEED</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../notice/list">
-                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
-                            <span>COMMUNITY</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../petplace/list">
-                            <i class="fas fa-map-marked-alt fa-2x"></i>
-                            <span>PLACE</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            
-        </div>
-    </header>
+   <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
     <section class="body">
         <h1 class="d-none">Content Body</h1>
@@ -85,37 +43,37 @@
 
                     <ul>
                         <li>
-                            <i class="fas fa-bullhorn"></i>
+                          
                             <a href="../notice/list">공지사항관리</a>
                         </li>
 
                         <li>
-                            <i class="fas fa-bullhorn"></i>
+                            
                             <a href="../QnA/list">QnA 관리</a>
                         </li>
 
                         <li>
-                            <i class="fas fa-clipboard-list"></i>
+                         
                             <a href="../category/list">카테고리 관리</a>
                         </li>
 
                         <li>
-                            <i class="fas fa-clipboard-list"></i>
+                            
                             <a href="../board/list">게시글 관리</a>
                         </li>
 
                         <li>
-                            <i class="fas fa-ban"></i>
+                            
                             <a href="../board/reported">신고된 게시글 관리</a>
                         </li>
 
                         <li>
-                            <i class="fas fa-comment"></i>
+                          
                             <a href="../comment/list">댓글 관리</a>
                         </li>
 
                         <li>
-                            <i class="fas fa-comment-slash"></i>
+                           
                             <a href="../comment/reported">신고된 댓글 관리</a>
                         </li>
                     </ul>
@@ -129,7 +87,7 @@
 
                 <section>
                     <h1 class="d-none">검색폼</h1>
-                   <form class="search__container">
+                   <form class="search__container search__form" action="list">
                         
                         <label class="search__title">제목</label>
                         <input class="search__input" type="text" name= "q" value="${param.q}">
@@ -179,7 +137,7 @@
                                  </c:forEach>
                         </tbody>
                     </table>
-                
+                </form>
                 </section>
 
                 <section>
@@ -189,43 +147,45 @@
                     
                     <a href="reg"><input class="button" type="button" value="게시글 작성"></a>
                 </section>
- 				</form>
-				 <c:set var="page" value="${(empty param.p)?1:param.p}"/>
-		        <c:set var="startNum" value="${page-(page-1)%5}"/>
-		        <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/num),'.')}"/>
-                <div class="pager">
-                    <div>
-                      <a href="?p=${1}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-left"></i></a>
-                    </div>
-                    <div>
-                      <c:if test="${startNum>1}">
-                    	<a href="?p=${startNum-5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
-                    </c:if>
-                    <c:if test="${startNum<=1}">
-                    	<a href="?p=${1}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-left"></i></a>
-                    </c:if>
-                     
-                    </div>
-                    <ul>
-                    <c:forEach var="i" begin="0" end="4">	
-                    <c:if test="${(startNum+i)<=lastNum}">
-						<li><a class="${page==(startNum+i)?"current-page":""}" href="?p=${startNum+i}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}" >${startNum+i}</a></li>
-					</c:if>	
-					</c:forEach>
-					</ul>
-                    <div>
-                    <c:if test="${startNum+5<=lastNum}">
-                    	<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
-                    </c:if>
-                    <c:if test="${startNum+5>lastNum}">
-                    	<a href="?p=${lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
-                    </c:if>
-                      
-                    </div>
-                    <div>
-                      <a href="?p=${lastNum}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-double-right"></i></a>
-                    </div>
-                  </div>
+                
+          
+            
+  
+              <c:set var="page" value="${(empty param.p)? 1:param.p }"/>
+              <c:set var="startNum" value="${ page-(page-1)%5}"/>
+              <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
+              
+              <div class="pager">
+              
+              	<c:if test="${startNum >= 1 }">
+	                <div>
+	                  <a href="?p=1&f=${param.f}&q=${param.q}""><i class="fas fa-angle-double-left"></i></a>
+	                </div>
+                </c:if>
+                
+                <c:if test="${startNum >= 1 }">
+                <div>
+                  <a href="?p=${(startNum<6)? startNum:(startNum-5)}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-left"></i></a>
+                </div>
+                </c:if>
+                
+                <ul>
+              <c:forEach var="i" begin="0" end="4">	
+              	<c:if test="${(startNum+i)<=lastNum }">
+                	<li><a class="${(page==(startNum+i))? 'page-point' : ''}" href="?p=${startNum + i}&f=${param.f}&q=${param.q}">${startNum + i}</a></li>
+              	</c:if>
+              </c:forEach>
+                </ul>
+                
+                <div>
+                  <a href="?p=${(startNum+4 < lastNum)? (startNum+5):lastNum}&f=${param.f}&q=${param.q}"><i class="fas fa-angle-right"></i></a>
+                </div>
+                
+                <div>
+                  <a href="?p=${lastNum }&f=${param.f}&q=${param.q}"><i class="fas fa-angle-double-right"></i></a>
+                </div>
+              </div>
+				
             </main>
 				 
         </div>

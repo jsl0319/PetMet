@@ -26,19 +26,27 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		
+		String ispub_ = request.getParameter("pu");	
 		String query_ = request.getParameter("q");
 		String startDate_ = request.getParameter("sd");
 		String endDate_ = request.getParameter("ed");
 		String page_ = request.getParameter("p");
-		String size_ = request.getParameter("s");
-
+		
+		String ispub = "0";
 		String query = "";
 		String startDate = "01-01-01";
 		String endDate = "22-12-31";
 		int page = 1;
 		int size = 10;
-
+		
+		
+		
+		
+		
+		if (ispub_ != null && !ispub_.equals(""))
+			ispub = ispub_;
 		if (query_ != null && !query_.equals(""))
 			query = query_;
 
@@ -55,12 +63,13 @@ public class ListController extends HttpServlet {
 
 
 		QuestionService qservice = new QuestionService();
-		List<Question> qlist = qservice.getList(query, startDate, endDate, page, size);
+		List<Question> qlist = qservice.getList(query,startDate, endDate, page, size);
 		
-		
+		int count = qservice.getCount(query,startDate,endDate);
 		
 		
 		request.setAttribute("qlist",qlist);
+		request.setAttribute("count", count);
 		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}

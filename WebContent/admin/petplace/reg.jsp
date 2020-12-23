@@ -13,52 +13,13 @@
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	6c3f482aeb9a4689468c97bf295d500e"></script>
-	<script src="reg.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c3f482aeb9a4689468c97bf295d500e"></script>
+	<script src="../../js/admin/petplace/reg.js"></script>
 </head>
 
 <body>
     <!-------------------------------header------------------------------------>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="../index">
-                    <i class="fas fa-dog fa-3x"></i>
-                    <h1>PetMet</h1>
-                </a>
-            </div>
-
-            <nav>
-                <h1 class="d-none">헤더 목록</h1>
-                <ul>
-                    <li>
-                        <a href="../member/list">
-                            <i class="fas fa-users fa-2x"></i>
-                            <span>MEMBER</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../feed/list">
-                            <i class="fas fa-camera-retro fa-2x"></i>
-                            <span>FEED</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../community/notice/list">
-                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
-                            <span>COMMUNITY</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="list">
-                            <i class="fas fa-map-marked-alt fa-2x"></i>
-                            <span>PLACE</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <jsp:include page="../../inc/admin-header.jsp"></jsp:include>
 
     <!-------------------------------body------------------------------------>
     <div class="body">
@@ -117,7 +78,11 @@
                                 </tr>
                                 <tr>
                                     <th>주소</th>
-                                    <td ><input type="text" name="address"></td>
+                                    <td>
+                                    	<input class="location-input" type="text" name="location">
+                                    	<input class="address-input" type="text" name="address">
+                                    	<input type="button" class="search-btn" value="지도 검색">
+                                    </td>
                                 	<th>공개 여부</th>
                                 	<td>
                                         <select name="pub">
@@ -136,22 +101,6 @@
                                     <th class="files">첨부파일</th>
                                     <td colspan="3">
                                         <input type="file" name="file" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                	<th>주소</th>
-                                	<td colspan="3" class="location" name="location"></td>
-                                </tr>
-                                <tr>
-                                	<th>검색</th>
-                                	<td colspan="3">
-                                		<input type="text" name="psText">
-                                		<input type="button" class="search-map" value="지도 검색">
-                                	</td>
-                                </tr>
-                                <tr class="content">
-                                    <td colspan="4">
-                                        <div id="map" style="width:900px;height:400px;"></div>
                                     </td>
                                 </tr>
                                 <tr class="content">
