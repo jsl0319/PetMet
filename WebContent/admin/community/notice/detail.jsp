@@ -34,31 +34,31 @@
       
             <nav>
                 <h1 class="d-none">헤더 목록</h1>
-                <ul>
-                  <li>
-                    <a href="../user/index.html">
-                      <i class="fas fa-users fa-2x"></i>
-                      <span>USER</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="index.html">
-                      <i class="fas fa-camera-retro fa-2x"></i>
-                      <span>FEED</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="../community/index.html">
-                      <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
-                      <span>COMMUNITY</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="../petplace/list.html">
-                      <i class="fas fa-map-marked-alt fa-2x"></i>
-                      <span>PLACE</span>
-                    </a>
-                  </li>
+                 <ul>
+                    <li>
+                        <a href="../../member/list">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>MEMBER</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../feed/list">
+                            <i class="fas fa-camera-retro fa-2x"></i>
+                            <span>FEED</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../notice/list">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../../petplace/list">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
+                    </li>
                 </ul>
               </nav>
         </div>
@@ -72,47 +72,46 @@
                 
                 <h1 class="d-none">Aside 메뉴</h1>
 
-                    <nav>
-                        <h1 class="d-none" >세부 메뉴 목록</h1>
+                  <nav>
+                    <h1 class= "d-none">세부 메뉴 목록</h1>
 
-                        <ul>
+                    <ul>
+                        <li>
+                          
+                            <a href="../notice/list">공지사항관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-bullhorn"></i>
-                                <a href="../notice/list.html">공지사항관리</a>
-                            </li>
+                        <li>
+                            
+                            <a href="../QnA/list">QnA 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-bullhorn"></i>
-                                <a href="list.html">QnA 관리</a>
-                            </li>
+                        <li>
+                         
+                            <a href="../category/list">카테고리 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-clipboard-list"></i>
-                                <a href="../category/list.html">카테고리 관리</a>
-                            </li>
+                        <li>
+                            
+                            <a href="../board/list">게시글 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-clipboard-list"></i>
-                                <a href="../board/list.html">게시글 관리</a>
-                            </li>
+                        <li>
+                            
+                            <a href="../board/reported">신고된 게시글 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-ban"></i>
-                                <a href="../board/reported.html">신고된 게시글 관리</a>
-                            </li>
+                        <li>
+                          
+                            <a href="../comment/list">댓글 관리</a>
+                        </li>
 
-                            <li>
-                                <i class="fas fa-comment"></i>
-                                <a href="../comment/list.html">댓글 관리</a>
-                            </li>
-
-                            <li>
-                                <i class="fas fa-comment-slash"></i>
-                                <a href="../comment/reported.html">신고된 댓글 관리</a>
-                            </li>
-                        </ul>
-                    </nav>
+                        <li>
+                           
+                            <a href="../comment/reported">신고된 댓글 관리</a>
+                        </li>
+                    </ul>
+                </nav>
             </aside>
             <main class = "main">
                 <h1>공지사항 상세 내용</h1>
