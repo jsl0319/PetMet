@@ -35,4 +35,21 @@ public class MemberService {
 		return memberDao.getCount(field,query,startDate,endDate);
 	}
 
+
+	public boolean isVaild(String mid, String pwd) {
+		Member member = memberDao.get(mid);
+		if(member == null) // 회원이 아닌 경우
+			return false;
+		else if(!(member.getPwd().equals(pwd))) 
+			return false;
+		return true;
+	}
+
+
+	public String getNickname(String mid) {
+		Member member = memberDao.get(mid);
+		return member.getNickname();
+		
+	}
+
 }

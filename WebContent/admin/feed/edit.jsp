@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
   <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+  <link rel="stylesheet" href="../../css/admin/components/feed.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
   <title>FEED-detail</title>
 </head>
@@ -27,7 +28,7 @@
         <aside class="aside">
           <h1 class="d-none">페이지 목록</h1>
           <ul>
-            <li><a href="list">Report</a></li>
+            <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
           </ul>
         </aside>
 

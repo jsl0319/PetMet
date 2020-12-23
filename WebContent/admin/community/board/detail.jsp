@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="../../../css/admin/components/table/detail.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/category-select.css" type="text/css">
-    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../../../css/admin/community/board/detail.css" type="text/css">
 </head>
 
 <body>
@@ -127,7 +128,7 @@
 	                </section>
 					</form>
 				
-	                <section>
+	                <section class="single-pager">
 	                    <h1 class="d-none">페이저</h1>
 	                    <ul>
 	                        <li><a href="detail?next=${b.id }">다음 게시글</a></li>

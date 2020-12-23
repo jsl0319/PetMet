@@ -4,7 +4,7 @@
 <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../admin/index">
+                <a href="/admin/index">
                 <i class="fas fa-dog fa-3x"></i>
                 <h1>PetMet</h1>
                 </a>

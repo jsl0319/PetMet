@@ -1,0 +1,21 @@
+html,
+body{
+	background:none;
+}
+
+.selectbox{
+	width: 150px;
+	height: 30px;
+	color: #575756;
+	text-indent: 5px;
+	border-radius: 5px;
+}
+
+.button{
+	width: 80px;
+	margin: 20px 0;
+}
+
+.single-pager{
+	
+}

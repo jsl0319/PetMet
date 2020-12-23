@@ -61,7 +61,7 @@ public class JdbcQuestionDao implements QuestionDao {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "UPDATE QUESTION SET TITLE=?,CONTENT=? WHERE ID =?";
+		String sql = "UPDATE QUESTION SET TITLE=?,CONTENT=?,AN_DATE=? WHERE ID =?";
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -73,7 +73,8 @@ public class JdbcQuestionDao implements QuestionDao {
 			st.setString(1, question.getTitle());
 			st.setString(2, question.getContent());
 			
-			st.setInt(3, question.getId());
+			st.setDate(3, (java.sql.Date) question.getAnDate());
+			st.setInt(4, question.getId());
 
 			result = st.executeUpdate();
 			st.close();
@@ -217,11 +218,11 @@ public class JdbcQuestionDao implements QuestionDao {
 //	}
 
 	@Override
-	public int updateAnswer(Question q) {
+	public int updateAnswer(Question q ) {
 		int result = 0;
 
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-		String sql = "UPDATE QUESTION SET IS_ANSWER='"+"답변완료"+"'WHERE ID="+q.getId();
+		String sql = "UPDATE QUESTION SET IS_ANSWER='"+"답변완료"+"' WHERE ID="+q.getId();
 		// Connection con;
 		// List<Notice> list = new ArrayList<>();
 		try {
@@ -251,7 +252,7 @@ public class JdbcQuestionDao implements QuestionDao {
 	}
 
 	@Override
-	public List<Question> getList(String query, String startDate, String endDate, int startIndex, int endIndex) {
+	public List<Question> getList(String query,int radio, String startDate, String endDate, int startIndex, int endIndex) {
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
 		String sql = "SELECT * "
 				+ "FROM("
@@ -260,6 +261,7 @@ public class JdbcQuestionDao implements QuestionDao {
 				+ "        SELECT * FROM QUESTION ORDER BY REG_DATE DESC"
 				+ "    ) N"
 				+ "		WHERE TITLE LIKE '%" + query + "%'"
+				+" AND PUB ='"+radio+"'"
 				+ " 	AND REG_DATE BETWEEN '" + startDate + " 00:00:00' AND '" + endDate + " 23:59:59'" 
 				+ ") "
 				+ "WHERE NUM BETWEEN '"+startIndex+"' AND '"+endIndex+"' ";
@@ -347,12 +349,7 @@ public class JdbcQuestionDao implements QuestionDao {
 		return count;
 	}
 
-	@Override
-	public List<Question> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 	
 

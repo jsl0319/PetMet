@@ -1,0 +1,119 @@
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .header .logo {
+    flex-basis: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-left: 50px;
+    background-color: black;
+  }
+  
+  .header .logo a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header nav {
+    flex-basis: 1000px;
+    display: flex;
+    
+  }
+  
+  .header nav ul {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+  }
+  
+  .header nav ul li {
+    flex-basis: 100%;
+    height: 100%;
+    
+  }
+  
+  .header nav ul a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+    
+  }
+  
+ 
+  
+  
+    .footer .container {
+      display: flex;
+      justify-content: center;
+     
+    }
+  
+  
+  
+  
+  
+
+    
+    * {
+      box-sizing: border-box;
+      font-family: "Archivo", sans-serif;
+    }
+    
+    .d-none {
+      display: none;
+    }
+  
+    .header .logo {
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .body .main .pager {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin : 0 auto;
+  }
+  
+  .body .main .pager div {
+    margin: 3px 0;
+    padding: 0 5px;
+  }
+  
+  .body .main .pager ul {
+    display: flex;
+  }
+  
+  .body .main .pager ul li {
+    margin: 3px 0;
+    padding: 0 5px;
+  
+    
+  }
+
+
+
+  .main-table{
+    width : 90%;
+    margin : 0 auto;
+    margin-top : 20px;
+  }
+
+  .search__form{
+      width:90%;
+      margin : 0 auto;
+
+  }

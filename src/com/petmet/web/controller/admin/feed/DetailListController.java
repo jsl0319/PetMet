@@ -39,6 +39,7 @@ public class DetailListController extends HttpServlet{
 		
 		
 		
+		
 		if(page_!= null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 		if(field_ != null && !field_.equals(""))
