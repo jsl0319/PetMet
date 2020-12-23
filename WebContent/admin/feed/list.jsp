@@ -14,10 +14,18 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="../../css/admin/components/feed.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <title>FEED</title>
   </head>
   <body>
+  
+  <div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
   
       <!----------------------------------header--------------------------------------->
       <jsp:include page="../../inc/admin-header.jsp"></jsp:include>
@@ -29,12 +37,12 @@
           <div class="container">
       <!----------------------------------aside--------------------------------------->
             
-           <aside class="aside">
-              <h1 class="d-none">페이지 목록</h1>
-              <ul>
-                <li><a href="list">Report</a></li>
-              </ul>
-            </aside>
+          <aside class="aside">
+            <h1 class="d-none">페이지 목록</h1>
+            <ul>
+              <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
+            </ul>
+          </aside>
       <!----------------------------------main--------------------------------------->
   
             <main id="main" class="main feed-index">
@@ -69,7 +77,7 @@
                     <c:forEach var = "rf" items="${list}">
                       <tr ${rf.num%2==0?"class='even'":""}>
                         <td>${rf.num}</td>
-                        <td><a href="feed-detail.jsp">${rf.reportedId}</a></td>
+                        <td>${rf.reportedId}</td>
                         <td><a href="detail-list">${rf.repoCnt }</a></td>
                         <td>${rf.action}</td>
                       </tr>

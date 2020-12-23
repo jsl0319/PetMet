@@ -9,4 +9,11 @@ window.addEventListener("load", function(){
             e.target.previousElementSibling.name = "changed-id";
         }
     })
+
+    var path = window.location.pathname.split("/");
+    var board = path.includes("board");
+    var list = path.includes("list");
+    var reported = path.includes("reported");
+    var active = document.querySelector(".aside nav input");
+
 });

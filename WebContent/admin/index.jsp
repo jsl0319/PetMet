@@ -11,6 +11,7 @@
     <link href="../css/admin/layout/index.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="../js/admin/index.js"></script>
 </head>
 
 <body>
@@ -33,9 +34,9 @@
                             </tr>
                         </table>
                     </section>
-                    <section>
+                    <section class="graph">
                         <h1 class="d-none">그래프</h1>
-                        그래프다
+                        <canvas width="600px" height="400px"></canvas>
                     </section>
                 </div>
             </section>

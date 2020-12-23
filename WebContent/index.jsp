@@ -12,11 +12,16 @@
     <link href="css/admin/layout/index.css" type="text/css" rel="stylesheet">
     <link href="css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
+    <link href="css/user/style.css" type="text/css" rel="stylesheet">
     <script src="js/match/index.js"></script>
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+<img class="ppo" src="images/user/ppo.png">
+<img class="sel" src="images/user/sel.png">
+<img class="kris" src="images/user/kris.png">
+<img class="black" src="images/user/black.png">
 
 	<jsp:include page="inc/client-header.jsp"/>
 
@@ -24,6 +29,7 @@
     <div class="body">
         <main id="main" class="main">
             <h1 class="d-none">메인이다</h1>
+            
             <section class="main1">
                 
                 <div class="container">
@@ -106,7 +112,7 @@
     <footer id="footer" class="footer">
 
         <div class="container">
-            <h1>footer</h1>
+            <h1>PetMet</h1>
         </div>
 
     </footer>
