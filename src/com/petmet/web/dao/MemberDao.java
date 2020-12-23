@@ -13,4 +13,5 @@ public interface MemberDao {
 	List<Member> getList(String field, String query, String startDate, String endDate, int startIndex, int endIndex);
 	MemberView get(int id);
 	int getCount(String field, String query, String startDate, String endDate);
+	Member get(String mid);
 }
