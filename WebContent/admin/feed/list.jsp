@@ -72,7 +72,7 @@
            <aside class="aside">
               <h1 class="d-none">페이지 목록</h1>
               <ul>
-                <li><a href="list">Report</a></li>
+                <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
               </ul>
             </aside>
       <!----------------------------------main--------------------------------------->
@@ -109,7 +109,7 @@
                     <c:forEach var = "rf" items="${list}">
                       <tr ${rf.num%2==0?"class='even'":""}>
                         <td>${rf.num}</td>
-                        <td><a href="feed-detail.jsp">${rf.reportedId}</a></td>
+                        <td>${rf.reportedId}</td>
                         <td><a href="detail-list">${rf.repoCnt }</a></td>
                         <td>${rf.action}</td>
                       </tr>

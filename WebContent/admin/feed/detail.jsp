@@ -67,7 +67,7 @@
         <aside class="aside">
           <h1 class="d-none">페이지 목록</h1>
           <ul>
-            <li><a href="list">Report</a></li>
+            <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
           </ul>
         </aside>
 
