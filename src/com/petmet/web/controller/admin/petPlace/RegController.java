@@ -94,6 +94,7 @@ public class RegController extends HttpServlet {
 				fis.close();
 			}
 		}
+		
 		p.setFiles(fileNames);
 
 		// null방지

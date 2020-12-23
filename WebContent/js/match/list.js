@@ -1,53 +1,68 @@
 window.addEventListener("load", function() {
-	
-	//var section = document.querySelector("#list")
-	var tbody = document.querySelector("tbody");
-	
-	
 
 	
 	
-		var request = new XMLHttpRequest();
-		 request.onload = function(){ 
-			tbody.innerHTML = "";
-			var matchInfo = JSON.parse(request.responseText);
-			
-			
-			
-			for(var i=0; i<matchInfo.length;i++){
-				
-				
-				var n = matchInfo[i].neut;
-				
-				if(n == 1){
-					n = "O"
-				}
-				else{
-					n= "X"
-					}
-					
-					console.log(n);
-				
-				
-				var tr = '<tr> \
-				<td>'+matchInfo[i].id+'</td> \
-				 			<td>'+matchInfo[i].masterGender+'</td> \
-						<td>'+matchInfo[i].name+'</td> \
-						<td>'+matchInfo[i].gender+'</td> \
-						<td>'+n+'</td> \
-						<td>'+matchInfo[i].character+'</td> \
-						<td>'+matchInfo[i].kind+'</td> \
-						<td>'+matchInfo[i].address+'</td> \
-						<td>'+matchInfo[i].regDate+'</td> \
-						<tr>';
-						tbody.insertAdjacentHTML('beforeend', tr);
-			}
-			
-			
-	}
-	
-  request.open("GET","/api/match/list",true)
-		
+
+    var tbody = document.querySelector("tbody");
+    var request = new window.XMLHttpRequest();
+        request.onload = function () {
+            var matchInfoes = JSON.parse(request.responseText);
+           
+            for (var i = 0; i < matchInfoes.length; i++) {
+				var m = matchInfoes[i];
+				console.log(m);
+                var tr = '<tr> \
+                            <td>'+m.id+'</td> \
+                            <td>'+m.masterNickname+'(' +(m.masterGender=="1"?"남":"여") + ')</td> \
+                            <td><a href="">'+m.name+'</a></td> \
+                            <td>'+(m.gender=="1"?"남":"여")+'</td> \
+                            <td>'+(m.neut=="1"?"O":"X")+'</td> \
+                            <td>'+m.character+'</td> \
+                            <td>'+m.kind+'</td> \
+                            <td>'+m.address+'</td> \
+                            <td>'+m.regDate+'</td> \
+                        </tr>';
+
+                tbody.insertAdjacentHTML('beforeend', tr);
+            }
+        }
+        request.open("GET", "/api/match/list", true);
         request.send();
-	
+    
+
+	var tbody = document.querySelector("tbody");
+
+	var request = new XMLHttpRequest();
+	request.onload = function() {
+
+		tbody.innerHTML = "";
+
+		var matchInfoes = JSON.parse(request.responseText);
+
+		for (var i = 0; i < matchInfoes.length; i++) {
+			var m = matchInfoes[i];
+
+			console.log(m); //key:id  값:24
+			
+			var tr = '<tr> \
+                            <td>'+ m.id + '</td> \
+                            <td>'+ m.masterNickname + '(' + m.masterGender + ')</td> \
+                            <td><a href="">'+ m.name + '</a></td> \
+                            <td>'+ m.gender + '</td> \
+                            <td>'+ m.neut + '</td> \
+                            <td>'+ m.character + '</td> \
+                            <td>'+ m.kind + '</td> \
+                            <td>'+ m.address + '</td> \
+                            <td>'+ m.regDate + '</td> \
+                        </tr>';
+
+			tbody.insertAdjacentHTML('beforeend', tr);
+
+		}
+	};
+
+	request.open("GET", "/api/match/list", true);
+	request.send();
+
+
 });

@@ -12,55 +12,46 @@ import javax.servlet.http.HttpServletResponse;
 import com.petmet.web.entity.MatchInfoView;
 import com.petmet.web.service.MatchInfoService;
 
-
-
+//jsp가 아닌 ajax 비동기적으로 데이터 가져오기
+//전체 레코드 가져오기 V
+//필터(쿼리)
+//페이징
 @WebServlet("/api/match/list")
-public class ListController extends HttpServlet{
+public class ListController extends HttpServlet {
 
-	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 response.setCharacterEncoding("UTF-8");
-	      response.setContentType("text/json; charset=UTF-8");
-	      
-	      MatchInfoService service = new MatchInfoService();
-	      List<MatchInfoView> list = service.getViewList();
-	      
-	     
-	      String json = "[";
-	         
-	         for(int i=0; i<list.size(); i++) {
-	        	 
-	            MatchInfoView m = list.get(i);
-	            String mgender = "";
-	            if(m.getMasterGender()==1)
-	            	mgender = "남";
-	            else
-	            	mgender="여";
-	            
-	            String gender = "";
-	            if(m.getGender()==1)
-	            	gender = "남";
-	            else
-	            	gender="여";
-	           
-	       
-	            
-	            json += String.format("{\"id\":\"%s\",\"regDate\":\"%s\",\"pub\":\"%s\",\"matchContent\":\"%s\""
-	                  + ",\"name\":\"%s\",\"kind\":\"%s\",\"gender\":\"%s\",\"neut\":\"%s\""
-	                  + ",\"birth\":\"%s\",\"weight\":\"%s\",\"dogContent\":\"%s\",\"character\":\"%s\""
-	                  + ",\"files\":\"%s\",\"masterNickname\":\"%s\",\"masterGender\":\"%s\",\"address\":\"%s\"}"
-	                  , m.getId(), m.getRegDate(), m.getPub(),m.getMatchContent(),
-	                  m.getName(),m.getKind(),gender,m.getNeut(),
-	                  m.getBirth(),m.getWeight(),m.getDogContent(),m.getCharacter(),
-	                  m.getFiles(),m.getMasterNickname(),mgender,m.getAddress());
-	            
-	            if(list.size() > i+1)
-	               json += ",";
-	         }
-	         
-	         json += "]";
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	
-	      response.getWriter().println(json);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/json; charset=UTF-8");
+		
+		MatchInfoService matchInfoService= new MatchInfoService();
+		List<MatchInfoView> list = matchInfoService.getViewList();
+		String json = "[";
+	      
+	      for(int i=0; i<list.size(); i++) {
+	    	 MatchInfoView m = list.get(i);
+	  
+	         json += String.format("{\"id\":\"%s\",\"regDate\":\"%s\",\"pub\":\"%s\",\"matchContent\":\"%s\""
+	         		+ ",\"name\":\"%s\",\"kind\":\"%s\",\"gender\":\"%s\",\"neut\":\"%s\""
+	         		+ ",\"birth\":\"%s\",\"weight\":\"%s\",\"dogContent\":\"%s\",\"character\":\"%s\""
+	         		+ ",\"files\":\"%s\",\"masterNickname\":\"%s\",\"masterGender\":\"%s\",\"address\":\"%s\"}"
+	        		 , m.getId(), m.getRegDate(), m.getPub(),m.getMatchContent(),
+	        		 m.getName(),m.getKind(),m.getGender(),m.getNeut(),
+	        		 m.getBirth(),m.getWeight(),m.getDogContent(),m.getCharacter(),
+	        		 m.getFiles(),m.getMasterNickname(),m.getMasterGender(),m.getAddress());
+	         
+	         if(list.size() > i+1)
+	            json += ",";
+	      }
+	      
+	      json += "]";
+	      
+	   
+
+		response.getWriter().println(json);
+
+
 	}
 }
