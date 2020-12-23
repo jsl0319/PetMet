@@ -5,36 +5,33 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- 
+    자바스크립트 넣을 부분
+    1. 데이터 수정 시 수정된 레코드들 표시
+
+ -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 > 커뮤니티 > 신고된 게시글 관리</title>
+    <title>커뮤니티 > 게시글 리스트</title>
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
-    <link rel="stylesheet" href="../../../css/admin/components/feed.css">
-	<script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="../../js/community/list.js"></script>
 </head>
 
 <body>
-<div class="neon circle"></div>
-  <div class="neon circle"></div>
-  <div class="neon square"></div>
-  <div class="neon square2"></div>
-  <div class="neon tri"></div>
-  <div class="neon tri2"></div>
-  
 	<!----------------------------------header--------------------------------------->
     <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
-
+	
 	<!----------------------------------body--------------------------------------->
-    <section class="body feed-screen">
+    <section class="body">
         <h1 class="d-none">Content Body</h1>
         <div class="container">
         	<!----------------------------------aside--------------------------------------->
             <aside class="aside">
                 <h1 class="d-none">Aside 메뉴</h1>
-
                 <nav>
                     <h1 class="d-none">세부 메뉴 목록</h1>
 
@@ -71,23 +68,24 @@
             </aside>
 
 			<!----------------------------------main--------------------------------------->
-            <main class="main feed-index">
+            <main class="main">
                 <h1 class="d-none">Main Content</h1>
 
-			<!-- <section class="main-section"> -->
+				<!-- <section class="main-section"> -->
 	                <section>
 	                    <h1 class="d-none">검색폼</h1>
-	
-	                    <form class="search__container search__form" action="reported">
+	                    
+	                    <form class="search__container search__form" action="list">
 
-							<select name="f" class="selectbox">
+							<select class="selectbox" name="f">
 								<option ${(param.f == "title")?"selected":"" } value="title">제목</option>
 								<option ${(param.f == "writer_id")?"selected":"" }
 									value="writer_id">작성자</option>
-							</select> <input name="q" class="search__input" type="text"
-								value="${param.q }"> <select name="b" class="selectbox">
-								<option>게시판</option>
-								<c:forEach var="c" items="${cList }">
+							</select>
+							<input class="search__input" name="q" type="text" value="${param.q }">
+								<select class="selectbox" name="b">
+									<option>게시판</option>
+									<c:forEach var="c" items="${cList }">
 									<option ${(param.b == c.name)? "selected" : "" }
 										value="${c.name }">${c.name }</option>
 								</c:forEach>
@@ -109,48 +107,36 @@
 	                </section>
 	
 	                <section>
-	                    <h1 class="d-none">신고된 게시글 관리</h1>
+	                    <h1 class="d-none">게시글 리스트</h1>
+	
+	                    <form action="list" method="post">
 	                    
-						<form action="reported" method="post">
-						
 	                    <table class="list-table">
 	                        <thead>
 	                            <tr>
 	                                <td>번호</td>
-	                                <td>작성자</td>
-	                                <td>게시판</td>
 	                                <td>제목</td>
-	                                <td>작성일</td>
+	                                <td>작성자</td>
+	                                <td>댓글수</td>
 	                                <td>조회수</td>
-	                                <td>신고수</td>
-	                                <td>삭제</td>
+	                                <td>작성일</td>
+	                                
 	                            </tr>
 	                        </thead>
 	
-	                        <tbody>
-	                        	<c:forEach var="br" items="${list }" varStatus="st">
-		                            <tr ${st.count % 2==0?"class='even'":""}>
-		                                <td>${br.num }</td>
-		                                <td>${br.writerId }</td>
-		                                <td>${br.categoryName }</td>
-		                                <td><a href="detail?id=${br.boardId }">${br.title }</a></td>
-		                                <td>${br.regDate }</td>
-		                                <td>${br.hit }</td>
-		                                <td><a href="reported-detail?id=${br.boardId }">${br.reported }</a></td>
-		                                <td><input name="del" value="${br.boardId }" type="checkbox">
-		                            </tr>
-	                            </c:forEach>
+	                        <tbody class ="body">
+		                        
 	                        </tbody>
 	                    </table>
 	                </section>
-	
+	                
 	                <section>
 	                    <h1 class="d-none">이벤트 버튼</h1>
-	                    
-	                    <input class="button" type="submit" value="삭제">
+	                    <input class="button" name="button" type="submit" value="저장">
+	                    <input class="button" name="button" type="submit" value="삭제">
 	                </section>
 	                </form>
-                <!-- </section> -->
+	            <!-- </section> -->
                 
                 <c:set var="page" value="${(empty param.p)?1:param.p }"/>
                 <c:set var="startNum" value="${page-(page-1)%5}"/>
@@ -171,6 +157,7 @@
 							</c:if>
 						</c:forEach>
                     </ul>
+                    
                     <c:if test="${startNum+5 <= lastNum}">
 	                    <div>
 	                      <a href="?p=${startNum+5}&f=${param.f}&q=${param.q}&sd=${param.sd}&ed=${param.ed}"><i class="fas fa-angle-right"></i></a>
@@ -180,7 +167,6 @@
 	                    </div>
                     </c:if>
                 </div>
-
             </main>
         </div>
     </section>

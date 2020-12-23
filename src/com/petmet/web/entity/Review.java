@@ -24,6 +24,15 @@ public class Review {
 		this.content = content;
 		this.files = files;
 	}
+	
+	//insert용
+	public Review(int writerId, int petPlaceId, int rating, String content, String files) {
+		this.writerId = writerId;
+		this.petPlaceId = petPlaceId;
+		this.rating = rating;
+		this.content = content;
+		this.files = files;
+	}
 
 	@Override
 	public String toString() {

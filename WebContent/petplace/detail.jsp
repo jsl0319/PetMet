@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="detail.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	6c3f482aeb9a4689468c97bf295d500e"></script>
@@ -20,6 +21,12 @@
 </head>
 
 <body>
+<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
     <!-------------------------------header------------------------------------>
     <header class="header">
         <div class="container">
@@ -88,7 +95,7 @@
                 <h1 class="d-none">main</h1>
 
                 <section>
-                    <h1>Pet Place 관리</h1>
+                    <h1 class="title">Pet Place</h1>
 
                     <table class="detail-table">
                         <tbody>
@@ -129,9 +136,9 @@
                                     </c:forTokens>
                                 </td>
                             </tr>
-                            <tr class="content">
+                            <tr class="content-map">
                                 <td colspan="4">
-                                    <div id="map" style="width:450px;height:300px;"></div>
+                                    <div id="map" style="width:900px;height:400px;"></div>
                                 </td>
                             </tr>
                             <tr class="content">
@@ -143,7 +150,7 @@
 
                 <section>
 
-                    <h1>리뷰</h1>
+                    <h1 class="title2">Review</h1>
 
                     <table class="list-table">
                         <thead>

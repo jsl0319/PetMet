@@ -28,7 +28,7 @@
   height: 300px;
   bottom: 100px;
 }
-.흑 {
+.black {
   position: static;
   width: 150px;
   height: 100px;
@@ -40,35 +40,7 @@
   position: absolute;
   bottom: 10px;
 }
-/* --------------------------user_animation---------------------------- */
-@keyframes s-animation {
-  0% {
-    transform: none;
-  }
-  50% {
-    transform: translateY(-5px) translate(400px) rotate(2turn);
-  }
-  100% {
-    transform: none;
-  }
-}
 
-.sel {
-  width: 300px;
-  height: 200px;
-  top: 400px;
-  left: 100px;
-  animation: s-animation 2.5s ease-in-out infinite;
-}
-.ppo {
-  width: 200px;
-  height: 200px;
-  top: 100px;
-}
-.kris {
-  width: 300px;
-  height: 200px;
-}
 
 /* --------------------------admin_animation---------------------------- */
 @keyframes neonSign {

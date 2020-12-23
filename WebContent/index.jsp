@@ -18,10 +18,7 @@
 </head>
 
 <body>
-<img class="ppo" src="images/user/ppo.png">
-<img class="sel" src="images/user/sel.png">
-<img class="kris" src="images/user/kris.png">
-<img class="black" src="images/user/black.png">
+
 
 	<jsp:include page="inc/client-header.jsp"/>
 
@@ -43,66 +40,16 @@
             <section class="main2">
                 <div class="container">
                     <h1 class="d-none">그 외의 정보들</h1>
-                    <section>
-                        <h1>Notice</h1>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <td>번호</td>
-                                    <td>제목</td>
-                                    <td>작성자</td>
-                                    <td>작성일</td>
-                                    <td>조회수</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>22</td>
-                                    <td>33</td>
-                                    <td>44</td>
-                                    <td>55</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                    <section>
-                        <h1>Others</h1>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <td>번호</td>
-                                    <td>제목</td>
-                                    <td>작성자</td>
-                                    <td>작성일</td>
-                                    <td>조회수</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>22</td>
-                                    <td>33</td>
-                                    <td>44</td>
-                                    <td>55</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
+                    
+            <img class="ppo" src="images/user/ppo.png">
+			<img class="sel" src="images/user/sel.png">
+			<img class="kris" src="images/user/kris.png">
+			<img class="black" src="images/user/black.png">
+			<img class="ppo2" src="images/user/ppo.png">
+			<img class="sel2" src="images/user/sel.png">
+			<img class="kris2" src="images/user/kris.png">
+			<img class="black2" src="images/user/black.png">
+                    
                 </div>
             </section>
         </main>
