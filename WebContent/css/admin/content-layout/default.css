@@ -1,4 +1,8 @@
 /* -----------------------------------header----------------------------------- */
+.header {
+  margin-top: 30px;
+}
+
 .header .container {
   justify-content: space-between;
 }
@@ -10,7 +14,7 @@
   align-items: center;
   color: black;
   margin-left: 50px;
-  background-color: white;
+  --background-color: white;
 }
 
 .header .logo a {
@@ -61,10 +65,15 @@
 
 .body .aside ul li {
   width: 200px;
+  font-size: 18px;
+  font-weight: 500;
   flex-basis: 85px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.body .aside ul li:hover{
+	color: #8FBC8F;
 }
 
 .body .main {
@@ -102,8 +111,6 @@
 .body .main .pager ul li {
   margin: 3px 0;
   padding: 0 5px;
-  border: 1px solid black;
-  background: #e7708d;
 }
 /* -----------------------------------footer----------------------------------- */
 .footer .container {

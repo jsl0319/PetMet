@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
-    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../../../css/admin/community/board/list.css" type="text/css">
 </head>
 
 <body>
