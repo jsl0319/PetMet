@@ -18,31 +18,29 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String page_ = request.getParameter("p"); 
 		String query_ = request.getParameter("q");
 		String startDate_ = request.getParameter("sd");
 		String endDate_ = request.getParameter("ed");
-		String page_ = request.getParameter("p");
-		String size_ = request.getParameter("s");
 
 		String query = "";
 		String startDate = "01-01-01";
 		String endDate = "22-12-31";
 		int page = 1;
 		int size = 10;
+		
+		if(page_ != null && !page_.equals(""))
+			page = Integer.parseInt(page_);
 
 		if (query_ != null && !query_.equals(""))
 			query = query_;
-
-		if (page_ != null && !page_.equals(""))
-			page = Integer.parseInt(page_);
 
 		if (startDate_ != null && !startDate_.equals(""))
 			startDate = startDate_;
 
 		if (endDate_ != null && !endDate_.equals(""))
 			endDate = endDate_;
-		
+
 	
 
 
@@ -51,7 +49,7 @@ public class ListController extends HttpServlet {
 		int count = service.getCount(query,startDate,endDate);
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
-		request.setAttribute("size", size);
+		
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}
 

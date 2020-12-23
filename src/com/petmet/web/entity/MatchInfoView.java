@@ -2,6 +2,7 @@ package com.petmet.web.entity;
 
 import java.util.Date;
 
+
 public class MatchInfoView extends MatchInfo {
 
 	private String name;
@@ -165,3 +166,4 @@ public class MatchInfoView extends MatchInfo {
 	}
 
 }
+

@@ -380,7 +380,7 @@ public class JdbcNoticeDao implements NoticeDao {
 						+ "WHERE TITLE LIKE ? AND "
 						+ "REGDATE>? AND "
 						+ "REGDATE<(SELECT TO_DATE(?,'YY-MM-DD')+1 FROM DUAL)"
-						+ " ORDER BY REGDATE DESC) M ) ";
+						+ " ORDER BY REGDATE ASC) M ) ";
 						
 
 		int count = 0;
@@ -409,6 +409,9 @@ public class JdbcNoticeDao implements NoticeDao {
 
 	}
 
+	
+
+	}
+
 
 	
-}

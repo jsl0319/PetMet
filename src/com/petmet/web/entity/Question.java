@@ -7,7 +7,7 @@ public class Question {
 	 private String	writerId;
 	 private String	title;
 	 private String	content;
-	 private int pub;
+	 private String pub;
 	 private Date regDate;
 	 private String isAnswer;
 	 private Date anDate;
@@ -20,7 +20,7 @@ public class Question {
 	
 	
 	
-	public Question(int id, String writerId, String title, String content, int pub, Date regDate, String isAnswer,
+	public Question(int id, String writerId, String title, String content, String pub, Date regDate, String isAnswer,
 			Date anDate) {
 	
 		this.id = id;
@@ -77,12 +77,12 @@ public class Question {
 	}
 	
 	
-	public int getPub() {
+	public String getPub() {
 		return pub;
 	}
 	
 	
-	public void setPub(int pub) {
+	public void setPub(String pub) {
 		this.pub = pub;
 	}
 	

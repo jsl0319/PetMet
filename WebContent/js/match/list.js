@@ -1,6 +1,8 @@
 window.addEventListener("load", function() {
+
 	
 	
+
     var tbody = document.querySelector("tbody");
     var request = new window.XMLHttpRequest();
         request.onload = function () {
@@ -61,5 +63,6 @@ window.addEventListener("load", function() {
 
 	request.open("GET", "/api/match/list", true);
 	request.send();
+
 
 });

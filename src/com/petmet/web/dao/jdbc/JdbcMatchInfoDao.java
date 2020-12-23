@@ -14,6 +14,7 @@ import com.petmet.web.entity.MatchInfoView;
 
 public class JdbcMatchInfoDao implements MatchInfoDao{
 
+
 	   @Override
 	   public List<MatchInfoView> getViewList(int startIndex, int endIndex) {
 	      List<MatchInfoView> list = new ArrayList<>();
@@ -111,3 +112,4 @@ public class JdbcMatchInfoDao implements MatchInfoDao{
 
 
 }
+
