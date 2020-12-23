@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +12,7 @@
     <link href="../css/reset.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/layout/index.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../js/admin/index.js"></script>
 </head>
@@ -46,7 +49,7 @@
                     <h1 class="d-none">그 외의 정보들</h1>
                     <section>
                         <h1>Notice</h1>
-                        <table border="1">
+                        <table class="list-table">
                             <thead>
                                 <tr>
                                     <td>번호</td>
@@ -57,51 +60,47 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>22</td>
-                                    <td>33</td>
-                                    <td>44</td>
-                                    <td>55</td>
-                                </tr>
+                                <c:forEach var="n" items="${nList}" varStatus="st">
+                          			<tr ${st.count % 2==0?"class='even'":""}>
+		                                <td>${n.id}</td>
+		                  				<td><a href="detail?id=${n.id}">${n.title}</a></td>
+		                                <td>${n.writerId}</td>
+		                                <td> ${n.regdate}</td>
+		                                <td>${n.hit}</td>
+		                            </tr>
+                                 </c:forEach>
                             </tbody>
                         </table>
                     </section>
+                    
                     <section>
-                        <h1>Others</h1>
-                        <table border="1">
+                        <h1>Question</h1>
+                        <table class="list-table">
                             <thead>
                                 <tr>
-                                    <td>번호</td>
-                                    <td>제목</td>
-                                    <td>작성자</td>
-                                    <td>작성일</td>
-                                    <td>조회수</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>22</td>
-                                    <td>33</td>
-                                    <td>44</td>
-                                    <td>55</td>
-                                </tr>
-                            </tbody>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>작성자</td>
+                                <td>등록일</td>
+                                <td>공개</td>
+                                <td>답변</td>
+                                <td>답변일자</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+	                         <c:forEach var="q" items="${qList}" varStatus="st">
+	                         <tr ${st.count % 2==0?"class='even'":""}>
+		                            <td>${q.id}</td>
+		                            <td><a href="detail?id=${q.id}">${q.title}</a></td>
+		                            <td>${q.writerId}</td>
+		                            <td>${q.regDate}</td>
+		                            <td>${q.pub}</td>
+		                            <td>${q.isAnswer}</td>
+		                            <td>${q.anDate}</td>
+	                            </tr>
+	                          </c:forEach>
+                        </tbody>
                         </table>
                     </section>
                 </div>
