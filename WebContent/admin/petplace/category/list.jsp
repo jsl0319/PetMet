@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="list.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../../../js/admin/community/category/list.js"></script>
 </head>
@@ -70,8 +71,9 @@
                 <section>
                     <h1 class="d-none">카테고리 관리</h1>
                     
+                    <div class="add-button">
                     <input class="button addBtn" type="button" value="+ Add">
-                
+                	</div>
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -107,7 +109,7 @@
                     </table>
                 </section>
 
-                <section>
+                <section class="buttons">
                     <h1 class="d-none">버튼</h1>
                     <input class="button" type="submit" name="button" value="저장">
                     <input class="button" type="submit" name="button" value="선택 삭제">

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="list.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
@@ -97,7 +98,7 @@
                                 <td>${p.hit}</td>
                                 <td>${p.likes}</td>
                                 <td>${p.reviewCount}</td>
-                                <td>${p.avgRating}</td>
+                                <td><fmt:formatNumber value="${p.avgRating}" pattern='0.0' /></td>
                             </tr>
                         </c:forEach>
                         </tbody>

@@ -27,7 +27,7 @@ public class RegController extends HttpServlet {
 	private PetPlaceService service;
 
 	public RegController() {
-		service = new PetPlaceService();
+		service = new PetPlaceService();		
 	}
 
 	@Override
@@ -104,9 +104,9 @@ public class RegController extends HttpServlet {
 
 		service.insert(p);
 
-//		// 노가다용
-//		for (int i = 101; i < 200; i++) {
-//			int categoryId = (int) (Math.random() * 11 + 1);
+		// 노가다용 - 펫플레이스
+//		for (int i = 189; i < 990; i++) {
+//			int categoryId = (int) (Math.random() * 5 + 1);
 //			String name = "펫플레이스" + (i + 1);
 //			String address = "서울시 종로구" + (i + 1);
 //			String homepage = "";
@@ -117,6 +117,19 @@ public class RegController extends HttpServlet {
 //			PetPlace p2 = new PetPlace(categoryId, name, address, homepage, phone, location, content, pub);
 //			p2.setWriterId(1);
 //			service.insert(p2);
+//		}
+		
+		// 노가다용 - 리뷰
+//		ReviewService service2 = new ReviewService();
+//		for(int i = 0;i<100;i++) {
+//			int writerId = (int) (Math.random()*8+47);
+//			int petPlaceId = (int) (Math.random()*10+407);
+//			int rating = (int) (Math.random()*10+1);
+//			String content ="" ;
+//			String files = "";
+//			
+//			Review r = new Review(writerId, petPlaceId, rating, content, files);
+//			service2.insert(r);
 //		}
 
 		response.sendRedirect("list");
