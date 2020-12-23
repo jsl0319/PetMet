@@ -29,7 +29,6 @@
 </head>
 
 <body>
-   
    <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
     <section class="body">
