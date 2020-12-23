@@ -21,6 +21,12 @@
 </head>
 
 <body>
+<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
     <!-------------------------------header------------------------------------>
     <header class="header">
         <div class="container">
