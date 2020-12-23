@@ -40,7 +40,7 @@
   position: absolute;
   bottom: 10px;
 }
-
+/* --------------------------user_animation---------------------------- */
 @keyframes s-animation {
   0% {
     transform: none;
@@ -53,23 +53,97 @@
   }
 }
 
-.셀티 {
+.sel {
   width: 300px;
   height: 200px;
   top: 400px;
   left: 100px;
   animation: s-animation 2.5s ease-in-out infinite;
 }
-.뽀미 {
+.ppo {
   width: 200px;
   height: 200px;
   top: 100px;
 }
-.크리스 {
+.kris {
   width: 300px;
   height: 200px;
 }
 
+/* --------------------------admin_animation---------------------------- */
+@keyframes neonSign {
+  0% {
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+  100% {
+  }
+} 
+
+.neon {
+  animation: neonSign 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+.circle {
+  position: absolute;
+  left: 100px;
+  width: 150px;
+  height: 150px;
+  background: #b0c4de;
+  border-radius: 50%;
+}
+.circle:nth-child(2) {
+  width: 100px;
+  height: 100px;
+  left: 1000px;
+  top: 100px;
+  background-color: #778899;
+}
+.square {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: #b0c4de;
+  --border-radius: 5px;
+  left: 500px;
+  bottom: 300px;
+  transform: rotate(45deg);
+}
+.square2 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: #778899;
+  --border-radius: 5px;
+  left: 1100px;
+  bottom: 100px;
+}
+.tri {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-top: 50px solid none;
+  border-bottom: 100px solid pink;
+  border-right: 100px solid transparent;
+  border-left: 50px solid transparent;
+  bottom: 100px;
+  transform: rotate(90deg);
+}
+.tri2 {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-top: 50px solid none;
+  border-bottom: 100px solid pink;
+  border-right: 100px solid transparent;
+  border-left: 50px solid transparent;
+  transform: rotate(45deg);
+  top:200px;
+  right: 50px;
+}
 /* ------------------------------------------------------------ */
 .d-none {
   display: none;

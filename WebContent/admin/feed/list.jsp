@@ -21,11 +21,11 @@
   <body>
   
   <div class="neon circle"></div>
-  <div class="neon square"></div>
-  <div class="neon tri"></div>
   <div class="neon circle"></div>
   <div class="neon square"></div>
+  <div class="neon square2"></div>
   <div class="neon tri"></div>
+  <div class="neon tri2"></div>
   
       <!----------------------------------header--------------------------------------->
       <jsp:include page="../../inc/admin-header.jsp"></jsp:include>
@@ -37,12 +37,12 @@
           <div class="container">
       <!----------------------------------aside--------------------------------------->
             
-           <aside class="aside">
-              <h1 class="d-none">페이지 목록</h1>
-              <ul>
-                <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
-              </ul>
-            </aside>
+          <aside class="aside">
+            <h1 class="d-none">페이지 목록</h1>
+            <ul>
+              <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
+            </ul>
+          </aside>
       <!----------------------------------main--------------------------------------->
   
             <main id="main" class="main feed-index">
