@@ -92,9 +92,9 @@
                         
 
                         <!-- <label class="search__title" >공개여부</label> -->
-                        <input ${(param.pu == "0")? "공개" : "비공개" } type="checkbox" id="cb1">
+                        <input ${(param.r==1)?"checked":"" }value =1 type="radio" id="cb1" name="r">
                         <label for="cb1"></label> <label class="search__title">공개</label>
-                        <input ${(param.pu == "0")? "공개" : "비공개" } type="checkbox" id="cb2">
+                        <input ${(param.r==2)?"checked":"" }value = 2 type="radio" id="cb2" name="r">
                         <label for="cb2"></label> <label class="search__title">비공개</label>
 
 
@@ -108,9 +108,9 @@
                     <br>
                     <h1>QnA 리스트</h1>
 
-                    <table class="list-table">
+                    <table class="list-table" >
                         <thead>
-                            <tr>
+                          <tr>
                                 <td>번호</td>
                                 <td>제목</td>
                                 <td>작성자</td>
@@ -122,8 +122,8 @@
                         </thead>
 
                         <tbody>
-                         <c:forEach var="q" items="${qlist}">
-                         <tr>
+                         <c:forEach var="q" items="${qlist}" varStatus="st">
+                         <tr ${st.count % 2==0?"class='even'":""}>
                             <td>${q.id}</td>
                             <td><a href="detail?id=${q.id}">${q.title}</a></td>
                             <td>${q.writerId}</td>

@@ -2,10 +2,11 @@
   border-radius: 50%;
   font-size: 18px;
   font-weight: 600;
+  height:100px
 }
 .header nav li {
   color: black;
 }
 .header nav li:hover {
-  color: white;
+  color: #778899;
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -61,16 +62,23 @@ import com.petmet.web.service.QuestionService;
 			
 //			Answer a = aservice.get(id);
 			
-			Answer answer = new Answer(id,null,content,null);
+			Answer answer = new Answer(id,"관리자",content);
+			
 			Question q = qservice.get(id);
 			
+//			answer.setWriterId("관리자");
 			
-			answer.setWriterId("관리자");
 		System.out.print(q.getIsAnswer());
 			if (q.getIsAnswer()==null) {
 				aservice.insert(answer);
+				Answer a = aservice.get(id);
 				q.setIsAnswer("");
 				qservice.updateAnswer(q);
+				
+				System.out.print(a.getRegDate());
+				q.setAnDate(a.getRegDate());
+				qservice.update(q);
+				
 			}
 
 			else
