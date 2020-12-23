@@ -78,9 +78,9 @@
                                 <td class="col-m">강아지 이름</td>
                                 <td class="col-s">성별</td>
                                 <td class="col-s">중성화</td>
-                                <td class="col-l">성격</td>
+                                <td class="col-m">성격</td>
                                 <td class="col-m">견종</td>
-                                <td class="col-m">거리</td>
+                                <td class="col-l">거리</td>
                                 <td class="col-m">등록일자</td>
                             </tr>
                         </thead>
@@ -108,10 +108,7 @@
                     <ul>
 
                         <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
+                        
 
                     </ul>
                     <div>
