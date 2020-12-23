@@ -13,6 +13,8 @@
     <link href="../css/layout.css" type="text/css" rel="stylesheet">
     <link href="../css/content-layout.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/components/table/list.css" type="text/css" rel="stylesheet">
+    <link href="../css/admin/components/table/detail.css" type="text/css" rel="stylesheet">
+
     <link href="../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../js/match/list.js"></script>
@@ -85,18 +87,7 @@
 
                         <tbody>
 
-                            <tr>
-                                <td>1</td>
-                                <td>현지(남)</td>
-                                <td><a href="">쿠쿠</a></td>
-                                <td>남</td>
-                                <td>O</td>
-                                <td>활발,사나움</td>
-                                <td>비숑</td>
-                                <td>5km 이내</td>
-                                <td>2020-08</td>
-                            </tr>
-
+                            
                         </tbody>
                     </table>
 
@@ -116,7 +107,11 @@
                     </div>
                     <ul>
 
-                        <li><a href=""></a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">4</a></li>
+                        <li><a href="">5</a></li>
 
                     </ul>
                     <div>
