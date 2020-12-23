@@ -12,11 +12,17 @@
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
-    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-
+	<link rel="stylesheet" href="../../css/admin/components/feed.css">
+	<script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
 	<!----------------------------------header--------------------------------------->
     <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
@@ -179,7 +185,7 @@
 
     <footer class="footer">
         <div class="container">
-            <h1>Footer</h1>
+            <h1 class="d-none">Footer</h1>
         </div>
     </footer>
 

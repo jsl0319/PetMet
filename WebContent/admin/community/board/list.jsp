@@ -17,11 +17,18 @@
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/admin/components/feed.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../../../js/admin/community/board/list.js"></script>
 </head>
 
 <body>
+	<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
 	<!----------------------------------header--------------------------------------->
     <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
@@ -34,7 +41,7 @@
                 <h1 class="d-none">Aside 메뉴</h1>
                 <nav>
                     <h1 class="d-none">세부 메뉴 목록</h1>
-
+                    
                     <ul>
                         <li>
                             <a href="../notice/list">공지사항관리</a>

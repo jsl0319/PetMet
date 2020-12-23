@@ -14,12 +14,19 @@
 	href="../../../css/admin/components/table/list.css" type="text/css">
 <link rel="stylesheet"
 	href="../../../css/admin/components/form/default.css" type="text/css">
+	<link rel="stylesheet" href="../../css/admin/components/feed.css">
 <script src="https://kit.fontawesome.com/b280fc7aa7.js"
 	crossorigin="anonymous"></script>
 <script src="../../../js/admin/community/category/list.js"></script>
 </head>
 
 <body>
+<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
 	<!----------------------------------header--------------------------------------->
 	<jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
