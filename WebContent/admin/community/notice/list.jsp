@@ -120,9 +120,8 @@
                         </thead>
 
                         <tbody>
-                         <c:forEach var="n" items="${list}">
-                       
-                            <tr>
+                         <c:forEach var="n" items="${list}" varStatus="st">
+                          <tr ${st.count % 2==0?"class='even'":""}>
                                 <td>${n.id}</td>
                   <td><a href="detail?id=${n.id}">${n.title}</a></td>
 

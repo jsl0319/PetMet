@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/admin/components/table/list.css">
   <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+  <link rel="stylesheet" href="../../css/admin/components/feed.css">
   <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
   <title>FEED_detail-list</title>
 </head>
@@ -29,7 +30,7 @@
         <aside class="aside">
           <h1 class="d-none">페이지 목록</h1>
           <ul>
-            <li><a href="list">Report</a></li>
+            <li><a href="list"><i class="fas fa-poo"></i> Report</a></li>
           </ul>
         </aside>
 
@@ -40,18 +41,21 @@
           <section class="main-section">
             <h1 class="d-none">신고 리스트</h1>
             
-                <form class="search__container">
+                <form class="search__container feed-search">
                     <div>
-                    <select class="selectbox" name="f">
+                    <select class="selectbox input" name="f">
                       <option ${param.f=="feed_id" ? "selected":""} value="feed_id">닉네임</option>
                     </select>
                     
-                    <input class="search__input" type="text" name = "q" value="${param.q }">
+                    <input class="search__input input" type="text" name = "q" value="${param.q }">
                     </div>
                     
-                    <input type="date" name="sd" value="${param.sd}">~
-                        <input type="date" name="ed" value="${param.ed}">
-                    <input class="button" type="submit" value="검색" />
+                    <div class="input feed-select">
+	                    <input  type="date" name="sd" value="${param.sd}"> ~
+	                    <input  type="date" name="ed" value="${param.ed}">
+                    </div>
+                    
+                    <input class="button input" type="submit" value="검색" />
                     
                   </form>
                   

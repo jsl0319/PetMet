@@ -19,6 +19,12 @@ public class Answer {
 		this.regDate = regDate;
 	}
 
+	public Answer(int questionId, String writerId, String content) {
+		this.questionId = questionId;
+		this.writerId = writerId;
+		this.content = content;
+	}
+
 	public int getQuestionId() {
 		return questionId;
 	}
