@@ -19,12 +19,16 @@ public interface NoticeDao {
 
 //	List<Notice> getList();
 	
-	List<Notice> getList(String query, String startDate, String endDate, int page, int num);
+	
 
 	
 	int getdelNotceAll(int[] ids);
 	Notice getLastId();
 	
+	
+
+	
+	List<Notice> getList(String query, String startDate, String endDate, int page, int num);
 	int getCount(String query, String startDate, String endDate);
 	
 }

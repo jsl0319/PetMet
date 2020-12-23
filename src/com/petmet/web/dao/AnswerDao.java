@@ -10,14 +10,6 @@ public interface AnswerDao {
 	int update(Answer answer);
 
 	Answer get(int id);
-	List<Answer>getList();
+	List<Answer> getList();
 	
-
-
-
-
-	
-	
-
-
 }

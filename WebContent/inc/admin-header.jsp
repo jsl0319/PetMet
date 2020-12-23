@@ -14,25 +14,25 @@
                 <h1 class="d-none">헤더 목록</h1>
                 <ul>
                   <li>
-                    <a href="../admin/member/list">
+                    <a href="/admin/member/list">
                       <i class="fas fa-users fa-2x"></i>
                       <span>USER</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../admin/feed/list">
+                    <a href="/admin/feed/list">
                       <i class="fas fa-camera-retro fa-2x"></i>
                       <span>FEED</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../admin/community/notice/list">
+                    <a href="/admin/community/notice/list">
                       <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
                       <span>COMMUNITY</span>
                     </a>
                   </li>
                   <li>
-                    <a href="../admin/petplace/list">
+                    <a href="/admin/petplace/list">
                       <i class="fas fa-map-marked-alt fa-2x"></i>
                       <span>PLACE</span>
                     </a>
