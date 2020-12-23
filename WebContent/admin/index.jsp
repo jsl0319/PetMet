@@ -10,8 +10,20 @@
     <link href="../css/reset.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/layout/index.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
+    <link href="../css/admin/ji.css" type="text/css" rel="stylesheet">
+    
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../js/admin/index.js"></script>
+    
+    <style>
+.buttonload {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px /* Set a font size */
+}
+    </style>
 </head>
 
 <body>
@@ -29,9 +41,11 @@
                         <h1 class="d-none">숫자</h1>
                         <table>
                             <tr>
-                                <td>500 visitors</td>
-                                <td>1000 matchs</td>
-                            </tr>
+								<button class="buttonload">
+									<i class="fa fa-refresh fa-spin"></i> Go chart!
+								</button>
+
+							</tr>
                         </table>
                     </section>
                     <section class="graph">
