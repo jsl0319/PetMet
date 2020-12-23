@@ -1,0 +1,38 @@
+
+.header nav{
+    flex-basis: 900px;
+}
+
+.login{
+    padding-top: 10px;
+}
+
+.login a:nth-child(2){
+    padding-left: 8px;
+}
+
+.main1 .container{
+    background : white;
+    background-size : cover;
+}
+
+.main2 .container{
+    background: white;
+}
+
+
+
+.header{
+    margin-top : 30px;
+}
+
+.main1{
+    margin-top : 30px;
+}
+
+.main2{
+    margin-top : 30px;
+    background : #f5f5dc;
+}
+
+

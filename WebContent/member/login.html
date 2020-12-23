@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/reset.css" type="text/css" rel="stylesheet">
+    <link href="../css/index.css" type="text/css" rel="stylesheet">
+    <link href="../css/layout.css" type="text/css" rel="stylesheet">
+    <link href="../css/login.css" type="text/css" rel="stylesheet">
+    <link href="../css/content-layout.css" type="text/css" rel="stylesheet">
+    <link href="../css/admin/components/table/list.css" type="text/css" rel="stylesheet">
+    <link href="../css/admin/components/form/default.css" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
+    <script src="../js/match/list.js"></script>
+</head>
+
+<body>
+
+    <header id="header" class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
+            </div>
+
+            <nav>
+                <h1 class="d-none">헤더 목록</h1>
+                <ul>
+                    <li>
+                        <a href="list">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>MEMBER</span>
+                        </a>
+                    </li>
+               
+                    <li>
+                        <a href="../community/notice/list">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../petplace/list">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+    </header>
+
+
+    <div class="body">
+        <main id="main" class="main">
+            <h1 class="d-none">메인이다</h1>
+            <div class="container">
+                <h1 class="d-none">로그인 정보 입력</h3>
+                <form class="login-form" method="post">
+                    <fieldset class="login">
+                        <legend class="d-none">로그인 폼</legend>
+                        
+                        <ul class="login-box">
+                            <li>
+                                <label for="uid" class="id">아이디 </label>
+                                <input type="text" name="username" placeholder="아이디" />
+                            </li>
+                            <li class="pwd">
+                                <label for="pwd">비밀번호</label>
+                                <input type="password" name="password" placeholder="비밀번호" />
+                            </li>
+                        </ul>
+
+                       
+                        <input type="hidden" name="" value="" />
+                        <input type="submit" class="btn login-btn" value="login"/>
+                       
+                        
+                    </fieldset>
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <h1>footer</h1>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

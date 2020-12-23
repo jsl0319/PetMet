@@ -1,86 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Main</title>
+    <title>Document</title>
     <link href="css/reset.css" type="text/css" rel="stylesheet">
-    <link href="css/style.css" type="text/css" rel="stylesheet">
-    <link href="css/user-style.css" type="text/css" rel="stylesheet" >
+    <link href="css/admin/layout/index.css" type="text/css" rel="stylesheet">
+    <link href="css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+    <script src="js/match/index.js"></script>
+    <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <!-------------------- Header -------------------->
+
     <header id="header" class="header">
         <div class="container">
-            <div>
-                <h1><a href="index.html">logo</a></h1>
+            <div class="logo">
+                <a href="index">
+                    <i class="fas fa-dog fa-3x"></i>
+                    <h1>PetMet</h1>
+                </a>
             </div>
 
-            <div>
-                <nav class="header-menu">
-                    <h1 class="d-none">메뉴</h1>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="match/index.html">Match</a></li>
-                        <li><a href="community/index.html">Community</a></li>
-                        <li><a href="shop/index.html">Shop</a></li>
-                        <li><a href="user/index.html">Login</a></li>
-                        <li><a href="myfeed/index.html">My Page</a></li>
-                    </ul>
-                </nav>
+            <nav>
+                <h1 class="d-none">헤더 목록</h1>
+                <ul>
+                    <li>
+                        <a href="member/list">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>MATCHING</span>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a href="community/notice/list">
+                            <i class="fas fa-american-sign-language-interpreting fa-2x"></i>
+                            <span>COMMUNITY</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="petplace/list">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                            <span>PLACE</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="login">
+                <a href="member/login.html">로그인</a>
+                <a href="">로그아웃</a>
             </div>
+            
+        </div>
         </div>
     </header>
-    
-    <!-------------------- Main -------------------->
-    <section class="body">
-        <div class="container">
-            <aside class="aside">
-                <ul>
-                    <li><input type="radio" name="nav" checked>매칭</li>
-                    <li><input type="radio" name="nav">커뮤니티</li>
-                    <li><input type="radio" name="nav">쇼핑몰</li>
-                </ul>
-            </aside>
 
-            <main id="main" class="main">
-                <section>
-                    <h1 class="d-none">메인 전체 대표 제목</h1>
-                    <section>
-                        <h1 class="d-none">매칭</h1>
-                        <form>
-                            <a href="match/index.html"><input type="button" value="match"></a>
-                        </form>
-                    </section>
 
-                    <section>
-                        <h1 class="d-none">커뮤니티</h1>
-                        <form>
-                            <a href="community/index.html"><input type="button" value="community"></a>
-                        </form>
-                    </section>
+    <div class="body">
+        <main id="main" class="main">
+            <h1 class="d-none">메인이다</h1>
+            <section class="main1">
+                
+                <div class="container">
+                    <h1 class="d-none">이미지</h1>
+                    
+                   
+                
+            </div>
+            </section>
 
+            <section class="main2">
+                <div class="container">
+                    <h1 class="d-none">그 외의 정보들</h1>
                     <section>
-                        <h1 class="d-none">쇼핑몰 </h1>
-                        <form>
-                            <a href="shop/index.html"><input type="button" value="shop"></a>
-                        </form>
+                        <h1>Notice</h1>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>작성일</td>
+                                    <td>조회수</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>22</td>
+                                    <td>33</td>
+                                    <td>44</td>
+                                    <td>55</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
-                </section>
-            </main>
-        </div>
-    </section>
-    <!-------------------- Footer -------------------->
+                    <section>
+                        <h1>Others</h1>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성자</td>
+                                    <td>작성일</td>
+                                    <td>조회수</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>22</td>
+                                    <td>33</td>
+                                    <td>44</td>
+                                    <td>55</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
     <footer id="footer" class="footer">
-        <section class="container">
-            <h1 class="d-none">Footer</h1>
 
-            <ul>
-                <li>회사소개</li>
-                <li>이용약관</li>
-                <li>개인정보</li>
-            </ul>
-        </section>
+        <div class="container">
+            <h1>footer</h1>
+        </div>
+
     </footer>
+
 </body>
+
 </html>

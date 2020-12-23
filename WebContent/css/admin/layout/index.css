@@ -1,13 +1,13 @@
 .header{
     height : 80px;
-    /* background: coral; */
+   
 }
 
 .header .container{
     width: 1200px;
     height:100%;
     margin : 0 auto;
-    background : pink;
+    
 }
 
 
@@ -24,7 +24,7 @@
     width: 1200px;
     min-height: 400px;
     margin : 0 auto;
-    background: purple;
+   
   
 }
 
@@ -34,14 +34,14 @@
     min-height: 400px;
     margin : 0 auto;
     
-    background: red;
+    
   
 }
 
 .footer{
 
     height : 67px;
-    /* background: blue; */
+    
 }
 .footer .container{
     width:1200px;
@@ -60,5 +60,5 @@
 }
 
 .footer .container{
-    background : pink;
+    
 }
