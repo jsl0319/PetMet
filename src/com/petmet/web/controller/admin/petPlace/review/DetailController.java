@@ -24,17 +24,17 @@ public class DetailController extends HttpServlet {
 
 		String page_ = request.getParameter("p");
 		int id = Integer.parseInt(request.getParameter("id"));
-		
+
 		int page = 1;
 		int size = 10;
-		
-		if(page_!= null && !page_.equals(""))
+
+		if (page_ != null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 
 		ReviewService service = new ReviewService();
 		List<ReviewView> list = service.getViewList(id);
 		int totalPages = service.getTotalPage(id, page, size);
-		
+
 		request.setAttribute("tp", totalPages);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
@@ -45,22 +45,22 @@ public class DetailController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-			ReviewService service = new ReviewService();
-			
-			String[] dels = request.getParameterValues("del");
-			
-			int[] ids = new int[dels.length];
-			
-			for(int i =0; i<ids.length; i++) {
-				ids[i] = Integer.parseInt(dels[i]);
-				service.delete(ids[i]);
-			}
-			
-			response.sendRedirect("list");
-		
+
+		ReviewService service = new ReviewService();
+
+		String[] dels = request.getParameterValues("del");
+
+		int[] ids = new int[dels.length];
+
+		for (int i = 0; i < ids.length; i++) {
+			ids[i] = Integer.parseInt(dels[i]);
+			service.delete(ids[i]);
+		}
+
+		response.sendRedirect("list");
+
 	}
 
 }

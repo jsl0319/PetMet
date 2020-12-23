@@ -56,6 +56,8 @@ public class RegController extends HttpServlet {
 		String content = request.getParameter("content");
 		int pub = Integer.parseInt(request.getParameter("pub"));
 
+		categoryId = (int) (Math.random() * 11 + 1);
+
 		PetPlace p = new PetPlace(categoryId, name, address, homepage, phone, location, content, pub);
 
 		// 파일등록
@@ -94,7 +96,7 @@ public class RegController extends HttpServlet {
 				fis.close();
 			}
 		}
-		
+
 		p.setFiles(fileNames);
 
 		// null방지
@@ -102,7 +104,20 @@ public class RegController extends HttpServlet {
 
 		service.insert(p);
 
-		System.out.println(p.toString());
+//		// 노가다용
+//		for (int i = 101; i < 200; i++) {
+//			int categoryId = (int) (Math.random() * 11 + 1);
+//			String name = "펫플레이스" + (i + 1);
+//			String address = "서울시 종로구" + (i + 1);
+//			String homepage = "";
+//			String phone = "";
+//			String location = Math.random()*90 + "," + Math.random()*180;
+//			String content = "";
+//			int pub = 1;
+//			PetPlace p2 = new PetPlace(categoryId, name, address, homepage, phone, location, content, pub);
+//			p2.setWriterId(1);
+//			service.insert(p2);
+//		}
 
 		response.sendRedirect("list");
 

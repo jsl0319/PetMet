@@ -109,7 +109,7 @@
                 
                 <section>
                 
-                	<div id="map" style="width:450px;height:300px;">
+                	<div id="map" style="width:100%;height:400px;">
                 		
                 	</div>
                 

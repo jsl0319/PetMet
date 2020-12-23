@@ -131,7 +131,7 @@
                             </tr>
                             <tr class="content">
                                 <td colspan="4">
-                                    <div id="map" style="width:450px;height:300px;"></div>
+                                    <div id="map" style="width:600px;height:400px;"></div>
                                 </td>
                             </tr>
                             <tr class="content">

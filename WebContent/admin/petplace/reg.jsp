@@ -118,7 +118,7 @@
                                 <tr>
                                     <th>주소</th>
                                     <td>
-                                    	<input class="location-input" type="text" name="location">
+                                    	<input hidden class="location-input" type="text" name="location">
                                     	<input class="address-input" type="text" name="address">
                                     	<input type="button" class="search-btn" value="지도 검색">
                                     </td>
