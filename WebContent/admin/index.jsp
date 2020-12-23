@@ -13,23 +13,30 @@
     <link href="../css/admin/layout/index.css" type="text/css" rel="stylesheet">
     <link href="../css/admin/content-layout/index.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css" type="text/css">
+    <link rel="stylesheet" href="../css/admin/components/feed.css">
     <link href="../css/admin/ji.css" type="text/css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script src="../js/admin/index.js"></script>
     
     <style>
-.buttonload {
-  background-color: #4CAF50; /* Green background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px /* Set a font size */
-}
+		.buttonload {
+		  background-color: #4CAF50; /* Green background */
+		  border: none; /* Remove borders */
+		  color: white; /* White text */
+		  padding: 12px 16px; /* Some padding */
+		  font-size: 16px /* Set a font size */
+		}
     </style>
 </head>
 
 <body>
-
+	<div class="neon circle"></div>
+	  <div class="neon circle"></div>
+	  <div class="neon square"></div>
+	  <div class="neon square2"></div>
+	  <div class="neon tri"></div>
+	  <div class="neon tri2"></div>
+	  
     <jsp:include page="../inc/admin-header.jsp"></jsp:include>
 
 
@@ -61,7 +68,7 @@
                 <div class="container">
                     <h1 class="d-none">그 외의 정보들</h1>
                     <section>
-                        <h1>Notice</h1>
+                        <h1 class="title">Notice</h1>
                         <table class="list-table">
                             <thead>
                                 <tr>
@@ -87,7 +94,7 @@
                     </section>
                     
                     <section>
-                        <h1>Question</h1>
+                        <h1 class="title">Question</h1>
                         <table class="list-table">
                             <thead>
                                 <tr>
@@ -95,7 +102,6 @@
                                 <td>제목</td>
                                 <td>작성자</td>
                                 <td>등록일</td>
-                                <td>공개</td>
                                 <td>답변</td>
                                 <td>답변일자</td>
                             </tr>
@@ -108,7 +114,6 @@
 		                            <td><a href="detail?id=${q.id}">${q.title}</a></td>
 		                            <td>${q.writerId}</td>
 		                            <td>${q.regDate}</td>
-		                            <td>${q.pub}</td>
 		                            <td>${q.isAnswer}</td>
 		                            <td>${q.anDate}</td>
 	                            </tr>
