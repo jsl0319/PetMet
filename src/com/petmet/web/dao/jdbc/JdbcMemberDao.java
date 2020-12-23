@@ -154,6 +154,47 @@ public class JdbcMemberDao implements MemberDao {
 		return count;
 	}
 
+	@Override
+	public Member get(String mid) {
+		Member member = null;
+		String url = DBContext.URL;
+		String uid = DBContext.UID;
+		String pwd2 = DBContext.PWD;
+
+		String sql = "SELECT * FROM MEMBER WHERE EMAIL='"+mid+"'";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, uid, pwd2);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				int id = rs.getInt("ID");
+				String email = rs.getString("EMAIL");
+				String pwd= rs.getString("pwd");
+				String nickname= rs.getString("nickname");
+				int gender= rs.getInt("gender");
+				String address= rs.getString("address");
+				String phone= rs.getString("phone");
+				Date regDate = rs.getDate("REG_DATE");
+				
+				member = new Member(
+						id,  email,  pwd,  nickname,  gender,  address,  phone,
+						 regDate);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+
 	
 	
 }
