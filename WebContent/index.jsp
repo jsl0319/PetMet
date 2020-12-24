@@ -41,14 +41,15 @@
                 <div class="container">
                     <h1 class="d-none">그 외의 정보들</h1>
                     
-            <!-- <img class="ppo" src="images/user/ppo.png">
 			<img class="sel" src="images/user/sel.png">
+            <img class="ppo" src="images/user/ppo.png">
 			<img class="kris" src="images/user/kris.png">
 			<img class="black" src="images/user/black.png">
+		    <img class="sel2" src="images/user/sel.png">
+		    <!--
 			<img class="ppo2" src="images/user/ppo.png">
-			<img class="sel2" src="images/user/sel.png">
 			<img class="kris2" src="images/user/kris.png">
-			<img class="black2" src="images/user/black.png">  -->
+			<img class="black2" src="images/user/black.png"> -->
                     
                 </div>
             </section>

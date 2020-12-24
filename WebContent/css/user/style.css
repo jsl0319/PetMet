@@ -8,7 +8,7 @@
     transform: none;
   }
   50% {
-    transform: translateY(-5px) scale(2) ;
+    transform: translateY(-5px) translateX(400px) rotate(3turn);
   }
   100% {
     transform: none;
@@ -24,65 +24,79 @@
 	background-color: beige;
 }
 
+
+
 .sel {
   position:absolute;
   width: 300px;
   height: 200px;
   top: 700px;
-  left: 100px;
-  opacity:0.5;
-  animation: s-animation 2.5s ease-in-out infinite;
+  left: 80px;
+  opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite 1s;
 }
 .ppo {
   position:absolute;
   width: 200px;
   height: 200px;
   bottom: 300px;
-  left:300px;
-  opacity:0.5;
-  animation: s-animation 2.5s ease-in-out infinite;
+  top: 600px;
+  left: 500px;
+ opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite 2s;
 }
 .kris {
   position:absolute;
   width: 300px;
   height: 200px;
-  opacity:0.5;
-  animation: s-animation 2.5s ease-in-out infinite;
+  opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite 3s;
 }
 .black {
   position:absolute;
   width: 300px;
   height: 200px;
-  opacity:0.5;
-  animation: s-animation 2.5s ease-in-out infinite;
+  opacity:0.7;
+  left: 800px;
+  top: 500px;
+  animation: s-animation 2.5s ease-in-out infinite 4s;
 }
+
+
+
 .sel2 {
   position:absolute;
   width: 300px;
   height: 200px;
   top: 700px;
-  left: 100px;
-  opacity:0.5;
-  
+  left: 700px;
+  opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite;
 }
 .ppo2 {
   position:absolute;
   width: 200px;
   height: 200px;
-  bottom: 300px;
-  left:300px;
-  opacity:0.5;
+  top: 600px;
+  left: 500px;
+  opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite;
 }
 .kris2 {
   position:absolute;
   width: 300px;
   height: 200px;
-  opacity:0.5;
+  opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite;
   
 }
 .black2 {
   position:absolute;
   width: 300px;
   height: 200px;
-   opacity:0.5;
+  left: 800px;
+  top: 500px;
+  opacity:0.7;
+  animation: s-animation 2.5s ease-in-out infinite;
 }
+
