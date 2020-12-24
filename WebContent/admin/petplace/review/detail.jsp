@@ -13,10 +13,17 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="detail.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
     <!-------------------------------header------------------------------------>
     <jsp:include page="../../../inc/admin-header.jsp"></jsp:include>
 
@@ -52,11 +59,11 @@
             </aside>
 
             <main class="main">
-                <h1>리뷰 관리</h1>
+                <h1 class="title">Review 관리</h1>
                 
                 <form action="detail" method="post">
                 <section>
-                    <h1>Pet Place : ${list[0].categoryName}</h1>
+                    <h1 hidden>Pet Place : ${list[0].categoryName}</h1>
                     <table class="list-table">
                         <thead>
                             <tr>
@@ -82,7 +89,7 @@
                     </table>
                 </section>
 
-                <section>
+                <section class="buttons">
                     <h1 class="d-none">버튼</h1>
                     <input class="button" type="submit" value="선택 삭제">
                 </section>

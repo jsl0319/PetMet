@@ -16,7 +16,7 @@
                   <li>
                     <a href="/admin/member/list">
                       <i class="fas fa-users fa-2x"></i>
-                      <span>USER</span>
+                      <span>MEMBER</span>
                     </a>
                   </li>
                   <li>

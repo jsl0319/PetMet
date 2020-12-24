@@ -11,12 +11,19 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/list.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="list.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c3f482aeb9a4689468c97bf295d500e"></script>
     <script src="../js/petplace/list.js"></script>
 </head>
 
 <body>
+<div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
     <!-------------------------------header------------------------------------>
     <header class="header">
         <div class="container">
@@ -109,9 +116,7 @@
                 
                 <section>
                 
-                	<div id="map" style="width:450px;height:300px;">
-                		
-                	</div>
+                	<div id="map" style="width:100%;height:400px;"></div>
                 
                 </section>
 

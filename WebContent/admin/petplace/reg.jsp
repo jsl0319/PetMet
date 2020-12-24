@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +11,20 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/admin/components/table/detail.css">
     <link rel="stylesheet" href="../../css/admin/components/form/default.css">
+    <link rel="stylesheet" href="reg.css">
     <script src="https://kit.fontawesome.com/b280fc7aa7.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c3f482aeb9a4689468c97bf295d500e"></script>
-	<script src="../../js/admin/petplace/reg.js"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6c3f482aeb9a4689468c97bf295d500e"></script>
+    <script src="../../js/admin/petplace/reg.js"></script>
 </head>
 
 <body>
+  <div class="neon circle"></div>
+  <div class="neon circle"></div>
+  <div class="neon square"></div>
+  <div class="neon square2"></div>
+  <div class="neon tri"></div>
+  <div class="neon tri2"></div>
     <!-------------------------------header------------------------------------>
     <jsp:include page="../../inc/admin-header.jsp"></jsp:include>
 
@@ -56,7 +63,7 @@
                 <h1 class="d-none">main</h1>
 
                 <section>
-                    <h1>PetPlace 등록</h1>
+                    <h1 class="title">PetPlace 등록</h1>
 
                     <form method="post" enctype="multipart/form-data">
 
@@ -70,24 +77,24 @@
                                     <th>카테고리</th>
                                     <td>
                                         <select name="categoryId">
-                                        	<c:forEach var="ppc" items="${list}">
-                                            	<option value="${ppc.id}">${ppc.name}</option>
-                                        	</c:forEach>
+                                            <c:forEach var="ppc" items="${list}">
+                                                <option value="${ppc.id}">${ppc.name}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>주소</th>
                                     <td>
-                                    	<input class="location-input" type="text" name="location">
-                                    	<input class="address-input" type="text" name="address">
-                                    	<input type="button" class="search-btn" value="지도 검색">
+                                        <input hidden class="location-input" type="text" name="location">
+                                        <input class="address-input" type="text" name="address">
+                                        <input type="button" class="search-btn" value="지도 검색">
                                     </td>
-                                	<th>공개 여부</th>
-                                	<td>
+                                    <th>공개 여부</th>
+                                    <td>
                                         <select name="pub">
-                                        	<option selected value="1">공개</option>
-                                        	<option value="0">비공개</option>
+                                            <option selected value="1">공개</option>
+                                            <option value="0">비공개</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -112,11 +119,12 @@
                             </tbody>
                         </table>
 
-                        <section>
-                            <input class="button" type="submit" value="등록" />
-                            <a class="button" href="list">취소</a>
-                        </section>
                     </form>
+                </section>
+                <section class="buttons">
+                    <h1 class="d-none">버튼</h1>
+                    <input class="button" type="submit" value="등록" />
+                    <a class="button cancle-button" href="list">취소</a>
                 </section>
             </main>
         </div>

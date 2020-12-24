@@ -1,0 +1,19 @@
+.title {
+	padding:20px;
+	font-size: 30px;
+}
+
+.buttons{
+	padding: 10px;
+	display: flex;
+	justify-content: flex-end;
+	width:100%;
+}
+
+.main .buttons .button{
+	padding: 5px;
+	margin-left:10px;
+	font-size: 16px;
+	line-height:30px;
+	text-align: center;
+}

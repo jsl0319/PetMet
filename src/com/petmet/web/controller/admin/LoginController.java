@@ -34,9 +34,9 @@ public class LoginController extends HttpServlet{
 	
 	
 		HttpSession session = request.getSession();
-		System.out.println(aid);
+		
 		if(adminService.isVaild(aid,pwd)) {
-			System.out.println("실행되야되는데");
+		
 			session.setAttribute("aid", aid);
 			response.sendRedirect("index");
 		}

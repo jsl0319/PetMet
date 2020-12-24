@@ -2,9 +2,29 @@ html{
 	position:relative;
 }
 
+.header,
+.body{
+	margin-top:35px;
+}
+
 .buttonload{
 	position:absolute;	
 	left: 200px;
 	bottom: 700px;
 	
+}
+
+.main2{
+	margin-top: 50px;
+}
+.main2 .title{
+	font-size:20px;
+	font-weight: 600;
+	text-indent: 10px;
+}
+.main2 .list-table{
+	width:99%;
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
 }

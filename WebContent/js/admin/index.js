@@ -8,7 +8,7 @@ window.addEventListener("load", function(){
     // y축
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(0, 600);
+    ctx.lineTo(0, 370);
     ctx.stroke();
 
     // 도움선
@@ -29,8 +29,8 @@ window.addEventListener("load", function(){
 
     // x축
     ctx.beginPath();
-    ctx.moveTo(0, 400);
-    ctx.lineTo(600, 400);
+    ctx.moveTo(0, 370);
+    ctx.lineTo(600, 370);
     ctx.stroke();
 
     var request = new window.XMLHttpRequest();
@@ -39,13 +39,10 @@ window.addEventListener("load", function(){
         var matchInfo = jsons[0]
         var review = jsons[1]
 
-        console.log(matchInfo);
-        console.log(review);
-
         // for(var i=0; i < matchInfo.length; i++){
         //     var m = matchInfo[i];
         //     var x = 50 + i*110;
-        //     var y = 400 - m.dogId * 100;
+        //     var y = 370 - m.dogId * 100;
         //     var width = 50;
         //     var height = m.dogId * 100;
 
@@ -60,12 +57,12 @@ window.addEventListener("load", function(){
         for(var i=0; i < review.length; i++){
             var r = review[i];
             var x = 50 + i*110;
-            var y = 400 - r.id * 30;
+            var y = 370 - r.id * 30;
             var width = 50;
             var height = r.id * 30;
 
             ctx.fillStyle = '#ddd';
-            ctx.fillRect(x, 0, width, 400);
+            ctx.fillRect(x, 0, width, 370);
 
             ctx.fillStyle = '#e7708d';
             ctx.fillRect(x, y, width, height);
