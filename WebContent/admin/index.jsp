@@ -14,6 +14,7 @@
 	rel="stylesheet">
 <link href="../css/admin/content-layout/index.css" type="text/css"
 	rel="stylesheet">
+<link rel="stylesheet" href="../../css/admin/components/feed.css">
 <link rel="stylesheet"
 	href="../../../css/admin/components/table/list.css" type="text/css">
 <link href="../css/admin/ji.css" type="text/css" rel="stylesheet">
@@ -21,11 +22,19 @@
 	crossorigin="anonymous"></script>
 <script src="../js/admin/index.js"></script>
 
+
 </head>
 
 <body>
 
 	<jsp:include page="../inc/admin-header.jsp"></jsp:include>
+	<div class="neon circle"></div>
+	<div class="neon circle"></div>
+	<div class="neon square"></div>
+	<div class="neon square2"></div>
+	<div class="neon tri"></div>
+	<div class="neon tri2"></div>
+
 
 
 	<div class="body">
@@ -44,7 +53,6 @@
 						<button class="buttonload2">
 							<i class="fa fa-refresh fa-spin"></i> Go chart!
 						</button>
-
 
 
 					</section>
