@@ -142,7 +142,7 @@
 
 	<footer class="footer">
 		<div class="d-none">
-			<h1>Footer</h1>
+			<h1></h1>
 		</div>
 	</footer>
 	
