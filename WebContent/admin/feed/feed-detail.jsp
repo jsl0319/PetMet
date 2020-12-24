@@ -48,7 +48,7 @@
     <!----------------------------------footer--------------------------------------->
     <footer id="footer" class="footer">
       <div class="container">
-        <h1 class="d-none">Footer</h1>
+        <h1 class="d-none"></h1>
       </div>
     </footer>
 </body>
