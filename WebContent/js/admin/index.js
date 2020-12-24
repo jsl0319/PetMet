@@ -3,8 +3,8 @@ window.addEventListener("load", function(){
     var canvas = gSection.querySelector("canvas");
     var ctx = canvas.getContext('2d');
     
-    ctx.strokeStyle = "#BBB"; 
-
+    ctx.strokeStyle = "#bcbcbc"; 
+    
     // y축
     ctx.beginPath();
     ctx.moveTo(0, 0);
@@ -13,18 +13,18 @@ window.addEventListener("load", function(){
 
     // 도움선
     ctx.beginPath();
-    ctx.moveTo(0, 100);
-    ctx.lineTo(600, 100);
+    ctx.moveTo(0, 90);
+    ctx.lineTo(600, 90);
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(0, 200);
-    ctx.lineTo(600, 200);
+    ctx.moveTo(0, 180);
+    ctx.lineTo(600, 180);
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(0, 300);
-    ctx.lineTo(600, 300);
+    ctx.moveTo(0, 270);
+    ctx.lineTo(600, 270);
     ctx.stroke();
 
     // x축
@@ -39,40 +39,43 @@ window.addEventListener("load", function(){
         var matchInfo = jsons[0]
         var review = jsons[1]
 
-        // for(var i=0; i < matchInfo.length; i++){
-        //     var m = matchInfo[i];
-        //     var x = 50 + i*110;
-        //     var y = 370 - m.dogId * 100;
-        //     var width = 50;
-        //     var height = m.dogId * 100;
+        var buttonload1 = document.querySelector(".buttonload1");
+        var buttonload2 = document.querySelector(".buttonload2");
 
-        //     ctx.fillStyle = '#e7708d';
-        //     ctx.fillRect(x, y, width, height);
+        buttonload1.onclick = function(){
+            for(var i=0; i < matchInfo.length; i++){
+                var m = matchInfo[i];
+                var x = 50 + i*110;
+                var y = 370 - m.dogId * 100;
+                var width = 50;
+                var height = m.dogId * 100;
 
-        //     ctx.fillStyle = 'black';
-        //     ctx.font = '20px arial';
-        //     ctx.fillText(m.name, x, 390);
-        // }
+                ctx.fillStyle = '#e7708d';
+                ctx.fillRect(x, y, width, height);
 
-        for(var i=0; i < review.length; i++){
-            var r = review[i];
-            var x = 50 + i*110;
-            var y = 370 - r.id * 30;
-            var width = 50;
-            var height = r.id * 30;
+                ctx.fillStyle = 'black';
+                ctx.font = '20px arial';
+                ctx.fillText(m.name, x, 390);
+            }
+        }
 
-            ctx.fillStyle = '#ddd';
-            ctx.fillRect(x, 0, width, 370);
+        buttonload2.onclick = function(){
+            for(var i=0; i < review.length; i++){
+                var r = review[i];
+                var x = 50 + i*110;
+                var y = 370 - r.id * 30;
+                var width = 50;
+                var height = r.id * 30;
 
-            ctx.fillStyle = '#e7708d';
-            ctx.fillRect(x, y, width, height);
+                ctx.fillStyle = '#e7708d';
+                ctx.fillRect(x, y, width, height);
 
-            ctx.fillStyle = 'black';
-            ctx.font = '20px arial';
-            ctx.fillText(r.memberName, x, 390);
+                ctx.fillStyle = 'black';
+                ctx.font = '20px arial';
+                ctx.fillText(r.memberName, x, 390);
+            }
         }
     }
-
     request.open("GET", "/api/index", true);
     request.send();
 
